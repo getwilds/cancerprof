@@ -6,20 +6,21 @@ library(cdlTools)
 req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 
 
-#' Access to Crowding Data
+#' Access to Workforce Data
 #' 
-#' This function returns a data frame from Crowding in State Cancer Profiles
+#' This function returns a data frame from Workforce in State Cancer Profiles
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county" or "HSA" (Health service area)
 #' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
+#' @param sex Either "both sexes", "male", "female"
 #' 
-#' @returns A data frame with the following columns "County", "Value (Percent)", "Households (with >1 Person Per Room)", "Rank within US (of 3143 counties)"
+#' @returns A data frame with the following columns "County", "FIPS", Value (Percent)", "People Unemployed", "Rank within US (of 3143 counties)"
 #' 
 #' @examples 
-#' demo_crowding("WA", "county", "All Races (includes Hispanic)")
+#' demo_workforce("WA", "county", "All Races (includes Hispanic)", "both sexes")
 
 
 
@@ -46,15 +47,34 @@ handle_race <- function(race) {
 }
 
 
+handle_sex <-function(sex) {
+  sex <- tolower(sex)
+  
+  sex_mapping <- c( 
+    "both sexes" = "0",
+    "males" = "1",
+    "females" = "2"
+  )
+  
+  sex_code <- sex_mapping[sex]
+  
+  if (is.null(sex_code)) {
+    stop("Invalid input")
+  }
+  
+  return(as.character(sex_code))
+}
 
-demo_crowding <- function(area, areatype, race) {
+
+demo_workforce <- function(area, areatype, race, sex) {
   resp <- req %>% 
     req_url_query(
       stateFIPS=fips(area),
       areatype=tolower(areatype),
       topic="crowd",
-      demo="00027",
+      demo="00012",
       race=handle_race(race),
+      sex=handle_sex(sex),
       type="manyareacensus",
       sortVariableName="value",
       sortOrder="default",
@@ -73,10 +93,10 @@ demo_crowding <- function(area, areatype, race) {
   resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
     paste(collapse = "\n") %>% 
     (\(x) read.csv(textConnection(x), header=TRUE))() %>% 
-    setNames(c("County", "FIPS", "Percent", "Households", "Rank")) %>% 
+    setNames(c("County", "FIPS", "Percent", "People Unemployed", "Rank")) %>% 
     filter(str_detect(County, "County")) 
   
 }
 
 
-demo_crowding("WA", "county", "black")
+demo_workforce("WA", "county", "all races (includes hispanic)", "both sexes")

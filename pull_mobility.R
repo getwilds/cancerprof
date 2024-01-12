@@ -72,7 +72,7 @@ demo_mobility <- function(area, areatype, mobility) {
     (\(x) read.csv(textConnection(x), header=TRUE))() %>% 
     setNames(c("County", "FIPS", "Percent", "People", "Rank")) %>% 
     filter(str_detect(County, "County")) 
-  
+
 }
 
 
