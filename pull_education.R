@@ -131,7 +131,7 @@ demo_education <- function(area, areatype, education, race=NULL, sex=NULL) {
   resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
     paste(collapse = "\n") %>% 
     (\(x) read.csv(textConnection(x), header=TRUE))() %>% 
-    setNames(c("County", "FIPS", "Percent", "Households", "Rank")) %>% 
+    setNames(c("County", "FIPS", "Percent", "People", "Rank")) %>% 
     filter(str_detect(County, "County")) 
   
 }
