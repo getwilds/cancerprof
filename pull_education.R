@@ -61,7 +61,7 @@ handle_education <-function(education) {
     stop("Invalid input")
   }
   
-  return(as.character(edi_code))
+  return(as.character(edu_code))
 }
 
 
