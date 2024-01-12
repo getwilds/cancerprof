@@ -8,13 +8,15 @@ library(cli)
 req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 
 
-#' Access to Crowding Data
+#' Access to Education Data
 #' 
-#' This function returns a data frame from Crowding in State Cancer Profiles
+#' This function returns a data frame from Education in State Cancer Profiles
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county" or "HSA" (Health service area)
-#' @param race One of the following values: "All Races (includes Hispanic)", ...
+#' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
+#'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
+#'              "asian or pacific islander (includes hispanic)","hispanic (any race)
 #' 
 #' @returns A data frame with the following columns "County", "Value (Percent)", "Households (with >1 Person Per Room)", "Rank within US (of 3143 counties)"
 #' 
@@ -32,17 +34,17 @@ handle_race <- function(race) {
     "white non-hispanic" = "07",
     "black" = "02",
     "amer. indian/alaskan native (includes hispanic)" = "03",
-    "all ages, asian or pacific islander (includes hispanic)" = "04",
+    "asian or pacific islander (includes hispanic)" = "04",
     "hispanic (any race)" = "05"
   )
   
-  code <- race_mapping[race]
+  race_code <- race_mapping[race]
   
-  if (is.null(code)) {
+  if (is.null(race_code)) {
     stop("Invalid input")
   }
   
-  return(as.character(code))
+  return(as.character(race_code))
 }
 
 
