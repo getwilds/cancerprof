@@ -11,14 +11,11 @@ req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 #' This function returns a data frame from Social Vulnerability Index (SVI) in State Cancer Profiles
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county" or "HSA" (Health service area)
 #' @params social Either "Overall, "socioeconomic status", "household characteristics", "racial & ethinic minority status", "housing type & transportation"
-
 #' 
-#' @returns A data frame with the following columns "County", "Value (Percent)", "Households (with >1 Person Per Room)", "Rank within US (of 3143 counties)"
-#' 
+#' @returns A data frame with the following columns "County", "FIPS", "Score"
 #' @examples 
-#' demo_svi("WA", "county", "overall")
+#' demo_svi("WA", "overall")
 
 
 
@@ -26,11 +23,11 @@ handle_svi <- function(svi) {
   svi <- tolower(svi)
   
   svi_mapping <- c(
-    "Overall" = "03010",
+    "overall" = "03010",
     "socioeconomic status" = "03011",
     "household characteristics" = "03012",
     "racial & ethinic minority status" = "03013",
-    "housing type & transportation" = "03014",
+    "housing type & transportation" = "03014"
   )
   
   svi_code <- svi_mapping[svi]
@@ -44,14 +41,13 @@ handle_svi <- function(svi) {
 
 
 
-demo_svi <- function(area, areatype, svi) {
+demo_svi <- function(area, svi) {
   resp <- req %>% 
     req_url_query(
       stateFIPS=fips(area),
-      areatype=tolower(areatype),
+      areatype="county",
       topic="svi",
-      demo="00027",
-      svi=handle_svi(svi),
+      demo=handle_svi(svi),
       type="manyareacensus",
       sortVariableName="value",
       sortOrder="default",
@@ -70,10 +66,9 @@ demo_svi <- function(area, areatype, svi) {
   resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
     paste(collapse = "\n") %>% 
     (\(x) read.csv(textConnection(x), header=TRUE))() %>% 
-    setNames(c("County", "FIPS", "Score")) %>% 
-    filter(str_detect(County, "County")) 
+    setNames(c("County", "FIPS", "Score"))
   
 }
 
 
-demo_svi("WA", "county", "overall")
+demo_svi("WA", "overall")

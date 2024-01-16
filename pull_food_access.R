@@ -73,7 +73,6 @@ demo_food <- function(area, food, race=NULL) {
     cli_abort("For food insecurity, Race must NOT be NULL.")
   }
   
-  
   req_draft <- req %>% 
     req_url_query(
       stateFIPS=fips(area),
@@ -85,15 +84,14 @@ demo_food <- function(area, food, race=NULL) {
       sortOrder="default",
       output=1
     )
-    
   
-    if(!is.null(race)) {
-      req_draft <- req_draft %>% 
-        req_url_query(race=handle_race(race))
-    }
+  if(!is.null(race)) {
+    req_draft <- req_draft %>% 
+      req_url_query(race=handle_race(race))
+  }
   
-    resp <- req_draft %>%
-      req_perform() 
+  resp <- req_draft %>%
+    req_perform() 
   
   resp_lines <- resp %>% 
     resp_body_string() %>% 
@@ -102,13 +100,24 @@ demo_food <- function(area, food, race=NULL) {
   index_first_line_break <- which(resp_lines == "")[1]
   index_second_line_break <- which(resp_lines == "")[2]
   
-  resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
+  resp_lines <- resp_lines[(index_first_line_break + 1):(index_second_line_break - 1)] %>% 
     paste(collapse = "\n") %>% 
-    (\(x) read.csv(textConnection(x), header=TRUE))() %>% 
-    setNames(c("County", "FIPS", "Percent", "People")) %>% 
-    filter(str_detect(County, "County")) 
-
+    (\(x) read.csv(textConnection(x), header=TRUE))()
+  
+  if (food == "limited access to healthy food") {
+    resp_lines <- resp_lines %>% 
+      setNames(c("County", "Percent", "People"))
+  } else if (food == "food insecurity") {
+    resp_lines <- resp_lines %>% 
+      setNames(c("County", "Percent"))
+  }
+  
+  resp_lines <- resp_lines %>% 
+    mutate(across(everything(), ~ ifelse(is.na(.), "data not available", .))) %>%
+    filter(!is.na(County) & County != "" & (!is.na(Percent) | !is.na(People)))
+  
+  return(resp_lines)
 }
 
 
-demo_food("WA", "limited access to healthy food")
+demo_food("WA", "food insecurity", "black")
