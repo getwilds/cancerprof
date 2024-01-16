@@ -32,6 +32,7 @@ handle_race <- function(race) {
     "white (includes hispanic)" = "01",
     "white non-hispanic" = "07",
     "black" = "02",
+    "black (non-hispanic)" = "02",
     "amer. indian/alaskan native (includes hispanic)" = "03",
     "asian or pacific islander (includes hispanic)" = "04",
     "hispanic (any race)" = "05"
@@ -64,6 +65,9 @@ handle_food <- function(food) {
   return(as.character(food_code))
 }
 
+area="wa"
+food = "food insecurity"
+race = "black"
 
 demo_food <- function(area, food, race=NULL) {
   
@@ -95,28 +99,25 @@ demo_food <- function(area, food, race=NULL) {
   
   resp_lines <- resp %>% 
     resp_body_string() %>% 
-    strsplit("\\n") %>%  unlist() 
+    strsplit("\\n") %>% unlist() 
   
   index_first_line_break <- which(resp_lines == "")[1]
   index_second_line_break <- which(resp_lines == "")[2]
   
-  resp_lines <- resp_lines[(index_first_line_break + 1):(index_second_line_break - 1)] %>% 
+  resp_lines <- resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
     paste(collapse = "\n") %>% 
-    (\(x) read.csv(textConnection(x), header=TRUE))()
+    (\(x) read.csv(textConnection(x), header=TRUE))() %>% 
+    filter(str_detect(County, "County")) 
+
   
   if (food == "limited access to healthy food") {
-    resp_lines <- resp_lines %>% 
-      setNames(c("County", "Percent", "People"))
+    resp_lines <- resp_lines %>%
+      setNames(c("County", "FIPS", "Percent", "People"))
   } else if (food == "food insecurity") {
-    resp_lines <- resp_lines %>% 
-      setNames(c("County", "Percent"))
+    resp_lines <- resp_lines %>%
+      setNames(c("County", "FIPS", "Percent"))
   }
-  
-  resp_lines <- resp_lines %>% 
-    mutate(across(everything(), ~ ifelse(is.na(.), "data not available", .))) %>%
-    filter(!is.na(County) & County != "" & (!is.na(Percent) | !is.na(People)))
-  
-  return(resp_lines)
+  resp_lines
 }
 
 
