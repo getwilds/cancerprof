@@ -17,7 +17,7 @@ req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
 #' @param sex Either "both sexes", "male", "female"
 #' 
-#' @returns A data frame with the following columns "County", "FIPS", Value (Percent)", "People Unemployed", "Rank within US (of 3143 counties)"
+#' @returns A data frame with the following columns "County", "FIPS", "Percent", "People Unemployed", "Rank"
 #' 
 #' @examples 
 #' demo_workforce("WA", "county", "All Races (includes Hispanic)", "both sexes")

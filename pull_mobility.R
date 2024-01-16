@@ -16,7 +16,7 @@ req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 #'                  "moved, different state (in past year)", "moved, different county, same state (in past year)",
 #'                  "moved, same county (in past year)"
 #' 
-#' @returns A data frame with the following columns "County", "Value (Percent)", "People", "Rank within US (of 3142 counties)"
+#' @returns A data frame with the following columns "County", "FIPS", "Percent", "People", "Rank"
 #' 
 #' @examples 
 #' demo_mobility("WA", "county", "moved, same county (in past year)")

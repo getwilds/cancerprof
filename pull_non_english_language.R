@@ -13,7 +13,7 @@ req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county" or "HSA" (Health service area)
 #' 
-#' @returns A data frame with the following columns "County", "Value (Percent)", "Households (Language Isolation)", "Rank within US (of 3142 counties)"
+#' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
 #' 
 #' @examples 
 #' demo_language("WA", "county")

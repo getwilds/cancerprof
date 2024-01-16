@@ -13,7 +13,6 @@ req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 #' This function returns a data frame from Food Insecurity in State Cancer Profiles
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county" or "HSA" (Health service area)
 #' @param food Either "food insecurity" or "limited access to healthy food"
 #' @param race One of the following values: "All Races (includes Hispanic)", "white non hispanic" = "01",
 #'              "black (includes hispanic)","hispanic (any race)
@@ -66,7 +65,7 @@ handle_food <- function(food) {
 }
 
 
-demo_food <- function(area, areatype, food, race=NULL) {
+demo_food <- function(area, food, race=NULL) {
   
   if (food == "limited access to healthy food" && !is.null(race)) {
     cli_abort("For limited access to healthy food, Race must be NULL.")
@@ -78,14 +77,14 @@ demo_food <- function(area, areatype, food, race=NULL) {
   req_draft <- req %>% 
     req_url_query(
       stateFIPS=fips(area),
-      areatype=tolower(areatype),
+      areatype="county",
       topic="food",
       demo=handle_food(food),
       type="manyareacensus",
       sortVariableName="value",
       sortOrder="default",
       output=1
-    ) %>% 
+    )
     
   
     if(!is.null(race)) {
@@ -93,7 +92,7 @@ demo_food <- function(area, areatype, food, race=NULL) {
         req_url_query(race=handle_race(race))
     }
   
-    resp <- req_draft %>% 
+    resp <- req_draft %>%
       req_perform() 
   
   resp_lines <- resp %>% 
@@ -106,10 +105,10 @@ demo_food <- function(area, areatype, food, race=NULL) {
   resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
     paste(collapse = "\n") %>% 
     (\(x) read.csv(textConnection(x), header=TRUE))() %>% 
-    setNames(c("County", "FIPS", "Percent", "Households", "Rank")) %>% 
+    setNames(c("County", "FIPS", "Percent", "People")) %>% 
     filter(str_detect(County, "County")) 
-  
+
 }
 
 
-demo_food("WA", "county", "limited access to healthy food")
+demo_food("WA", "limited access to healthy food")
