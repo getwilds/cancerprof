@@ -71,16 +71,17 @@ demo_food <- function(area, food, race=NULL) {
   resp <- req_draft %>%
     req_perform() 
   
-
   resp <- process_response(resp)
   
   if (food == "limited access to healthy food") {
-    resp_lines <- resp_lines %>%
+    resp <- resp %>%
       setNames(c("County", "FIPS", "Percent", "People"))
   } else if (food == "food insecurity") {
-    resp_lines <- resp_lines %>%
+    resp <- resp %>%
       setNames(c("County", "FIPS", "Percent"))
   }
+  
+  resp$Percent <- as.integer((resp$Percent))
   
   resp
 }

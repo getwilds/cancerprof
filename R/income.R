@@ -1,12 +1,7 @@
 library(httr2)
-library(tidyverse)
 library(dplyr)
 library(cdlTools)
 library(cli)
-
-
-req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
-
 
 #' Access to Income Data
 #' 
@@ -18,8 +13,14 @@ req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 #' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
+#'              
+#' @importFrom httr2 req_url_query, req_perform
+#' @importFrom cdlTools fip
+#' @importFrom cli cli_abort
 #'  
-#' @returns A data frame with the following columns "County", "FIPS", "Dollars", "Rank within US (of 3143 counties)"
+#' @returns A data frame with the following columns "County", "FIPS", "Dollars", "Rank"
+#' 
+#' @export
 #' 
 #' @examples 
 #' demo_income("wa", "county", "median family income", "all races (includes hispanic)")
@@ -41,32 +42,9 @@ handle_income <- function(income) {
   return(as.character(income_code))
 }
 
-
-handle_race <- function(race) {
-  race <- tolower(race)
-  
-  race_mapping <- c(
-    "all races (includes hispanic)" = "00",
-    "white (includes hispanic)" = "01",
-    "white non-hispanic" = "07",
-    "black" = "02",
-    "amer. indian/alaskan native (includes hispanic)" = "03",
-    "asian or pacific islander (includes hispanic)" = "04",
-    "hispanic (any race)" = "05"
-  )
-  
-  race_code <- race_mapping[race]
-  
-  if (is.null(race_code)) {
-    stop("Invalid input")
-  }
-  
-  return(as.character(race_code))
-}
-
-
-
 demo_income <- function(area, areatype, income, race) {
+  
+  req <- create_request()
   
   resp <- req %>%  
     req_url_query(
@@ -82,22 +60,12 @@ demo_income <- function(area, areatype, income, race) {
     ) %>% 
     req_perform() 
   
-  resp_lines <- resp %>% 
-    resp_body_string() %>% 
-    strsplit("\\n") %>%  unlist() 
+  resp <- process_response(resp) %>% 
+    setNames(c("County", "FIPS", "Dollars", "Rank"))
   
-  index_first_line_break <- which(resp_lines == "")[1]
-  index_second_line_break <- which(resp_lines == "")[2]
+  resp$Dollars <- as.integer((resp$Dollars))
   
-  resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
-    paste(collapse = "\n") %>% 
-    (\(x) read.csv(textConnection(x), header=TRUE))() %>% 
-    setNames(c("County", "FIPS", "Dollars", "Rank")) %>% 
-    filter(str_detect(County, "County")) 
-  
+  resp
 }
 
-
 demo_income("wa", "county", "median family income", "all races (includes hispanic)")
-
-
