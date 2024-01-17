@@ -1,6 +1,7 @@
 library(httr2)
-library(dplyr)
 library(cdlTools)
+library(dplyr)
+
 
 #' Access to Crowding Data
 #' 
@@ -12,10 +13,8 @@ library(cdlTools)
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
 #' 
-#' specify new line for each package
-#' @importFrom httr2 req_url_query, req_perform, resp_body_string
+#' @importFrom httr2 req_url_query, req_perform
 #' @importFrom cdlTools fips
-#' @importFrom dplyr setNames
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
 #' 
@@ -45,8 +44,6 @@ demo_crowding <- function(area, areatype, race) {
   resp <- process_response(resp) %>%
     setNames(c("County", "FIPS", "Percent", "Households", "Rank"))
   resp
-
 }
-
 
 demo_crowding("WA", "county", "black")

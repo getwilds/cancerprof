@@ -1,7 +1,7 @@
 library(httr2)
-library(dplyr)
 library(cdlTools)
 library(cli)
+library(dplyr)
 
 
 #' Access to Education Data
@@ -15,7 +15,13 @@ library(cli)
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
 #' @param sex Either "both sexes", "male", "female"
 #' 
-#' @returns A data frame with the following columns "County", "Value (Percent)", "Households (with >1 Person Per Room)", "Rank within US (of 3143 counties)"
+#' @importFrom httr2 req_url_query, req_perform
+#' @importFrom cdlTools fip
+#' @importFrom cli cli_abort
+#' 
+#' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
+#' 
+#' @export
 #' 
 #' @examples 
 #' demo_crowding("WA", "county", "All Races (includes Hispanic)")
@@ -31,7 +37,6 @@ demo_education <- function(area, areatype, education, race=NULL, sex=NULL) {
   } else if (education == "at least bachelors degree" && (is.null(race) || is.null(sex))) {
     cli_abort("For At Least Bachelors Degree, Race and Sex must be NOT NULL.")
   }
-  
   
   req_draft <- req %>% 
     req_url_query(
@@ -62,7 +67,6 @@ demo_education <- function(area, areatype, education, race=NULL, sex=NULL) {
     setNames(c("County", "FIPS", "Percent", "People", "Rank"))
   resp
 }
-
 
 demo_education("wa", "county", "at least high school", sex="males")
 

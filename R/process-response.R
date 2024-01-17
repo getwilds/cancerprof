@@ -1,23 +1,21 @@
+library(stringr)
+library(dplyr)
+library(httr2)
+
 #' Process Response Data
 #' 
-#' This function returns a data frame from Crowding in State Cancer Profiles
+#' This function processes the response data from State Cancer Profiles
 #'
-#' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county" or "HSA" (Health service area)
-#' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
-#'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-#'              "asian or pacific islander (includes hispanic)","hispanic (any race)
+#' @param resp A response object
 #' 
-#' specify new line for each package
-#' @importFrom httr2 req_url_query, req_perform, resp_body_string
-#' @importFrom cdlTools fips
+#' @importFrom httr2 resp_body_string
+#' @importFrom dplyr mutate_all, na_if
+#' @importFrom stringr str_detect
 #' 
-#' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
-#' 
-#' @export
+#' @returns A processed response data frame
 #' 
 #' @examples 
-#' demo_crowding("WA", "county", "All Races (includes Hispanic)")
+#' process_response(resp)
 
 process_response <- function(resp) {
   resp_lines <- resp %>% 

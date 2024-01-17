@@ -1,12 +1,7 @@
 library(httr2)
-library(tidyverse)
-library(dplyr)
 library(cdlTools)
 library(cli)
-
-
-req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
-
+library(dplyr)
 
 #' Access to Food Insecurity Data
 #' 
@@ -16,8 +11,14 @@ req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 #' @param food Either "food insecurity" or "limited access to healthy food"
 #' @param race One of the following values: "All Races (includes Hispanic)", "white non hispanic" = "01",
 #'              "black (includes hispanic)","hispanic (any race)
+#'              
+#' @importFrom httr2 req_url_query, req_perform
+#' @importFrom cdlTools fip
+#' @importFrom cli cli_abort
 #' 
-#' @returns A data frame with the following columns "County", "FIPS", "Value (Percent)", "People (with Limited Access"
+#' @returns A data frame with the following columns "County", "FIPS", "Value", "People"
+#' 
+#' @export
 #' 
 #' @examples 
 #' demo_food("WA", "county", "food insecurity", "All Races (includes Hispanic)")
@@ -41,6 +42,8 @@ handle_food <- function(food) {
 }
 
 demo_food <- function(area, food, race=NULL) {
+  
+  req <- create_request()
   
   if (food == "limited access to healthy food" && !is.null(race)) {
     cli_abort("For limited access to healthy food, Race must be NULL.")
@@ -81,6 +84,5 @@ demo_food <- function(area, food, race=NULL) {
   
   resp
 }
-
 
 demo_food("WA", "food insecurity", "black")
