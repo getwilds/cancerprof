@@ -11,7 +11,7 @@ req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 #' This function returns a data frame from Social Vulnerability Index (SVI) in State Cancer Profiles
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @params social Either "Overall, "socioeconomic status", "household characteristics", "racial & ethinic minority status", "housing type & transportation"
+#' @param social Either "Overall, "socioeconomic status", "household characteristics", "racial & ethinic minority status", "housing type & transportation"
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Score"
 #' @examples 

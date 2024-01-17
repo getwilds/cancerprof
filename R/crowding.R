@@ -1,8 +1,3 @@
-library(httr2)
-library(cdlTools)
-library(dplyr)
-
-
 #' Access to Crowding Data
 #' 
 #' This function returns a data frame from Crowding in State Cancer Profiles
@@ -13,7 +8,7 @@ library(dplyr)
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
 #' 
-#' @importFrom httr2 req_url_query, req_perform
+#' @importFrom httr2 req_url_query req_perform
 #' @importFrom cdlTools fips
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
@@ -21,10 +16,11 @@ library(dplyr)
 #' @export
 #' 
 #' @examples 
+#' \dontrun{
 #' demo_crowding("WA", "county", "All Races (includes Hispanic)")
-
+#' }
 demo_crowding <- function(area, areatype, race) {
-  
+
   req <- create_request()
   
   resp <- req %>% 
@@ -41,9 +37,6 @@ demo_crowding <- function(area, areatype, race) {
     ) %>% 
     req_perform()
   
-  resp <- process_response(resp) %>%
+  process_response(resp) %>%
     setNames(c("County", "FIPS", "Percent", "Households", "Rank"))
-  resp
 }
-
-demo_crowding("WA", "county", "black")

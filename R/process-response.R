@@ -1,7 +1,3 @@
-library(stringr)
-library(dplyr)
-library(httr2)
-
 #' Process Response Data
 #' 
 #' This function processes the response data from State Cancer Profiles
@@ -9,14 +5,13 @@ library(httr2)
 #' @param resp A response object
 #' 
 #' @importFrom httr2 resp_body_string
-#' @importFrom dplyr mutate_all, na_if
+#' @importFrom dplyr mutate_all na_if
 #' @importFrom stringr str_detect
 #' 
 #' @returns A processed response data frame
 #' 
 #' @examples 
 #' process_response(resp)
-
 process_response <- function(resp) {
   resp_lines <- resp %>% 
     resp_body_string() %>% 
@@ -29,5 +24,6 @@ process_response <- function(resp) {
     paste(collapse = "\n") %>% 
     (\(x) read.csv(textConnection(x), header=TRUE, colClasses = "character"))() %>% 
     filter(str_detect(County, "County")) %>% 
-    mutate_all(\(x) na_if(na_if(x, "data not available"), "N/A"))
+    mutate_all(\(x) na_if(x, "N/A")) %>% 
+    mutate_all(\(x) na_if(x, "data not available"))
 }

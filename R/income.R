@@ -14,8 +14,8 @@ library(cli)
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
 #'              
-#' @importFrom httr2 req_url_query, req_perform
-#' @importFrom cdlTools fip
+#' @importFrom httr2 req_url_query req_perform
+#' @importFrom cdlTools fips
 #' @importFrom cli cli_abort
 #'  
 #' @returns A data frame with the following columns "County", "FIPS", "Dollars", "Rank"

@@ -12,8 +12,8 @@ library(dplyr)
 #' @param race One of the following values: "All Races (includes Hispanic)", "white non hispanic" = "01",
 #'              "black (includes hispanic)","hispanic (any race)
 #'              
-#' @importFrom httr2 req_url_query, req_perform
-#' @importFrom cdlTools fip
+#' @importFrom httr2 req_url_query req_perform
+#' @importFrom cdlTools fips
 #' @importFrom cli cli_abort
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Value", "People"
