@@ -1,11 +1,7 @@
 library(httr2)
-library(tidyverse)
 library(dplyr)
 library(cdlTools)
 library(cli)
-
-
-req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 
 
 #' Access to Education Data
@@ -24,70 +20,9 @@ req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 #' @examples 
 #' demo_crowding("WA", "county", "All Races (includes Hispanic)")
 
-
-
-handle_race <- function(race) {
-  race <- tolower(race)
-  
-  race_mapping <- c(
-    "all races (includes hispanic)" = "00",
-    "white (includes hispanic)" = "01",
-    "white non-hispanic" = "07",
-    "black" = "02",
-    "amer. indian/alaskan native (includes hispanic)" = "03",
-    "asian or pacific islander (includes hispanic)" = "04",
-    "hispanic (any race)" = "05"
-  )
-  
-  race_code <- race_mapping[race]
-  
-  if (is.null(race_code)) {
-    stop("Invalid input")
-  }
-  
-  return(as.character(race_code))
-}
-
-
-handle_education <-function(education) {
-  education <- tolower(education)
-  
-  edu_mapping <- c( 
-    "less than 9th grade" = "00004",
-    "at least high school" = "00109",
-    "at least bachelors degree" = "00006"
-  )
-  
-  edu_code <- edu_mapping[education]
-  
-  if (is.null(edu_code)) {
-    stop("Invalid input")
-  }
-  
-  return(as.character(edu_code))
-}
-
-
-handle_sex <-function(sex) {
-  sex <- tolower(sex)
-  
-  sex_mapping <- c( 
-    "both sexes" = "0",
-    "males" = "1",
-    "females" = "2"
-  )
-  
-  sex_code <- sex_mapping[sex]
-  
-  if (is.null(sex_code)) {
-    stop("Invalid input")
-  }
-  
-  return(as.character(sex_code))
-}
-
-
 demo_education <- function(area, areatype, education, race=NULL, sex=NULL) {
+  
+  req <- create_request()
   
   if(education == "less than 9th grade" && (!is.null(race) || !is.null(sex))) {
     cli_abort("For Less than 9th Grade, Race and Sex must be NULL.")
@@ -123,19 +58,9 @@ demo_education <- function(area, areatype, education, race=NULL, sex=NULL) {
     resp <- req_draft %>% 
       req_perform() 
   
-  resp_lines <- resp %>% 
-    resp_body_string() %>% 
-    strsplit("\\n") %>%  unlist() 
-  
-  index_first_line_break <- which(resp_lines == "")[1]
-  index_second_line_break <- which(resp_lines == "")[2]
-  
-  resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
-    paste(collapse = "\n") %>% 
-    (\(x) read.csv(textConnection(x), header=TRUE))() %>% 
-    setNames(c("County", "FIPS", "Percent", "People", "Rank")) %>% 
-    filter(str_detect(County, "County")) 
-  
+  resp <- process_response(resp) %>% 
+    setNames(c("County", "FIPS", "Percent", "People", "Rank"))
+  resp
 }
 
 

@@ -3,10 +3,10 @@
 #' This function returns a matching code value for a race for the api to use to get data from State Cancer Profiles
 #'
 #' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
-#'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
+#'              "white non-hispanic","black","black (includes hispanic)", "amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
 #' 
-#' @returns A data frame with the following columns "County", "Value (Percent)", "Households (with >1 Person Per Room)", "Rank within US (of 3143 counties)"
+#' @returns A string for its respective race
 #' 
 #' @examples 
 #' handle_race("all races (includes hispanic)"), handle_race(race)

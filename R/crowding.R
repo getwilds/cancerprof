@@ -1,4 +1,3 @@
-library(devtools)
 library(httr2)
 library(dplyr)
 library(cdlTools)
@@ -16,6 +15,7 @@ library(cdlTools)
 #' specify new line for each package
 #' @importFrom httr2 req_url_query, req_perform, resp_body_string
 #' @importFrom cdlTools fips
+#' @importFrom dplyr setNames
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
 #' 
@@ -25,8 +25,6 @@ library(cdlTools)
 #' demo_crowding("WA", "county", "All Races (includes Hispanic)")
 
 demo_crowding <- function(area, areatype, race) {
-  
-  load_all()
   
   req <- create_request()
   
