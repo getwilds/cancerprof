@@ -1,3 +1,4 @@
+library(devtools)
 library(httr2)
 library(dplyr)
 library(cdlTools)
@@ -24,6 +25,8 @@ library(cdlTools)
 #' demo_crowding("WA", "county", "All Races (includes Hispanic)")
 
 demo_crowding <- function(area, areatype, race) {
+  
+  load_all()
   
   req <- create_request()
   

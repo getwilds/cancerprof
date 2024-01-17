@@ -18,28 +18,6 @@
 #' 
 #' @examples 
 #' demo_crowding("WA", "county", "All Races (includes Hispanic)")
-#' 
-
-
-req <- create_request()
-
-resp <- req %>% 
-  req_url_query(
-    stateFIPS="53",
-    areatype="county",
-    topic="crowd",
-    demo="00027",
-    race="02",
-    type="manyareacensus",
-    sortVariableName="value",
-    sortOrder="default",
-    output=1
-  ) %>% 
-  req_perform()
-
-resp
-
-
 
 process_response <- function(resp) {
   resp_lines <- resp %>% 
@@ -55,44 +33,3 @@ process_response <- function(resp) {
     filter(str_detect(County, "County")) %>% 
     mutate_all(\(x) na_if(na_if(x, "data not available"), "N/A"))
 }
-
-# resp_lines <- resp %>% 
-#   resp_body_string() %>% 
-#   strsplit("\\n") %>%  unlist() 
-# 
-# index_first_line_break <- which(resp_lines == "")[1]
-# index_second_line_break <- which(resp_lines == "")[2]
-# 
-# resp <- resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
-#   paste(collapse = "\n") %>% 
-#   (\(x) read.csv(textConnection(x), header=TRUE, colClasses = "character"))() %>% 
-#   filter(str_detect(County, "County")) %>% 
-#   mutate_all(\(x) na_if(na_if(x, "data not available"), "N/A"))
-# 
-# 
-# 
-# 
-# resp %>% 
-#   setNames(c("County", "FIPS", "Percent", "Households", "Rank"))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

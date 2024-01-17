@@ -23,31 +23,6 @@ req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 #' demo_food("WA", "county", "food insecurity", "All Races (includes Hispanic)")
 
 
-
-handle_race <- function(race) {
-  race <- tolower(race)
-  
-  race_mapping <- c(
-    "all races (includes hispanic)" = "00",
-    "white (includes hispanic)" = "01",
-    "white non-hispanic" = "07",
-    "black" = "02",
-    "black (non-hispanic)" = "02",
-    "amer. indian/alaskan native (includes hispanic)" = "03",
-    "asian or pacific islander (includes hispanic)" = "04",
-    "hispanic (any race)" = "05"
-  )
-  
-  race_code <- race_mapping[race]
-  
-  if (is.null(race_code)) {
-    stop("Invalid input")
-  }
-  
-  return(as.character(race_code))
-}
-
-
 handle_food <- function(food) {
   food <- tolower(food)
   
@@ -64,10 +39,6 @@ handle_food <- function(food) {
   
   return(as.character(food_code))
 }
-
-area="wa"
-food = "food insecurity"
-race = "black"
 
 demo_food <- function(area, food, race=NULL) {
   
@@ -97,17 +68,8 @@ demo_food <- function(area, food, race=NULL) {
   resp <- req_draft %>%
     req_perform() 
   
-  resp_lines <- resp %>% 
-    resp_body_string() %>% 
-    strsplit("\\n") %>% unlist() 
-  
-  index_first_line_break <- which(resp_lines == "")[1]
-  index_second_line_break <- which(resp_lines == "")[2]
-  
-  resp_lines <- resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
-    paste(collapse = "\n") %>% 
-    (\(x) read.csv(textConnection(x), header=TRUE, colClasses = "character"))()
 
+  resp <- process_response(resp)
   
   if (food == "limited access to healthy food") {
     resp_lines <- resp_lines %>%
@@ -117,11 +79,7 @@ demo_food <- function(area, food, race=NULL) {
       setNames(c("County", "FIPS", "Percent"))
   }
   
-  resp_lines <- resp_lines %>% 
-    mutate_all(\(x) na_if(x, "data not available")) %>% 
-    filter(str_detect(County, "County"))
-  resp_lines
-  
+  resp
 }
 
 
