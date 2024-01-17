@@ -104,7 +104,6 @@ demo_education <- function(area, areatype, education, race=NULL, sex=NULL) {
       areatype=tolower(areatype),
       topic="ed",
       demo=handle_education(education),
-      
       type="manyareacensus",
       sortVariableName="value",
       sortOrder="default",

@@ -130,6 +130,8 @@ demo_insurance <- function(area, areatype, insurance, sex, age) {
     setNames(c("County", "FIPS", "Percent", "People", "Rank")) %>% 
     filter(str_detect(County, "County")) 
   
+  
+  
 }
 
 

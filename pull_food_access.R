@@ -106,8 +106,7 @@ demo_food <- function(area, food, race=NULL) {
   
   resp_lines <- resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
     paste(collapse = "\n") %>% 
-    (\(x) read.csv(textConnection(x), header=TRUE))() %>% 
-    filter(str_detect(County, "County")) 
+    (\(x) read.csv(textConnection(x), header=TRUE, colClasses = "character"))()
 
   
   if (food == "limited access to healthy food") {
@@ -117,7 +116,12 @@ demo_food <- function(area, food, race=NULL) {
     resp_lines <- resp_lines %>%
       setNames(c("County", "FIPS", "Percent"))
   }
+  
+  resp_lines <- resp_lines %>% 
+    mutate_all(\(x) na_if(x, "data not available")) %>% 
+    filter(str_detect(County, "County"))
   resp_lines
+  
 }
 
 
