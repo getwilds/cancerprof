@@ -3,11 +3,6 @@ library(tidyverse)
 library(dplyr)
 library(cdlTools)
 library(cli)
-
-
-req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
-
-
 #' Access to Insurance Data
 #'
 #' This function returns a data frame from Insurance in State Cancer Profiles
@@ -28,67 +23,19 @@ req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "People", "Rank"
 #'
 #' @examples
+#' \dontrun{
 #' demo_insurance("WA", "county", "both sexes", "under 19 years")
-
-
-
-handle_insurance <- function(insurance) {
-  insurance <- tolower(insurance)
-
-  insurance_mapping <- c(
-    "% insured in demographic group, all income levels" = "00030",
-    "% insured in demographic group, people at or below 138% of poverty" = "00033",
-    "% insured in demographic group, people at or below 200% of poverty" = "00031",
-    "% insured in demographic group, people at or below 250% of poverty" = "00032",
-    "% insured in demographic group, people at or below 400% of poverty" = "00034",
-    "% insured in demographic group, people between 138% - 400% of poverty" = "00035",
-    "% uninsured in demographic group, all income levels" = "00040",
-    "% uninsured in demographic group, people at or below 138% of poverty" = "00043",
-    "% uninsured in demographic group, people at or below 200% of poverty" = "00041",
-    "% uninsured in demographic group, people at or below 250% of poverty" = "00042",
-    "% uninsured in demographic group, people at or below 400% of poverty" = "00044",
-    "% uninsured in demographic group, people between 138% - 400% of poverty" = "00045"
-    )
-
-  insurance_code <- insurance_mapping[insurance]
-
-  if (is.null(insurance_code)) {
-    stop("Invalid input")
-  }
-
-  return(as.character(insurance_code))
-}
-
-
-handle_age <- function(age) {
-  age <- tolower(age)
-
-  age_mapping <- c(
-    "under 19 years" = "175",
-    "18 to 64 years" = "174",
-    "21 to 64 years" = "176",
-    "40 to 64 years" = "122",
-    "50 to 64 years" = "141",
-    "under 65 years" = "006"
-  )
-
-  age_code <- age_mapping[age]
-
-  if (is.null(age_code)) {
-    stop("Invalid input")
-  }
-
-  return(as.character(age_code))
-}
-
-
+#' }
 area = "wa"
-areatype = "county"
+areatype = "hsa"
 insurance = "% Insured in demographic group, all income levels"
 sex = "both sexes"
 age = "under 19 years"
 
 demo_insurance <- function(area, areatype, insurance, sex, age) {
+  
+  req <- create_request("demographics")
+  
   resp <- req %>%
     req_url_query(
       stateFIPS=fips(area),
@@ -120,12 +67,21 @@ demo_insurance <- function(area, areatype, insurance, sex, age) {
   index_first_line_break <- which(resp_lines == "")[1]
   index_second_line_break <- which(resp_lines == "")[2]
 
-  resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>%
+  resp <- resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>%
     paste(collapse = "\n") %>%
-    (\(x) read.csv(textConnection(x), header=TRUE))() %>%
-    setNames(c("County", "FIPS", "Percent", "People", "Rank")) %>%
-    filter(str_detect(County, "County"))
-
+    (\(x) read.csv(textConnection(x), header=TRUE))() 
+  
+  if (areatype == "county") {
+    resp <- resp %>%
+      setNames(c("County", "FIPS", "Percent", "People", "Rank")) %>% 
+      filter(str_detect(County, "County"))
+  } else if (areatype == "hsa") {
+    resp <- resp %>%
+      setNames(c("Health Service Area", "FIPS", "Percent", "People", "Rank"))
+      resp <- resp[-1, ]
+      rownames(resp) <- NULL
+  }
+  resp
 }
 
 demo_insurance("WA", "county", "% Insured in demographic group, all income levels",  "males", "18 to 64 years")

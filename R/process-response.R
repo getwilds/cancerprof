@@ -23,7 +23,19 @@ process_response <- function(resp) {
   resp <- resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
     paste(collapse = "\n") %>% 
     (\(x) read.csv(textConnection(x), header=TRUE, colClasses = "character"))() %>% 
-    filter(str_detect(County, "County")) %>% 
-    mutate_all(\(x) na_if(x, "N/A")) %>% 
-    mutate_all(\(x) na_if(x, "data not available"))
+  
+    filter(str_detect(County, "County"))
+  
+  
+    # if (areatype == "county") {
+    #   resp <- resp %>%
+    #     filter(str_detect(County, "County"))
+    # } else if (areatype == "hsa") {
+    #   resp <- resp[-1, ]
+    #   rownames(resp) <- NULL
+    # }
+    
+    resp <- resp %>% 
+      mutate_all(\(x) na_if(x, "N/A")) %>% 
+      mutate_all(\(x) na_if(x, "data not available"))
 }

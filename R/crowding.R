@@ -19,6 +19,12 @@
 #' \dontrun{
 #' demo_crowding("WA", "county", "All Races (includes Hispanic)")
 #' }
+
+
+area = "wa"
+areatype = "hsa"
+race = "All Races (includes Hispanic)"
+
 demo_crowding <- function(area, areatype, race) {
 
   req <- create_request("demographics")
