@@ -1,3 +1,11 @@
+library(cdlTools)
+library(cli)
+library(dplyr)
+library(httr2)
+library(magrittr)
+library(stringr)
+
+
 #' Access to Education Data
 #'
 #' This function returns a data frame from Education in State Cancer Profiles
@@ -18,7 +26,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' demo_crowding("WA", "county", "All Races (includes Hispanic)")
+#' }
 handle_education <-function(education) {
   education <- tolower(education)
 
@@ -71,7 +81,7 @@ demo_education <- function(area, areatype, education, race=NULL, sex=NULL) {
         req_url_query(sex=handle_sex(sex))
     }
 
-    resp <- req_draft %>% x
+    resp <- req_draft %>%
       req_perform()
 
   resp <- process_response(resp) %>%
@@ -80,5 +90,3 @@ demo_education <- function(area, areatype, education, race=NULL, sex=NULL) {
 }
 
 demo_education("wa", "county", "at least high school", sex="males")
-
-

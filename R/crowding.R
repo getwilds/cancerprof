@@ -15,13 +15,13 @@
 #' 
 #' @export
 #' 
-#' @examples 
+#' @examples
 #' \dontrun{
 #' demo_crowding("WA", "county", "All Races (includes Hispanic)")
 #' }
 demo_crowding <- function(area, areatype, race) {
 
-  req <- create_request()
+  req <- create_request("demographics")
   
   resp <- req %>% 
     req_url_query(
