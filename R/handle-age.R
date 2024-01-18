@@ -19,7 +19,7 @@ handle_age <- function(age) {
     "21 to 64 years" = "176",
     "40 to 64 years" = "122",
     "50 to 64 years" = "141",
-    "under 65 years" = "006"
+    "under 65 years" = "006",
   )
   
   age_code <- age_mapping[age]

@@ -46,3 +46,4 @@ demo_crowding <- function(area, areatype, race) {
   process_response(resp) %>%
     setNames(c("County", "FIPS", "Percent", "Households", "Rank"))
 }
+demo_crowding("WA", "county", "All Races (includes Hispanic)")
