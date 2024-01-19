@@ -10,8 +10,8 @@
 #' 
 #' @examples
 #' \dontrun{
-#' handle_fips("pr")
-#' handle_fips("usa")
+#' fips_scp("pr")
+#' fips_scp("usa")
 #' }
 fips_scp <- function(area) {
   us <- "United States"

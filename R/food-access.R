@@ -1,8 +1,3 @@
-library(httr2)
-library(cdlTools)
-library(cli)
-library(dplyr)
-
 #' Access to Food Insecurity Data
 #' 
 #' This function returns a data frame from Food Insecurity in State Cancer Profiles
@@ -13,7 +8,6 @@ library(dplyr)
 #'              "black (includes hispanic)","hispanic (any race)
 #'              
 #' @importFrom httr2 req_url_query req_perform
-#' @importFrom cdlTools fips
 #' @importFrom cli cli_abort
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Value", "People"
@@ -21,29 +15,11 @@ library(dplyr)
 #' @export
 #' 
 #' @examples 
-#' demo_food("WA", "county", "food insecurity", "All Races (includes Hispanic)")
-
-
-handle_food <- function(food) {
-  food <- tolower(food)
+#' demo_food("wa", "county", "food insecurity", "black")
+#' demo_food("usa", "state", "limited access to healthy food")
+demo_food <- function(area, areatype, food, race=NULL) {
   
-  food_mapping <- c(
-    "food insecurity" = "03003",
-    "limited access to healthy food" = "03004"
-  )
-  
-  food_code <- food_mapping[food]
-  
-  if (is.null(food_code)) {
-    stop("Invalid input")
-  }
-  
-  return(as.character(food_code))
-}
-
-demo_food <- function(area, food, race=NULL) {
-  
-  req <- create_request()
+  req <- create_request("demographics")
   
   if (food == "limited access to healthy food" && !is.null(race)) {
     cli_abort("For limited access to healthy food, Race must be NULL.")
@@ -53,8 +29,8 @@ demo_food <- function(area, food, race=NULL) {
   
   req_draft <- req %>% 
     req_url_query(
-      stateFIPS=fips(area),
-      areatype="county",
+      stateFIPS=fips_scp(area),
+      areatype=tolower(areatype),
       topic="food",
       demo=handle_food(food),
       type="manyareacensus",
@@ -73,17 +49,24 @@ demo_food <- function(area, food, race=NULL) {
   
   resp <- process_response(resp)
   
-  if (food == "limited access to healthy food") {
-    resp <- resp %>%
-      setNames(c("County", "FIPS", "Percent", "People"))
-  } else if (food == "food insecurity") {
-    resp <- resp %>%
-      setNames(c("County", "FIPS", "Percent"))
+  if (areatype == "county") {
+    if (food == "limited access to healthy food") {
+      resp <- resp %>%
+        setNames(c("County", "FIPS", "Percent", "People"))
+    } else if (food == "food insecurity") {
+      resp <- resp %>%
+        setNames(c("County", "FIPS", "Percent"))
+    }  
+  } else if (areatype == "state") {
+    if (food == "limited access to healthy food") {
+      resp <- resp %>%
+        setNames(c("State", "FIPS", "Percent", "People"))
+    } else if (food == "food insecurity") {
+      resp <- resp %>%
+        setNames(c("State", "FIPS", "Percent"))
+    }  
   }
   
   resp$Percent <- as.integer((resp$Percent))
-  
   resp
 }
-
-demo_food("WA", "food insecurity", "black")

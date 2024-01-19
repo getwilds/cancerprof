@@ -4,7 +4,7 @@
 #'
 #' @param sex Either "both sexes", "males", "females"
 #' 
-#' @returns A string for its respective race
+#' @returns A string for its respective sex
 #' 
 #' \dontrun{
 #' @examples 

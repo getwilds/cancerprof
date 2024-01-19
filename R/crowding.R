@@ -17,7 +17,6 @@ library(stringr)
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
 #' 
 #' @importFrom httr2 req_url_query req_perform
-#' @importFrom cdlTools fips
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
 #' 
@@ -28,8 +27,6 @@ library(stringr)
 #' demo_crowding("WA", "county", "All Races (includes Hispanic)")
 #' demo_crowding("usa", "state", "All Races (includes Hispanic)")
 #' }
-
-
 demo_crowding <- function(area, areatype, race) {
 
   req <- create_request("demographics")

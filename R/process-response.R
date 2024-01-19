@@ -7,7 +7,6 @@
 #' 
 #' @importFrom httr2 resp_body_string
 #' @importFrom dplyr mutate_all na_if
-#' @importFrom stringr str_detect
 #' @importFrom rlang sym
 #' 
 #' @returns A processed response data frame

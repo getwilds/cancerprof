@@ -6,10 +6,11 @@
 #' 
 #' @returns A string for its respective age
 #' 
+#' \dontrun{
 #' @examples 
-#' handle_age("under 19 years"), handle_age(age)
-
-
+#' handle_age("under 19 years")
+#' handle_age(age)
+#' }
 handle_age <- function(age) {
   age <- tolower(age)
   
