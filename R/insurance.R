@@ -1,8 +1,3 @@
-library(httr2)
-library(tidyverse)
-library(dplyr)
-library(cdlTools)
-library(cli)
 #' Access to Insurance Data
 #'
 #' This function returns a data frame from Insurance in State Cancer Profiles
@@ -24,21 +19,16 @@ library(cli)
 #'
 #' @examples
 #' \dontrun{
-#' demo_insurance("WA", "county", "both sexes", "under 19 years")
+#' demo_insurance("usa", "state", "% Insured in demographic group, all income levels", "both sexes", "under 19 years")
+#' demo_insurance("wa", "hsa", "% Insured in demographic group, all income levels", "males", "18 to 64 years")
 #' }
-area = "wa"
-areatype = "hsa"
-insurance = "% Insured in demographic group, all income levels"
-sex = "both sexes"
-age = "under 19 years"
-
 demo_insurance <- function(area, areatype, insurance, sex, age) {
   
   req <- create_request("demographics")
   
   resp <- req %>%
     req_url_query(
-      stateFIPS=fips(area),
+      stateFIPS=fips_scp(area),
       areatype=tolower(areatype),
       topic="ins",
       demo=handle_insurance(insurance),
@@ -60,28 +50,16 @@ demo_insurance <- function(area, areatype, insurance, sex, age) {
     ) %>%
   req_perform()
 
-  resp_lines <- resp %>%
-    resp_body_string() %>%
-    strsplit("\\n") %>%  unlist()
-
-  index_first_line_break <- which(resp_lines == "")[1]
-  index_second_line_break <- which(resp_lines == "")[2]
-
-  resp <- resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>%
-    paste(collapse = "\n") %>%
-    (\(x) read.csv(textConnection(x), header=TRUE))() 
+  resp <- process_response(resp)
   
   if (areatype == "county") {
-    resp <- resp %>%
-      setNames(c("County", "FIPS", "Percent", "People", "Rank")) %>% 
-      filter(str_detect(County, "County"))
+    resp %>%
+      setNames(c("County", "FIPS", "Percent", "People", "Rank"))
   } else if (areatype == "hsa") {
-    resp <- resp %>%
+    resp %>%
       setNames(c("Health Service Area", "FIPS", "Percent", "People", "Rank"))
-      resp <- resp[-1, ]
-      rownames(resp) <- NULL
+  } else if (areatype == "state") {
+    resp %>% 
+      setNames(c("State", "FIPS", "Percent", "People", "Rank"))
   }
-  resp
 }
-
-demo_insurance("WA", "county", "% Insured in demographic group, all income levels",  "males", "18 to 64 years")

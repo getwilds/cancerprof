@@ -21,7 +21,6 @@
 #' @examples 
 #' handle_insurance("% insured in demographic group, all income levels") ### WHY doesnt this work?
 #' }
-
 handle_insurance <- function(insurance) {
 
   insurance <- tolower(insurance)
@@ -49,5 +48,3 @@ handle_insurance <- function(insurance) {
   
   return(as.character(insurance_code))
 }
-
-
