@@ -11,8 +11,10 @@
 #' 
 #' @returns A processed response data frame
 #' 
+#' \dontrun{
 #' @examples 
 #' process_response(resp)
+#' }
 process_response <- function(resp) {
   resp_lines <- resp %>% 
     resp_body_string() %>% 

@@ -14,9 +14,11 @@
 #' 
 #' @export
 #' 
+#' \dontrun{
 #' @examples 
 #' demo_food("wa", "county", "food insecurity", "black")
 #' demo_food("usa", "state", "limited access to healthy food")
+#' }
 demo_food <- function(area, areatype, food, race=NULL) {
   
   req <- create_request("demographics")

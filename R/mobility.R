@@ -18,8 +18,10 @@ req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "People", "Rank"
 #' 
+#' \dontrun{
 #' @examples 
 #' demo_mobility("WA", "county", "moved, same county (in past year)")
+#' }
 
 
 

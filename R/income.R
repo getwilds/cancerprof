@@ -1,8 +1,3 @@
-library(httr2)
-library(dplyr)
-library(cdlTools)
-library(cli)
-
 #' Access to Income Data
 #' 
 #' This function returns a data frame from Income in State Cancer Profiles
@@ -22,33 +17,19 @@ library(cli)
 #' 
 #' @export
 #' 
+#' \dontrun{
 #' @examples 
 #' demo_income("wa", "county", "median family income", "all races (includes hispanic)")
-
-handle_income <- function(income) {
-  income <- tolower(income)
-  
-  income_mapping <- c(
-    "median family income" = "00010",
-    "median household income" = "00011"
-  )
-  
-  income_code <- income_mapping[income]
-  
-  if (is.null(income_code)) {
-    stop("Invalid input")
-  }
-  
-  return(as.character(income_code))
-}
+#' demo_income("usa", "state", "median family income", "all races (includes hispanic)")
+#' }
 
 demo_income <- function(area, areatype, income, race) {
   
-  req <- create_request()
+  req <- create_request("demographics")
   
   resp <- req %>%  
     req_url_query(
-      stateFIPS=fips(area),
+      stateFIPS=fips_scp(area),
       areatype=tolower(areatype),
       topic="inc",
       demo=handle_income(income),
@@ -61,11 +42,18 @@ demo_income <- function(area, areatype, income, race) {
     req_perform() 
   
   resp <- process_response(resp) %>% 
-    setNames(c("County", "FIPS", "Dollars", "Rank"))
+    mutate(Value..Dollars. = as.integer(Value..Dollars.))  
   
-  resp$Dollars <- as.integer((resp$Dollars))
-  
-  resp
+  if (areatype == "county") {
+    resp %>% 
+      setNames(c("County", "FIPS", "Dollars", "Rank")) 
+  } else if (areatype == "hsa") {
+    resp %>% 
+      setNames(c("Health Service Area", "FIPS", "Dollars", "Rank"))
+  } else if (areatype == "state") {
+    resp %>% 
+      setNames(c("State", "FIPS", "Dollars", "Rank"))
+  }
 }
 
-demo_income("wa", "county", "median family income", "all races (includes hispanic)")
+demo_income("usa", "state", "median family income", "all races (includes hispanic)")
