@@ -14,14 +14,6 @@
 #' 
 #' @examples 
 #' process_response(resp)
-
-#all cases, explicitly remove "united states" from the first column (State, County, HSA)
-# if by county || by HSA, remove the State Row 
-
-
-
-
-
 process_response <- function(resp) {
   resp_lines <- resp %>% 
     resp_body_string() %>% 
@@ -48,5 +40,3 @@ process_response <- function(resp) {
     mutate_all(\(x) na_if(x, "N/A")) %>% 
     mutate_all(\(x) na_if(x, "data not available"))
 }
-
-print(column)

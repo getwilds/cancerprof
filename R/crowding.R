@@ -27,7 +27,7 @@ demo_crowding <- function(area, areatype, race) {
   
   resp <- req %>% 
     req_url_query(
-      stateFIPS=ifelse(is.na(fips(area)), "00", fips(area)),   ## write my own functinon to accept united states "fips_scp"
+      stateFIPS=ifelse(is.na(fips(area)), "00", fips(area)),   ## write my own function to accept united states "fips_scp"
       areatype=tolower(areatype),
       topic="crowd",
       demo="00027",
