@@ -10,7 +10,7 @@
 #' @param sex Either "both sexes", "male", "female"
 #' 
 #' @importFrom httr2 req_url_query req_perform
-#' @importFrom cdlTools fips
+#' @importFrom cli cli_abort
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
 #' 
@@ -41,11 +41,9 @@ demo_population <- function(area, areatype, population, race=NULL, sex=NULL) {
     cli_abort("for races other than foreign born, Sex must not be NULL and race must be NULL")
   }
   
-
-  
   resp <- req %>% 
     req_url_query(
-      stateFIPS=fips(area),
+      stateFIPS=fips_scp(area),
       areatype=tolower(areatype),
       topic="pop",
       demo=handle_population(population),
@@ -68,9 +66,30 @@ demo_population <- function(area, areatype, population, race=NULL, sex=NULL) {
     resp <- resp %>% 
       req_perform()
   
-  process_response(resp) %>%
-    setNames(c("County", "FIPS", "Percent", "Households", "Rank"))
+    resp <- process_response(resp)
+    
+    if (areatype == "county") {
+      resp %>% 
+        setNames(c("County", "FIPS", "Percent", "Households", "Rank")) 
+    } else if (areatype == "hsa") {
+      resp %>% 
+        setNames(c("Health Service Area", "FIPS", "Percent", "Households", "Rank"))
+    } else if (areatype == "state") {
+      resp %>% 
+        setNames(c("State", "FIPS", "Percent", "Households", "Rank"))
+    }
 }
 
 
+area = "ca"
+areatype = "county"
+population = "foreign born"
+race = "black"
+sex = "females"
+
 demo_population("WA", "county", "foreign born", "black", "females")
+demo_population("sc", "county", "foreign born", "black", "females") #CA, USA doesnt work
+
+
+
+fips_scp("usa")

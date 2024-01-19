@@ -14,6 +14,9 @@
 #'@param sex Either "both sexes", "male", "female"
 #'@param age Either "under 19 years", "18 to 64 years","21 to 64 years","40 to 64 years","50 to 64 years","under 65 years" for "both sexes"
 #'                  "18 to 64 years","40 to 64 years","50 to 64 years","Under 65 years" for "males" and "females"
+#'                  
+#' @importFrom httr2 req_url_query req_perform
+#' @importFrom cli cli_abort
 #'
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "People", "Rank"
 #'

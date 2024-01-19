@@ -19,6 +19,7 @@
 #' @examples
 #' \dontrun{
 #' demo_poverty("WA", "county", "All Races (includes Hispanic)")
+#' demo_poverty("usa", "state", "families below poverty", "black")
 #' }
 demo_poverty <- function(area, areatype, poverty, race=NULL, sex=NULL) {
   
@@ -34,7 +35,7 @@ demo_poverty <- function(area, areatype, poverty, race=NULL, sex=NULL) {
   
   resp <- req %>% 
     req_url_query(
-      stateFIPS=fips(area),
+      stateFIPS=fips_scp(area),
       areatype=tolower(areatype),
       topic="pov",
       demo=handle_poverty(poverty),
@@ -59,13 +60,14 @@ demo_poverty <- function(area, areatype, poverty, race=NULL, sex=NULL) {
 
   resp <- process_response(resp)
   
-  if ((poverty == "persons < 150% of poverty" || poverty == "families below poverty" || poverty == "persons below poverty" )) {
+  areatype_map <- c("county" = "County", "hsa" = "Health Service Area", "state" = "State")
+  areatype_title <- areatype_map[areatype]
+  
+  if (poverty == "persistent poverty") {
+    resp %>% 
+      setNames(c(areatype_title, "FIPS", "Persistent Poverty"))
+  } else {
     resp %>%
-      setNames(c("County", "FIPS", "Percent", "People", "Rank"))
-  } else if (poverty == "persistent poverty") {
-    resp %>%
-      setNames(c("County", "FIPS", "Persistent Poverty"))
+      setNames(c(areatype_title, "FIPS", "Percent", "People", "Rank"))
   }
 }
-
-demo_poverty("WA", "county", "families below poverty", "black")

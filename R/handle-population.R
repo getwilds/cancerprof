@@ -9,13 +9,12 @@
 #'                          
 #'                          "males", "females"
 #' 
-#' @returns A string for its respective race
+#' @returns A string for its respective population
 #' 
 #' \dontrun{
 #' @examples 
 #' handle_population("all races (includes hispanic)"), handle_race(race)
 #' }
-
 handle_population <- function(population) {
   
   population <- tolower(population)

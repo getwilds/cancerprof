@@ -5,24 +5,27 @@
 #' @param area A state name or state abbreviation or United States of America or United States or usa or us
 #' 
 #' @importFrom cdlTools fips
+#' @importFrom stringr str_pad
 #' 
 #' @returns A string fips value or NA
 #' 
 #' @examples
 #' \dontrun{
 #' fips_scp("pr")
+#' fips_scp("ca")
 #' fips_scp("usa")
 #' }
 fips_scp <- function(area) {
-  us <- "United States"
-  usa <- "United States of America"
-  us1 <- "us"
-  usa1 <- "usa"
-  if (area == tolower(us) || area == tolower(usa) || area == tolower(us1) || area == tolower(usa1)) {
+  
+  area = tolower(area)
+  
+  usa_list = c("united states", "united states of america", "us", "usa")
+
+  if (area %in% usa_list) {
     return("00")
   } else {
-    fips(area)
+    str_pad(fips(area), width=2, side="left", pad="0")
   }
 }
 
-fips_scp("wa")
+fips_scp("usa")

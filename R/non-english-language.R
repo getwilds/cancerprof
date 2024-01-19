@@ -1,11 +1,3 @@
-library(httr2)
-library(tidyverse)
-library(dplyr)
-library(cdlTools)
-
-req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
-
-
 #' Access to Non-English Language
 #' 
 #' This function returns a data frame from Crowding in State Cancer Profiles
@@ -17,12 +9,13 @@ req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 #' 
 #' @examples 
 #' demo_language("WA", "county")
-
-
 demo_language <- function(area, areatype) {
+  
+  req <- create_request("demographics")
+  
   resp <- req %>%  
     req_url_query(
-      stateFIPS=fips(area),
+      stateFIPS=fips_scp(area),
       areatype=tolower(areatype),
       topic="lang",
       demo="00015",
@@ -34,20 +27,19 @@ demo_language <- function(area, areatype) {
     req_perform()
   
   
-  resp_lines <- resp %>% 
-    resp_body_string() %>% 
-    strsplit("\\n") %>%  unlist() 
+  resp <- process_response(resp)
   
-  index_first_line_break <- which(resp_lines == "")[1]
-  index_second_line_break <- which(resp_lines == "")[2]
-  
-  resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
-    paste(collapse = "\n") %>% 
-    (\(x) read.csv(textConnection(x), header=TRUE))() %>% 
-    setNames(c("County", "FIPS", "Percent", "Households", "Rank")) %>% 
-    filter(str_detect(County, "County")) 
-  
+  if (areatype == "county") {
+    resp %>% 
+      setNames(c("County", "FIPS", "Percent", "Households", "Rank")) 
+  } else if (areatype == "hsa") {
+    resp %>% 
+      setNames(c("Health Service Area", "FIPS", "Percent", "Households", "Rank"))
+  } else if (areatype == "state") {
+    resp %>% 
+      setNames(c("State", "FIPS", "Percent", "Households", "Rank"))
+  }
 }
 
 
-demo_language("WA", "county")
+demo_language("usa", "hsa")

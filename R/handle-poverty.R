@@ -11,7 +11,6 @@
 #' @examples 
 #' handle_poverty("all races (includes hispanic)")
 #' }
-
 handle_poverty <- function(poverty) {
   
   poverty <- tolower(poverty)

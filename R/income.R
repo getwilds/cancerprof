@@ -26,7 +26,7 @@ demo_income <- function(area, areatype, income, race) {
   
   req <- create_request("demographics")
   
-  resp <- req %>%  
+  resp <- req %>%
     req_url_query(
       stateFIPS=fips_scp(area),
       areatype=tolower(areatype),
@@ -54,3 +54,4 @@ demo_income <- function(area, areatype, income, race) {
       setNames(c("State", "FIPS", "Dollars", "Rank"))
   }
 }
+demo_income("ca", "hsa", "median family income", "all races (includes hispanic)")

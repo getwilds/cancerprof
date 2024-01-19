@@ -7,6 +7,9 @@
 #' @param mobility One of five choices from "i haven't moved (in past year)", "moved from outside us (in past year)",
 #'                  "moved, different state (in past year)", "moved, different county, same state (in past year)",
 #'                  "moved, same county (in past year)"
+#'                  
+#' @importFrom httr2 req_url_query req_perform
+#' @importFrom cli cli_abort
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "People", "Rank"
 #' 
@@ -46,4 +49,4 @@ demo_mobility <- function(area, areatype, mobility) {
 }
 
 demo_mobility("WA", "county", "moved, different county, same state (in past year)")
-demo_mobility("us", "hsa", "moved, same county (in past year)") ##???? Whats going on here
+demo_mobility("usa", "hsa", "moved, same county (in past year)") ##???? Whats going on here
