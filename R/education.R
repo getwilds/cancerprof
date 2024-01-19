@@ -1,11 +1,3 @@
-library(cdlTools)
-library(cli)
-library(dplyr)
-library(httr2)
-library(magrittr)
-library(stringr)
-
-
 #' Access to Education Data
 #'
 #' This function returns a data frame from Education in State Cancer Profiles
@@ -27,29 +19,12 @@ library(stringr)
 #'
 #' @examples
 #' \dontrun{
-#' demo_crowding("WA", "county", "All Races (includes Hispanic)")
+#' demo_education("wa", "county", "at least high school", "males")
+#' demo_education("usa", "state", "at least bachelors degree", "both sexes", "all races (includes hispanic)")
 #' }
-handle_education <-function(education) {
-  education <- tolower(education)
+demo_education <- function(area, areatype, education, sex=NULL, race=NULL) {
 
-  edu_mapping <- c(
-    "less than 9th grade" = "00004",
-    "at least high school" = "00109",
-    "at least bachelors degree" = "00006"
-  )
-
-  edu_code <- edu_mapping[education]
-
-  if (is.null(edu_code)) {
-    stop("Invalid input")
-  }
-
-  return(as.character(edu_code))
-}
-
-demo_education <- function(area, areatype, education, race=NULL, sex=NULL) {
-
-  req <- create_request()
+  req <- create_request("demographics")
 
   if(education == "less than 9th grade" && (!is.null(race) || !is.null(sex))) {
     cli_abort("For Less than 9th Grade, Race and Sex must be NULL.")
@@ -59,9 +34,9 @@ demo_education <- function(area, areatype, education, race=NULL, sex=NULL) {
     cli_abort("For At Least Bachelors Degree, Race and Sex must be NOT NULL.")
   }
 
-  req_draft <- req %>%
+  resp <- req %>%
     req_url_query(
-      stateFIPS=fips(area),
+      stateFIPS=fips_scp(area),
       areatype=tolower(areatype),
       topic="ed",
       demo=handle_education(education),
@@ -72,21 +47,28 @@ demo_education <- function(area, areatype, education, race=NULL, sex=NULL) {
     )
 
     if(!is.null(race)) {
-      req_draft <- req_draft %>%
+      resp <- resp %>%
         req_url_query(race=handle_race(race))
     }
 
     if(!is.null(sex)) {
-      req_draft <- req_draft %>%
+      resp <- resp %>%
         req_url_query(sex=handle_sex(sex))
     }
 
-    resp <- req_draft %>%
+    resp <- resp %>%
       req_perform()
 
-  resp <- process_response(resp) %>%
-    setNames(c("County", "FIPS", "Percent", "People", "Rank"))
-  resp
+    resp <- process_response(resp)
+    
+    if (areatype == "county") {
+      resp %>% 
+        setNames(c("County", "FIPS", "Percent", "Households", "Rank")) 
+    } else if (areatype == "hsa") {
+      resp %>% 
+        setNames(c("Health Service Area", "FIPS", "Percent", "Households", "Rank"))
+    } else if (areatype == "state") {
+      resp %>% 
+        setNames(c("State", "FIPS", "Percent", "Households", "Rank"))
+    }
 }
-
-demo_education("wa", "county", "at least high school", sex="males")

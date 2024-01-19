@@ -1,3 +1,11 @@
+library(cdlTools)
+library(cli)
+library(dplyr)
+library(httr2)
+library(magrittr)
+library(rlang)
+library(stringr)
+
 #' Access to Crowding Data
 #' 
 #' This function returns a data frame from Crowding in State Cancer Profiles
@@ -18,6 +26,7 @@
 #' @examples
 #' \dontrun{
 #' demo_crowding("WA", "county", "All Races (includes Hispanic)")
+#' demo_crowding("usa", "state", "All Races (includes Hispanic)")
 #' }
 
 
@@ -27,7 +36,7 @@ demo_crowding <- function(area, areatype, race) {
   
   resp <- req %>% 
     req_url_query(
-      stateFIPS=ifelse(is.na(fips(area)), "00", fips(area)),   ## write my own function to accept united states "fips_scp"
+      stateFIPS=fips_scp(area),
       areatype=tolower(areatype),
       topic="crowd",
       demo="00027",
@@ -39,7 +48,16 @@ demo_crowding <- function(area, areatype, race) {
     ) %>% 
     req_perform()
   
-  process_response(resp) %>%
-    setNames(c("County", "FIPS", "Percent", "Households", "Rank"))
+  resp <- process_response(resp)
+  
+  if (areatype == "county") {
+    resp %>% 
+      setNames(c("County", "FIPS", "Percent", "Households", "Rank")) 
+  } else if (areatype == "hsa") {
+    resp %>% 
+      setNames(c("Health Service Area", "FIPS", "Percent", "Households", "Rank"))
+  } else if (areatype == "state") {
+    resp %>% 
+      setNames(c("State", "FIPS", "Percent", "Households", "Rank"))
+  }
 }
-demo_crowding("usa", "county", "All Races (includes Hispanic)")

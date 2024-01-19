@@ -15,4 +15,5 @@ Imports:
     dplyr,
     httr2,
     magrittr,
+    rlang,
     stringr
