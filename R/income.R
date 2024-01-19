@@ -10,8 +10,8 @@
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
 #'              
 #' @importFrom httr2 req_url_query req_perform
-#' @importFrom cdlTools fips
 #' @importFrom cli cli_abort
+#' @importFrom dplyr mutate
 #'  
 #' @returns A data frame with the following columns "County", "FIPS", "Dollars", "Rank"
 #' 
@@ -22,7 +22,6 @@
 #' demo_income("wa", "county", "median family income", "all races (includes hispanic)")
 #' demo_income("usa", "state", "median family income", "all races (includes hispanic)")
 #' }
-
 demo_income <- function(area, areatype, income, race) {
   
   req <- create_request("demographics")
@@ -55,5 +54,3 @@ demo_income <- function(area, areatype, income, race) {
       setNames(c("State", "FIPS", "Dollars", "Rank"))
   }
 }
-
-demo_income("usa", "state", "median family income", "all races (includes hispanic)")

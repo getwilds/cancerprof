@@ -9,6 +9,7 @@
 #'              
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
+#' @importFrom dplyr mutate
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Value", "People"
 #' 
@@ -49,26 +50,24 @@ demo_food <- function(area, areatype, food, race=NULL) {
   resp <- req_draft %>%
     req_perform() 
   
-  resp <- process_response(resp)
+  resp <- process_response(resp) %>% 
+    mutate(Value..Percent. = as.integer(Value..Percent.))  
   
   if (areatype == "county") {
     if (food == "limited access to healthy food") {
-      resp <- resp %>%
+      resp %>%
         setNames(c("County", "FIPS", "Percent", "People"))
     } else if (food == "food insecurity") {
-      resp <- resp %>%
+      resp %>%
         setNames(c("County", "FIPS", "Percent"))
     }  
   } else if (areatype == "state") {
     if (food == "limited access to healthy food") {
-      resp <- resp %>%
+      resp %>%
         setNames(c("State", "FIPS", "Percent", "People"))
     } else if (food == "food insecurity") {
-      resp <- resp %>%
+      resp %>%
         setNames(c("State", "FIPS", "Percent"))
     }  
   }
-  
-  resp$Percent <- as.integer((resp$Percent))
-  resp
 }
