@@ -3,15 +3,25 @@
 #' This function processes the response data from State Cancer Profiles
 #'
 #' @param resp A response object
+#' @param area Either "wa" or "NULL"
 #' 
 #' @importFrom httr2 resp_body_string
 #' @importFrom dplyr mutate_all na_if
 #' @importFrom stringr str_detect
+#' @importFrom rlang sym
 #' 
 #' @returns A processed response data frame
 #' 
 #' @examples 
 #' process_response(resp)
+
+#all cases, explicitly remove "united states" from the first column (State, County, HSA)
+# if by county || by HSA, remove the State Row 
+
+
+
+
+
 process_response <- function(resp) {
   resp_lines <- resp %>% 
     resp_body_string() %>% 
@@ -22,20 +32,21 @@ process_response <- function(resp) {
   
   resp <- resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
     paste(collapse = "\n") %>% 
-    (\(x) read.csv(textConnection(x), header=TRUE, colClasses = "character"))() %>% 
-  
-    filter(str_detect(County, "County"))
-  
-  
-    # if (areatype == "county") {
-    #   resp <- resp %>%
-    #     filter(str_detect(County, "County"))
-    # } else if (areatype == "hsa") {
-    #   resp <- resp[-1, ]
-    #   rownames(resp) <- NULL
-    # }
+    (\(x) read.csv(textConnection(x), header=TRUE, colClasses = "character"))()
+
     
+  column <- c("Health.Service.Area", "County", "State")[c("Health.Service.Area", "County", "State") %in% colnames(resp)]
+  
+  resp <- resp %>% 
+    filter(!!sym(column) != "United States")
+    
+  if(column %in% c("Health.Service.Area", "County")) {
     resp <- resp %>% 
-      mutate_all(\(x) na_if(x, "N/A")) %>% 
-      mutate_all(\(x) na_if(x, "data not available"))
+      filter(!(!!sym(column) %in% state.name))
+  }
+  resp %>%   
+    mutate_all(\(x) na_if(x, "N/A")) %>% 
+    mutate_all(\(x) na_if(x, "data not available"))
 }
+
+print(column)

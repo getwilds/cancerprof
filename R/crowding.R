@@ -21,17 +21,13 @@
 #' }
 
 
-area = "wa"
-areatype = "hsa"
-race = "All Races (includes Hispanic)"
-
 demo_crowding <- function(area, areatype, race) {
 
   req <- create_request("demographics")
   
   resp <- req %>% 
     req_url_query(
-      stateFIPS=fips(area),
+      stateFIPS=ifelse(is.na(fips(area)), "00", fips(area)),   ## write my own functinon to accept united states "fips_scp"
       areatype=tolower(areatype),
       topic="crowd",
       demo="00027",
@@ -46,4 +42,4 @@ demo_crowding <- function(area, areatype, race) {
   process_response(resp) %>%
     setNames(c("County", "FIPS", "Percent", "Households", "Rank"))
 }
-demo_crowding("WA", "county", "All Races (includes Hispanic)")
+demo_crowding("usa", "county", "All Races (includes Hispanic)")
