@@ -14,37 +14,20 @@ req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
 #' @param social Either "Overall, "socioeconomic status", "household characteristics", "racial & ethinic minority status", "housing type & transportation"
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Score"
+#' 
+#' \dontrun{
 #' @examples 
 #' demo_svi("WA", "overall")
-
-
-
-handle_svi <- function(svi) {
-  svi <- tolower(svi)
-  
-  svi_mapping <- c(
-    "overall" = "03010",
-    "socioeconomic status" = "03011",
-    "household characteristics" = "03012",
-    "racial & ethinic minority status" = "03013",
-    "housing type & transportation" = "03014"
-  )
-  
-  svi_code <- svi_mapping[svi]
-  
-  if (is.null(svi_code)) {
-    stop("Invalid input")
-  }
-  
-  return(as.character(svi_code))
-}
-
-
-
+#' demo_svi("usa", "overall")
+#' demo_svi("dc", "socioeconomic status")
+#' }
 demo_svi <- function(area, svi) {
+  
+  req <- create_request("demographics")
+  
   resp <- req %>% 
     req_url_query(
-      stateFIPS=fips(area),
+      stateFIPS=fips_scp(area),
       areatype="county",
       topic="svi",
       demo=handle_svi(svi),
@@ -56,19 +39,14 @@ demo_svi <- function(area, svi) {
     req_perform()
   
   
-  resp_lines <- resp %>% 
-    resp_body_string() %>% 
-    strsplit("\\n") %>%  unlist() 
+  resp <- process_response(resp)
   
-  index_first_line_break <- which(resp_lines == "")[1]
-  index_second_line_break <- which(resp_lines == "")[2]
-  
-  resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
-    paste(collapse = "\n") %>% 
-    (\(x) read.csv(textConnection(x), header=TRUE))() %>% 
+  resp %>% 
     setNames(c("County", "FIPS", "Score"))
-  
 }
 
 
 demo_svi("WA", "overall")
+demo_svi("usa", "overall")
+demo_svi("dc", "socioeconomic status")
+
