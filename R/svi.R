@@ -1,11 +1,3 @@
-library(httr2)
-library(tidyverse)
-library(dplyr)
-library(cdlTools)
- 
-req <- request("https://statecancerprofiles.cancer.gov/demographics/index.php")
-
-
 #' Access to Social Vulnerability Index (SVI) Data
 #' 
 #' This function returns a data frame from Social Vulnerability Index (SVI) in State Cancer Profiles
