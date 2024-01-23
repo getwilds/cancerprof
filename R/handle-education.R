@@ -4,11 +4,11 @@
 #'
 #' @param sex Either "less than 9th grade", "at least high school", "at least bachelors degree"
 #' 
-#' @returns A string for its respective race
+#' @returns A string for its respective education
 #' 
 #' \dontrun{
 #' @examples 
-#' handle_sex("at least bachelors degree")
+#' handle_education("at least bachelors degree")
 #' }
 handle_education <-function(education) {
   education <- tolower(education)

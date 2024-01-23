@@ -1,3 +1,11 @@
+library(cdlTools)
+library(cli)
+library(dplyr)
+library(httr2)
+library(magrittr)
+library(rlang)
+library(stringr)
+
 #' Process Response Data
 #' 
 #' This function processes the response data from State Cancer Profiles
@@ -34,7 +42,7 @@ process_response <- function(resp) {
     filter(!!sym(column) != "United States")
     
   if(column %in% c("Health.Service.Area", "County")) {
-    resp <- resp %>% 
+    resp <- resp %>%
       filter(!(!!sym(column) %in% state.name))
   }
   resp %>%   

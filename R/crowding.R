@@ -1,11 +1,3 @@
-library(cdlTools)
-library(cli)
-library(dplyr)
-library(httr2)
-library(magrittr)
-library(rlang)
-library(stringr)
-
 #' Access to Crowding Data
 #' 
 #' This function returns a data frame from Crowding in State Cancer Profiles
@@ -26,6 +18,7 @@ library(stringr)
 #' \dontrun{
 #' demo_crowding("WA", "county", "All Races (includes Hispanic)")
 #' demo_crowding("usa", "state", "All Races (includes Hispanic)")
+#' demo_crowding("pr", "hsa", "black")
 #' }
 demo_crowding <- function(area, areatype, race) {
 
@@ -47,14 +40,10 @@ demo_crowding <- function(area, areatype, race) {
   
   resp <- process_response(resp)
   
-  if (areatype == "county") {
-    resp %>% 
-      setNames(c("County", "FIPS", "Percent", "Households", "Rank")) 
-  } else if (areatype == "hsa") {
-    resp %>% 
-      setNames(c("Health Service Area", "FIPS", "Percent", "Households", "Rank"))
-  } else if (areatype == "state") {
-    resp %>% 
-      setNames(c("State", "FIPS", "Percent", "Households", "Rank"))
-  }
+  
+  areatype_map <- c("county" = "County", "hsa" = "Health Service Area", "state" = "State")
+  areatype_title <- areatype_map[areatype]
+  
+  resp %>% 
+    setNames(c(areatype_title, "FIPS", "Percent", "Households", "Rank"))
 }

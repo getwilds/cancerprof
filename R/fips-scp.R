@@ -27,5 +27,3 @@ fips_scp <- function(area) {
     str_pad(fips(area), width=2, side="left", pad="0")
   }
 }
-
-fips_scp("usa")

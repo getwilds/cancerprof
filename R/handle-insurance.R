@@ -19,7 +19,7 @@
 #' 
 #' \dontrun{
 #' @examples 
-#' handle_insurance("% insured in demographic group, all income levels") ### WHY doesnt this work?
+#' handle_insurance("% insured in demographic group, all income levels")
 #' }
 handle_insurance <- function(insurance) {
 

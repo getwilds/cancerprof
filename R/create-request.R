@@ -10,7 +10,7 @@
 #' 
 #' @examples
 #' \dontrun{
-#' create_request()
+#' create_request("demographics")
 #' }
 create_request <- function(topic) {
   url = "https://statecancerprofiles.cancer.gov/"

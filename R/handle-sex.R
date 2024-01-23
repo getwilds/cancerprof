@@ -8,7 +8,7 @@
 #' 
 #' \dontrun{
 #' @examples 
-#' handle_sex("both sexes"), handle_sex(sex)
+#' handle_sex("both sexes")
 #' }
 handle_sex <- function(sex) {
   sex <- tolower(sex)
