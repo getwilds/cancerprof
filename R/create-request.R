@@ -11,6 +11,7 @@
 #' @examples
 #' \dontrun{
 #' create_request("demographics")
+#' create_request("risk")
 #' }
 create_request <- function(topic) {
   url = "https://statecancerprofiles.cancer.gov/"

@@ -18,6 +18,7 @@ handle_race <- function(race) {
   race <- tolower(race)
   
   race_mapping <- c(
+    #demographic
     "all races (includes hispanic)" = "00",
     "white (includes hispanic)" = "01",
     "white non-hispanic" = "07",
@@ -25,7 +26,14 @@ handle_race <- function(race) {
     "black (includes hispanic)" = "02",
     "amer. indian/alaskan native (includes hispanic)" = "03",
     "all ages, asian or pacific islander (includes hispanic)" = "04",
-    "hispanic (any race)" = "05"
+    "hispanic (any race)" = "05",
+    
+    #screening and risk factors
+    "white (non-hispanic)" = "07",
+    "black (non-hispanic)" = "28",
+    "amer. indian / ak native (non-hispanic)" = "38",
+    "asian / pacific islander (non-hispanic)" = "48"
+    
   )
   
   code <- race_mapping[race]
