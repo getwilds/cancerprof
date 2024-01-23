@@ -15,7 +15,7 @@
 #'                  "% uninsured in demographic group, people at or below 400% of poverty",
 #'                  "% uninsured in demographic group, people between 138% - 400% of poverty"
 #' 
-#' @returns A string for its respective race
+#' @returns A string for its respective insurance
 #' 
 #' \dontrun{
 #' @examples 

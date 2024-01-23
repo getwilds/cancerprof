@@ -3,6 +3,7 @@
 #' This function returns a data frame from Food Insecurity in State Cancer Profiles
 #'
 #' @param area A state/territory abbreviation or USA.
+#' @param areatype Either "county" or "state"
 #' @param food Either "food insecurity" or "limited access to healthy food"
 #' @param race One of the following values: "All Races (includes Hispanic)", "white non hispanic" = "01",
 #'              "black (includes hispanic)","hispanic (any race)
@@ -19,6 +20,7 @@
 #' @examples 
 #' demo_food("wa", "county", "food insecurity", "black")
 #' demo_food("usa", "state", "limited access to healthy food")
+#' demo_food("pr", "county", "food insecurity", "all races (includes hispanic)")
 #' }
 demo_food <- function(area, areatype, food, race=NULL) {
   
@@ -53,21 +55,14 @@ demo_food <- function(area, areatype, food, race=NULL) {
   resp <- process_response(resp) %>% 
     mutate(Value..Percent. = as.integer(Value..Percent.))  
   
-  if (areatype == "county") {
-    if (food == "limited access to healthy food") {
-      resp %>%
-        setNames(c("County", "FIPS", "Percent", "People"))
-    } else if (food == "food insecurity") {
-      resp %>%
-        setNames(c("County", "FIPS", "Percent"))
-    }  
-  } else if (areatype == "state") {
-    if (food == "limited access to healthy food") {
-      resp %>%
-        setNames(c("State", "FIPS", "Percent", "People"))
-    } else if (food == "food insecurity") {
-      resp %>%
-        setNames(c("State", "FIPS", "Percent"))
-    }  
+  areatype_map <- c("county" = "County", "state" = "State")
+  areatype_title <- areatype_map[areatype]
+  
+  if (food == "limited access to healthy food") {
+    resp %>% 
+      setNames(c(areatype_title, "FIPS", "Percent", "People"))
+  } else if (food == "food insecurity"){
+    resp %>%
+      setNames(c(areatype_title, "FIPS", "Percent"))
   }
 }

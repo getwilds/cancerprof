@@ -3,7 +3,7 @@
 #' This function returns a data frame from Education in State Cancer Profiles
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county" or "HSA" (Health service area)
+#' @param areatype Either "county", "hsa" (Health service area), or "state"
 #' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
@@ -20,6 +20,7 @@
 #' \dontrun{
 #' demo_education("wa", "county", "at least high school", "males")
 #' demo_education("usa", "state", "at least bachelors degree", "both sexes", "all races (includes hispanic)")
+#' demo_education("pr", "hsa", "less than 9th grade")
 #' }
 demo_education <- function(area, areatype, education, sex=NULL, race=NULL) {
 
@@ -60,14 +61,9 @@ demo_education <- function(area, areatype, education, sex=NULL, race=NULL) {
 
     resp <- process_response(resp)
     
-    if (areatype == "county") {
-      resp %>% 
-        setNames(c("County", "FIPS", "Percent", "Households", "Rank")) 
-    } else if (areatype == "hsa") {
-      resp %>% 
-        setNames(c("Health Service Area", "FIPS", "Percent", "Households", "Rank"))
-    } else if (areatype == "state") {
-      resp %>% 
-        setNames(c("State", "FIPS", "Percent", "Households", "Rank"))
-    }
+    areatype_map <- c("county" = "County", "hsa" = "Health Service Area", "state" = "State")
+    areatype_title <- areatype_map[areatype]
+    
+    resp %>% 
+      setNames(c(areatype_title, "FIPS", "Percent", "Households", "Rank"))
 }
