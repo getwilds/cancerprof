@@ -3,10 +3,9 @@
 #' This function returns a data frame from population in State Cancer Profiles
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county" or "HSA" (Health service area)
-#' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
-#'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-#'              "asian or pacific islander (includes hispanic)","hispanic (any race)
+#' @param areatype Either "county", "hsa" (Health service area), or "state"
+#' @param race One of the following values: "american indian/alaska native", "asian/pacific islander", 
+#'                                          "black", "foreign born", "hispanic", "non-hispanic (origin recode)", "white"
 #' @param sex Either "both sexes", "male", "female"
 #' 
 #' @importFrom httr2 req_url_query req_perform
@@ -18,9 +17,11 @@
 #' 
 #' @examples
 #' \dontrun{
-#' demo_population("WA", "county", "All Races (includes Hispanic)")
+#' demo_population("WA", "county", "asian/pacific islander", sex="females")
+#' demo_population("dc", "hsa", "foreign born", "black", "females")
+#' demo_population("usa", "state", "foreign born", "black", "females")
+#' 
 #' }
-
 demo_population <- function(area, areatype, population, race=NULL, sex=NULL) {
   
   req <- create_request("demographics")
@@ -68,28 +69,9 @@ demo_population <- function(area, areatype, population, race=NULL, sex=NULL) {
   
     resp <- process_response(resp)
     
-    if (areatype == "county") {
-      resp %>% 
-        setNames(c("County", "FIPS", "Percent", "Households", "Rank")) 
-    } else if (areatype == "hsa") {
-      resp %>% 
-        setNames(c("Health Service Area", "FIPS", "Percent", "Households", "Rank"))
-    } else if (areatype == "state") {
-      resp %>% 
-        setNames(c("State", "FIPS", "Percent", "Households", "Rank"))
-    }
+    areatype_map <- c("county" = "County", "hsa" = "Health Service Area", "state" = "State")
+    areatype_title <- areatype_map[areatype]
+    
+    resp %>% 
+      setNames(c(areatype_title, "FIPS", "Percent", "Households", "Rank"))
 }
-
-
-area = "ca"
-areatype = "county"
-population = "foreign born"
-race = "black"
-sex = "females"
-
-demo_population("WA", "county", "foreign born", "black", "females")
-demo_population("sc", "county", "foreign born", "black", "females") #CA, USA doesnt work
-
-
-
-fips_scp("usa")

@@ -10,8 +10,7 @@
 #' 
 #' \dontrun{
 #' @examples 
-#' handle_mobility("under 19 years")
-#' handle_mobility(mobility)
+#' handle_mobility("i haven't moved (in past year)")
 #' }
 handle_mobility <-function(mobility) {
   

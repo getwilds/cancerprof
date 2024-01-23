@@ -9,7 +9,7 @@
 #' 
 #' \dontrun{
 #' @examples 
-#' handle_poverty("all races (includes hispanic)")
+#' handle_poverty("families below poverty")
 #' }
 handle_poverty <- function(poverty) {
   

@@ -13,7 +13,7 @@
 #' 
 #' \dontrun{
 #' @examples 
-#' handle_population("all races (includes hispanic)"), handle_race(race)
+#' handle_population("males")
 #' }
 handle_population <- function(population) {
   

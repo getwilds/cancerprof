@@ -3,12 +3,14 @@
 #' This function returns a data frame from Crowding in State Cancer Profiles
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county" or "HSA" (Health service area)
+#' @param areatype Either "county", "hsa" (Health service area), or "state"
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
 #' 
 #' @examples 
 #' demo_language("WA", "county")
+#' demo_language("dc", "hsa")
+#' demo_language("usa", "state")
 demo_language <- function(area, areatype) {
   
   req <- create_request("demographics")
@@ -29,17 +31,9 @@ demo_language <- function(area, areatype) {
   
   resp <- process_response(resp)
   
-  if (areatype == "county") {
-    resp %>% 
-      setNames(c("County", "FIPS", "Percent", "Households", "Rank")) 
-  } else if (areatype == "hsa") {
-    resp %>% 
-      setNames(c("Health Service Area", "FIPS", "Percent", "Households", "Rank"))
-  } else if (areatype == "state") {
-    resp %>% 
-      setNames(c("State", "FIPS", "Percent", "Households", "Rank"))
-  }
+  areatype_map <- c("county" = "County", "hsa" = "Health Service Area", "state" = "State")
+  areatype_title <- areatype_map[areatype]
+  
+  resp %>% 
+    setNames(c(areatype_title, "FIPS", "Percent", "Households", "Rank"))
 }
-
-
-demo_language("usa", "hsa")

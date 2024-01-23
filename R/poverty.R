@@ -3,7 +3,7 @@
 #' This function returns a data frame from Poverty in State Cancer Profiles
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county" or "HSA" (Health service area)
+#' @param areatype Either "county", "hsa" (Health service area), or "state"
 #' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
@@ -18,8 +18,9 @@
 #' 
 #' @examples
 #' \dontrun{
-#' demo_poverty("WA", "county", "All Races (includes Hispanic)")
+#' demo_poverty("WA", "county", "persistent poverty")
 #' demo_poverty("usa", "state", "families below poverty", "black")
+#' demo_poverty("dc", "hsa", "families below poverty", "All Races (includes Hispanic)")
 #' }
 demo_poverty <- function(area, areatype, poverty, race=NULL, sex=NULL) {
   

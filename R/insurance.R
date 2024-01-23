@@ -3,7 +3,7 @@
 #' This function returns a data frame from Insurance in State Cancer Profiles
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county" or "HSA" (Health service area)
+#' @param areatype Either "county", "hsa" (Health service area), or "state"
 #' @param insurance Either
 #'                  "% Insured in demographic group, all income levels", "% Insured in demographic group, people at or below 138% of Poverty"
 #'                  "% Insured in demographic group, people at or below 200% of Poverty", "% Insured in demographic group, people at or below 250% of Poverty"
@@ -24,6 +24,7 @@
 #' \dontrun{
 #' demo_insurance("usa", "state", "% Insured in demographic group, all income levels", "both sexes", "under 19 years")
 #' demo_insurance("wa", "hsa", "% Insured in demographic group, all income levels", "males", "18 to 64 years")
+#' demo_insurance("dc", "county", "% Insured in demographic group, all income levels", "males", "18 to 64 years")
 #' }
 demo_insurance <- function(area, areatype, insurance, sex, age) {
   
@@ -55,14 +56,9 @@ demo_insurance <- function(area, areatype, insurance, sex, age) {
 
   resp <- process_response(resp)
   
-  if (areatype == "county") {
-    resp %>%
-      setNames(c("County", "FIPS", "Percent", "People", "Rank"))
-  } else if (areatype == "hsa") {
-    resp %>%
-      setNames(c("Health Service Area", "FIPS", "Percent", "People", "Rank"))
-  } else if (areatype == "state") {
-    resp %>% 
-      setNames(c("State", "FIPS", "Percent", "People", "Rank"))
-  }
+  areatype_map <- c("county" = "County", "hsa" = "Health Service Area", "state" = "State")
+  areatype_title <- areatype_map[areatype]
+  
+  resp %>% 
+    setNames(c(areatype_title, "FIPS", "Percent", "People", "Rank"))
 }

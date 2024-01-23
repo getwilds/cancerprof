@@ -3,7 +3,7 @@
 #' This function returns a data frame from mobility in State Cancer Profiles
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county" or "HSA" (Health service area)
+#' @param areatype Either "county", "hsa" (Health service area), or "state"
 #' @param mobility One of five choices from "i haven't moved (in past year)", "moved from outside us (in past year)",
 #'                  "moved, different state (in past year)", "moved, different county, same state (in past year)",
 #'                  "moved, same county (in past year)"
@@ -16,6 +16,8 @@
 #' \dontrun{
 #' @examples 
 #' demo_mobility("WA", "county", "moved, different county, same state (in past year)")
+#' demo_mobility("usa", "state", "moved, same county (in past year)")
+#' demo_mobility("dc", "hsa", "moved, same county (in past year)")
 #' }
 demo_mobility <- function(area, areatype, mobility) {
   
@@ -36,17 +38,9 @@ demo_mobility <- function(area, areatype, mobility) {
 
     resp <- process_response(resp)
     
-    if (areatype == "county") {
-      resp %>% 
-        setNames(c("County", "FIPS", "Percent", "People", "Rank")) 
-    } else if (areatype == "hsa") {
-      resp %>% 
-        setNames(c("Health Service Area", "FIPS", "Percent", "People", "Rank"))
-    } else if (areatype == "state") {
-      resp %>% 
-        setNames(c("State", "FIPS", "Percent", "People", "Rank"))
-    }
+    areatype_map <- c("county" = "County", "hsa" = "Health Service Area", "state" = "State")
+    areatype_title <- areatype_map[areatype]
+    
+    resp %>% 
+      setNames(c(areatype_title, "FIPS", "Percent", "Households", "Rank"))
 }
-
-demo_mobility("WA", "county", "moved, different county, same state (in past year)")
-demo_mobility("usa", "hsa", "moved, same county (in past year)") ##???? Whats going on here

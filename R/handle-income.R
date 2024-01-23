@@ -2,7 +2,7 @@
 #' 
 #' This function returns a matching code value for a Income for the api to use to get data from State Cancer Profiles
 #'
-#' @param sex Either "median family income" or "median household income"
+#' @param income Either "median family income" or "median household income"
 #' 
 #' @returns A string for its respective income
 #' 
