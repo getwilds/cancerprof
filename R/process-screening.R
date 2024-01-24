@@ -18,8 +18,8 @@ library(stringr)
 #' 
 #' @returns A processed response data frame
 #' 
+#' @examples
 #' \dontrun{
-#' @examples 
 #' process_screening(resp)
 #' }
 process_screening <- function(resp) {

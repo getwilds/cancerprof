@@ -16,7 +16,7 @@
 #' @examples
 #' \dontrun{
 #' demo_diet_exercise("bmi is healthy, ages 20+", "all races (includes hispanic)", "both sexes")
-#' demo_diet_exercise("ever had fobt, ages 50-75", area="wa")
+#' demo_diet_exercise("bmi is obese, high school survey", "all races (includes hispanic)", "males")
 #' }
 demo_diet_exercise <- function(diet_exercise, race, sex) {
   

@@ -13,8 +13,8 @@
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "People", "Rank"
 #' 
-#' \dontrun{
 #' @examples 
+#' \dontrun{
 #' demo_mobility("WA", "county", "moved, different county, same state (in past year)")
 #' demo_mobility("usa", "state", "moved, same county (in past year)")
 #' demo_mobility("dc", "hsa", "moved, same county (in past year)")

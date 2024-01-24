@@ -8,8 +8,8 @@
 #' 
 #' @returns A string for its respective mobility
 #' 
-#' \dontrun{
 #' @examples 
+#' \dontrun{
 #' handle_mobility("i haven't moved (in past year)")
 #' }
 handle_mobility <-function(mobility) {

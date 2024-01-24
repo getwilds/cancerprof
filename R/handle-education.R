@@ -6,8 +6,8 @@
 #' 
 #' @returns A string for its respective education
 #' 
-#' \dontrun{
 #' @examples 
+#' \dontrun{
 #' handle_education("at least bachelors degree")
 #' }
 handle_education <-function(education) {

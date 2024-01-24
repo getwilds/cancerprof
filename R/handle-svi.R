@@ -8,8 +8,8 @@
 #' 
 #' @returns A string for its respective SVI variable
 #' 
-#' \dontrun{
 #' @examples 
+#' \dontrun{
 #' handle_svi("overall")
 #' }
 handle_svi <- function(svi) {

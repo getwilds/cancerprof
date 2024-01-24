@@ -6,8 +6,8 @@
 #' 
 #' @returns A string for its respective age
 #' 
-#' \dontrun{
 #' @examples 
+#' \dontrun{
 #' handle_age("under 19 years")
 #' handle_age(age)
 #' }

@@ -11,8 +11,8 @@
 #' 
 #' @returns A string for its respective population
 #' 
-#' \dontrun{
 #' @examples 
+#' \dontrun{
 #' handle_population("males")
 #' }
 handle_population <- function(population) {

@@ -8,10 +8,10 @@
 #'               "home-based fecal occult blood test (fobt) in past two years",
 #'               "home-based fobt in the past two years or ever had a colorectal endoscopy"
 #' 
-#' @returns A string for its respective income
+#' @returns A string for its respective Colorectal Screening Value
 #' 
-#' \dontrun{
 #' @examples 
+#' \dontrun{
 #' handle_screening("guidance sufficient crc, ages 50-75")
 #' }
 handle_screening <- function(screening) {

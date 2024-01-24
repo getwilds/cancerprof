@@ -7,8 +7,8 @@
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Score"
 #' 
-#' \dontrun{
 #' @examples 
+#' \dontrun{
 #' demo_svi("WA", "overall")
 #' demo_svi("usa", "overall")
 #' demo_svi("dc", "socioeconomic status")
@@ -36,9 +36,4 @@ demo_svi <- function(area, svi) {
   resp %>% 
     setNames(c("County", "FIPS", "Score"))
 }
-
-
-demo_svi("WA", "overall")
-demo_svi("usa", "overall")
-demo_svi("dc", "socioeconomic status")
 

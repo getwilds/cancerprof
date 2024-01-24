@@ -6,8 +6,8 @@
 #' 
 #' @returns A string for its respective sex
 #' 
-#' \dontrun{
 #' @examples 
+#' \dontrun{
 #' handle_sex("both sexes")
 #' }
 handle_sex <- function(sex) {

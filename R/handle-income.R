@@ -6,8 +6,8 @@
 #' 
 #' @returns A string for its respective income
 #' 
-#' \dontrun{
 #' @examples 
+#' \dontrun{
 #' handle_income("median family income")
 #' }
 handle_income <- function(income) {

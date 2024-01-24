@@ -15,12 +15,13 @@
 #' fips_scp("ca")
 #' fips_scp("usa")
 #' }
-fips_scp <- function(area) {
+fips_scp <- function(area, topic="Demographics") {
   
   area = tolower(area)
   
   usa_list = c("united states", "united states of america", "us", "usa")
-
+  
+  
   if (area %in% usa_list) {
     return("00")
   } else {

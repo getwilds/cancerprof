@@ -17,8 +17,8 @@
 #' 
 #' @export
 #' 
-#' \dontrun{
 #' @examples 
+#' \dontrun{
 #' demo_income("wa", "county", "median family income", "all races (includes hispanic)")
 #' demo_income("usa", "state", "median family income", "all races (includes hispanic)")
 #' demo_income("pr", "county", "median family income", "all races (includes hispanic)")

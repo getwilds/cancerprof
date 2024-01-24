@@ -2,13 +2,13 @@
 #' 
 #' This function returns a matching code value for a Poverty for the api to use to get data from State Cancer Profiles
 #'
-#' @param population One of the following values: 
+#' @param poverty One of the following values: 
 #'                              "families below poverty", "persistent poverty", "persons below poverty", "persons < 150% of poverty"
 #' 
 #' @returns A string for its respective poverty variable
 #' 
-#' \dontrun{
 #' @examples 
+#' \dontrun{
 #' handle_poverty("families below poverty")
 #' }
 handle_poverty <- function(poverty) {

@@ -19,8 +19,8 @@ library(stringr)
 #' 
 #' @returns A processed response data frame
 #' 
-#' \dontrun{
 #' @examples 
+#' \dontrun{
 #' process_response(resp)
 #' }
 process_response <- function(resp) {

@@ -8,10 +8,10 @@
 #' 
 #' @returns A string for its respective race
 #' 
-#' \dontrun{
 #' @examples 
+#' \dontrun{
 #' handle_race("all races (includes hispanic)")
-#' handle_race(race)
+#' handle_race("black (non-hispanic)")
 #' }
 handle_race <- function(race) {
   

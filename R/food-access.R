@@ -16,8 +16,9 @@
 #' 
 #' @export
 #' 
+#'
+#' @examples
 #' \dontrun{
-#' @examples 
 #' demo_food("wa", "county", "food insecurity", "black")
 #' demo_food("usa", "state", "limited access to healthy food")
 #' demo_food("pr", "county", "food insecurity", "all races (includes hispanic)")

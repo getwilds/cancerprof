@@ -17,8 +17,8 @@
 #' 
 #' @returns A string for its respective insurance
 #' 
-#' \dontrun{
 #' @examples 
+#' \dontrun{
 #' handle_insurance("% insured in demographic group, all income levels")
 #' }
 handle_insurance <- function(insurance) {
