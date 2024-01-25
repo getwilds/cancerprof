@@ -31,36 +31,28 @@
 demo_smoking <- function(smoking, race=NULL, sex=NULL, datatype=NULL, area=NULL) {
   
   req <- create_request("risk")
-  
-  #"State", "FIPS", "Percent", "Number of Respondents"
+
   smoking_group1 = c("smoking laws (any)",
                      "smoking laws (bars)",
                      "smoking laws (restaurants)",
                      "smoking laws (workplace)",
                      "smoking laws (workplace; restaurant; & bar)")
-  
-  #"State", "FIPS", "Percent", "Lower CI 95%", "Upper CI 95%", "Number of Respondents"
-  #"County", "FIPS", "Percent", "Lower CI 95%", "Upper CI 95%"
+
   smoking_group2 = c("smokers (stopped for 1 day or longer)",
                      "smoking not allowed at work (all people)",
                      "smoking not allowed in home (all people)")
-  
-  #"State", "FIPS", "Percent", "Lower CI 95%", "Upper CI 95%", "Number of Respondents"
+
   smoking_group3 = c("smoking not allowed at work (current smokers)",
                      "smoking not allowed at work (former/never smokers)",
                      "smoking not allowed in home (current smokers)",
                      "smoking not allowed in home (former/never smokers)")
-  
-  #"County", "FIPS", "Percent", "Lower CI 95%", "Upper CI 95%"
+
   smoking_group4 = c("former smoker; ages 18+",
                      "former smoker, quit 1 year+; ages 18+")
   
-  #"State", "FIPS", "Percent", "Lower CI 95%", "Upper CI 95%", "Number of Respondents"
   smoking_group5 = c("smokers (ever); ages 18+",
                      "e-cigarette use; ages 18+")
-  
-  #"State", "FIPS", "Percent", "Lower CI 95%", "Upper CI 95%", "Number of Respondents"
-  #"County", "FIPS", "Percent", "Lower CI 95%", "Upper CI 95%"
+
   smoking_group6 = "smokers (current); ages 18+"
   
   #smoking group 1
@@ -119,20 +111,6 @@ demo_smoking <- function(smoking, race=NULL, sex=NULL, datatype=NULL, area=NULL)
       cli_abort("For county level modeled estimates for this smoking type, Area must NOT be NULL")
     } 
   }
-
-  
-  # #smoking group 6
-  # if (smoking == smoking_group6 && (!is.null(race) || !is.null(sex))) {
-  #   if (race == "all races (includes hispanic)" && is.null(datatype)) {
-  #     cli_abort("For all races (includes hispanic) for this smoking type, Datatype must NOT be NULL")
-  #   } else if (race == "all races (includes hispanic)" && datatype == "direct estimates" && !is.null(area)) {
-  #     cli_abort("For all races (includes hispanic) and direct estimates, Area must be NULL")
-  #   } else if (race == "all races (includes hispanic)" && datatype == "county level modeled estimates" && is.null(area)) {
-  #     cli_abort("For county level modeled estimates, Area must NOT be NULL")
-  #   }
-  # } else if (smoking == smoking_group6 && (is.null(race) || is.null(sex))) {
-  #   cli_abort("For this smoking type, Race and Sex must not be NULL")
-  # }
   
   resp <- req %>%
     req_url_query(
