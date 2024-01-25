@@ -16,7 +16,7 @@ handle_smoking <- function(smoking) {
   smoking <- tolower(smoking)
   
   smoking_mapping <- c(
-    "smokers (currnet); ages 18+" = "v19",
+    "smokers (current); ages 18+" = "v19",
     
     "smokers (ever); ages 18+" = "v28",
     "e-cigarette use; ages 18+" = "v37",
@@ -25,7 +25,7 @@ handle_smoking <- function(smoking) {
     "former smoker, quit 1 year+; ages 18+" = "v301",
     
     "smoking not allowed at work (current smokers)" = "v32",
-    "smoking not allowed at work (former/never smokers)" = "v33",
+    "smoking not allowed at work (former/never smokers)"  = "v33",
     "smoking not allowed in home (current smokers)" = "v35",
     "smoking not allowed in home (former/never smokers)" = "v36",
     
