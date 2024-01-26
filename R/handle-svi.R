@@ -2,7 +2,7 @@
 #' 
 #' This function returns a matching code value for a SVI for the api to use to get data from State Cancer Profiles
 #'
-#' @param population One of the following values: 
+#' @param svi One of the following values: 
 #'                              "overall", "socioeconomic status", "household characteristics",
 #'                              "racial & ethinic minority status", "housing type & transportation"
 #' 

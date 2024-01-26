@@ -10,10 +10,9 @@ library(stringr)
 #' This function processes the response data from State Cancer Profiles
 #'
 #' @param resp A response object
-#' @param area Either "wa" or "NULL"
 #' 
 #' @importFrom httr2 resp_body_string
-#' @importFrom dplyr mutate_all na_if
+#' @importFrom dplyr mutate_all na_if filter
 #' @importFrom rlang sym
 #' 
 #' @returns A processed response data frame

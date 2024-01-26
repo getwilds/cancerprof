@@ -3,6 +3,7 @@
 #' This function processes state names and abbreviations to FIPS data
 #'
 #' @param area A state name or state abbreviation or United States of America or United States or usa or us
+#' @param topic Either "demographics", "risks", "incidence", "mortality"
 #' 
 #' @importFrom cdlTools fips
 #' @importFrom stringr str_pad

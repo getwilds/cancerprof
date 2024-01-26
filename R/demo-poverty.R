@@ -4,6 +4,7 @@
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county", "hsa" (Health service area), or "state"
+#' @param poverty Either "families below poverty", "persistent poverty", "persons below poverty", "persons < 150% of poverty"
 #' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)

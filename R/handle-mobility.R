@@ -2,7 +2,7 @@
 #' 
 #' This function returns a matching code value for a mobility for the api to use to get data from State Cancer Profiles
 #'
-#' @param sex Either "i haven't moved (in past year)", "moved from outside us (in past year)",
+#' @param mobility Either "i haven't moved (in past year)", "moved from outside us (in past year)",
 #'            "moved, different state (in past year)", "moved, different county, same state (in past year)",
 #'            "moved, same county (in past year)"
 #' 

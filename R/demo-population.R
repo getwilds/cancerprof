@@ -4,6 +4,9 @@
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county", "hsa" (Health service area), or "state"
+#' @param population One of the following values: "age under 18", "age 18-39", "age 40-64", "ages 40 and over", "ages 50 and over", "ages 60 and over",
+#'                                                "american indian/alaska native", "asian/pacific islander", "black", "foreign born", "hispanic", 
+#'                                                "non-hispanic (origin recode)", "white", "males", "females"
 #' @param race One of the following values: "american indian/alaska native", "asian/pacific islander", 
 #'                                          "black", "foreign born", "hispanic", "non-hispanic (origin recode)", "white"
 #' @param sex Either "both sexes", "male", "female"

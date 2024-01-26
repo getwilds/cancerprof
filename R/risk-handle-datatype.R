@@ -2,9 +2,7 @@
 #' 
 #' This function returns a matching code value for a Risk Data Types for the api to use to get data from State Cancer Profiles
 #'
-#' @param whealth Either "mammogram in past 2 years, ages 50-74", "mammogram in past 2 years, ages 40+",
-#'                       "pap smear in past 3 years, no hysterectomy, ages 21-65",
-#'                       "pap smear in past 3 years, no hysterectomy, ages 18+"
+#' @param datatype Either "direct estimates" or "county level modeled estimates"
 #' 
 #' @returns A string for its respective Risk Data Types Value
 #' 

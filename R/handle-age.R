@@ -2,7 +2,7 @@
 #' 
 #' This function returns a matching code value for a Age for the api to use to get data from State Cancer Profiles
 #'
-#' @param sex Either "under 19 years", "18 to 64 years", "21 to 64 years", "40 to 64 years", "50 to 64 years", "under 65 years"
+#' @param age Either "under 19 years", "18 to 64 years", "21 to 64 years", "40 to 64 years", "50 to 64 years", "under 65 years"
 #' 
 #' @returns A string for its respective age
 #' 

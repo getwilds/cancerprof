@@ -2,21 +2,25 @@
 #' 
 #' This function returns a data frame from Colorectal Screening in State Cancer Profiles
 #'
-#' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county", "hsa" (Health service area), or "state"
+#' @param screening One of the following values: "ever had colorectal endoscopy (sigmoidoscopy or colonoscopy), ages 50+", 
+#'                                                "fobt (1yr) / flex sig (5yr) / fobt (3yr) / colonoscopy (10yr), ages 50-75", 
+#'                                                "home-based fecal occult blood test (fobt) in past two years", 
+#'                                                "home-based fobt in the past two years or ever had a colorectal endoscopy", "ever had fobt, ages 50-75", 
+#'                                                "guidance sufficient crc, ages 50-75", "had colonoscopy in past 10 years, ages 50-75"
 #' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
 #' @param sex Either "both sexes", "male", "female"
+#' @param area A state/territory abbreviation or USA.
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "People Unemployed", "Rank"
 #' 
 #' @examples
 #' \dontrun{
-#' demo_colorectal_screening("ever had colorectal endoscopy (sigmoidoscopy or colonoscopy), ages 50+", "all races (includes hispanic)", "both sexes")
-#' demo_colorectal_screening("ever had fobt, ages 50-75", area="wa")
+#' risk_colorectal_screening("ever had colorectal endoscopy (sigmoidoscopy or colonoscopy), ages 50+", "all races (includes hispanic)", "both sexes")
+#' risk_colorectal_screening("ever had fobt, ages 50-75", area="wa")
 #' }
-demo_colorectal_screening <- function(screening, race=NULL, sex=NULL, area=NULL) {
+risk_colorectal_screening <- function(screening, race=NULL, sex=NULL, area=NULL) {
   
   req <- create_request("risk")
   

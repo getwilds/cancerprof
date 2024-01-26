@@ -3,7 +3,7 @@
 #' This function returns a data frame from Social Vulnerability Index (SVI) in State Cancer Profiles
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param social Either "Overall, "socioeconomic status", "household characteristics", "racial & ethinic minority status", "housing type & transportation"
+#' @param svi Either "Overall, "socioeconomic status", "household characteristics", "racial & ethinic minority status", "housing type & transportation"
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Score"
 #' 

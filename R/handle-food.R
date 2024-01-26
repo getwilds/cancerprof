@@ -2,7 +2,7 @@
 #' 
 #' This function returns a matching code value for a Food for the api to use to get data from State Cancer Profiles
 #'
-#' @param sex Either "food insecurity" or "limited access to healthy food"
+#' @param food Either "food insecurity" or "limited access to healthy food"
 #' 
 #' @returns A string for its respective food
 #' 
