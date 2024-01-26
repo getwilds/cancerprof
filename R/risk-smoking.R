@@ -21,14 +21,19 @@
 #' 
 #' @examples
 #' \dontrun{
-#' demo_smoking("smoking laws (any)")
-#' demo_smoking("smokers (stopped for 1 day or longer)", sex="both sexes", datatype="county level modeled estimates", area="wa")
-#' demo_smoking("smoking not allowed at work (current smokers)", sex="both sexes", datatype="direct estimates")
-#' demo_smoking("former smoker; ages 18+", sex="both sexes", datatype="county level modeled estimates", area="ca")
-#' demo_smoking("smokers (ever); ages 18+", race="hispanic (any race)", sex="both sexes", datatype="direct estimates")
-#' demo_smoking("smokers (current); ages 18+", race="all races (includes hispanic)", sex="both sexes", datatype="county level modeled estimates", area="wa")
+#' risk_smoking("smoking laws (any)")
+#' risk_smoking("smokers (stopped for 1 day or longer)", sex="both sexes", 
+#'               datatype="county level modeled estimates", area="wa")
+#' risk_smoking("smoking not allowed at work (current smokers)", sex="both sexes", 
+#'               datatype="direct estimates")
+#' risk_smoking("former smoker; ages 18+", sex="both sexes", 
+#'               datatype="county level modeled estimates", area="ca")
+#' risk_smoking("smokers (ever); ages 18+", race="hispanic (any race)", sex="both sexes", 
+#'               datatype="direct estimates")
+#' risk_smoking("smokers (current); ages 18+", race="all races (includes hispanic)", 
+#'               sex="both sexes", datatype="county level modeled estimates", area="wa")
 #' }
-demo_smoking <- function(smoking, race=NULL, sex=NULL, datatype=NULL, area=NULL) {
+risk_smoking <- function(smoking, race=NULL, sex=NULL, datatype=NULL, area=NULL) {
   
   req <- create_request("risk")
 
