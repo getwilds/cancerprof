@@ -13,6 +13,7 @@
 #' 
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
+#' @importFrom stats setNames
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
 #' 

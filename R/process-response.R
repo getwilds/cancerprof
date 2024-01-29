@@ -14,7 +14,9 @@ library(stringr)
 #' 
 #' @importFrom httr2 resp_body_string
 #' @importFrom dplyr mutate_all na_if filter
-#' @importFrom rlang sym
+#' @importFrom rlang 
+#' @importFrom datasets state.name
+#' @importFrom utils read.csv
 #' 
 #' @returns A processed response data frame
 #' 

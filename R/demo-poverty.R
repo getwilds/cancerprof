@@ -11,7 +11,7 @@
 #' @param sex Either "both sexes", "male", "female"
 #' 
 #' @importFrom httr2 req_url_query req_perform
-#' @importFrom cdlTools fips
+#' @importFrom stats setNames
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
 #' 

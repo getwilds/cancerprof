@@ -5,6 +5,9 @@
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county", "hsa" (Health service area), or "state"
 #' 
+#' @importFrom httr2 req_url_query req_perform
+#' @importFrom stats setNames
+#' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
 #' 
 #' @examples 

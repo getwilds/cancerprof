@@ -9,6 +9,7 @@
 #'              "asian or pacific islander (includes hispanic)", "hispanic (any race)
 #' 
 #' @importFrom httr2 req_url_query req_perform
+#' @importFrom stats setNames
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
 #' 

@@ -11,6 +11,7 @@
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom dplyr mutate
+#' @importFrom stats setNames
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Value", "People"
 #' 
