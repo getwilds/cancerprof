@@ -17,6 +17,10 @@
 #' @param datatype Either "direct estimates" or "county level modeled estimates"
 #' @param area A state/territory abbreviation or USA.
 #' 
+#' @importFrom httr2 req_url_query req_perform
+#' @importFrom cli cli_abort
+#' @importFrom stats setNames
+#' 
 #' @returns A data frame with the following columns #"State", "FIPS", "Percent", "Lower CI 95%", "Upper CI 95%", "Number of Respondents"
 #' 
 #' @examples
