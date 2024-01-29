@@ -14,6 +14,8 @@
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "People", "Rank"
 #' 
+#' @export
+#' 
 #' @examples 
 #' \dontrun{
 #' demo_mobility("WA", "county", "moved, different county, same state (in past year)")

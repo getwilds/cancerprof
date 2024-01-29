@@ -12,6 +12,8 @@
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "People Unemployed", "Rank"
 #' 
+#' @export
+#' 
 #' @examples
 #' \dontrun{
 #' risk_whealth("mammogram in past 2 years, ages 50-74", 

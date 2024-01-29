@@ -23,6 +23,8 @@
 #' 
 #' @returns A data frame with the following columns #"State", "FIPS", "Percent", "Lower CI 95%", "Upper CI 95%", "Number of Respondents"
 #' 
+#' @export
+#' 
 #' @examples
 #' \dontrun{
 #' risk_smoking("smoking laws (any)")
@@ -160,14 +162,12 @@ risk_smoking <- function(smoking, race=NULL, sex=NULL, datatype=NULL, area=NULL)
   if (smoking %in% smoking_group1) {
     resp %>% 
       setNames(c("State", "FIPS", "Percent", "Number of Respondents")) 
-  } else if ((smoking %in% smoking_group2 || smoking %in% smoking_group3 || smoking %in% smoking_group4 
-              || smoking %in% smoking_group5 || smoking %in% smoking_group6) 
+  } else if ((smoking %in% c(smoking_group2, smoking_group3, smoking_group4, smoking_group5, smoking_group6))
               && (datatype=="direct estimates")) {
     resp %>% 
       setNames(c("State", "FIPS", "Percent", "Lower CI 95%", "Upper CI 95%", "Number of Respondents")) 
-  } else if ((smoking %in% smoking_group2 || smoking %in% smoking_group3 || smoking %in% smoking_group4 
-              || smoking %in% smoking_group5 || smoking %in% smoking_group6) 
-              && datatype=="county level modeled estimates") {
+  } else if ((smoking %in% c(smoking_group2, smoking_group3, smoking_group4, smoking_group5, smoking_group6)
+              && datatype=="county level modeled estimates")) {
     resp %>% 
       setNames(c("County", "FIPS", "Percent", "Lower CI 95%", "Upper CI 95%")) 
   }

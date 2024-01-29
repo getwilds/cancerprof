@@ -15,6 +15,8 @@
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "People Unemployed", "Rank"
 #' 
+#' @export
+#' 
 #' @examples
 #' \dontrun{
 #' risk_colorectal_screening("ever had colorectal endoscopy (sigmoidoscopy or colonoscopy), ages 50+",

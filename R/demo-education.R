@@ -20,16 +20,10 @@
 #' @examples
 #' \dontrun{
 #' demo_education("wa", "county", "at least high school", "males")
-#' demo_education("usa", "state", "at least bachelors degree", "both sexes", "all races (includes hispanic)")
+#' demo_education("usa", "state", "at least bachelors degree", "both sexes", 
+#'                "all races (includes hispanic)")
 #' demo_education("pr", "hsa", "less than 9th grade")
 #' }
-
-
-area = "wa"
-areatype = "county"
-education = "at least high school"
-sex = "males"
-
 demo_education <- function(area, areatype, education, sex=NULL, race=NULL) {
 
   req <- create_request("demographics")

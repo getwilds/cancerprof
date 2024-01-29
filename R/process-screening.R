@@ -14,8 +14,7 @@ library(stringr)
 #' @importFrom httr2 resp_body_string
 #' @importFrom dplyr mutate_all na_if filter
 #' @importFrom rlang sym
-#' @importFrom datasets state.name
-#' @importFrom utils read.csv
+#' @importFrom utils read.csv data
 #' 
 #' @returns A processed response data frame
 #' 
@@ -24,6 +23,11 @@ library(stringr)
 #' process_screening(resp)
 #' }
 process_screening <- function(resp) {
+  
+  nenv <- new.env()
+  data("state", envir = nenv)
+  state.name <- nenv$state.name
+  
   resp_lines <- resp %>%
     resp_body_string() %>% 
     strsplit("\\n") %>%  unlist() 
@@ -39,11 +43,7 @@ process_screening <- function(resp) {
   
   resp <- resp %>% 
     filter(!!sym(column) != "United States")
-  
-  # if(column %in% c("Health.Service.Area", "County")) {
-  #   resp <- resp %>%
-  #     filter(!(!!sym(column) %in% state.name))
-  # }
+
   resp %>%   
     mutate_all(\(x) na_if(x, "N/A")) %>% 
     mutate_all(\(x) na_if(x, "data not available"))

@@ -10,6 +10,8 @@
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
 #' 
+#' @export
+#' 
 #' @examples 
 #' demo_language("WA", "county")
 #' demo_language("dc", "hsa")

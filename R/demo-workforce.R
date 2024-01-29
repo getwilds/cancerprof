@@ -14,6 +14,8 @@
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "People Unemployed", "Rank"
 #' 
+#' @export
+#' 
 #' @examples
 #' \dontrun{
 #' demo_workforce("WA", "county", "all races (includes hispanic)", "both sexes")

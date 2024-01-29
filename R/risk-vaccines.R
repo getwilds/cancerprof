@@ -9,6 +9,8 @@
 #' 
 #' @returns A data frame with the following columns "State", "FIPS", "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"
 #' 
+#' @export
+#' 
 #' @examples
 #' \dontrun{
 #' risk_vaccine("percent who received 2+ doses of HPV vaccine, ages 13-15", "both sexes")

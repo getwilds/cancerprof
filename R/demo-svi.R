@@ -10,6 +10,8 @@
 #' 
 #' @returns A data frame with the following columns "County", "FIPS", "Score"
 #' 
+#' @export
+#' 
 #' @examples 
 #' \dontrun{
 #' demo_svi("WA", "overall")

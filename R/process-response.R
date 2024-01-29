@@ -1,11 +1,3 @@
-library(cdlTools)
-library(cli)
-library(dplyr)
-library(httr2)
-library(magrittr)
-library(rlang)
-library(stringr)
-
 #' Process Response Data
 #' 
 #' This function processes the response data from State Cancer Profiles
@@ -14,9 +6,8 @@ library(stringr)
 #' 
 #' @importFrom httr2 resp_body_string
 #' @importFrom dplyr mutate_all na_if filter
-#' @importFrom rlang 
-#' @importFrom datasets state.name
-#' @importFrom utils read.csv
+#' @importFrom rlang sym
+#' @importFrom utils read.csv data
 #' 
 #' @returns A processed response data frame
 #' 
@@ -25,6 +16,11 @@ library(stringr)
 #' process_response(resp)
 #' }
 process_response <- function(resp) {
+  
+  nenv <- new.env()
+  data("state", envir = nenv)
+  state.name <- nenv$state.name
+  
   resp_lines <- resp %>%
     resp_body_string() %>% 
     strsplit("\\n") %>%  unlist() 

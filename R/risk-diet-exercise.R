@@ -13,6 +13,8 @@
 #' 
 #' @returns A data frame with the following columns "State", "FIPS", "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"
 #' 
+#' @export
+#' 
 #' @examples
 #' \dontrun{
 #' risk_diet_exercise("bmi is healthy, ages 20+", "all races (includes hispanic)", "both sexes")
