@@ -17,7 +17,6 @@
 #'                  
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
-#' @importFrom stats setNames
 #'
 #' @returns A data frame with the following columns "County", "FIPS", "Percent", "People", "Rank"
 #' 
@@ -25,12 +24,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' demo_insurance("usa", "state", "% Insured in demographic group, all income levels", 
-#'                "both sexes", "under 19 years")
-#' demo_insurance("wa", "hsa", "% Insured in demographic group, all income levels", 
-#'                "males", "18 to 64 years")
-#' demo_insurance("dc", "county", "% Insured in demographic group, all income levels", 
-#'                "males", "18 to 64 years")
+#' demo_insurance("usa", "state", "% Insured in demographic group, all income levels", "both sexes", "under 19 years")
+#' demo_insurance("wa", "hsa", "% Insured in demographic group, all income levels", "males", "18 to 64 years")
+#' demo_insurance("dc", "county", "% Insured in demographic group, all income levels", "males", "18 to 64 years")
 #' }
 demo_insurance <- function(area, areatype, insurance, sex, age) {
   

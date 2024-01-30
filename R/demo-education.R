@@ -4,10 +4,11 @@
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county", "hsa" (Health service area), or "state"
+#' @param education Either "less than 9th grade", "at least high school", "at least bachelors degree"
+#' @param sex Either "both sexes", "male", "female"
 #' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
-#' @param sex Either "both sexes", "male", "female"
 #'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
@@ -30,7 +31,7 @@ demo_education <- function(area, areatype, education, sex=NULL, race=NULL) {
 
   if(education == "less than 9th grade" && (!is.null(race) || !is.null(sex))) {
     cli_abort("For Less than 9th Grade, Race and Sex must be NULL.")
-  } else if (education == "at least high school" && !is.null(race) && is.null(sex)) {
+  } else if (education == "at least high school" && (!is.null(race) || is.null(sex))) {
     cli_abort("For At Least High School, Race must be NULL and Sex must be NOT NULL.")
   } else if (education == "at least bachelors degree" && (is.null(race) || is.null(sex))) {
     cli_abort("For At Least Bachelors Degree, Race and Sex must be NOT NULL.")
