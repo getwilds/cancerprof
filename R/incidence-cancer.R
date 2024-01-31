@@ -32,16 +32,6 @@
 
 incidence_cancer(area="wa", areatype="county", cancer="all cancer sites", race="black (non-hispanic)", sex="both sexes", age="ages 50+", stage="all stages")
 
-area = "wa"
-areatype = "county"
-race = "all races (includes hispanic)"
-sex = "males"
-cancer = "lung & bronchus"
-age = "ages 50+"
-stage = "late stage (regional & distant)"
-year = "latest 5 year average"
-
-
 incidence_cancer <- function(area, areatype, cancer, race, sex=NULL, age, stage, year="latest 5 year average") {
   
   allstage_cancer <- c("all cancer sites", "breast (female in situ)", "childhood (ages <15, all sites)", 
