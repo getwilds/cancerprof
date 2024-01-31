@@ -30,8 +30,8 @@
 
 incidence_cancer("wa", "county", "lung & bronchus", "all races (includes hispanic)", "males", "ages 50+", "late stage (regional & distant)", "latest 5 year average")
 
-area = "wa"
-areatype = "county"
+area = "usa"
+areatype = "state"
 race = "all races (includes hispanic)"
 sex = "males"
 cancer = "lung & bronchus"
