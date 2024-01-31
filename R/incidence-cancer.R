@@ -28,10 +28,6 @@
 #' incidence_cancer(area="wa", areatype="county", cancer="ovary", race="all races (includes hispanic)", sex="females", age="ages 50+", stage="late stage (regional & distant)")
 #' incidence_cancer("ca", "hsa", "prostate", "all races (includes hispanic)", "males", "ages 50+", "all stages")
 #' incidence_cancer("ca", "hsa", "childhood (ages <20, all sites)", "all races (includes hispanic)", "males", "ages <20", "all stages")
-
-
-incidence_cancer(area="wa", areatype="county", cancer="all cancer sites", race="black (non-hispanic)", sex="both sexes", age="ages 50+", stage="all stages")
-
 incidence_cancer <- function(area, areatype, cancer, race, sex=NULL, age, stage, year="latest 5 year average") {
   
   allstage_cancer <- c("all cancer sites", "breast (female in situ)", "childhood (ages <15, all sites)", 
