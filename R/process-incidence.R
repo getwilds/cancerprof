@@ -32,12 +32,12 @@ process_incidence <- function(resp) {
     paste(collapse = "\n") %>% 
     (\(x) read.csv(textConnection(x), header=TRUE, colClasses = "character"))()
   
-  column <- c("Health.Service.Area", "County", "State")[c("Health.Service.Area", "County", "State") %in% colnames(resp)]
+  column <- c("Health.Service.Area", "County.FIPS", "State")[c("Health.Service.Area", "County.FIPS", "State") %in% colnames(resp)]
   
   resp <- resp %>% 
     filter(!!sym(column) != "US (SEER+NPCR)(1)")
   
-  resp <- resp %>%   
+  resp <- resp %>%
     mutate_all(\(x) na_if(x, "N/A")) %>% 
     mutate_all(\(x) na_if(x, "data not available")) %>%
     mutate_all(\(x) na_if(x, "*")) %>% 
