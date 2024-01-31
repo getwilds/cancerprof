@@ -45,6 +45,7 @@ process_incidence <- function(resp) {
   
   # column <- c("Health.Service.Area.HSA_Code", "County.FIPS", "State.FIPS")[c("Health.Service.Area.HSA_Code", "County.FIPS", "State.FIPS") %in% colnames(resp)]
   
+  
   resp <- resp %>% 
     rownames_to_column(column) %>% 
     rename(!!column2 := !!sym(old_column2)) %>% 
@@ -55,7 +56,8 @@ process_incidence <- function(resp) {
     mutate(!!column := sub("\\(\\d+\\)", "", !!sym(column)))
   
   if(column %in% c("Health.Service.Area", "County")) {
-    resp %>%
+    resp <- resp %>%
       filter(!(!!sym(column) %in% state.name))
   }
+  resp
 }

@@ -22,16 +22,15 @@
 #' 
 #' @examples
 #' \dontrun{
-#' incidence_cancer("wa", "county", "lung & bronchus", "all races (includes hispanic)", "males", "ages 50+", "late stage (regional & distant)", "latest 5 year average")
+#' incidence_cancer("wa", "county", "lung & bronchus", "all races (includes hispanic)", "males", "ages 50+", "late stage (regional & distant)")
 #' incidence_cancer("usa", "state", "lung & bronchus", "all races (includes hispanic)", "males", "ages 50+", "late stage (regional & distant)")
-#' incidence_cancer("percent who received 2+ doses of HPV vaccine, ages 13-17", "both sexes")
-#' incidence_cancer("percent who received 3+ doses of HPV vaccine, ages 13-17", "females")
+#' incidence_cancer(area="wa", areatype="county", cancer="ovary", race="all races (includes hispanic)", sex="females", age="ages 50+", stage="late stage (regional & distant)")
+#' incidence_cancer("ca", "hsa", "prostate", "all races (includes hispanic)", "males", "ages 50+", "all stages")
 #' }
 
-incidence_cancer("wa", "county", "lung & bronchus", "all races (includes hispanic)", "males", "ages 50+", "late stage (regional & distant)", "latest 5 year average")
 
-area = "usa"
-areatype = "state"
+area = "wa"
+areatype = "county"
 race = "all races (includes hispanic)"
 sex = "males"
 cancer = "lung & bronchus"
@@ -40,17 +39,35 @@ stage = "late stage (regional & distant)"
 year = "latest 5 year average"
 
 
-incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year) {
-
+incidence_cancer <- function(area, areatype, cancer, race, sex=NULL, age, stage, year="latest 5 year average") {
+   
   req <- create_request("incidencerates")
-
+  
+  
+  
+  allstage_cancer <- c("all cancer sites", "breast (female in situ)", "childhood (ages <15, all sites)", 
+                       "childhood (ages <20, all sites)", "leukemia")
+  
+  female_cancer <- c("breast (female)", "breast (female in situ)", "ovary", "uterus (corpus & uterus, nos)")
+  
+  
+  if ((cancer %in% allstage_cancer) && stage == "late stage (regional & distant)") {
+    cli_abort("For this cancer type, stage must be all stages")
+  }
+  
+  if ((cancer %in% female_cancer) && (sex == "males" || sex == "both sexes")) {
+    cli_abort("For this cancer type, sex must be females")
+  } else if (cancer == "prostate" && (sex == "females" || sex == "both sexes")) {
+    cli_abort("For prostate cancer, sex must be males.")
+  }
+  
+  
   resp <- req %>%
     req_url_query(
       stateFIPS=fips_scp(area),
       areatype=tolower(areatype),
       cancer=handle_cancer(cancer),
       race=handle_race(race),
-      sex=handle_sex(sex),
       age=handle_age(age),
       stage=handle_stage(stage),
       year=handle_year(year),
@@ -59,16 +76,10 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
       sortOrder="default",
       output=1
     )
-
-  # if (!is.null(year) && area == "state") {
-  #   req_draft <- req_draft %>%
-  #     req_url_query(year=handle_year(year))
-  # } else if (!is.null(year) && area != "state") {
-  #   cli_abort("Year must be NULL unless you are declaring latest single year (us by state) for AREA is state")
-  # }
-
-  if ((cancer == "breast (female)" || cancer == "breast (female in situ)") && (sex == "males" || sex = "both sexes")) {
-    cli_abort("For breast cancers, Sex must be Females")
+  
+  if(!is.null(sex)) {
+    resp <- resp %>%
+      req_url_query(sex=handle_sex(sex))
   }
 
   resp <- resp %>%
