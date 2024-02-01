@@ -16,4 +16,6 @@ Imports:
     httr2,
     magrittr,
     rlang,
-    stringr
+    stringr,
+    tibble,
+    utils

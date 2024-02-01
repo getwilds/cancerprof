@@ -10,11 +10,13 @@ handle_sex(sex)
 \item{sex}{Either "both sexes", "males", "females"}
 }
 \value{
-A string for its respective race
+A string for its respective sex
 }
 \description{
 This function returns a matching code value for a sex for the api to use to get data from State Cancer Profiles
 }
 \examples{
-handle_sex("both sexes"), handle_sex(sex)
+\dontrun{
+handle_sex("both sexes")
+}
 }

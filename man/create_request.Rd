@@ -4,9 +4,10 @@
 \alias{create_request}
 \title{Create Request to State Cancer Profile Data}
 \usage{
-create_request(
-  url = "https://statecancerprofiles.cancer.gov/demographics/index.php"
-)
+create_request(topic)
+}
+\arguments{
+\item{topic}{Either "demographics", "risk", "incidencerates", "deathrates"}
 }
 \value{
 returns the HTTP method with the state cancer profiles url and the http path
@@ -15,5 +16,8 @@ returns the HTTP method with the state cancer profiles url and the http path
 This creates a request to the State Cancer Profiles URL
 }
 \examples{
-create_request()
+\dontrun{
+create_request("demographics")
+create_request("risk")
+}
 }

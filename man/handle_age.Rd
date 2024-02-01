@@ -7,7 +7,7 @@
 handle_age(age)
 }
 \arguments{
-\item{sex}{Either "under 19 years", "18 to 64 years", "21 to 64 years", "40 to 64 years", "50 to 64 years", "under 65 years"}
+\item{age}{Either "under 19 years", "18 to 64 years", "21 to 64 years", "40 to 64 years", "50 to 64 years", "under 65 years"}
 }
 \value{
 A string for its respective age
@@ -16,5 +16,8 @@ A string for its respective age
 This function returns a matching code value for a Age for the api to use to get data from State Cancer Profiles
 }
 \examples{
-handle_age("under 19 years"), handle_age(age)
+\dontrun{
+handle_age("under 19 years")
+handle_age(age)
+}
 }
