@@ -15,6 +15,7 @@
 #' @param sex Either "both sexes", "males", "females"
 #' @param age Either "all ages", "ages <50", "ages 50+", "ages <65", "ages 65+", ages <15, ages <20
 #' @param stage Either "all stages" or "late stage (regional & distant)"
+#' @param year Either "latest 5 year average", "latest single year (us by state)"
 #' 
 #' @returns A data frame with the following columns "State", "FIPS", "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"
 #' 
@@ -22,12 +23,19 @@
 #' 
 #' @examples
 #' \dontrun{
-#' incidence_cancer("wa", "county", "all cancer sites", "black (non-hispanic)", "both sexes", "ages 65+", "all stages")
-#' incidence_cancer("wa", "county", "lung & bronchus", "all races (includes hispanic)", "males", "ages 50+", "late stage (regional & distant)")
-#' incidence_cancer("usa", "state", "lung & bronchus", "all races (includes hispanic)", "males", "ages 50+", "late stage (regional & distant)")
-#' incidence_cancer(area="wa", areatype="county", cancer="ovary", race="all races (includes hispanic)", sex="females", age="ages 50+", stage="late stage (regional & distant)")
-#' incidence_cancer("ca", "hsa", "prostate", "all races (includes hispanic)", "males", "ages 50+", "all stages")
-#' incidence_cancer("ca", "hsa", "childhood (ages <20, all sites)", "all races (includes hispanic)", "males", "ages <20", "all stages")
+#' incidence_cancer("wa", "county", "all cancer sites", "black (non-hispanic)", 
+#'                  "both sexes", "ages 65+", "all stages")
+#' incidence_cancer("wa", "county", "lung & bronchus", "all races (includes hispanic)", "males", 
+#'                  "ages 50+", "late stage (regional & distant)")
+#' incidence_cancer("usa", "state", "lung & bronchus", "all races (includes hispanic)", "males", 
+#'                  "ages 50+", "late stage (regional & distant)")
+#' incidence_cancer(area="wa", areatype="county", cancer="ovary", race="all races (includes hispanic)", 
+#'                  sex="females", age="ages 50+", stage="late stage (regional & distant)")
+#' incidence_cancer("ca", "hsa", "prostate", "all races (includes hispanic)", "males", 
+#'                  "ages 50+", "all stages")
+#' incidence_cancer("ca", "hsa", "childhood (ages <20, all sites)", "all races (includes hispanic)", 
+#'                  "males", "ages <20", "all stages")
+#' }
 incidence_cancer <- function(area, areatype, cancer, race, sex=NULL, age, stage, year="latest 5 year average") {
   
   allstage_cancer <- c("all cancer sites", "breast (female in situ)", "childhood (ages <15, all sites)", 

@@ -6,7 +6,7 @@
 #' 
 #' @importFrom httr2 resp_body_string
 #' @importFrom dplyr mutate_all na_if filter mutate rename
-#' @importFrom rlang sym
+#' @importFrom rlang sym :=
 #' @importFrom utils read.csv data
 #' @importFrom tibble rownames_to_column
 #' 

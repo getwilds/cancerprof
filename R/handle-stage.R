@@ -2,8 +2,7 @@
 #' 
 #' This function returns a matching code value for a Cancer Stage for the api to use to get data from State Cancer Profiles
 #'
-#' @param education Either "less than 9th grade", "at least high school", "at least bachelors degree"
-#' 
+#' @param stage Either "all stages" or "late stage (regional & distant)"
 #' @returns A string for its respective Cancer Stage
 #' 
 #' @examples 
