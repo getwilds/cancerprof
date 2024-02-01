@@ -5,7 +5,7 @@
 #' @param resp A response object
 #' 
 #' @importFrom httr2 resp_body_string
-#' @importFrom dplyr mutate_all na_if filter mutate rename
+#' @importFrom dplyr mutate_all na_if filter
 #' @importFrom rlang sym
 #' @importFrom utils read.csv data
 #' 
@@ -15,9 +15,6 @@
 #' \dontrun{
 #' process_mortality(resp)
 #' }
-
-
-#Health.Service.Area.HSA_Code State.FIPS
 process_mortality <- function(resp) {
   
   nenv <- new.env()
@@ -36,12 +33,17 @@ process_mortality <- function(resp) {
     (\(x) read.csv(textConnection(x), header=TRUE, colClasses = "character"))()
   
   
-  column <- c("County", "State")[c("County", "State") %in% colnames(resp)]
+  column <- c("County", "Health.Service.Area", "State")[c("County", "Health.Service.Area", "State") %in% colnames(resp)]
   
   resp <- resp %>% 
     filter(!!sym(column) != "United States")
   
-  resp %>%   
+  if(column %in% c("Health.Service.Area", "County")) {
+    resp <- resp %>%
+      filter(!(!!sym(column) %in% state.name))
+  }
+  
+  resp %>%
     mutate_all(\(x) na_if(x, "N/A")) %>% 
     mutate_all(\(x) na_if(x, "data not available"))
 }

@@ -4,7 +4,7 @@
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county", "hsa" (Health service area), or "state"
-#' @param cancer Either "all cancer sites","bladder", "brain & ons", "breast (female)", "breast (female in situ)", "cervix", 
+#' @param cancer Either "all cancer sites","bladder", "brain & ons", "breast (female)", "cervix", 
 #'                      "childhood (ages <15, all sites)", "childhood (ages <20, all sites)", "colon & rectum", "esophagus", 
 #'                      "kidney & renal pelvis", "leukemia", "liver & bile duct", "lung & bronchus", "melanoma of the skin", 
 #'                      "non-hodgkin lymphoma", "oral cavity & pharynx", "ovary", "pancreas", "prostate", "stomach", 
@@ -22,25 +22,10 @@
 #' @examples
 #' \dontrun{
 #' mortality_cancer("wa", "county", "all cancer sites", "black (non-hispanic)", "both sexes", "ages 65+")
-#' 
-#' mortality_cancer("wa", "county", "lung & bronchus", "all races (includes hispanic)", "males", "ages 50+", "late stage (regional & distant)")
-#' mortality_cancer("usa", "state", "lung & bronchus", "all races (includes hispanic)", "males", "ages 50+", "late stage (regional & distant)")
-#' mortality_cancer(area="wa", areatype="county", cancer="ovary", race="all races (includes hispanic)", sex="females", age="ages 50+", stage="late stage (regional & distant)")
-#' mortality_cancer("ca", "hsa", "prostate", "all races (includes hispanic)", "males", "ages 50+", "all stages")
-#' mortality_cancer("ca", "hsa", "childhood (ages <20, all sites)", "all races (includes hispanic)", "males", "ages <20", "all stages")
-
-
-area = "wa"
-areatype = "county"
-cancer = "all cancer sites"
-race = "black (non-hispanic)"
-sex = "both sexes"
-age = "ages 65+"
-
-
-
-
-
+#' mortality_cancer("ca", "hsa", "lung & bronchus", "all races (includes hispanic)", "males", "ages 50+")
+#' mortality_cancer("usa", "state", "prostate", "all races (includes hispanic)", "males", "ages 50+")
+#' mortality_cancer(area="wa", areatype="county", cancer="ovary", race="all races (includes hispanic)", sex="females", age="ages 50+")
+#' mortality_cancer("ca", "hsa", "childhood (ages <20, all sites)", "all races (includes hispanic)", "males", "ages <20")
 mortality_cancer <- function(area, areatype, cancer, race, sex=NULL, age, year="latest 5 year average") {
   female_cancer <- c("breast (female)", "ovary", "uterus (corpus & uterus, nos)")
   
@@ -91,6 +76,8 @@ mortality_cancer <- function(area, areatype, cancer, race, sex=NULL, age, year="
   areatype_title <- areatype_map[areatype]
   
   resp %>% 
-    setNames(c(areatype_title, "FIPS", "Met Healthy People Objective of ***?",  "Age Adjusted Death Rate", "Lower 95% CI Rate", "Upper 95% CI Rate", "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", "Recent Trend", "Recent 5 Year Trend", "Lower 95% CI Trend", "Upper 95% CI Trend"))
-  
+    setNames(c(areatype_title, "FIPS", "Met Healthy People Objective of ***?",  "Age Adjusted Death Rate", "Lower 95% CI Rate", "Upper 95% CI Rate", 
+               "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", "Recent Trend", 
+               "Recent 5 Year Trend", "Lower 95% CI Trend", "Upper 95% CI Trend"))
 }
+
