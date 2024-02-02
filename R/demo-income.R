@@ -5,7 +5,7 @@
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county" or "state"
 #' @param income Either "median family income" or "median household income"
-#' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
+#' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
 #'              
