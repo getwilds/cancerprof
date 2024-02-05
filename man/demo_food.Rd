@@ -13,7 +13,7 @@ demo_food(area, areatype, food, race = NULL)
 
 \item{food}{Either "food insecurity" or "limited access to healthy food"}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white non hispanic" = "01",
+\item{race}{One of the following values: "All Races (includes Hispanic)", "white non hispanic",
 "black (includes hispanic)","hispanic (any race)}
 }
 \value{

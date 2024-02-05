@@ -43,9 +43,12 @@ demo_workforce <- function(area, areatype, race, sex) {
   
   resp <- process_response(resp)
   
-  areatype_map <- c("county" = "County", "hsa" = "Health Service Area", "state" = "State")
+  areatype_map <- c("county" = "County", "hsa" = "Health_Service_Area", "state" = "State")
   areatype_title <- areatype_map[areatype]
   
+  areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
+  areacode_title <- areacode_map[areatype]
+  
   resp %>% 
-    setNames(c(areatype_title, "FIPS", "Percent", "People Unemployed", "Rank"))
+    setNames(c(areatype_title, areacode_title, "Percent", "People Unemployed", "Rank"))
 }

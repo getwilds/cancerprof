@@ -36,9 +36,12 @@ demo_language <- function(area, areatype) {
   
   resp <- process_response(resp)
   
-  areatype_map <- c("county" = "County", "hsa" = "Health Service Area", "state" = "State")
+  areatype_map <- c("county" = "County", "hsa" = "Health_Service_Area", "state" = "State")
   areatype_title <- areatype_map[areatype]
   
+  areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
+  areacode_title <- areacode_map[areatype]
+  
   resp %>% 
-    setNames(c(areatype_title, "FIPS", "Percent", "Households", "Rank"))
+    setNames(c(areatype_title, areacode_title, "Percent", "Households", "Rank"))
 }

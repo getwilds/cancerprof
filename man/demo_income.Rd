@@ -13,7 +13,7 @@ demo_income(area, areatype, income, race)
 
 \item{income}{Either "median family income" or "median household income"}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
+\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
 "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 "asian or pacific islander (includes hispanic)","hispanic (any race)}
 }

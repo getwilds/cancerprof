@@ -40,5 +40,5 @@ risk_diet_exercise <- function(diet_exercise, race, sex) {
   resp <- process_screening(resp)
   
   resp %>% 
-    setNames(c("State", "FIPS", "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"))
+    setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
 }
