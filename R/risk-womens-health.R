@@ -69,13 +69,13 @@ risk_whealth <- function(whealth, race, datatype="direct estimates", area=NULL) 
   if (datatype == "county level modeled estimates") {
     if(whealth == "pap smear in past 3 years, no hysterectomy, ages 18+") {
       resp %>% 
-        setNames(c("State", "FIPS", "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"))
+        setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
     } else {
       resp %>% 
-        setNames(c("County", "FIPS", "Percent", "Lower 95% CI", "Upper 95% CI"))
+        setNames(c("County", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI"))
     }
   } else {
     resp %>% 
-      setNames(c("State", "FIPS", "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"))
+      setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
   }
 }

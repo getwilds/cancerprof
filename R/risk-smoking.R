@@ -161,14 +161,14 @@ risk_smoking <- function(smoking, race=NULL, sex=NULL, datatype=NULL, area=NULL)
   
   if (smoking %in% smoking_group1) {
     resp %>% 
-      setNames(c("State", "FIPS", "Percent", "Number of Respondents")) 
+      setNames(c("State", "FIPS", "Percent", "Number_of_Respondents")) 
   } else if ((smoking %in% c(smoking_group2, smoking_group3, smoking_group4, smoking_group5, smoking_group6))
               && (datatype=="direct estimates")) {
     resp %>% 
-      setNames(c("State", "FIPS", "Percent", "Lower CI 95%", "Upper CI 95%", "Number of Respondents")) 
+      setNames(c("State", "FIPS", "Percent", "Lower_CI_95%", "Upper_CI_95%", "Number_of_Respondents")) 
   } else if ((smoking %in% c(smoking_group2, smoking_group3, smoking_group4, smoking_group5, smoking_group6)
               && datatype=="county level modeled estimates")) {
     resp %>% 
-      setNames(c("County", "FIPS", "Percent", "Lower CI 95%", "Upper CI 95%")) 
+      setNames(c("County", "FIPS", "Percent", "Lower_CI_95%", "Upper_CI_95%")) 
   }
 }
