@@ -23,7 +23,7 @@ This function returns a data frame from Crowding in State Cancer Profiles
 }
 \examples{
 \dontrun{
-demo_crowding("WA", "county", "All Races (includes Hispanic)")
+demo_crowding("WA", "hsa", "All Races (includes Hispanic)")
 demo_crowding("usa", "state", "All Races (includes Hispanic)")
 demo_crowding("pr", "hsa", "black")
 }

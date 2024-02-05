@@ -21,13 +21,6 @@
 #' demo_crowding("usa", "state", "All Races (includes Hispanic)")
 #' demo_crowding("pr", "hsa", "black")
 #' }
-demo_crowding("wa", "hsa", "all races (includes hispanic)")
-
-area = "wa"
-areatype = "hsa"
-race = "all races (includes hispanic)"
-
-
 demo_crowding <- function(area, areatype, race) {
 
   req <- create_request("demographics")
