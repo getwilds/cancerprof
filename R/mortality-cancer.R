@@ -81,11 +81,14 @@ mortality_cancer <- function(area, areatype, cancer, race, sex=NULL, age, year="
   
   resp <- process_mortality(resp)
   
-  areatype_map <- c("county" = "County", "hsa" = "Health Service Area", "state" = "State")
+  areatype_map <- c("county" = "County", "hsa" = "Health_Service_Area", "state" = "State")
   areatype_title <- areatype_map[areatype]
   
+  areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
+  areacode_title <- areacode_map[areatype]
+  
   resp %>% 
-    setNames(c(areatype_title, "FIPS", "Met Healthy People Objective of ***?",  "Age Adjusted Death Rate", "Lower 95% CI Rate", "Upper 95% CI Rate", 
+    setNames(c(areatype_title, areacode_title, "Met Healthy People Objective of ***?",  "Age Adjusted Death Rate", "Lower 95% CI Rate", "Upper 95% CI Rate", 
                "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", "Recent Trend", 
                "Recent 5 Year Trend", "Lower 95% CI Trend", "Upper 95% CI Trend"))
 }

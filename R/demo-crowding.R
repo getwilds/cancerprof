@@ -17,10 +17,17 @@
 #' 
 #' @examples
 #' \dontrun{
-#' demo_crowding("WA", "county", "All Races (includes Hispanic)")
+#' demo_crowding("WA", "hsa", "All Races (includes Hispanic)")
 #' demo_crowding("usa", "state", "All Races (includes Hispanic)")
 #' demo_crowding("pr", "hsa", "black")
 #' }
+demo_crowding("wa", "hsa", "all races (includes hispanic)")
+
+area = "wa"
+areatype = "hsa"
+race = "all races (includes hispanic)"
+
+
 demo_crowding <- function(area, areatype, race) {
 
   req <- create_request("demographics")
@@ -41,9 +48,12 @@ demo_crowding <- function(area, areatype, race) {
   
   resp <- process_response(resp)
   
-  areatype_map <- c("county" = "County", "hsa" = "Health Service Area", "state" = "State")
+  areatype_map <- c("county" = "County", "hsa" = "Health_Service_Area", "state" = "State")
+  areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
+  
   areatype_title <- areatype_map[areatype]
+  areacode_title <- areacode_map[areatype]
   
   resp %>% 
-    setNames(c(areatype_title, "FIPS", "Percent", "Households", "Rank"))
+    setNames(c(areatype_title, areacode_title, "Percent", "Households", "Rank"))
 }
