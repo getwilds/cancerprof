@@ -4,7 +4,7 @@
 \alias{demo_insurance}
 \title{Access to Insurance Data}
 \usage{
-demo_insurance(area, areatype, insurance, sex, age)
+demo_insurance(area, areatype, insurance, sex, age, race = NULL)
 }
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
@@ -23,6 +23,9 @@ demo_insurance(area, areatype, insurance, sex, age)
 
 \item{age}{Either "under 19 years", "18 to 64 years","21 to 64 years","40 to 64 years","50 to 64 years","under 65 years" for "both sexes"
 "18 to 64 years","40 to 64 years","50 to 64 years","Under 65 years" for "males" and "females"}
+
+\item{race}{Either "all races (includes hispanic)", "white non hispanic", "black non hispanic", "american indian / alaska native non-hispanic",
+"asian non-hispanic", "hispanic (any race)"}
 }
 \value{
 A data frame with the following columns "County", "FIPS", "Percent", "People", "Rank"
@@ -33,10 +36,12 @@ This function returns a data frame from Insurance in State Cancer Profiles
 \examples{
 \dontrun{
 demo_insurance("usa", "state", "\% Insured in demographic group, all income levels", 
-               "both sexes", "under 19 years")
+               "both sexes", "under 19 years", "all races (includes hispanic)")
 demo_insurance("wa", "hsa", "\% Insured in demographic group, all income levels", 
                "males", "18 to 64 years")
 demo_insurance("dc", "county", "\% Insured in demographic group, all income levels", 
                "males", "18 to 64 years")
+demo_insurance("usa", "state", "\% Insured in demographic group, all income levels", 
+               "both sexes", "18 to 64 years", "hispanic (any race)")
 }
 }
