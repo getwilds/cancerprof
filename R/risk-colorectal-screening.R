@@ -74,9 +74,9 @@ risk_colorectal_screening <- function(screening, race=NULL, sex=NULL, area=NULL)
 
   if (screening %in% screening_type_1) {
     resp %>% 
-      setNames(c("State", "FIPS", "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"))
+      setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
   } else if (screening %in% screening_type_2) {
     resp %>% 
-      setNames(c("County", "FIPS", "Model-Based Percent (95% Confidence Interval)", "Lower 95% CI", "Upper 95% CI"))
+      setNames(c("County", "FIPS", "Model_Based_Percent (95%_Confidence_Interval)", "Lower_95%_CI", "Upper_95%_CI"))
   }
 }

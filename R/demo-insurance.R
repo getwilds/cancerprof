@@ -11,9 +11,11 @@
 #'                  "% uninsured in demographic group, all income levels","% uninsured in demographic group, people at or below 138% of Poverty"
 #'                  "% uninsured in demographic group, people at or below 200% of Poverty","% uninsured in demographic group, people at or below 250% of Poverty"
 #'                  "% uninsured in demographic group, people at or below 400% of Poverty","% uninsured in demographic group, people between 138% - 400% of poverty"
-#'@param sex Either "both sexes", "male", "female"
-#'@param age Either "under 19 years", "18 to 64 years","21 to 64 years","40 to 64 years","50 to 64 years","under 65 years" for "both sexes"
+#' @param sex Either "both sexes", "male", "female"
+#' @param age Either "under 19 years", "18 to 64 years","21 to 64 years","40 to 64 years","50 to 64 years","under 65 years" for "both sexes"
 #'                  "18 to 64 years","40 to 64 years","50 to 64 years","Under 65 years" for "males" and "females"
+#' @param race Either "all races (includes hispanic)", "white non hispanic", "black non hispanic", "american indian / alaska native non-hispanic",
+#'                    "asian non-hispanic", "hispanic (any race)"
 #'                  
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
@@ -25,15 +27,33 @@
 #' @examples
 #' \dontrun{
 #' demo_insurance("usa", "state", "% Insured in demographic group, all income levels", 
-#'                "both sexes", "under 19 years")
+#'                "both sexes", "under 19 years", "all races (includes hispanic)")
 #' demo_insurance("wa", "hsa", "% Insured in demographic group, all income levels", 
 #'                "males", "18 to 64 years")
 #' demo_insurance("dc", "county", "% Insured in demographic group, all income levels", 
 #'                "males", "18 to 64 years")
+#' demo_insurance("usa", "state", "% Insured in demographic group, all income levels", 
+#'                "both sexes", "18 to 64 years", "hispanic (any race)")
 #' }
-demo_insurance <- function(area, areatype, insurance, sex, age) {
+demo_insurance <- function(area, areatype, insurance, sex, age, race=NULL) {
+  
+  not_all_races <- c("white non hispanic", "black non hispanic", "american indian / alaska native non-hispanic",
+                     "asian non-hispanic", "hispanic (any race)")
+  
   
   req <- create_request("demographics")
+  
+  if ((sex == "males" || sex == "females") & (age == "under 19 years" || age =="21 to 64 years")) {
+    cli_abort("For males and females, age CANNOT be under 19 years OR 21 to 64 years")
+  } else if (areatype == "state" && is.null(race)) {
+    cli_abort("For areatype State, Race must not be null")
+  } else if ((areatype == "state" && race %in% not_all_races) && (age == "under 19 years" || age =="21 to 64 years")) {
+    cli_abort("For state data, only all races can have values under 19 years OR 21 to 64 years")
+  }
+  
+  if ((areatype == "county" || areatype == "hsa") && !is.null(race)) {
+    cli_abort("For areatype County and HSA, Race must be NULL.")
+  }
   
   resp <- req %>%
     req_url_query(
@@ -41,29 +61,31 @@ demo_insurance <- function(area, areatype, insurance, sex, age) {
       areatype=tolower(areatype),
       topic="ins",
       demo=handle_insurance(insurance),
-      race="00",
+      race=handle_race(race),
       sex=handle_sex(sex),
+      age=handle_age(age),
       type="manyareacensus",
       sortVariableName="value",
       sortOrder="default",
       output=1
     )
-
-  if ((sex == "males" || sex == "females") & (age == "under 19 years" || age =="21 to 64 years")) {
-    cli_abort("For males and females, age CANNOT be uner 19 years OR 21 to 64 years")
-  } 
+    
+  if(!is.null(race)) {
+    resp <- resp %>%
+      req_url_query(race=handle_race(race))
+  }
   
-  resp <- resp %>% 
-    req_url_query(
-      age=handle_age(age)
-    ) %>%
-  req_perform()
+  resp <- resp %>%
+    req_perform()
 
   resp <- process_response(resp)
   
-  areatype_map <- c("county" = "County", "hsa" = "Health Service Area", "state" = "State")
+  areatype_map <- c("county" = "County", "hsa" = "Health_Service_Area", "state" = "State")
   areatype_title <- areatype_map[areatype]
   
+  areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
+  areacode_title <- areacode_map[areatype]
+  
   resp %>% 
-    setNames(c(areatype_title, "FIPS", "Percent", "People", "Rank"))
+    setNames(c(areatype_title, areacode_title, "Percent", "People", "Rank"))
 }

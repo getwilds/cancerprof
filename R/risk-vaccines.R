@@ -48,9 +48,9 @@ risk_vaccine <- function(vaccine, sex) {
   
   if (vaccine %in% vaccine_type1) {
     resp %>% 
-      setNames(c("State", "FIPS", "Met Objective of 80.0%?", "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"))
+      setNames(c("State", "FIPS", "Met_Objective_of_80.0%?", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
   } else {
     resp %>% 
-      setNames(c("State", "FIPS", "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"))
+      setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
   }
 }

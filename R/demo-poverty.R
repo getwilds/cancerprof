@@ -5,7 +5,7 @@
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county", "hsa" (Health service area), or "state"
 #' @param poverty Either "families below poverty", "persistent poverty", "persons below poverty", "persons < 150% of poverty"
-#' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
+#' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
 #' @param sex Either "both sexes", "male", "female"
@@ -27,7 +27,10 @@ demo_poverty <- function(area, areatype, poverty, race=NULL, sex=NULL) {
   
   req <- create_request("demographics")
   
-  if((poverty == "persistent poverty" || poverty == "persons < 150% of poverty") && (!is.null(race) || !is.null(sex))) {
+  if (poverty == "persistent poverty" && (areatype == "hsa" || areatype == "state")) {
+    cli_abort("For persistent poverty, areatype must be county")
+  }
+  if ((poverty == "persistent poverty" || poverty == "persons < 150% of poverty") && (!is.null(race) || !is.null(sex))) {
     cli_abort("for persistent poverty and persons < 150% of poverty, Race and Sex must be NULL")
   } else if((poverty == "families below poverty") && (!is.null(sex) || is.null(race))) {
     cli_abort("for families below poverty, Sex must be NULL and Race must not be NULL")
@@ -62,14 +65,17 @@ demo_poverty <- function(area, areatype, poverty, race=NULL, sex=NULL) {
 
   resp <- process_response(resp)
   
-  areatype_map <- c("county" = "County", "hsa" = "Health Service Area", "state" = "State")
+  areatype_map <- c("county" = "County", "hsa" = "Health_Service_Area", "state" = "State")
   areatype_title <- areatype_map[areatype]
+  
+  areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
+  areacode_title <- areacode_map[areatype]
   
   if (poverty == "persistent poverty") {
     resp %>% 
-      setNames(c(areatype_title, "FIPS", "Persistent Poverty"))
+      setNames(c(areatype_title, areacode_title, "Persistent Poverty"))
   } else {
     resp %>%
-      setNames(c(areatype_title, "FIPS", "Percent", "People", "Rank"))
+      setNames(c(areatype_title, areacode_title, "Percent", "People", "Rank"))
   }
 }
