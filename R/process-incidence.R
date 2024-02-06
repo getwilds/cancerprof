@@ -8,7 +8,6 @@
 #' @importFrom dplyr mutate_all na_if filter mutate rename
 #' @importFrom rlang sym :=
 #' @importFrom utils read.csv data
-#' @importFrom tibble rownames_to_column
 #' 
 #' @returns A processed response data frame
 #' 
@@ -16,9 +15,6 @@
 #' \dontrun{
 #' process_incidence(resp)
 #' }
-
-
-#Health.Service.Area.HSA_Code State.FIPS
 process_incidence <- function(resp) {
   
   nenv <- new.env()
@@ -37,27 +33,15 @@ process_incidence <- function(resp) {
     (\(x) read.csv(textConnection(x), header=TRUE, colClasses = "character"))()
   
   
-  column <- c("Health.Service.Area", "County", "State")[c("Health.Service.Area.HSA_Code", "County.FIPS", "State.FIPS") %in% colnames(resp)]
-  
-  old_column2 <- c("Health.Service.Area.HSA_Code", "County.FIPS", "State.FIPS")[c("Health.Service.Area.HSA_Code", "County.FIPS", "State.FIPS") %in% colnames(resp)]
-  
-  column2 <- c("HSA Code", "FIPS", "FIPS")[c("Health.Service.Area.HSA_Code", "County.FIPS", "State.FIPS") %in% colnames(resp)]
-  
-  # column <- c("Health.Service.Area.HSA_Code", "County.FIPS", "State.FIPS")[c("Health.Service.Area.HSA_Code", "County.FIPS", "State.FIPS") %in% colnames(resp)]
-  
+  column <- c("County", "Health.Service.Area", "State")[c("County", "Health.Service.Area", "State") %in% colnames(resp)]
   
   resp <- resp %>% 
-    rownames_to_column(column) %>% 
-    rename(!!column2 := !!sym(old_column2)) %>% 
-    filter(!!sym(column) != "US (SEER+NPCR)(1)") %>% 
-    mutate_all(\(x) na_if(x, "N/A")) %>% 
-    mutate_all(\(x) na_if(x, "data not available")) %>%
-    mutate_all(\(x) na_if(x, "*")) %>% 
-    mutate(!!column := sub("\\(\\d+\\)", "", !!sym(column)))
+    filter(!!sym(column) != "US (SEER+NPCR)(1)") %>%
+    mutate(!!sym(column) := str_replace_all(!!sym(column), "\\(\\d+\\)", ""))
+  
   
   if(column %in% c("Health.Service.Area", "County")) {
-    resp <- resp %>%
-      filter(!(!!sym(column) %in% state.name))
-  }
-  resp
+      resp <- resp %>%
+        filter(!(!!sym(column) %in% state.name))
+    }
 }
