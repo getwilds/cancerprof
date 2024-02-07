@@ -19,7 +19,10 @@ handle_whealth <- function(whealth) {
     "mammogram in past 2 years, ages 50-74" = "v05",
     "mammogram in past 2 years, ages 40+" = "v06",
     "pap smear in past 3 years, no hysterectomy, ages 21-65" = "v17",
-    "pap smear in past 3 years, no hysterectomy, ages 18+" = "v11"
+    "pap smear in past 3 years, no hysteroetomy, ages 21-65" = "v17"
+    
+    #removed from scp
+    # "pap smear in past 3 years, no hysterectomy, ages 18+" = "v11"
   )
   
   whealth_code <- whealth_mapping[whealth]
@@ -30,3 +33,6 @@ handle_whealth <- function(whealth) {
   
   return(as.character(whealth_code))
 }
+
+
+handle_whealth("pap smear in past 3 years, no hysteroetomy, ages 21-65")

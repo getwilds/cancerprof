@@ -21,7 +21,11 @@
 #' \dontrun{
 #' risk_colorectal_screening("ever had colorectal endoscopy (sigmoidoscopy or colonoscopy), ages 50+",
 #'                           "all races (includes hispanic)","both sexes")
+#' risk_colorectal_screening("ever had fobt, ages 50-75", area="usa")
 #' risk_colorectal_screening("ever had fobt, ages 50-75", area="wa")
+#' risk_colorectal_screening("fobt (1yr) / flex sig (5yr) / fobt (3yr) / colonoscopy (10yr), ages 50-75", 
+#'                           "all races (includes hispanic)", "males" )
+
 #' }
 risk_colorectal_screening <- function(screening, race=NULL, sex=NULL, area=NULL) {
   

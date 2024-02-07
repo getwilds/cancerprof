@@ -30,8 +30,6 @@ risk_whealth("mammogram in past 2 years, ages 50-74",
              "all races (includes hispanic)", "direct estimates")
 risk_whealth("pap smear in past 3 years, no hysterectomy, ages 21-65", 
              "all races (includes hispanic)", "county level modeled estimates", "wa")
-risk_whealth("pap smear in past 3 years, no hysterectomy, ages 18+", 
-             "all races (includes hispanic)", "county level modeled estimates", "wa")
-risk_whealth("pap smear in past 3 years, no hysterectomy, ages 18+", "black (non-hispanic)")
+risk_whealth("pap smear in past 3 years, no hysteroetomy, ages 21-65", "black (non-hispanic)")
 }
 }
