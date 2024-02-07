@@ -20,8 +20,8 @@ handle_income <- function(income) {
   
   income_code <- income_mapping[income]
   
-  if (is.null(income_code)) {
-    stop("Invalid input")
+  if (is_na(income_code)) {
+    stop("Invalid income input, please check the documentation for valid inputs")
   }
   
   return(as.character(income_code))

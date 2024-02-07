@@ -26,8 +26,8 @@ handle_mobility <-function(mobility) {
   
   mobility_code <- mobility_mapping[mobility]
   
-  if (is.null(mobility_code)) {
-    stop("Invalid input")
+  if (is_na(mobility_code)) {
+    stop("Invalid mobility input, please check the documentation for valid inputs")
   }
   
   return(as.character(mobility_code))

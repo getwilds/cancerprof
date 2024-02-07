@@ -20,8 +20,8 @@ handle_datatype <- function(datatype) {
   
   datatype_code <- datatype_mapping[datatype]
   
-  if (is.null(datatype_code)) {
-    stop("Invalid input")
+  if (is_na(datatype_code)) {
+    stop("Invalid datatype input, please check the documentation for valid inputs")
   }
   
   return(as.character(datatype_code))

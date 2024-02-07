@@ -29,8 +29,8 @@ handle_screening <- function(screening) {
   
   screening_code <- screening_mapping[screening]
   
-  if (is.null(screening_code)) {
-    stop("Invalid input")
+  if (is_na(screening_code)) {
+    stop("Invalid screening input, please check the documentation for valid inputs")
   }
   
   return(as.character(screening_code))
