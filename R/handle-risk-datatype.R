@@ -4,6 +4,8 @@
 #'
 #' @param datatype Either "direct estimates" or "county level modeled estimates"
 #' 
+#' @importFrom rlang is_na
+#' 
 #' @returns A string for its respective Risk Data Types Value
 #' 
 #' @examples

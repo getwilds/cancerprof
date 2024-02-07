@@ -8,6 +8,8 @@
 #'               "home-based fecal occult blood test (fobt) in past two years",
 #'               "home-based fobt in the past two years or ever had a colorectal endoscopy"
 #' 
+#' @importFrom rlang is_na
+#' 
 #' @returns A string for its respective Diet & Exercise Value
 #' 
 #' @examples 

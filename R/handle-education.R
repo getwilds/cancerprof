@@ -4,6 +4,8 @@
 #'
 #' @param education Either "less than 9th grade", "at least high school", "at least bachelors degree"
 #' 
+#' @importFrom rlang is_na
+#' 
 #' @returns A string for its respective education
 #' 
 #' @examples 

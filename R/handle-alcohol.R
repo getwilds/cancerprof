@@ -4,6 +4,8 @@
 #'
 #' @param alcohol binge drinking (4+ drinks on one occasion for women, 5+ drinks for one occasion for men), ages 21+
 #' 
+#' @importFrom rlang is_na
+#' 
 #' @returns A string for its respective Women's Health Value
 #' 
 #' @examples

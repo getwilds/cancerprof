@@ -6,6 +6,8 @@
 #'                              "overall", "socioeconomic status", "household characteristics",
 #'                              "racial & ethinic minority status", "housing type & transportation"
 #' 
+#' @importFrom rlang is_na
+#' 
 #' @returns A string for its respective SVI variable
 #' 
 #' @examples 

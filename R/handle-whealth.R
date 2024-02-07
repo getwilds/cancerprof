@@ -7,6 +7,8 @@
 #'                       "pap smear in past 3 years, no hysterectomy, ages 18+"
 #'                       
 #' @importFrom rlang is_na
+#'                       
+#' @importFrom rlang is_na
 #' 
 #' @returns A string for its respective Women's Health Value
 #' 

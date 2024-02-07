@@ -4,6 +4,8 @@
 #'
 #' @param food Either "food insecurity" or "limited access to healthy food"
 #' 
+#' @importFrom rlang is_na
+#' 
 #' @returns A string for its respective food
 #' 
 #' @examples 

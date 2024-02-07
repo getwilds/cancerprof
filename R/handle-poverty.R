@@ -3,7 +3,9 @@
 #' This function returns a matching code value for a Poverty for the api to use to get data from State Cancer Profiles
 #'
 #' @param poverty One of the following values: 
-#'                              "families below poverty", "persistent poverty", "persons below poverty", "persons < 150% of poverty"
+#'                              "families below poverty", "persistent poverty", "persons below poverty", "persons < 150% of poverty
+#'                              
+#' @importFrom rlang is_na
 #' 
 #' @returns A string for its respective poverty variable
 #' 
