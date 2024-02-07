@@ -28,12 +28,8 @@ handle_vaccine <- function(vaccine) {
   
   vaccine_code <- vaccine_mapping[vaccine]
   
-  if (is.null(vaccine_code)) {
-    stop("Invalid input")
+  if (is_na(vaccine_code)) {
+    stop("Invalid vaccine input, please check the documentation for valid inputs")
   }
-  
   return(as.character(vaccine_code))
 }
-
-handle_vaccine("percent who received 3+ doses of hpv vaccine, ages 13-17")
-

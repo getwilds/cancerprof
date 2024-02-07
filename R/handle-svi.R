@@ -25,8 +25,8 @@ handle_svi <- function(svi) {
   
   svi_code <- svi_mapping[svi]
   
-  if (is.null(svi_code)) {
-    stop("Invalid input")
+  if (is_na(svi_code)) {
+    stop("Invalid svi input, please check the documentation for valid inputs")
   }
   
   return(as.character(svi_code))

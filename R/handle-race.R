@@ -40,8 +40,8 @@ handle_race <- function(race) {
   
   code <- race_mapping[race]
   
-  if (is.null(code)) {
-    stop("Invalid input")
+  if (is_na(code)) {
+    stop("Invalid race input, please check the documentation for valid inputs")
   }
   
   return(as.character(code))

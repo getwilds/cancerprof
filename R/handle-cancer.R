@@ -45,8 +45,8 @@ handle_cancer <-function(cancer) {
   
   cancer_code <- cancer_mapping[cancer]
   
-  if (is.null(cancer_code)) {
-    stop("Invalid input")
+  if (is_na(cancer_code)) {
+    stop("Invalid cancer input, please check the documentation for valid inputs")
   }
   
   return(as.character(cancer_code))

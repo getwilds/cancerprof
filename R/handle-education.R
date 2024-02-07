@@ -20,7 +20,6 @@ handle_education <-function(education) {
   )
   
   edu_code <- edu_mapping[education]
-  print(edu_code)
   
   if (is_na(edu_code)) {
     stop("Invalid education input, please check the documentation for valid inputs")

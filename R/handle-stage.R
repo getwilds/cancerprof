@@ -19,8 +19,8 @@ handle_stage <-function(stage) {
   
   stage_code <- stage_mapping[stage]
   
-  if (is.null(stage_code)) {
-    stop("Invalid input")
+  if (is_na(stage_code)) {
+    stop("Invalid stage input, please check the documentation for valid inputs")
   }
   
   return(as.character(stage_code))

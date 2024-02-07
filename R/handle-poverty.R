@@ -24,8 +24,8 @@ handle_poverty <- function(poverty) {
   
   poverty_code <- poverty_mapping[poverty]
   
-  if (is.null(poverty_code)) {
-    stop("Invalid input")
+  if (is_na(poverty_code)) {
+    stop("Invalid poverty input, please check the documentation for valid inputs")
   }
   
   return(as.character(poverty_code))

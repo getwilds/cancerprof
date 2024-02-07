@@ -20,8 +20,8 @@ handle_food <- function(food) {
   
   food_code <- food_mapping[food]
   
-  if (is.null(food_code)) {
-    stop("Invalid input")
+  if (is_na(food_code)) {
+    stop("Invalid food input, please check the documentation for valid inputs")
   }
   
   return(as.character(food_code))
