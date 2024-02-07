@@ -13,9 +13,9 @@
 #' 
 #' @examples
 #' \dontrun{
-#' risk_vaccine("percent who received 2+ doses of HPV vaccine, ages 13-15", "both sexes")
-#' risk_vaccine("percent who received 2+ doses of HPV vaccine, ages 13-17", "both sexes")
-#' risk_vaccine("percent who received 3+ doses of HPV vaccine, ages 13-17", "females")
+#' risk_vaccine("percent with up to date hpv vaccination coverage, ages 13-15", "both sexes")
+#' risk_vaccine("percent with up to date hpv vaccination coverage, ages 13-15", "both sexes")
+#' risk_vaccine("percent with up to date hpv vaccination coverage, ages 13-15", "females")
 #' }
 risk_vaccine <- function(vaccine, sex) {
   
