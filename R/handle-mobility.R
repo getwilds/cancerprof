@@ -6,6 +6,8 @@
 #'            "moved, different state (in past year)", "moved, different county, same state (in past year)",
 #'            "moved, same county (in past year)"
 #' 
+#' @importFrom rlang is_na
+#' 
 #' @returns A string for its respective mobility
 #' 
 #' @examples 

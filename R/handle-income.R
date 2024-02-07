@@ -4,6 +4,8 @@
 #'
 #' @param income Either "median family income" or "median household income"
 #' 
+#' @importFrom rlang is_na
+#' 
 #' @returns A string for its respective income
 #' 
 #' @examples 

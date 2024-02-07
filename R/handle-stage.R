@@ -3,6 +3,9 @@
 #' This function returns a matching code value for a Cancer Stage for the api to use to get data from State Cancer Profiles
 #'
 #' @param stage Either "all stages" or "late stage (regional & distant)"
+#' 
+#' @importFrom rlang is_na
+#' 
 #' @returns A string for its respective Cancer Stage
 #' 
 #' @examples 

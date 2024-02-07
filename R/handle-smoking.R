@@ -6,6 +6,8 @@
 #'                       "pap smear in past 3 years, no hysterectomy, ages 21-65",
 #'                       "pap smear in past 3 years, no hysterectomy, ages 18+"
 #' 
+#' @importFrom rlang is_na
+#' 
 #' @returns A string for its respective Smoking Value
 #' 
 #' @examples

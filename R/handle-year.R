@@ -4,6 +4,8 @@
 #'
 #' @param year Either "latest 5 year average", "latest single year (us by state)"
 #' 
+#' @importFrom rlang is_na
+#' 
 #' @returns A string for its respective Cancer Incidence Year
 #' 
 #' @examples 
