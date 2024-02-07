@@ -21,8 +21,8 @@ handle_sex <- function(sex) {
   
   sex_code <- sex_mapping[sex]
   
-  if (is.null(sex_code)) {
-    stop("Invalid input")
+  if (is_na(sex_code)) {
+    stop("Invalid sex input, please check the documentation for valid inputs")
   }
   
   return(as.character(sex_code))

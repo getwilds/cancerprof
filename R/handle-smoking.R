@@ -42,8 +42,8 @@ handle_smoking <- function(smoking) {
   
   smoking_code <- smoking_mapping[smoking]
   
-  if (is.null(smoking_code)) {
-    stop("Invalid input")
+  if (is_na(smoking_code)) {
+    stop("Invalid smoking input, please check the documentation for valid inputs")
   }
   
   return(as.character(smoking_code))

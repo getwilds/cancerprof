@@ -5,6 +5,8 @@
 #' @param whealth Either "mammogram in past 2 years, ages 50-74", "mammogram in past 2 years, ages 40+",
 #'                       "pap smear in past 3 years, no hysterectomy, ages 21-65",
 #'                       "pap smear in past 3 years, no hysterectomy, ages 18+"
+#'                       
+#' @importFrom rlang is_na
 #' 
 #' @returns A string for its respective Women's Health Value
 #' 
@@ -27,8 +29,8 @@ handle_whealth <- function(whealth) {
   
   whealth_code <- whealth_mapping[whealth]
   
-  if (is.null(whealth_code)) {
-    stop("Invalid input")
+  if (is_na(whealth_code)) {
+    stop("Invalid womens health input, please check the documentation for valid inputs")
   }
   
   return(as.character(whealth_code))

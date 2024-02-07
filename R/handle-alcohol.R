@@ -19,8 +19,8 @@ handle_alcohol <- function(alcohol) {
   
   alcohol_code <- alcohol_mapping[alcohol]
   
-  if (is.null(alcohol_code)) {
-    stop("Invalid input")
+  if (is_na(alcohol_code)) {
+    stop("Invalid alcohol input, please check the documentation for valid inputs")
   }
   
   return(as.character(alcohol_code))

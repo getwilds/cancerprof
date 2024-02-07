@@ -20,8 +20,8 @@ handle_year <-function(year) {
   
   year_code <- year_mapping[year]
   
-  if (is.null(year_code)) {
-    stop("Invalid input")
+  if (is_na(year_mapping)) {
+    stop("Invalid year input, please check the documentation for valid inputs")
   }
   
   return(as.character(year_code))

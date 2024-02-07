@@ -34,8 +34,8 @@ handle_age <- function(age) {
   
   age_code <- age_mapping[age]
   
-  if (is.null(age_code)) {
-    stop("Invalid input")
+  if (is_na(age_code)) {
+    stop("Invalid age input, please check the documentation for valid inputs")
   }
   
   return(as.character(age_code))

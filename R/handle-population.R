@@ -41,8 +41,8 @@ handle_population <- function(population) {
   
   population_code <- population_mapping[population]
   
-  if (is.null(population_code)) {
-    stop("Invalid input")
+  if (is_na(population_code)) {
+    stop("Invalid population input, please check the documentation for valid inputs")
   }
   
   return(as.character(population_code))

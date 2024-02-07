@@ -29,8 +29,8 @@ handle_diet_exercise <- function(diet_exercise) {
   
   diet_exercise_code <- diet_exercise_mapping[diet_exercise]
   
-  if (is.null(diet_exercise_code)) {
-    stop("Invalid input")
+  if (is_na(diet_exercise_code)) {
+    stop("Invalid diet excerise input, please check the documentation for valid inputs")
   }
   
   return(as.character(diet_exercise_code))

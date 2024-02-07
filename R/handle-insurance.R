@@ -42,8 +42,8 @@ handle_insurance <- function(insurance) {
   
   insurance_code <- insurance_mapping[insurance]
   
-  if (is.null(insurance_code)) {
-    stop("Invalid input")
+  if (is_na(insurance_code)) {
+    stop("Invalid insurance input, please check the documentation for valid inputs")
   }
   
   return(as.character(insurance_code))
