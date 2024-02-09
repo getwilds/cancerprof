@@ -6,6 +6,8 @@
 #'              "white non-hispanic","black","black (includes hispanic)", "amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
 #' 
+#' @importFrom rlang is_na
+#' 
 #' @returns A string for its respective race
 #' 
 #' @examples 

@@ -8,7 +8,7 @@ handle_poverty(poverty)
 }
 \arguments{
 \item{poverty}{One of the following values:
-"families below poverty", "persistent poverty", "persons below poverty", "persons < 150\% of poverty"}
+"families below poverty", "persistent poverty", "persons below poverty", "persons < 150\% of poverty}
 }
 \value{
 A string for its respective poverty variable

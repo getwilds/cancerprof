@@ -15,6 +15,8 @@
 #'                  "% uninsured in demographic group, people at or below 400% of poverty",
 #'                  "% uninsured in demographic group, people between 138% - 400% of poverty"
 #' 
+#' @importFrom rlang is_na
+#' 
 #' @returns A string for its respective insurance
 #' 
 #' @examples 

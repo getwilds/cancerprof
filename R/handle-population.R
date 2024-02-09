@@ -9,6 +9,8 @@
 #'                          
 #'                          "males", "females"
 #' 
+#' @importFrom rlang is_na
+#' 
 #' @returns A string for its respective population
 #' 
 #' @examples 

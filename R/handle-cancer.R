@@ -8,6 +8,8 @@
 #'                      "non-hodgkin lymphoma", "oral cavity & pharynx", "ovary", "pancreas", "prostate", "stomach", 
 #'                      "thyroid", "uterus (corpus & uterus, nos)"
 #' 
+#' @importFrom rlang is_na
+#' 
 #' @returns A string for its respective cancer type
 #' 
 #' @examples 
