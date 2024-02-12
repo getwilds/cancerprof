@@ -10,7 +10,8 @@
 #' 
 #' @examples
 #' \dontrun{
-#' handle_alcohol("binge drinking (4+ drinks on one occasion for women, 5+ drinks for one occasion for men), ages 21+")
+#' handle_alcohol(paste("binge drinking (4+ drinks on one occasion for women,"
+#'                       "5+ drinks for one occasion for men), ages 21+"))
 #' }
 handle_alcohol <- function(alcohol) {
   alcohol <- tolower(alcohol)

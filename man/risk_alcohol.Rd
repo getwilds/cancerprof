@@ -23,9 +23,8 @@ This function returns a data frame from Alcohol in State Cancer Profiles
 }
 \examples{
 \dontrun{
-risk_alcohol("binge drinking (4+ drinks on one occasion for women, 5+ drinks for one occasion for men), ages 21+", 
-             "all races (includes hispanic)", "both sexes")
-risk_alcohol("binge drinking (4+ drinks on one occasion for women, 5+ drinks for one occasion for men), ages 21+", 
-             "hispanic (any race)", "females")
+risk_alcohol(paste("binge drinking (4+ drinks on one occasion for women,", 
+                   "5+ drinks for one occasion for men), ages 21+"), 
+                   "all races (includes hispanic)", "both sexes")
 }
 }
