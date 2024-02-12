@@ -4,7 +4,7 @@
 #' 
 #tests class and typeof output
 test_that("Output data type is correct", {
-  output <- demo_crowding("usa", "state", "All Races (includes Hispanic)")
+  output <- demo_education("wa", "county", "at least high school", "males")
   
   expect_true(inherits(output, "data.frame"))
 })
@@ -45,4 +45,9 @@ test_that("demo-education handles invalid education parameters", {
     demo_education("wa", "county", "at least bachelors degree", "both sexes"),
     "For At Least Bachelors Degree, Race and Sex must be NOT NULL."
   )
+})
+
+#parameter
+test_that("demo-education has correct parameters", {
+  expect_error(demo_education())
 })
