@@ -11,10 +11,10 @@ test_that("Output data type is correct", {
 
 #Ensures that variables are present and working on SCP
 poverty_options <- list(
-  pov1 <- demo_poverty("wa", "county", "persistent poverty"),
-  pov2 <- demo_poverty("wa", "county", "families below poverty", "black"),
-  pov3 <- demo_poverty("wa", "county", "persons below poverty", "black", "both sexes"),
-  pov4 <- demo_poverty("wa", "county", "persons < 150% of poverty")
+  pov1 = demo_poverty("wa", "county", "persistent poverty"),
+  pov2 = demo_poverty("wa", "county", "families below poverty", "black"),
+  pov3 = demo_poverty("wa", "county", "persons below poverty", "black", "both sexes"),
+  pov4 = demo_poverty("wa", "county", "persons < 150% of poverty")
 )
 
 for (option_name in names(poverty_options)) {

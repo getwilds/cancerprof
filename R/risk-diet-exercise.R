@@ -39,6 +39,14 @@ risk_diet_exercise <- function(diet_exercise, race, sex) {
   
   resp <- process_screening(resp)
   
-  resp %>% 
-    setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
+  diet_exercise_type1 = c("bmi is overweight, high school survey",
+                          "bmi is obese, high school survey")
+  
+  if (diet_exercise %in% diet_exercise_type1) {
+    resp %>% 
+      setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI"))
+  } else {
+    resp %>% 
+      setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
+  }
 }
