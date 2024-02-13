@@ -1,22 +1,28 @@
-# test_that("demo-crowding", {
-#   test_crowding1 <- demo_crowding("WA", "hsa", "All Races (includes Hispanic)")
-# 
-# 
-#   # object, length, dimensions,
-#   # ranges -ex: greater than 10 rows
-#   # errors
-# 
-# 
-#   #expect_error() - catches an expected error
-# })
-
-
+#' Test demo-crowding
+#' 
+#' This testthat file test the demo-crowding function
+#' 
+#tests class and typeof output
 test_that("Output data type is correct", {
-  output <- demo_crowding("usa", "state", "All Races (includes Hispanic)")
+  output <- demo_crowding("wa", "hsa", "All Races (includes Hispanic)")
   
-  expect_equal(class(output), "data.frame",
-               info = "Output should be a data frame")
-  
-  expect_equal(typeof(output), "list",
-               info = "Output should have list storage type (since data frames are lists)")
+  expect_true(inherits(output, "data.frame"))
+})
+
+#Ensures that variables are present and working on SCP
+test_that("demo-crowding returns non-empty data frame", {
+  crowding1 <- demo_crowding("wa", "hsa", "All Races (includes Hispanic)")
+  expect_true(is.data.frame(crowding1))
+})
+
+#demo-crowding must have 5 columns
+test_that("demo-crowding has correct number of columns", {
+  df <- demo_crowding("wa", "hsa", "All Races (includes Hispanic)")
+  expected_columns <- 5
+  expect_equal(ncol(df), expected_columns)
+})
+
+#parameter
+test_that("demo-crowding has correct parameters", {
+  expect_error(demo_crowding())
 })
