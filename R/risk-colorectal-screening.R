@@ -2,11 +2,11 @@
 #' 
 #' This function returns a data frame from Colorectal Screening in State Cancer Profiles
 #'
-#' @param screening One of the following values: "ever had colorectal endoscopy (sigmoidoscopy or colonoscopy), ages 50+", 
-#'                                                "fobt (1yr) / flex sig (5yr) / fobt (3yr) / colonoscopy (10yr), ages 50-75", 
-#'                                                "home-based fecal occult blood test (fobt) in past two years", 
-#'                                                "home-based fobt in the past two years or ever had a colorectal endoscopy", "ever had fobt, ages 50-75", 
-#'                                                "guidance sufficient crc, ages 50-75", "had colonoscopy in past 10 years, ages 50-75"
+#' @param screening One of the following values: "home blood stool test in the past year, ages 45-75",
+#'                                               "receieved at least one recommended crc test, ages 45-75",
+#'                                               "ever had fobt, ages 50-75",
+#'                                               "guidance sufficient crc, ages 50-75",
+#'                                               "had colonoscopy in past 10 years, ages 50-75"
 #' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
