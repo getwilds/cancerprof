@@ -46,8 +46,6 @@ test_that("demo-population has correct number of columns", {
 })
 
 #test error handling
-
-#write one for error handling in population - mention in the message how values could have chnaged in SCP
 test_that("demo-population handles invalid population parameters", {
   expect_error(
     demo_population("wa", "county", "ages 40 and over", race="all races includes hispanic"),
