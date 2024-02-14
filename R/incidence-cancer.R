@@ -102,3 +102,10 @@ incidence_cancer <- function(area, areatype, cancer, race, sex=NULL, age, stage,
       setNames(c(areatype_title, "FIPS", "Age Adjusted Incidence Rate", "Lower 95% CI", "Upper 95% CI", "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", "Percentage of Cases with Late Stage"))
   }
 }
+
+
+
+
+
+
+
