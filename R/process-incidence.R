@@ -44,5 +44,6 @@ process_incidence <- function(resp) {
   if(column %in% c("Health.Service.Area", "County")) {
       resp <- resp %>%
         filter(!(!!sym(column) %in% state.name))
-    }
+  }
+  resp
 }
