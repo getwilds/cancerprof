@@ -3,7 +3,7 @@
 #' This function returns a data frame from Women's Health in State Cancer Profiles
 #'
 #' @param whealth Either "mammogram in past 2 years, ages 50-74", "mammogram in past 2 years, ages 40+", 
-#'                       "pap smear in past 3 years, no hysterectomy, ages 21-65", "pap smear in past 3 years, no hysterectomy, ages 18+"
+#'                       "pap smear in past 3 years, no hysterectomy, ages 21-65"
 #' @param race One of the following values: "all races (includes hispanic)", "white (non-hispanic)", 
 #'                                          "black (non-hispanic)", "amer. indian / ak native (non-hispanic)", 
 #'                                          "asian / pacific islander (non-hispanic)","hispanic (any race)"
@@ -65,7 +65,7 @@ risk_whealth <- function(whealth, race, datatype="direct estimates", area=NULL) 
   resp <- process_screening(resp)
   
   if (datatype == "county level modeled estimates") {
-    if(whealth == "pap smear in past 3 years, no hysterectomy, ages 18+") {
+    if(whealth == "pap smear in past 3 years, no hysterectomy, ages 21-65") {
       resp %>% 
         setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
     } else {

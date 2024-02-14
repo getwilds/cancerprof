@@ -8,7 +8,7 @@ risk_whealth(whealth, race, datatype = "direct estimates", area = NULL)
 }
 \arguments{
 \item{whealth}{Either "mammogram in past 2 years, ages 50-74", "mammogram in past 2 years, ages 40+",
-"pap smear in past 3 years, no hysterectomy, ages 21-65", "pap smear in past 3 years, no hysterectomy, ages 18+"}
+"pap smear in past 3 years, no hysterectomy, ages 21-65"}
 
 \item{race}{One of the following values: "all races (includes hispanic)", "white (non-hispanic)",
 "black (non-hispanic)", "amer. indian / ak native (non-hispanic)",
