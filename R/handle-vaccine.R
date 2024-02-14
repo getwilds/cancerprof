@@ -25,7 +25,7 @@ handle_vaccine <- function(vaccine) {
     # "percent who received 3+ doses of hpv vaccine, ages 13-17" = "v71"
     
     "percent with up to date hpv vaccination coverage, ages 13-15" = "v281",
-    "percent with up to date hpv vaccination coverage, ages 13-15" = "v282"
+    "percent with up to date hpv vaccination coverage, ages 13-17" = "v282"
   )
   
   vaccine_code <- vaccine_mapping[vaccine]
