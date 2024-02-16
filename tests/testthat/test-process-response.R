@@ -29,7 +29,8 @@ test_that("process response outputs data from the correct line", {
   expect_true(!is.na(result[nrow(result), "FIPS"]))
 })
 
-test_that("process response filters out correct data", {
+# process response filters out correct data
+test_that("process response filters out United States and state names", {
   # Filters out "United States" from all results
   expect_false(any(result[[1]] == "United States"))
   
