@@ -17,7 +17,7 @@ Imports:
     magrittr,
     rlang,
     stringr,
-    testthat,
-    tibble,
     utils
+Suggests: 
+    testthat
 Config/testthat/edition: 3

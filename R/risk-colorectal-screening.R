@@ -2,11 +2,11 @@
 #' 
 #' This function returns a data frame from Colorectal Screening in State Cancer Profiles
 #'
-#' @param screening One of the following values: "ever had colorectal endoscopy (sigmoidoscopy or colonoscopy), ages 50+", 
-#'                                                "fobt (1yr) / flex sig (5yr) / fobt (3yr) / colonoscopy (10yr), ages 50-75", 
-#'                                                "home-based fecal occult blood test (fobt) in past two years", 
-#'                                                "home-based fobt in the past two years or ever had a colorectal endoscopy", "ever had fobt, ages 50-75", 
-#'                                                "guidance sufficient crc, ages 50-75", "had colonoscopy in past 10 years, ages 50-75"
+#' @param screening One of the following values: "home blood stool test in the past year, ages 45-75",
+#'                                               "receieved at least one recommended crc test, ages 45-75",
+#'                                               "ever had fobt, ages 50-75",
+#'                                               "guidance sufficient crc, ages 50-75",
+#'                                               "had colonoscopy in past 10 years, ages 50-75"
 #' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
@@ -19,22 +19,17 @@
 #' 
 #' @examples
 #' \dontrun{
-#' risk_colorectal_screening("ever had colorectal endoscopy (sigmoidoscopy or colonoscopy), ages 50+",
+#' risk_colorectal_screening("home blood stool test in the past year, ages 45-75",
 #'                           "all races (includes hispanic)","both sexes")
 #' risk_colorectal_screening("ever had fobt, ages 50-75", area="usa")
 #' risk_colorectal_screening("ever had fobt, ages 50-75", area="wa")
-#' risk_colorectal_screening("fobt (1yr) / flex sig (5yr) / fobt (3yr) / colonoscopy (10yr), ages 50-75", 
-#'                           "all races (includes hispanic)", "males" )
-
 #' }
 risk_colorectal_screening <- function(screening, race=NULL, sex=NULL, area=NULL) {
   
   req <- create_request("risk")
   
-  screening_type_1 = c("ever had colorectal endoscopy (sigmoidoscopy or colonoscopy), ages 50+",
-                       "fobt (1yr) / flex sig (5yr) / fobt (3yr) / colonoscopy (10yr), ages 50-75",
-                       "home-based fecal occult blood test (fobt) in past two years",
-                       "home-based fobt in the past two years or ever had a colorectal endoscopy")
+  screening_type_1 = c("home blood stool test in the past year, ages 45-75",
+                       "receieved at least one recommended crc test, ages 45-75")
   
   screening_type_2 = c("ever had fobt, ages 50-75",
                        "guidance sufficient crc, ages 50-75",
@@ -84,3 +79,7 @@ risk_colorectal_screening <- function(screening, race=NULL, sex=NULL, area=NULL)
       setNames(c("County", "FIPS", "Model_Based_Percent (95%_Confidence_Interval)", "Lower_95%_CI", "Upper_95%_CI"))
   }
 }
+risk_colorectal_screening("ever had fobt, ages 50-75", area="wa")
+
+screening = "ever had fobt, ages 50-75"
+area = "ri"

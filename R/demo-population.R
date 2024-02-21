@@ -39,7 +39,7 @@ demo_population <- function(area, areatype, population, race=NULL, sex=NULL) {
   } else if((population == "males" || population == "females") && (is.null(race) || !is.null(sex))) {
     cli_abort("for males, Race must not be NULL and Sex must be NULL")
   } else if(population == "foreign born" && (is.null(race) || is.null(sex))) {
-    cli_abort("for foreign born, race and sex must not be null")
+    cli_abort("for foreign born, race and sex must not be NULL")
   } else if ((population == "american indian/alaska native" || population == "asian/pacific islander" || population == "black" ||
              population == "hispanic" || population == "non-hispanic (origin recode)" || 
              population == "white") && (is.null(sex) || !is.null(race))) {

@@ -2,9 +2,8 @@
 #' 
 #' This function returns a data frame from Vaccines in State Cancer Profiles
 #'
-#' @param vaccine Either "mammogram in past 2 years, ages 50-74", "mammogram in past 2 years, ages 40+", 
-#'                       "pap smear in past 3 years, no hysterectomy, ages 21-65", 
-#'                       "pap smear in past 3 years, no hysterectomy, ages 18+"
+#' @param vaccine Either "percent with up to date hpv vaccination coverage, ages 13-15",
+#'                       "percent with up to date hpv vaccination coverage, ages 13-17"
 #' @param sex Either "both sexes", "males", "females"
 #' 
 #' @returns A data frame with the following columns "State", "FIPS", "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"
@@ -13,11 +12,10 @@
 #' 
 #' @examples
 #' \dontrun{
-#' risk_vaccine("percent with up to date hpv vaccination coverage, ages 13-15", "both sexes")
-#' risk_vaccine("percent with up to date hpv vaccination coverage, ages 13-15", "both sexes")
-#' risk_vaccine("percent with up to date hpv vaccination coverage, ages 13-15", "females")
+#' risk_vaccines("percent with up to date hpv vaccination coverage, ages 13-15", "both sexes")
+#' risk_vaccines("percent with up to date hpv vaccination coverage, ages 13-17", "females")
 #' }
-risk_vaccine <- function(vaccine, sex) {
+risk_vaccines <- function(vaccine, sex) {
   
   req <- create_request("risk")
   
@@ -41,10 +39,6 @@ risk_vaccine <- function(vaccine, sex) {
   vaccine_type1 = c("percent who received 2+ doses of HPV vaccine, ages 13-15",
                    "percent who received 3+ doses of HPV vaccine, ages 13-15"
                    )
-  
-  vaccine_type2 = c("percent who received 2+ doses of HPV vaccine, ages 13-17",
-                   "percent who received 3+ doses of HPV vaccine, ages 13-17"
-  )
   
   if (vaccine %in% vaccine_type1) {
     resp %>% 

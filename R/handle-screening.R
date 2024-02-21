@@ -20,13 +20,18 @@ handle_screening <- function(screening) {
   screening <- tolower(screening)
   
   screening_mapping <- c(
-    "ever had colorectal endoscopy (sigmoidoscopy or colonoscopy), ages 50+" = "v09",
     "ever had fobt, ages 50-75" = "v304",
-    "fobt (1yr) / flex sig (5yr) / fobt (3yr) / colonoscopy (10yr), ages 50-75" = "v14",
     "guidance sufficient crc, ages 50-75" = "v303",
     "had colonoscopy in past 10 years, ages 50-75" = "v302",
-    "home-based fecal occult blood test (fobt) in past two years" = "v13",
-    "home-based fobt in the past two years or ever had a colorectal endoscopy" = "v59"
+    
+    "home blood stool test in the past year, ages 45-75" = "v520",
+    "receieved at least one recommended crc test, ages 45-75" = "v521"
+    
+    #removed from scp
+    # "ever had colorectal endoscopy (sigmoidoscopy or colonoscopy), ages 50+" = "v09",
+    # "fobt (1yr) / flex sig (5yr) / fobt (3yr) / colonoscopy (10yr), ages 50-75" = "v14",
+    # "home-based fecal occult blood test (fobt) in past two years" = "v13",
+    # "home-based fobt in the past two years or ever had a colorectal endoscopy" = "v59"
   )
   
   screening_code <- screening_mapping[screening]

@@ -9,7 +9,7 @@ demo_svi(area, svi)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{svi}{Either "Overall, "socioeconomic status", "household characteristics", "racial & ethinic minority status", "housing type & transportation"}
+\item{svi}{Either "Overall", "socioeconomic status", "household characteristics", "racial & ethinic minority status", "housing type & transportation"}
 }
 \value{
 A data frame with the following columns "County", "FIPS", "Score"

@@ -8,6 +8,7 @@
 #' @importFrom dplyr mutate_all na_if filter mutate rename
 #' @importFrom rlang sym :=
 #' @importFrom utils read.csv data
+#' @importFrom stringr str_replace_all
 #' 
 #' @returns A processed response data frame
 #' 
@@ -43,5 +44,6 @@ process_incidence <- function(resp) {
   if(column %in% c("Health.Service.Area", "County")) {
       resp <- resp %>%
         filter(!(!!sym(column) %in% state.name))
-    }
+  }
+  resp
 }

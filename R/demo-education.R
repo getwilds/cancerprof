@@ -25,12 +25,6 @@
 #'                "all races (includes hispanic)")
 #' demo_education("pr", "hsa", "less than 9th grade")
 #' }
-
-area = "wa"
-areatype = "county"
-education = "at least high school"
-sex = "males"
-
 demo_education <- function(area, areatype, education, sex=NULL, race=NULL) {
 
   req <- create_request("demographics")

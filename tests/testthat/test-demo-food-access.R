@@ -1,7 +1,7 @@
 #' Test Food Access
 #' 
 #' This testthat file test the demo-food function
-#' 
+
 #tests class and typeof output
 test_that("Output data type is correct", {
   output <- demo_food("wa", "county", "food insecurity", "black")
@@ -28,14 +28,16 @@ test_that("demo-food returns non-empty data frame", {
   expect_true(is.data.frame(food_test_3))
 })
 
-
 # sometimes functions will output different nuber of columns depending on variables...
-#demo-food must have 5 columns
-# test_that("demo-food has correct number of columns", {
-#   df <- demo_food("wa", "county", "food insecurity", "black")
-#   expected_columns <- 4
-#   expect_equal(ncol(df), expected_columns)
-# })
+# demo-food must have 5 columns
+test_that("demo-food has correct number of columns", {
+  df <- demo_food("wa", "county", "food insecurity", "black")
+  df2 <- demo_food("wa", "county", "limited access to healthy food")
+  expected_columns <- 3
+  expected_columns2 <- 4
+  expect_equal(ncol(df), expected_columns)
+  expect_equal(ncol(df2), expected_columns2)
+})
 
 #test error handling
 test_that("demo-food handles invalid education parameters", {
@@ -48,3 +50,28 @@ test_that("demo-food handles invalid education parameters", {
     "For food insecurity, Race must NOT be NULL."
   )
 })
+
+#parameter
+test_that("demo-food has correct parameters", {
+  expect_error(demo_food())
+  expect_error(demo_food("wa", "county", "all races (includes hispanic)", "food insecurity"))
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
