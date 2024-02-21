@@ -1,15 +1,15 @@
-#' Test dput-response
+#' Test dput-resp-demo
 #' 
-#' This function creates a response object from State Cancer Profiles for
+#' This function creates a response object from the Demographics section of State Cancer Profiles for
 #'
 #' 
 #' @returns A httr2 response object
 #' 
 #' @examples 
 #' \dontrun{
-#' dput_resp()
+#' dput_resp_demo()
 #' }
-dput_resp <- function() {
+dput_resp_demo <- function() {
   resp <- structure(list(method = "GET", url = "https://statecancerprofiles.cancer.gov/demographics/index.php?stateFIPS=72&areatype=county&topic=crowd&demo=00027&race=00&type=manyareacensus&sortVariableName=value&sortOrder=default&output=1", 
                          status_code = 200L, headers = structure(list(date = "Thu, 15 Feb 2024 19:23:41 GMT", 
                                                                       server = "Apache", `content-disposition` = "attachment; filename=\"census.csv\"", 
@@ -100,6 +100,6 @@ dput_resp <- function() {
                                            url = "https://statecancerprofiles.cancer.gov/demographics/index.php?stateFIPS=72&areatype=county&topic=crowd&demo=00027&race=00&type=manyareacensus&sortVariableName=value&sortOrder=default&output=1", 
                                            method = NULL, headers = list(), body = NULL, fields = list(), 
                                            options = list(), policies = list()), class = "httr2_request"), 
-                         cache = environment), class = "httr2_response")
+                         cache = new.env()), class = "httr2_response")
   return(resp)
 }

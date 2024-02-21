@@ -54,7 +54,6 @@ mortality_cancer <- function(area, areatype, cancer, race, sex=NULL, age, year="
     cli_abort("For this cancer type, age cannot be ages <15 or ages <20")
   }
   
-  
   req <- create_request("deathrates")
   
   resp <- req %>%
@@ -92,4 +91,3 @@ mortality_cancer <- function(area, areatype, cancer, race, sex=NULL, age, year="
                "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", "Recent Trend", 
                "Recent 5 Year Trend", "Lower 95% CI Trend", "Upper 95% CI Trend"))
 }
-

@@ -1,10 +1,3 @@
-library(cdlTools)
-library(cli)
-library(dplyr)
-library(httr2)
-library(magrittr)
-library(rlang)
-library(stringr)
 #' Process Response Data
 #' 
 #' This function processes the response data from State Cancer Profiles
