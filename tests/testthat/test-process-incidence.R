@@ -1,26 +1,26 @@
-#' Test Process Response
+#' Test Process Incidence
 #'
-#' This testthat file test the process-response function
+#' This testthat file test the process-incidence function
 
 # sets up the testing environment with an example resp
-resp <- dput_resp_demo()
-result <- process_response(resp)
+resp <- dput_resp_incd()
+result <- process_incidence(resp)
 
-# process response should return a data frame
-test_that("process_response should return a data frame", {
+# process incidence should return a data frame
+test_that("process incidence should return a data frame", {
   expect_true(is.data.frame(result))
 })
 
-# process response should have the correct parameter
-test_that("process response should have resp as an argument", {
+# process incidence should have the correct parameter
+test_that("process incidence should have resp as an argument", {
   expect_error(
-    process_response()
+    process_incidence()
   )
 })
 
-# process response data should start on the column names and end with data
+# process incidence data should start on the column names and end with data
 # containing a FIPS value
-test_that("process response outputs data from the correct line", {
+test_that("process incidence outputs data from the correct line", {
   area_headers <- c("County", "State", "Health.Service.Area")
   
   expect_true(any(colnames(result) %in% area_headers))
@@ -29,8 +29,8 @@ test_that("process response outputs data from the correct line", {
   expect_true(!is.na(result[nrow(result), "FIPS"]))
 })
 
-# process response filters out correct data
-test_that("process response filters out United States and state names", {
+# process incidence filters out correct data
+test_that("process incidence filters out United States and state names", {
   # Filters out "United States" from all results
   expect_false(any(result[1] == "United States"))
   
