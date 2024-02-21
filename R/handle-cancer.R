@@ -1,6 +1,6 @@
-#' Handles Education Values to Code
+#' Handles Cancer Values to Code
 #' 
-#' This function returns a matching code value for a Education for the api to use to get data from State Cancer Profiles
+#' This function returns a matching code value for a Cancer for the api to use to get data from State Cancer Profiles
 #'
 #' @param cancer Either "all cancer sites","bladder", "brain & ons", "breast (female)", "breast (female in situ)", "cervix", 
 #'                      "childhood (ages <15, all sites)", "childhood (ages <20, all sites)", "colon & rectum", "esophagus", 
