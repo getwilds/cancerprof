@@ -22,7 +22,7 @@ handle_year <-function(year) {
   
   year_code <- year_mapping[year]
   
-  if (is_na(year_mapping)) {
+  if (is_na(year_code)) {
     stop("Invalid year input, please check the documentation for valid inputs")
   }
   
