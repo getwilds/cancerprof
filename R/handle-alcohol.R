@@ -1,4 +1,4 @@
-#' Handles Women's Alcohol Values to Code
+#' Handles Alcohol Values to Code
 #' 
 #' This function returns a matching code value for Alcohol for the api to use to get data from State Cancer Profiles
 #'
@@ -6,7 +6,7 @@
 #' 
 #' @importFrom rlang is_na
 #' 
-#' @returns A string for its respective Women's Health Value
+#' @returns A string for its respective Alcohol Value
 #' 
 #' @examples
 #' \dontrun{

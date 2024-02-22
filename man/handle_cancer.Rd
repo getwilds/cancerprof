@@ -2,7 +2,7 @@
 % Please edit documentation in R/handle-cancer.R
 \name{handle_cancer}
 \alias{handle_cancer}
-\title{Handles Education Values to Code}
+\title{Handles Cancer Values to Code}
 \usage{
 handle_cancer(cancer)
 }
@@ -17,7 +17,7 @@ handle_cancer(cancer)
 A string for its respective cancer type
 }
 \description{
-This function returns a matching code value for a Education for the api to use to get data from State Cancer Profiles
+This function returns a matching code value for a Cancer for the api to use to get data from State Cancer Profiles
 }
 \examples{
 \dontrun{
