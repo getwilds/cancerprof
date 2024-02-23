@@ -4,12 +4,10 @@
 \alias{fips_scp}
 \title{Process State to FIPS}
 \usage{
-fips_scp(area, topic = "Demographics")
+fips_scp(area)
 }
 \arguments{
 \item{area}{A state name or state abbreviation or United States of America or United States or usa or us}
-
-\item{topic}{Either "demographics", "risks", "incidence", "mortality"}
 }
 \value{
 A string fips value or NA

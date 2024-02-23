@@ -3,7 +3,6 @@
 #' This function processes state names and abbreviations to FIPS data
 #'
 #' @param area A state name or state abbreviation or United States of America or United States or usa or us
-#' @param topic Either "demographics", "risks", "incidence", "mortality"
 #' 
 #' @importFrom cdlTools fips
 #' @importFrom stringr str_pad
@@ -16,12 +15,11 @@
 #' fips_scp("ca")
 #' fips_scp("usa")
 #' }
-fips_scp <- function(area, topic="Demographics") {
+fips_scp <- function(area) {
   
   area = tolower(area)
   
   usa_list = c("united states", "united states of america", "us", "usa")
-  
   
   if (area %in% usa_list) {
     return("00")

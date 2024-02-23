@@ -16,7 +16,6 @@
 #' @returns A data frame with the following columns "County", "FIPS", "Value", "People"
 #' 
 #' @export
-#' 
 #'
 #' @examples
 #' \dontrun{

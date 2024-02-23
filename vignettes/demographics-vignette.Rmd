@@ -1,0 +1,35 @@
+---
+title: "demographics-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{cancerprof-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Load the package
+```{r setup}
+library(cancerprof)
+```
+
+## Retrieving Data
+
+The demographics category of cancerprof contains 11 unique functions to pull data from the demographics page of [State Cancer Profile](https://statecancerprofiles.cancer.gov/demographics/index.php).
+
+These functions are: `demo_crowding()`, `demo_education()`, `demo_food()`, `demo_income()`, `demo_insurance()`, `demo_mobility()`, `demo_non_english_language()`, `demo_population()`, `demo_poverty()`, `demo_svi()`, `demo_workforce()`
+
+Each of these functions require various parameters that must be specified to pull data. Please refer to function documentation for more details.
+
+
+
+```{r}
+# demo_education("wa", "county", "at least high school", "males")
+# demo_food("wa", "county", "food insecurity", "black")
+```
