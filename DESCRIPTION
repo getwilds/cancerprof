@@ -19,5 +19,8 @@ Imports:
     stringr,
     utils
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat
 Config/testthat/edition: 3
+VignetteBuilder: knitr
