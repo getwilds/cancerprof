@@ -79,7 +79,3 @@ risk_colorectal_screening <- function(screening, race=NULL, sex=NULL, area=NULL)
       setNames(c("County", "FIPS", "Model_Based_Percent (95%_Confidence_Interval)", "Lower_95%_CI", "Upper_95%_CI"))
   }
 }
-risk_colorectal_screening("ever had fobt, ages 50-75", area="wa")
-
-screening = "ever had fobt, ages 50-75"
-area = "ri"

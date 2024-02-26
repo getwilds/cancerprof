@@ -8,9 +8,11 @@
 #' 
 #' @returns A string for its respective Alcohol Value
 #' 
+#' @noRd
+#' 
 #' @examples
 #' \dontrun{
-#' handle_alcohol(paste("binge drinking (4+ drinks on one occasion for women,"
+#' handle_alcohol(paste("binge drinking (4+ drinks on one occasion for women,",
 #'                       "5+ drinks for one occasion for men), ages 21+"))
 #' }
 handle_alcohol <- function(alcohol) {

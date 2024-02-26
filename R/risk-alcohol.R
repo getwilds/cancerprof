@@ -40,9 +40,3 @@ risk_alcohol <- function(alcohol, race, sex) {
   resp %>% 
     setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
 }
-
-
-risk_alcohol(paste("binge drinking (4+ drinks on one occasion for women,", 
-                   "5+ drinks for one occasion for men), ages 21+"), 
-                   "all races (includes hispanic)", "both sexes")
-

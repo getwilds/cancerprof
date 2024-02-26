@@ -28,8 +28,7 @@ These functions are: `demo_crowding()`, `demo_education()`, `demo_food()`, `demo
 Each of these functions require various parameters that must be specified to pull data. Please refer to function documentation for more details.
 
 
-
 ```{r}
 # demo_education("wa", "county", "at least high school", "males")
-# demo_food("wa", "county", "food insecurity", "black")
+demo_food("wa", "county", "food insecurity", "black")
 ```

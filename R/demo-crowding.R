@@ -23,6 +23,8 @@
 #' }
 demo_crowding <- function(area, areatype, race) {
 
+  crowding = "00027"
+  
   req <- create_request("demographics")
   
   resp <- req %>% 
@@ -30,7 +32,7 @@ demo_crowding <- function(area, areatype, race) {
       stateFIPS=fips_scp(area),
       areatype=tolower(areatype),
       topic="crowd",
-      demo="00027",
+      demo=crowding,
       race=handle_race(race),
       type="manyareacensus",
       sortVariableName="value",
