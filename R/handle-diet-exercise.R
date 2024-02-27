@@ -12,6 +12,8 @@
 #' 
 #' @returns A string for its respective Diet & Exercise Value
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_diet_exercise("guidance sufficient crc, ages 50-75")

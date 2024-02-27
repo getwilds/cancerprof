@@ -8,6 +8,8 @@
 #' 
 #' @returns A string for its respective education
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_education("at least bachelors degree")

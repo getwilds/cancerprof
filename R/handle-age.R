@@ -8,6 +8,8 @@
 #' 
 #' @returns A string for its respective age
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_age("under 19 years")

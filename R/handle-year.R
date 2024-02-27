@@ -8,6 +8,8 @@
 #' 
 #' @returns A string for its respective Cancer Incidence Year
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_year("latest 5 year average")

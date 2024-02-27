@@ -8,6 +8,8 @@
 #' 
 #' @returns A string for its respective food
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_food("limited access to healthy food")

@@ -10,6 +10,8 @@
 #' 
 #' @returns A string for its respective SVI variable
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_svi("overall")

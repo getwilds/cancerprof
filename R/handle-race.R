@@ -10,6 +10,8 @@
 #' 
 #' @returns A string for its respective race
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_race("all races (includes hispanic)")

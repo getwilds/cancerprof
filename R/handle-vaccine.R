@@ -10,6 +10,8 @@
 #' 
 #' @returns A string for its respective Vaccine Value
 #' 
+#' @noRd
+#' 
 #' @examples
 #' \dontrun{
 #' handle_vaccine("percent who received 2+ doses of HPV vaccine, ages 13-17")

@@ -10,6 +10,8 @@
 #' 
 #' @returns A string for its respective Women's Health Value
 #' 
+#' @noRd
+#' 
 #' @examples
 #' \dontrun{
 #' handle_whealth("mammogram in past 2 years, ages 50-74")

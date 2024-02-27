@@ -8,6 +8,8 @@
 #' 
 #' @returns A string for its respective income
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_income("median family income")

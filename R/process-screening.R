@@ -11,6 +11,8 @@
 #' 
 #' @returns A processed response data frame
 #' 
+#' @noRd
+#' 
 #' @examples
 #' \dontrun{
 #' process_screening(resp)

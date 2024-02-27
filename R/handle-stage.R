@@ -8,6 +8,8 @@
 #' 
 #' @returns A string for its respective Cancer Stage
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_stage("all stages")

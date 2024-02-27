@@ -10,6 +10,8 @@
 #' 
 #' @returns A string for its respective mobility
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_mobility("i haven't moved (in past year)")

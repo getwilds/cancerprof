@@ -5,6 +5,8 @@
 #' 
 #' @returns A httr2 response object
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' dput_resp_mortality()

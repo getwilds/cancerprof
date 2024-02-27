@@ -12,6 +12,8 @@
 #' 
 #' @returns A string for its respective cancer type
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_cancer("bladder")
