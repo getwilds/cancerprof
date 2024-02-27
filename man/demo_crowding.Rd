@@ -11,20 +11,33 @@ demo_crowding(area, areatype, race)
 
 \item{areatype}{Either "county", "hsa" (Health service area), or "state"}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
-"white non-hispanic", "black", "amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)", "hispanic (any race)}
+\item{race}{One of the following values:
+"All Races (includes Hispanic)",
+"white (includes hispanic)",
+"white non-hispanic",
+"black",
+"amer. indian/alaskan native (includes hispanic)",
+"asian or pacific islander (includes hispanic)",
+"hispanic (any race)"}
 }
 \value{
-A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
+A data frame with the following columns Area, Area Code, "Percent", "Households", "Rank"
 }
 \description{
 This function returns a data frame from Crowding in State Cancer Profiles
 }
 \examples{
 \dontrun{
-demo_crowding("WA", "hsa", "All Races (includes Hispanic)")
-demo_crowding("usa", "state", "All Races (includes Hispanic)")
-demo_crowding("pr", "hsa", "black")
+demo_crowding(area = "WA", 
+              areatype = "hsa", 
+              race = "All Races (includes Hispanic)")
+             
+demo_crowding(area = "usa",
+              areatype = "state",
+              race = "All Races (includes Hispanic)")
+
+demo_crowding(area = "pr",
+              areatype = "hsa",
+              race = "black")
 }
 }
