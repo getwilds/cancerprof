@@ -9,6 +9,8 @@
 #' 
 #' @returns A string for its respective poverty variable
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_poverty("families below poverty")

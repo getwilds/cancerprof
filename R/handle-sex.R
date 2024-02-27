@@ -8,6 +8,8 @@
 #' 
 #' @returns A string for its respective sex
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_sex("both sexes")

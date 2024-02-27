@@ -10,6 +10,8 @@
 #' 
 #' @returns A string for its respective Smoking Value
 #' 
+#' @noRd
+#' 
 #' @examples
 #' \dontrun{
 #' handle_smoking("former smoker, quit 1 year+; ages 18+")

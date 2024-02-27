@@ -9,6 +9,8 @@
 #' 
 #' @returns A string fips value or NA
 #' 
+#' @noRd
+#' 
 #' @examples
 #' \dontrun{
 #' fips_scp("pr")

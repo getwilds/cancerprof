@@ -8,6 +8,8 @@
 #' 
 #' @returns A string for its respective Risk Data Types Value
 #' 
+#' @noRd
+#' 
 #' @examples
 #' \dontrun{
 #' handle_datatype("direct estimates")

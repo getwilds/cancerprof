@@ -13,6 +13,8 @@
 #' 
 #' @returns A string for its respective population
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_population("males")

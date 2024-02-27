@@ -19,6 +19,8 @@
 #' 
 #' @returns A string for its respective insurance
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_insurance("% insured in demographic group, all income levels")

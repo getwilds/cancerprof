@@ -12,6 +12,8 @@
 #' 
 #' @returns A string for its respective Colorectal Screening Value
 #' 
+#' @noRd
+#' 
 #' @examples 
 #' \dontrun{
 #' handle_screening("guidance sufficient crc, ages 50-75")

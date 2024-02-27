@@ -8,6 +8,8 @@
 #' 
 #' @returns returns the HTTP method with the state cancer profiles url and the http path
 #' 
+#' @noRd
+#' 
 #' @examples
 #' \dontrun{
 #' create_request("demographics")
