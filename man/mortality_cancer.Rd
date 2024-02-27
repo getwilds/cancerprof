@@ -4,15 +4,7 @@
 \alias{mortality_cancer}
 \title{Access to Cancer Mortality Data}
 \usage{
-mortality_cancer(
-  area,
-  areatype,
-  cancer,
-  race,
-  sex = NULL,
-  age,
-  year = "latest 5 year average"
-)
+mortality_cancer(area, areatype, cancer, race, sex, age, year)
 }
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
@@ -29,14 +21,17 @@ mortality_cancer(
 "black (non-hispanic)", "amer. indian / ak native (non-hispanic)",
 "asian / pacific islander (non-hispanic)","hispanic (any race)"}
 
-\item{sex}{Either "both sexes", "males", "females"}
+\item{sex}{Defaulted to NULL. Specify either "both sexes", "males", "females" if necessary}
 
 \item{age}{Either "all ages", "ages <50", "ages 50+", "ages <65", "ages 65+", ages <15, ages <20}
 
 \item{year}{Either "latest 5 year average", "latest single year (us by state)"}
 }
 \value{
-A data frame with the following columns "State", "FIPS", "Percent", "Lower 95\% CI", "Upper 95\% CI", "Number of Respondents"
+A data frame with the following columns Areatype, Area Code, "Met Healthy People Objective of ***?",
+"Age Adjusted Death Rate", "Lower 95\% CI Rate", "Upper 95\% CI Rate",
+"CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count",
+"Recent Trend", "Recent 5 Year Trend", "Lower 95\% CI Trend", "Upper 95\% CI Trend"
 }
 \description{
 This function returns a data frame from Cancer Mortality in State Cancer Profiles
@@ -46,15 +41,28 @@ This is the details section this is where the finer details of the function are 
 }
 \examples{
 \dontrun{
-mortality_cancer("wa", "county", "all cancer sites", "black (non-hispanic)", 
-                 "both sexes", "ages 65+")
-mortality_cancer("ca", "hsa", "lung & bronchus", "all races (includes hispanic)", 
-                 "males", "ages 50+")
-mortality_cancer("usa", "state", "prostate", "all races (includes hispanic)", 
-                 "males", "ages 50+")
-mortality_cancer(area="wa", areatype="county", cancer="ovary", race="all races (includes hispanic)", 
-                 sex="females", age="ages 50+")
-mortality_cancer("ca", "hsa", "childhood (ages <20, all sites)", "all races (includes hispanic)", 
-                 "males", "ages <20")
+mortality_cancer(area = "wa",
+                 areatype = "county",
+                 cancer = "all cancer sites",
+                 race = "black (non-hispanic)",
+                 sex = "both sexes",
+                 age = "ages 65+",
+                 year = "latest 5 year average")
+
+mortality_cancer(area = "usa",
+                 areatype = "state",
+                 cancer = "prostate",
+                 race = "all races (includes hispanic)",
+                 sex = "males",
+                 age = "ages 50+",
+                 year = "latest single year (us by state)")
+                 
+mortality_cancer(area = "wa",
+                 areatype = "hsa",
+                 cancer = "ovary",
+                 race = "all races (includes hispanic)",
+                 sex = "females",
+                 age = "ages 50+",
+                 year = "latest 5 year average")
 }
 }

@@ -18,6 +18,6 @@ You can install the development version of `rcromwell` from [GitHub](https://git
 pak::pak("getwilds/cancerprof")
 ```
 
+## Support
 
-## Contact
-For questions, feedback, or inquiries, please contact Brian Park: joon.brianpark@gmail.com
+For questions, bugs, or feature requests, please reach out to Brian Park at joon.brianpark@gmail.com, or open an issue on our [issue tracker](https://github.com/getwilds/cancerprof/issues)

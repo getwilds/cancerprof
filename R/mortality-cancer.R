@@ -14,31 +14,51 @@
 #' @param race One of the following values: "all races (includes hispanic)", "white (non-hispanic)", 
 #'                                          "black (non-hispanic)", "amer. indian / ak native (non-hispanic)", 
 #'                                          "asian / pacific islander (non-hispanic)","hispanic (any race)"
-#' @param sex Either "both sexes", "males", "females"
+#' @param sex Defaulted to NULL. Specify either "both sexes", "males", "females" if necessary
 #' @param age Either "all ages", "ages <50", "ages 50+", "ages <65", "ages 65+", ages <15, ages <20
 #' @param year Either "latest 5 year average", "latest single year (us by state)"
 #' 
-#' @returns A data frame with the following columns "State", "FIPS", "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"
+#' @returns A data frame with the following columns Areatype, Area Code, "Met Healthy People Objective of ***?",
+#'                                                  "Age Adjusted Death Rate", "Lower 95% CI Rate", "Upper 95% CI Rate", 
+#'                                                  "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", 
+#'                                                  "Recent Trend", "Recent 5 Year Trend", "Lower 95% CI Trend", "Upper 95% CI Trend"
 #' 
 #' @export
 #' 
 #' @examples
 #' \dontrun{
-#' mortality_cancer("wa", "county", "all cancer sites", "black (non-hispanic)", 
-#'                  "both sexes", "ages 65+")
-#' mortality_cancer("ca", "hsa", "lung & bronchus", "all races (includes hispanic)", 
-#'                  "males", "ages 50+")
-#' mortality_cancer("usa", "state", "prostate", "all races (includes hispanic)", 
-#'                  "males", "ages 50+")
-#' mortality_cancer(area="wa", areatype="county", cancer="ovary", race="all races (includes hispanic)", 
-#'                  sex="females", age="ages 50+")
-#' mortality_cancer("ca", "hsa", "childhood (ages <20, all sites)", "all races (includes hispanic)", 
-#'                  "males", "ages <20")
+#' mortality_cancer(area = "wa",
+#'                  areatype = "county",
+#'                  cancer = "all cancer sites",
+#'                  race = "black (non-hispanic)",
+#'                  sex = "both sexes",
+#'                  age = "ages 65+",
+#'                  year = "latest 5 year average")
+#'
+#' mortality_cancer(area = "usa",
+#'                  areatype = "state",
+#'                  cancer = "prostate",
+#'                  race = "all races (includes hispanic)",
+#'                  sex = "males",
+#'                  age = "ages 50+",
+#'                  year = "latest single year (us by state)")
+#'                  
+#' mortality_cancer(area = "wa",
+#'                  areatype = "hsa",
+#'                  cancer = "ovary",
+#'                  race = "all races (includes hispanic)",
+#'                  sex = "females",
+#'                  age = "ages 50+",
+#'                  year = "latest 5 year average")
 #' }
-mortality_cancer <- function(area, areatype, cancer, race, sex=NULL, age, year="latest 5 year average") {
+mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
   female_cancer <- c("breast (female)", "ovary", "uterus (corpus & uterus, nos)")
   
   childhood_cancer <- c("childhood (ages <15, all sites)", "childhood (ages <20, all sites)")
+  
+  if ((areatype == "county" || areatype == "hsa") && year == "latest single year (us by state)") {
+    cli_abort("For year latest single year (us by state), areatype must be state")
+  }
   
   if ((cancer %in% female_cancer) && (sex == "males" || sex == "both sexes")) {
     cli_abort("For this cancer type, sex must be females")
