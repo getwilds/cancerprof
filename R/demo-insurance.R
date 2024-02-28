@@ -20,20 +20,30 @@
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #'
-#' @returns A data frame with the following columns "County", "FIPS", "Percent", "People", "Rank"
+#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "People", "Rank"
 #' 
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' demo_insurance("usa", "state", "% Insured in demographic group, all income levels", 
-#'                "both sexes", "under 19 years", "all races (includes hispanic)")
-#' demo_insurance("wa", "hsa", "% Insured in demographic group, all income levels", 
-#'                "males", "18 to 64 years")
-#' demo_insurance("dc", "county", "% Insured in demographic group, all income levels", 
-#'                "males", "18 to 64 years")
-#' demo_insurance("usa", "state", "% Insured in demographic group, all income levels", 
-#'                "both sexes", "18 to 64 years", "hispanic (any race)")
+#' demo_insurance(area = "usa",
+#'                areatype = "state",
+#'                insurance = "% Insured in demographic group, all income levels", 
+#'                sex = "both sexes",
+#'                age = "under 19 years",
+#'                race = "all races (includes hispanic)")
+#'                
+#' demo_insurance(area = "wa", 
+#'                areatype = "hsa",
+#'                insurance = "% Insured in demographic group, all income levels", 
+#'                sex = "males",
+#'                age = "18 to 64 years")
+#'                
+#' demo_insurance(area = "dc",
+#'                areatype = "county",
+#'                insurance = "% Insured in demographic group, all income levels", 
+#'                sex = "males",
+#'                age = "18 to 64 years")
 #' }
 demo_insurance <- function(area, areatype, insurance, sex, age, race=NULL) {
   

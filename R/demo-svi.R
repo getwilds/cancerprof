@@ -14,9 +14,14 @@
 #' 
 #' @examples 
 #' \dontrun{
-#' demo_svi("WA", "overall")
-#' demo_svi("usa", "overall")
-#' demo_svi("dc", "socioeconomic status")
+#' demo_svi(area = "WA",
+#'          svi = "overall")
+#'          
+#' demo_svi(area = "usa",
+#'          svi = "overall")
+#'          
+#' demo_svi(area = "dc",
+#'          svi = "socioeconomic status")
 #' }
 demo_svi <- function(area, svi) {
   

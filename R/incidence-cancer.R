@@ -17,10 +17,9 @@
 #' @param stage Either "all stages" or "late stage (regional & distant)"
 #' @param year Either "latest 5 year average", "latest single year (us by state)"
 #' 
-#' @returns A data frame with the following columns Areatype, Area Code, "Met Healthy People Objective of ***?",
-#'                                                  "Age Adjusted Death Rate", "Lower 95% CI Rate", "Upper 95% CI Rate", 
-#'                                                  "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", 
-#'                                                  "Recent Trend", "Recent 5 Year Trend", "Lower 95% CI Trend", "Upper 95% CI Trend"
+#' @returns A data frame with the following columns Areatype, Area Code, "Age Adjusted Incidence Rate", "Lower 95% CI",
+#'          "Upper 95% CI", "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", "Recent Trend", 
+#'          "Recent 5 Year Trend", "Trend Lower 95% CI", "Trend Upper 95% CI"
 #' 
 #' @export
 #' 
@@ -45,7 +44,7 @@
 #'                  year = "latest single year (us by state)")
 #'                  
 #' incidence_cancer(area = "wa",
-#'                  areatype = "county",
+#'                  areatype = "hsa",
 #'                  cancer = "ovary",
 #'                  race = "all races (includes hispanic)",
 #'                  sex = "females",
@@ -114,12 +113,15 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
 
   areatype_map <- c("county" = "County", "hsa" = "Health Service Area", "state" = "State")
   areatype_title <- areatype_map[areatype]
+  
+  areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
+  areacode_title <- areacode_map[areatype]
 
   if (stage == "all stages") {
     resp %>%
-      setNames(c(areatype_title, "FIPS", "Age Adjusted Incidence Rate", "Lower 95% CI", "Upper 95% CI", "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", "Recent Trend", "Recent 5 Year Trend", "Trend Lower 95% CI", "Trend Upper 95% CI"))
+      setNames(c(areatype_title, areacode_title, "Age Adjusted Incidence Rate", "Lower 95% CI", "Upper 95% CI", "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", "Recent Trend", "Recent 5 Year Trend", "Trend Lower 95% CI", "Trend Upper 95% CI"))
   } else if (stage == "late stage (regional & distant)") {
     resp %>%
-      setNames(c(areatype_title, "FIPS", "Age Adjusted Incidence Rate", "Lower 95% CI", "Upper 95% CI", "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", "Percentage of Cases with Late Stage"))
+      setNames(c(areatype_title, areacode_title, "Age Adjusted Incidence Rate", "Lower 95% CI", "Upper 95% CI", "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", "Percentage of Cases with Late Stage"))
   }
 }

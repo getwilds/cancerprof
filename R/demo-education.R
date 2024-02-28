@@ -6,7 +6,7 @@
 #' @param areatype Either "county", "hsa" (Health service area), or "state"
 #' @param education Either "less than 9th grade", "at least high school", "at least bachelors degree"
 #' @param sex Either "both sexes", "male", "female"
-#' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
+#' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
 #'
@@ -14,16 +14,26 @@
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
 #'
-#' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
+#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "Households", "Rank"
 #'
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' demo_education("wa", "county", "at least high school", "males")
-#' demo_education("usa", "state", "at least bachelors degree", "both sexes", 
-#'                "all races (includes hispanic)")
-#' demo_education("pr", "hsa", "less than 9th grade")
+#' demo_education(area = "wa",
+#'                areatype = "county",
+#'                education = "at least high school",
+#'                sex = "males")
+#'                
+#' demo_education(area = "usa",
+#'                areatype = "state",
+#'                education = "at least bachelors degree",
+#'                sex = "both sexes",
+#'                race = "all races (includes hispanic)")
+#'                
+#' demo_education(area = "pr",
+#'                areatype = "hsa",
+#'                education = "less than 9th grade")
 #' }
 demo_education <- function(area, areatype, education, sex=NULL, race=NULL) {
 

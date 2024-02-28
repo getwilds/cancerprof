@@ -5,7 +5,7 @@
 # tests class and typeof output
 test_that("Output data type is correct", {
   output <- incidence_cancer("wa", "county", "all cancer sites", "black (non-hispanic)", 
-                             "both sexes", "ages 65+", "all stages")
+                             "both sexes", "ages 65+", "all stages", "latest 5 year average")
   
   expect_true(inherits(output, "data.frame"))
 })
@@ -19,7 +19,7 @@ cancer_options <- c("all cancer sites","bladder", "brain & ons", "colon & rectum
 for (option in cancer_options) {
   test_that("incidence cancer returns non-empty data frame", {
     result <- incidence_cancer("wa", "county", option, "all races (includes hispanic)", 
-                               "both sexes", "all ages", "all stages")
+                               "both sexes", "all ages", "all stages", "latest 5 year average")
     expect_true(is.data.frame(result))
   })
 }
@@ -31,7 +31,7 @@ for (option in female_cancer_options) {
   test_that("incidence female cancer returns non-empty data frame", {
     result <- incidence_cancer("wa", "county", option, 
                                "all races (includes hispanic)", "females", 
-                               "ages 50+", "all stages")
+                               "ages 50+", "all stages", "latest 5 year average")
     
     expect_true(is.data.frame(result))
   })
@@ -39,11 +39,11 @@ for (option in female_cancer_options) {
 
 childhood_male_cancer_options <- list(
   childhood15 = incidence_cancer("ca", "hsa", "childhood (ages <20, all sites)", "all races (includes hispanic)", 
-                                 "males", "ages <20", "all stages"),
+                                 "males", "ages <20", "all stages", "latest 5 year average"),
   childhood20 = incidence_cancer("ca", "hsa", "childhood (ages <20, all sites)", "all races (includes hispanic)", 
-                                 "males", "ages <20", "all stages"),
+                                 "males", "ages <20", "all stages", "latest 5 year average"),
   prostate = incidence_cancer("usa", "state", "prostate", "all races (includes hispanic)", 
-                              "males", "ages 50+", "all stages")
+                              "males", "ages 50+", "all stages", "latest 5 year average")
 )
 
 for (option_name in names(childhood_male_cancer_options)) {
@@ -56,9 +56,9 @@ for (option_name in names(childhood_male_cancer_options)) {
 #incidence_cancer must have 14 columns
 test_that("incidence_cancer has correct number of columns", {
   df1 <- incidence_cancer("wa", "county", "all cancer sites", "black (non-hispanic)", 
-                         "both sexes", "ages 65+", "all stages")
+                         "both sexes", "ages 65+", "all stages", "latest 5 year average")
   df2 <- incidence_cancer("usa", "state", "lung & bronchus", "all races (includes hispanic)", "males", 
-                         "ages 50+", "late stage (regional & distant)")
+                         "ages 50+", "late stage (regional & distant)", "latest 5 year average")
   expected_columns1 <- 13
   expected_columns2 <- 10
   expect_equal(ncol(df1), expected_columns1)

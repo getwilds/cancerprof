@@ -8,14 +8,19 @@
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
 #' 
-#' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
+#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "Households", "Rank"
 #' 
 #' @export
 #' 
 #' @examples 
-#' demo_language("WA", "county")
-#' demo_language("dc", "hsa")
-#' demo_language("usa", "state")
+#' demo_language(area = "WA", 
+#'               areatype = "county")
+#'               
+#' demo_language(area = "dc",
+#'               areatype = "hsa")
+#'               
+#' demo_language(area = "usa", 
+#'               areatype = "state")
 demo_language <- function(area, areatype) {
   
   req <- create_request("demographics")
