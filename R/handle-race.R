@@ -29,7 +29,9 @@ handle_race <- function(race) {
     "black" = "02",
     "black (includes hispanic)" = "02",
     "amer. indian/alaskan native (includes hispanic)" = "03",
-    "all ages, asian or pacific islander (includes hispanic)" = "04",
+    "american indian/alaska native" = "03",
+    "asian or pacific islander (includes hispanic)" = "04",
+    "asian/pacific islander" = "04",
     "hispanic (any race)" = "05",
     
     #screening and risk factors

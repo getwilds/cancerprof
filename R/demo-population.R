@@ -8,22 +8,35 @@
 #'                                                "american indian/alaska native", "asian/pacific islander", "black", "foreign born", "hispanic", 
 #'                                                "non-hispanic (origin recode)", "white", "males", "females"
 #' @param race One of the following values: "american indian/alaska native", "asian/pacific islander", 
-#'                                          "black", "foreign born", "hispanic", "non-hispanic (origin recode)", "white"
+#'                                          "black", "hispanic", "white (includes hispanic)", "white non-hispanic", "hispanic (any race)"
 #' @param sex Either "both sexes", "male", "female"
 #' 
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
 #' 
-#' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
+#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "Households", "Rank"
 #' 
 #' @export
 #' 
 #' @examples
 #' \dontrun{
-#' demo_population("WA", "county", "asian/pacific islander", sex="females")
-#' demo_population("dc", "hsa", "foreign born", "black", "females")
-#' demo_population("usa", "state", "foreign born", "black", "females")
+#' demo_population(area = "WA",
+#'                 areatype = "county",
+#'                 population = "asian/pacific islander",
+#'                 sex="females")
+#'                 
+#' demo_population(area = "dc",
+#'                 areatype = "hsa",
+#'                 population = "foreign born",
+#'                 race = "black",
+#'                 sex = "females")
+#'                 
+#' demo_population(area = "usa",
+#'                 areatype = "state",
+#'                 population = "foreign born",
+#'                 race = "hispanic (any race)", 
+#'                 sex = "females")
 #' 
 #' }
 demo_population <- function(area, areatype, population, race=NULL, sex=NULL) {

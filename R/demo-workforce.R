@@ -12,15 +12,26 @@
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
 #' 
-#' @returns A data frame with the following columns "County", "FIPS", "Percent", "People Unemployed", "Rank"
+#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "People Unemployed", "Rank"
 #' 
 #' @export
 #' 
 #' @examples
 #' \dontrun{
-#' demo_workforce("WA", "county", "all races (includes hispanic)", "both sexes")
-#' demo_workforce("usa", "state", "all races (includes hispanic)", "females")
-#' demo_workforce("pr", "hsa", "all races (includes hispanic)", "both sexes")
+#' demo_workforce(area = "WA",
+#'                areatype = "county",
+#'                race = "all races (includes hispanic)",
+#'                sex = "both sexes")
+#'                
+#' demo_workforce(area = "usa",
+#'                areatype = "state",
+#'                race = "all races (includes hispanic)",
+#'                sex = "females")
+#'                
+#' demo_workforce(area = "pr",
+#'                areatype = "hsa",
+#'                race = "all races (includes hispanic)",
+#'                sex = "both sexes")
 #' }
 demo_workforce <- function(area, areatype, race, sex) {
   

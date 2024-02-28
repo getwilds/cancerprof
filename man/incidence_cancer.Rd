@@ -59,7 +59,7 @@ incidence_cancer(area = "usa",
                  year = "latest single year (us by state)")
                  
 incidence_cancer(area = "wa",
-                 areatype = "county",
+                 areatype = "hsa",
                  cancer = "ovary",
                  race = "all races (includes hispanic)",
                  sex = "females",
