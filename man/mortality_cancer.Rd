@@ -28,7 +28,7 @@ mortality_cancer(area, areatype, cancer, race, sex, age, year)
 \item{year}{Either "latest 5 year average", "latest single year (us by state)"}
 }
 \value{
-A data frame with the following columns Areatype, Area Code, "Met Healthy People Objective of ***?",
+A data frame with the following columns: Area Type, Area Code, "Met Healthy People Objective of ***?",
 "Age Adjusted Death Rate", "Lower 95\% CI Rate", "Upper 95\% CI Rate",
 "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count",
 "Recent Trend", "Recent 5 Year Trend", "Lower 95\% CI Trend", "Upper 95\% CI Trend"

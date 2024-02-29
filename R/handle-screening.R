@@ -27,7 +27,7 @@ handle_screening <- function(screening) {
     "had colonoscopy in past 10 years, ages 50-75" = "v302",
     
     "home blood stool test in the past year, ages 45-75" = "v520",
-    "receieved at least one recommended crc test, ages 45-75" = "v521"
+    "received at least one recommended crc test, ages 45-75" = "v521"
     
     #removed from scp
     # "ever had colorectal endoscopy (sigmoidoscopy or colonoscopy), ages 50+" = "v09",

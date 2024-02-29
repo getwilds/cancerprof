@@ -17,7 +17,7 @@
 #' @param stage Either "all stages" or "late stage (regional & distant)"
 #' @param year Either "latest 5 year average", "latest single year (us by state)"
 #' 
-#' @returns A data frame with the following columns Areatype, Area Code, "Age Adjusted Incidence Rate", "Lower 95% CI",
+#' @returns A data frame with the following columns: Area Type, Area Code, "Age Adjusted Incidence Rate", "Lower 95% CI",
 #'          "Upper 95% CI", "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", "Recent Trend", 
 #'          "Recent 5 Year Trend", "Trend Lower 95% CI", "Trend Upper 95% CI"
 #' 

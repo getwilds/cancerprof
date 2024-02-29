@@ -8,15 +8,16 @@
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
 #' @param sex Either "both sexes", "male", "female"
 #' 
-#' @returns A data frame with the following columns "State", "FIPS", "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"
+#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"
 #' 
 #' @export
 #' 
 #' @examples
 #' \dontrun{
-#' risk_alcohol(paste("binge drinking (4+ drinks on one occasion for women,", 
-#'                    "5+ drinks for one occasion for men), ages 21+"), 
-#'                    "all races (includes hispanic)", "both sexes")
+#' risk_alcohol(alcohol = paste("binge drinking (4+ drinks on one occasion for women,", 
+#'                              "5+ drinks for one occasion for men), ages 21+"), 
+#'              race = "all races (includes hispanic)", 
+#'              sex = "both sexes")
 #' }
 risk_alcohol <- function(alcohol, race, sex) {
   

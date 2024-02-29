@@ -20,15 +20,25 @@ demo_poverty(area, areatype, poverty, race = NULL, sex = NULL)
 \item{sex}{Either "both sexes", "male", "female"}
 }
 \value{
-A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
+A data frame with the following columns: Area Type, Area Code, "Percent", "Households", "Rank"
 }
 \description{
 This function returns a data frame from Poverty in State Cancer Profiles
 }
 \examples{
 \dontrun{
-demo_poverty("WA", "county", "persistent poverty")
-demo_poverty("usa", "state", "families below poverty", "black")
-demo_poverty("dc", "hsa", "families below poverty", "All Races (includes Hispanic)")
+demo_poverty(area = "WA",
+             areatype = "county",
+             poverty = "persistent poverty")
+             
+demo_poverty(area = "usa",
+             areatype = "state",
+             poverty = "families below poverty",
+             race = "black")
+             
+demo_poverty(area = "dc",
+             areatype = "hsa",
+             poverty = "families below poverty",
+             race = "All Races (includes Hispanic)")
 }
 }
