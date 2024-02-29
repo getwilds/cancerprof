@@ -23,22 +23,23 @@
 #' @examples
 #' \dontrun{
 #' demo_crowding(area = "WA", 
-#'               areatype = "hsa", 
+#'               areatype = "hsa",
+#'               crowding = "household with >1 person per room",
 #'               race = "All Races (includes Hispanic)")
 #'              
 #' demo_crowding(area = "usa",
 #'               areatype = "state",
+#'               crowding = "household with >1 person per room",
 #'               race = "All Races (includes Hispanic)")
 #'
 #' demo_crowding(area = "pr",
 #'               areatype = "hsa",
+#'               crowding = "household with >1 person per room",
 #'               race = "black")
 #' }
 #' 
-demo_crowding <- function(area, areatype, race) {
+demo_crowding <- function(area, areatype, crowding, race) {
 
-  crowding = "00027"
-  
   req <- create_request("demographics")
   
   resp <- req %>% 
@@ -46,7 +47,7 @@ demo_crowding <- function(area, areatype, race) {
       stateFIPS=fips_scp(area),
       areatype=tolower(areatype),
       topic="crowd",
-      demo=crowding,
+      demo=handle_crowding(crowding),
       race=handle_race(race),
       type="manyareacensus",
       sortVariableName="value",
