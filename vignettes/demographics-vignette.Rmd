@@ -27,6 +27,8 @@ These functions are: `demo_crowding()`, `demo_education()`, `demo_food()`, `demo
 
 Each of these functions require various parameters that must be specified to pull data. Please refer to function documentation for more details.
 
+### Demo Crowding
+Demo crowding always requires 3 arguments: area, areatype, and race
 
 ```{r}
 # demo_education("wa", "county", "at least high school", "males")

@@ -4,20 +4,29 @@
 #' 
 #tests class and typeof output
 test_that("Output data type is correct", {
-  output <- demo_crowding("wa", "hsa", "All Races (includes Hispanic)")
+  output <- demo_crowding(area = "wa",
+                          areatype = "hsa", 
+                          crowding = "household with >1 person per room",
+                          race = "All Races (includes Hispanic)")
   
   expect_true(inherits(output, "data.frame"))
 })
 
 #Ensures that variables are present and working on SCP
 test_that("demo-crowding returns non-empty data frame", {
-  crowding1 <- demo_crowding("wa", "hsa", "All Races (includes Hispanic)")
+  crowding1 <- demo_crowding(area = "wa",
+                             areatype = "hsa", 
+                             crowding = "household with >1 person per room",
+                             race = "All Races (includes Hispanic)")
   expect_true(is.data.frame(crowding1))
 })
 
 #demo-crowding must have 5 columns
 test_that("demo-crowding has correct number of columns", {
-  df <- demo_crowding("wa", "hsa", "All Races (includes Hispanic)")
+  df <- demo_crowding(area = "wa",
+                      areatype = "hsa", 
+                      crowding = "household with >1 person per room",
+                      race = "All Races (includes Hispanic)")
   expected_columns <- 5
   expect_equal(ncol(df), expected_columns)
 })

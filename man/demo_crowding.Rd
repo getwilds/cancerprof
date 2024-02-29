@@ -4,7 +4,7 @@
 \alias{demo_crowding}
 \title{Access to Crowding Data}
 \usage{
-demo_crowding(area, areatype, race)
+demo_crowding(area, areatype, crowding, race)
 }
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
@@ -29,15 +29,18 @@ This function returns a data frame from Crowding in State Cancer Profiles
 \examples{
 \dontrun{
 demo_crowding(area = "WA", 
-              areatype = "hsa", 
+              areatype = "hsa",
+              crowding = "household with >1 person per room",
               race = "All Races (includes Hispanic)")
              
 demo_crowding(area = "usa",
               areatype = "state",
+              crowding = "household with >1 person per room",
               race = "All Races (includes Hispanic)")
 
 demo_crowding(area = "pr",
               areatype = "hsa",
+              crowding = "household with >1 person per room",
               race = "black")
 }
 
