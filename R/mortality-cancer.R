@@ -1,8 +1,6 @@
 #' Access to Cancer Mortality Data
 #' 
 #' This function returns a data frame from Cancer Mortality in State Cancer Profiles
-#' 
-#' This is the details section this is where the finer details of the function are explained
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county", "hsa" (Health service area), or "state"
