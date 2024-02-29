@@ -20,7 +20,9 @@
 #' risk_diet_exercise(diet_exercise = "bmi is healthy, ages 20+",
 #'                    race = "all races (includes hispanic)", 
 #'                    sex = "both sexes")
-#' risk_diet_exercise(diet_exer"bmi is obese, high school survey", "all races (includes hispanic)", "males")
+#' risk_diet_exercise(diet_exercise = "bmi is obese, high school survey",
+#'                    race = "all races (includes hispanic)",
+#'                    sex = "males")
 #' }
 risk_diet_exercise <- function(diet_exercise, race, sex) {
   
