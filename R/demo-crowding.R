@@ -35,11 +35,6 @@
 #'               race = "black")
 #' }
 #' 
-
-area = "wa"
-areatype = "county"
-race = "all races (includes hispanic)"
-
 demo_crowding <- function(area, areatype, race) {
 
   crowding = "00027"

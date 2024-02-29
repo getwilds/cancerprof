@@ -36,9 +36,6 @@ A data frame with the following columns: Area Type, Area Code, "Met Healthy Peop
 \description{
 This function returns a data frame from Cancer Mortality in State Cancer Profiles
 }
-\details{
-This is the details section this is where the finer details of the function are explained
-}
 \examples{
 \dontrun{
 mortality_cancer(area = "wa",

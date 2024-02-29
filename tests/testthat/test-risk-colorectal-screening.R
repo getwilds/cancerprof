@@ -16,7 +16,7 @@ screening_options <- list(
   screening3 = risk_colorectal_screening("had colonoscopy in past 10 years, ages 50-75", area = "wa"),
   screening4 = risk_colorectal_screening("home blood stool test in the past year, ages 45-75",
                                          "all races (includes hispanic)", "both sexes"),
-  screening5 = risk_colorectal_screening("receieved at least one recommended crc test, ages 45-75",
+  screening5 = risk_colorectal_screening("received at least one recommended crc test, ages 45-75",
                                          "all races (includes hispanic)", "both sexes")
 )
 
