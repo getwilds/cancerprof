@@ -18,15 +18,26 @@ demo_income(area, areatype, income, race)
 "asian or pacific islander (includes hispanic)","hispanic (any race)}
 }
 \value{
-A data frame with the following columns "County", "FIPS", "Dollars", "Rank"
+A data frame with the following columns: Area Type, Area Code, "Dollars", "Rank"
 }
 \description{
 This function returns a data frame from Income in State Cancer Profiles
 }
 \examples{
 \dontrun{
-demo_income("wa", "county", "median family income", "all races (includes hispanic)")
-demo_income("usa", "state", "median family income", "all races (includes hispanic)")
-demo_income("pr", "county", "median family income", "all races (includes hispanic)")
+demo_income(area = "wa",
+            areatype = "county",
+            income = "median family income",
+            race = "all races (includes hispanic)")
+            
+demo_income(area = "usa",
+            areatype = "state",
+            income = "median family income",
+            race = "all races (includes hispanic)")
+            
+demo_income(area = "pr",
+            areatype = "county",
+            income = "median family income",
+            race = "all races (includes hispanic)")
 }
 }

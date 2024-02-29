@@ -12,13 +12,18 @@ demo_language(area, areatype)
 \item{areatype}{Either "county", "hsa" (Health service area), or "state"}
 }
 \value{
-A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
+A data frame with the following columns: Area Type, Area Code, "Percent", "Households", "Rank"
 }
 \description{
 This function returns a data frame from Crowding in State Cancer Profiles
 }
 \examples{
-demo_language("WA", "county")
-demo_language("dc", "hsa")
-demo_language("usa", "state")
+demo_language(area = "WA", 
+              areatype = "county")
+              
+demo_language(area = "dc",
+              areatype = "hsa")
+              
+demo_language(area = "usa", 
+              areatype = "state")
 }

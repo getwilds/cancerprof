@@ -6,14 +6,17 @@
 #'                       "percent with up to date hpv vaccination coverage, ages 13-17"
 #' @param sex Either "both sexes", "males", "females"
 #' 
-#' @returns A data frame with the following columns "State", "FIPS", "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"
+#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"
 #' 
 #' @export
 #' 
 #' @examples
 #' \dontrun{
-#' risk_vaccines("percent with up to date hpv vaccination coverage, ages 13-15", "both sexes")
-#' risk_vaccines("percent with up to date hpv vaccination coverage, ages 13-17", "females")
+#' risk_vaccines(vaccine = "percent with up to date hpv vaccination coverage, ages 13-15",
+#'               sex = "both sexes")
+#'               
+#' risk_vaccines(vaccine = "percent with up to date hpv vaccination coverage, ages 13-17",
+#'               sex = "females")
 #' }
 risk_vaccines <- function(vaccine, sex) {
   

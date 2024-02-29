@@ -27,23 +27,31 @@ risk_smoking(smoking, race = NULL, sex = NULL, datatype = NULL, area = NULL)
 \item{area}{A state/territory abbreviation or USA.}
 }
 \value{
-A data frame with the following columns #"State", "FIPS", "Percent", "Lower CI 95\%", "Upper CI 95\%", "Number of Respondents"
+A data frame with the following columns: Area Type, Area Code, "Percent", "Lower CI 95\%", "Upper CI 95\%", "Number of Respondents"
 }
 \description{
 This function returns a data frame from Smoking in State Cancer Profiles
 }
+\details{
+Please note that this function requires very specific arguments for each smoking type
+}
 \examples{
 \dontrun{
-risk_smoking("smoking laws (any)")
-risk_smoking("smokers (stopped for 1 day or longer)", sex="both sexes", 
-              datatype="county level modeled estimates", area="wa")
-risk_smoking("smoking not allowed at work (current smokers)", sex="both sexes", 
-              datatype="direct estimates")
-risk_smoking("former smoker; ages 18+", sex="both sexes", 
-              datatype="county level modeled estimates", area="ca")
-risk_smoking("smokers (ever); ages 18+", race="hispanic (any race)", sex="both sexes", 
-              datatype="direct estimates")
-risk_smoking("smokers (current); ages 18+", race="all races (includes hispanic)", 
-              sex="both sexes", datatype="county level modeled estimates", area="wa")
+risk_smoking(smoking = "smoking laws (any)")
+
+risk_smoking(smoking = "smokers (stopped for 1 day or longer)",
+             sex = "both sexes", 
+             datatype = "county level modeled estimates",
+             area = "wa")
+             
+risk_smoking(smoking = "smoking not allowed at work (current smokers)",
+             sex = "both sexes", 
+             datatype = "direct estimates")
+             
+risk_smoking(smoking = "smokers (current); ages 18+",
+             race = "all races (includes hispanic)",
+             sex = "both sexes",
+             datatype = "county level modeled estimates",
+             area="wa")
 }
 }

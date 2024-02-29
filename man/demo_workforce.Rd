@@ -18,15 +18,26 @@ demo_workforce(area, areatype, race, sex)
 \item{sex}{Either "both sexes", "male", "female"}
 }
 \value{
-A data frame with the following columns "County", "FIPS", "Percent", "People Unemployed", "Rank"
+A data frame with the following columns: Area Type, Area Code, "Percent", "People Unemployed", "Rank"
 }
 \description{
 This function returns a data frame from Workforce in State Cancer Profiles
 }
 \examples{
 \dontrun{
-demo_workforce("WA", "county", "all races (includes hispanic)", "both sexes")
-demo_workforce("usa", "state", "all races (includes hispanic)", "females")
-demo_workforce("pr", "hsa", "all races (includes hispanic)", "both sexes")
+demo_workforce(area = "WA",
+               areatype = "county",
+               race = "all races (includes hispanic)",
+               sex = "both sexes")
+               
+demo_workforce(area = "usa",
+               areatype = "state",
+               race = "all races (includes hispanic)",
+               sex = "females")
+               
+demo_workforce(area = "pr",
+               areatype = "hsa",
+               race = "all races (includes hispanic)",
+               sex = "both sexes")
 }
 }

@@ -16,15 +16,23 @@ demo_mobility(area, areatype, mobility)
 "moved, same county (in past year)"}
 }
 \value{
-A data frame with the following columns "County", "FIPS", "Percent", "People", "Rank"
+A data frame with the following columns: Area Type, Area Code, "Percent", "People", "Rank"
 }
 \description{
 This function returns a data frame from mobility in State Cancer Profiles
 }
 \examples{
 \dontrun{
-demo_mobility("WA", "county", "moved, different county, same state (in past year)")
-demo_mobility("usa", "state", "moved, same county (in past year)")
-demo_mobility("dc", "hsa", "moved, same county (in past year)")
+demo_mobility(area = "WA",
+              areatype = "county",
+              mobility = "moved, different county, same state (in past year)")
+              
+demo_mobility(area = "usa",
+              areatype = "state",
+              mobility = "moved, same county (in past year)")
+              
+demo_mobility(area = "dc",
+              areatype = "hsa",
+              mobility = "moved, same county (in past year)")
 }
 }

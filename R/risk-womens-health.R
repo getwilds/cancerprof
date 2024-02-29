@@ -2,7 +2,7 @@
 #' 
 #' This function returns a data frame from Women's Health in State Cancer Profiles
 #'
-#' @param whealth Either "mammogram in past 2 years, ages 50-74", "mammogram in past 2 years, ages 40+", 
+#' @param women_health Either "mammogram in past 2 years, ages 50-74", "mammogram in past 2 years, ages 40+", 
 #'                       "pap smear in past 3 years, no hysterectomy, ages 21-65"
 #' @param race One of the following values: "all races (includes hispanic)", "white (non-hispanic)", 
 #'                                          "black (non-hispanic)", "amer. indian / ak native (non-hispanic)", 
@@ -10,19 +10,25 @@
 #' @param datatype Either "direct estimates" or "county level modeled estimates"
 #' @param area A state/territory abbreviation or USA.
 #' 
-#' @returns A data frame with the following columns "County", "FIPS", "Percent", "People Unemployed", "Rank"
+#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "People Unemployed", "Rank"
 #' 
 #' @export
 #' 
 #' @examples
 #' \dontrun{
-#' risk_whealth("mammogram in past 2 years, ages 50-74", 
-#'              "all races (includes hispanic)", "direct estimates")
-#' risk_whealth("pap smear in past 3 years, no hysterectomy, ages 21-65", 
-#'              "all races (includes hispanic)", "county level modeled estimates", "wa")
-#' risk_whealth("pap smear in past 3 years, no hysteroetomy, ages 21-65", "black (non-hispanic)")
+#' risk_women_health(women_health = "mammogram in past 2 years, ages 50-74", 
+#'                   race = "all races (includes hispanic)",
+#'                   datatype = "direct estimates")
+#'                   
+#' risk_women_health(women_health = "pap smear in past 3 years, no hysterectomy, ages 21-65", 
+#'                   race = "all races (includes hispanic)",
+#'                   datatype = "county level modeled estimates",
+#'                   area = "wa")
+#'                   
+#' risk_women_health(women_health = "pap smear in past 3 years, no hysteroetomy, ages 21-65",
+#'                   race = "black (non-hispanic)")
 #' }
-risk_whealth <- function(whealth, race, datatype="direct estimates", area=NULL) {
+risk_women_health <- function(women_health, race, datatype="direct estimates", area=NULL) {
   
   req <- create_request("risk")
   
@@ -41,7 +47,7 @@ risk_whealth <- function(whealth, race, datatype="direct estimates", area=NULL) 
   resp <- req %>%
     req_url_query(
       topic="women",
-      risk=handle_whealth(whealth),
+      risk=handle_women_health(women_health),
       race=handle_race(race),
       type="risk",
       sortVariableName="percent",
@@ -65,7 +71,7 @@ risk_whealth <- function(whealth, race, datatype="direct estimates", area=NULL) 
   resp <- process_screening(resp)
   
   if (datatype == "county level modeled estimates") {
-    if(whealth == "pap smear in past 3 years, no hysterectomy, ages 21-65") {
+    if(women_health == "pap smear in past 3 years, no hysterectomy, ages 21-65") {
       resp %>% 
         setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
     } else {

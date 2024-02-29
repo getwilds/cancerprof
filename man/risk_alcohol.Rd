@@ -16,15 +16,16 @@ risk_alcohol(alcohol, race, sex)
 \item{sex}{Either "both sexes", "male", "female"}
 }
 \value{
-A data frame with the following columns "State", "FIPS", "Percent", "Lower 95\% CI", "Upper 95\% CI", "Number of Respondents"
+A data frame with the following columns: Area Type, Area Code, "Percent", "Lower 95\% CI", "Upper 95\% CI", "Number of Respondents"
 }
 \description{
 This function returns a data frame from Alcohol in State Cancer Profiles
 }
 \examples{
 \dontrun{
-risk_alcohol(paste("binge drinking (4+ drinks on one occasion for women,", 
-                   "5+ drinks for one occasion for men), ages 21+"), 
-                   "all races (includes hispanic)", "both sexes")
+risk_alcohol(alcohol = paste("binge drinking (4+ drinks on one occasion for women,", 
+                             "5+ drinks for one occasion for men), ages 21+"), 
+             race = "all races (includes hispanic)", 
+             sex = "both sexes")
 }
 }

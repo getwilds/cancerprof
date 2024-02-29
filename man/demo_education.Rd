@@ -15,21 +15,31 @@ demo_education(area, areatype, education, sex = NULL, race = NULL)
 
 \item{sex}{Either "both sexes", "male", "female"}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
+\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
 "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 "asian or pacific islander (includes hispanic)","hispanic (any race)}
 }
 \value{
-A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
+A data frame with the following columns: Area Type, Area Code, "Percent", "Households", "Rank"
 }
 \description{
 This function returns a data frame from Education in State Cancer Profiles
 }
 \examples{
 \dontrun{
-demo_education("wa", "county", "at least high school", "males")
-demo_education("usa", "state", "at least bachelors degree", "both sexes", 
-               "all races (includes hispanic)")
-demo_education("pr", "hsa", "less than 9th grade")
+demo_education(area = "wa",
+               areatype = "county",
+               education = "at least high school",
+               sex = "males")
+               
+demo_education(area = "usa",
+               areatype = "state",
+               education = "at least bachelors degree",
+               sex = "both sexes",
+               race = "all races (includes hispanic)")
+               
+demo_education(area = "pr",
+               areatype = "hsa",
+               education = "less than 9th grade")
 }
 }

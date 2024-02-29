@@ -17,15 +17,25 @@ demo_food(area, areatype, food, race = NULL)
 "black (includes hispanic)","hispanic (any race)}
 }
 \value{
-A data frame with the following columns "County", "FIPS", "Value", "People"
+A data frame with the following columns: Area Type, Area Code, "Value", "People"
 }
 \description{
 This function returns a data frame from Food Insecurity in State Cancer Profiles
 }
 \examples{
 \dontrun{
-demo_food("wa", "county", "food insecurity", "black")
-demo_food("usa", "state", "limited access to healthy food")
-demo_food("pr", "county", "food insecurity", "all races (includes hispanic)")
+demo_food(area = "wa",
+          areatype = "county",
+          food = "food insecurity", 
+          race = "black")
+          
+demo_food(area = "usa",
+          areatype = "state",
+          food = "limited access to healthy food")
+          
+demo_food(area = "pr",
+          areatype = "county",
+          food = "food insecurity",
+          race = "all races (includes hispanic)")
 }
 }

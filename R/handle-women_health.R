@@ -2,7 +2,7 @@
 #' 
 #' This function returns a matching code value for a Women's Health for the api to use to get data from State Cancer Profiles
 #'
-#' @param whealth Either "mammogram in past 2 years, ages 50-74", "mammogram in past 2 years, ages 40+",
+#' @param women_health Either "mammogram in past 2 years, ages 50-74", "mammogram in past 2 years, ages 40+",
 #'                       "pap smear in past 3 years, no hysterectomy, ages 21-65",
 #'                       "pap smear in past 3 years, no hysterectomy, ages 18+"
 #'                       
@@ -16,8 +16,8 @@
 #' \dontrun{
 #' handle_whealth("mammogram in past 2 years, ages 50-74")
 #' }
-handle_whealth <- function(whealth) {
-  whealth <- tolower(whealth)
+handle_women_health <- function(women_health) {
+  women_health <- tolower(women_health)
   
   whealth_mapping <- c(
     "mammogram in past 2 years, ages 50-74" = "v05",
@@ -29,7 +29,7 @@ handle_whealth <- function(whealth) {
     # "pap smear in past 3 years, no hysterectomy, ages 18+" = "v11"
   )
   
-  whealth_code <- whealth_mapping[whealth]
+  whealth_code <- whealth_mapping[women_health]
   
   if (is.na(whealth_code)) {
     stop("Invalid womens health input, please check the documentation for valid inputs")
@@ -37,6 +37,3 @@ handle_whealth <- function(whealth) {
   
   return(as.character(whealth_code))
 }
-
-
-handle_whealth("pap smear in past 3 years, no hysteroetomy, ages 21-65")

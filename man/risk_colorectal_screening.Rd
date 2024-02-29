@@ -7,11 +7,11 @@
 risk_colorectal_screening(screening, race = NULL, sex = NULL, area = NULL)
 }
 \arguments{
-\item{screening}{One of the following values: "home blood stool test in the past year, ages 45-75",
-"receieved at least one recommended crc test, ages 45-75",
-"ever had fobt, ages 50-75",
+\item{screening}{One of the following values: "ever had fobt, ages 50-75",
 "guidance sufficient crc, ages 50-75",
-"had colonoscopy in past 10 years, ages 50-75"}
+"had colonoscopy in past 10 years, ages 50-75"
+"home blood stool test in the past year, ages 45-75"
+"received at least one recommended crc test, ages 45-75"}
 
 \item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
 "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
@@ -22,16 +22,21 @@ risk_colorectal_screening(screening, race = NULL, sex = NULL, area = NULL)
 \item{area}{A state/territory abbreviation or USA.}
 }
 \value{
-A data frame with the following columns "County", "FIPS", "Percent", "People Unemployed", "Rank"
+A data frame with the following columns: Area Type, Area Code, "Percent", "People Unemployed", "Rank"
 }
 \description{
 This function returns a data frame from Colorectal Screening in State Cancer Profiles
 }
 \examples{
 \dontrun{
-risk_colorectal_screening("home blood stool test in the past year, ages 45-75",
-                          "all races (includes hispanic)","both sexes")
-risk_colorectal_screening("ever had fobt, ages 50-75", area="usa")
-risk_colorectal_screening("ever had fobt, ages 50-75", area="wa")
+risk_colorectal_screening(screening = "home blood stool test in the past year, ages 45-75",
+                          race = "all races (includes hispanic)",
+                          sex = "both sexes")
+                          
+risk_colorectal_screening(screening = "ever had fobt, ages 50-75",
+                          area="usa")
+risk_colorectal_screening(screening = "received at least one recommended crc test, ages 45-75",
+                          race = "all races (includes hispanic)",
+                          sex = "both sexes")
 }
 }
