@@ -202,3 +202,59 @@ population3 <- demo_population(area = "usa",
                                sex = "both sexes")
 
 head(population3, n=3)
+```
+
+### Demo Poverty
+Demo poverty has 5 arguments: area, areatype, poverty, race, sex. The function defaults to "all ages"
+
+The "persistent poverty" and "persons <150% of poverty" poverty argument will default to "all races", "both sexes", "all ages". 
+
+The "families below poverty" poverty argument will require a race argument and default to "both sexes" and "all ages". 
+
+The "persons below poverty" poverty argument will require a race argument and a sex argument, and default to "all ages".
+
+```{r poverty}
+#Persistent poverty
+poverty1 <- demo_poverty(area = "WA",
+                         areatype = "county",
+                         poverty = "persistent poverty")
+
+head(poverty1, n=3)
+
+#Families below poverty
+poverty2 <- demo_poverty(area = "usa",
+                          areatype = "state",
+                          poverty = "families below poverty",
+                          race = "black")
+
+head(poverty2, n=3)
+
+#Persons below poverty
+poverty3 <- demo_poverty(area = "usa",
+                          areatype = "state",
+                          poverty = "persons below poverty",
+                          race = "black",
+                          sex = "males")
+
+head(poverty3, n=3)
+```
+
+### Demo Social Vulnerability Index (SVI)
+Demo svi **Always** requires 2 arguments: area, svi. The function defaults to "all races", "both sexes", "all ages."
+
+*Please note that the areatype argument is not available for this function because areatype is limited to "county"*
+
+```{r svi}
+svi1 <- demo_svi(area = "WA",
+                 svi = "overall")
+
+head(svi1, n=3)
+
+
+svi2 <- demo_svi(area = "usa",
+                 svi = "socioeconomic status")
+
+head(svi2, n=3)
+```
+
+### Workforce

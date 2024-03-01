@@ -4,20 +4,23 @@
 #' 
 #tests class and typeof output
 test_that("Output data type is correct", {
-  output <- demo_workforce("wa", "county", "all races (includes hispanic)", "both sexes")
+  output <- demo_workforce("wa", "county", "unemployed",
+                           "all races (includes hispanic)", "both sexes")
   
   expect_true(inherits(output, "data.frame"))
 })
 
 #Ensures that variables are present and working on SCP
 test_that("demo-workforce returns non-empty data frame", {
-  workforce1 <- demo_workforce("wa", "county", "all races (includes hispanic)", "both sexes")
+  workforce1 <- demo_workforce("wa", "county", "unemployed",
+                               "all races (includes hispanic)", "both sexes")
   expect_true(is.data.frame(workforce1))
 })
 
 #demo-workforce must have 5 columns
 test_that("demo-workforce has correct number of columns", {
-  df <- demo_workforce("wa", "county", "all races (includes hispanic)", "both sexes")
+  df <- demo_workforce("wa", "county", "unemployed",
+                       "all races (includes hispanic)", "both sexes")
   expected_columns <- 5
   expect_equal(ncol(df), expected_columns)
 })
