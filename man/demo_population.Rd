@@ -18,7 +18,7 @@ demo_population(area, areatype, population, race = NULL, sex = NULL)
 \item{race}{One of the following values: "american indian/alaska native", "asian/pacific islander",
 "black", "hispanic", "white (includes hispanic)", "white non-hispanic", "hispanic (any race)"}
 
-\item{sex}{Either "both sexes", "male", "female"}
+\item{sex}{Either "both sexes", "males", "females"}
 }
 \value{
 A data frame with the following columns: Area Type, Area Code, "Percent", "Households", "Rank"
@@ -30,8 +30,8 @@ This function returns a data frame from population in State Cancer Profiles
 \dontrun{
 demo_population(area = "WA",
                 areatype = "county",
-                population = "asian/pacific islander",
-                sex="females")
+                population = "males",
+                race = "all races (includes hispanic)")
                 
 demo_population(area = "dc",
                 areatype = "hsa",

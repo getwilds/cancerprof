@@ -40,7 +40,7 @@ handle_race <- function(race) {
     "amer. indian / ak native (non-hispanic)" = "38",
     "american indian / alaska native non-hispanic" = "38",
     "asian / pacific islander (non-hispanic)" = "48",
-    "asian non-hispanic" = "49"
+    "asian (non-hispanic)" = "49"
     
   )
   

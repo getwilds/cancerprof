@@ -4,6 +4,7 @@
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county", "hsa" (Health service area), or "state"
+#' @param language "language isolation"
 #' 
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
@@ -13,15 +14,18 @@
 #' @export
 #' 
 #' @examples 
-#' demo_language(area = "WA", 
-#'               areatype = "county")
+#' demo_language(area = "WA",
+#'               areatype = "county",
+#'               language = "language isolation")
 #'               
 #' demo_language(area = "dc",
-#'               areatype = "hsa")
+#'               areatype = "hsa",
+#'               language = "language isolation")
 #'               
 #' demo_language(area = "usa", 
-#'               areatype = "state")
-demo_language <- function(area, areatype) {
+#'               areatype = "state",
+#'               language = "language isolation")
+demo_language <- function(area, areatype, language) {
   
   req <- create_request("demographics")
   
@@ -30,7 +34,7 @@ demo_language <- function(area, areatype) {
       stateFIPS=fips_scp(area),
       areatype=tolower(areatype),
       topic="lang",
-      demo="00015",
+      demo=handle_non_english(language),
       type="manyareacensus",
       sortVariableName="value",
       sortOrder="default",

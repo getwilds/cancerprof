@@ -4,12 +4,14 @@
 \alias{demo_language}
 \title{Access to Non-English Language}
 \usage{
-demo_language(area, areatype)
+demo_language(area, areatype, language)
 }
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
 \item{areatype}{Either "county", "hsa" (Health service area), or "state"}
+
+\item{language}{"language isolation"}
 }
 \value{
 A data frame with the following columns: Area Type, Area Code, "Percent", "Households", "Rank"
@@ -18,12 +20,15 @@ A data frame with the following columns: Area Type, Area Code, "Percent", "House
 This function returns a data frame from Crowding in State Cancer Profiles
 }
 \examples{
-demo_language(area = "WA", 
-              areatype = "county")
+demo_language(area = "WA",
+              areatype = "county",
+              language = "language isolation")
               
 demo_language(area = "dc",
-              areatype = "hsa")
+              areatype = "hsa",
+              language = "language isolation")
               
 demo_language(area = "usa", 
-              areatype = "state")
+              areatype = "state",
+              language = "language isolation")
 }

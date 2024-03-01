@@ -24,8 +24,8 @@ demo_insurance(area, areatype, insurance, sex, age, race = NULL)
 \item{age}{Either "under 19 years", "18 to 64 years","21 to 64 years","40 to 64 years","50 to 64 years","under 65 years" for "both sexes"
 "18 to 64 years","40 to 64 years","50 to 64 years","Under 65 years" for "males" and "females"}
 
-\item{race}{Either "all races (includes hispanic)", "white non hispanic", "black non hispanic", "american indian / alaska native non-hispanic",
-"asian non-hispanic", "hispanic (any race)"}
+\item{race}{Either "all races (includes hispanic)", "white (non-hispanic)", "black (non-hispanic)", "american indian / alaska native non-hispanic",
+"asian (non-hispanic)", "hispanic (any race)"}
 }
 \value{
 A data frame with the following columns: Area Type, Area Code, "Percent", "People", "Rank"
@@ -39,8 +39,8 @@ demo_insurance(area = "usa",
                areatype = "state",
                insurance = "\% Insured in demographic group, all income levels", 
                sex = "both sexes",
-               age = "under 19 years",
-               race = "all races (includes hispanic)")
+               age = "18 to 64 years",
+               race = "white (non-hispanic)")
                
 demo_insurance(area = "wa", 
                areatype = "hsa",
