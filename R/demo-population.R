@@ -9,7 +9,7 @@
 #'                                                "non-hispanic (origin recode)", "white", "males", "females"
 #' @param race One of the following values: "american indian/alaska native", "asian/pacific islander", 
 #'                                          "black", "hispanic", "white (includes hispanic)", "white non-hispanic", "hispanic (any race)"
-#' @param sex Either "both sexes", "male", "female"
+#' @param sex Either "both sexes", "males", "females"
 #' 
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
@@ -23,8 +23,8 @@
 #' \dontrun{
 #' demo_population(area = "WA",
 #'                 areatype = "county",
-#'                 population = "asian/pacific islander",
-#'                 sex="females")
+#'                 population = "males",
+#'                 race = "all races (includes hispanic)")
 #'                 
 #' demo_population(area = "dc",
 #'                 areatype = "hsa",

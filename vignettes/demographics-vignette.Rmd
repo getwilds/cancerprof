@@ -1,5 +1,5 @@
 ---
-title: "demographics-vignette"
+title: "Demographics"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{cancerprof-vignette}
@@ -115,8 +115,90 @@ Demo insurance has 6 arguments: area, areatype, insurance, sex, age, race.
 **Please note that the age arguments for "both sexes" is different than "Males and "Females"**
 Check function documentations for more details
 
-USA State can select Race, otherwise race should always be "all races (includes hispanic)
+Only Areatype "State" can select Race, otherwise race should always be "all races (includes hispanic)
 
 ```{r insurance}
+insurance1 <- demo_insurance(area = "usa",
+                             areatype = "state",
+                             insurance = "% Insured in demographic group, all income levels",
+                             sex = "both sexes",
+                             age = "18 to 64 years",
+                             race = "white (non-hispanic)")
 
+head(insurance1, n=3)
+
+insurance2 <- demo_insurance(area = "wa", 
+                             areatype = "county",
+                             insurance = "% Insured in demographic group, all income levels",
+                             sex = "males",
+                             age = "18 to 64 years")
+
+head(insurance2, n=3)
 ```
+
+### Demo Mobility
+Demo mobility **Always** requires 3 arguments: area, areatype, mobility. The function defaults to "all races", "both sexes", "ages 1+"
+
+```{r mobility}
+mobility1 <- demo_mobility(area = "usa",
+                           areatype = "state",
+                           mobility = "moved, same county (in past year)")
+
+head(mobility1, n=3)
+
+
+mobility2 <- demo_mobility(area = "WA",
+                           areatype = "county",
+                           mobility = "moved, different county, same state (in past year)")
+
+head(mobility2, n=3)
+```
+
+### Demo Language
+Demo Language **Always** requires 3 arguments: area, areatype, language. The function defaults to "all races", "both sexes", "ages 14+"
+
+```{r Language}
+non_english1 <- demo_language(area = "wa",
+                              areatype = "county",
+                              language = "language isolation")
+
+head(non_english1, n=3)
+
+
+non_english2 <- demo_language(area = "usa", 
+                              areatype = "state",
+                              language = "language isolation")
+
+head(non_english2, n=3)
+```
+
+### Demo Population
+Demo Population has 5 arguments: area, areatype, population, race, sex. The population argument is used to input a population variable such as age, race, or sex. Please note that this different from the race and sex arguments and different population variables will default race, sex, and age.
+
+*If you select "foreign born" for population, you must provide another race for the race argument*
+
+```{r population}
+#
+population1 <- demo_population(area = "wa",
+                                areatype = "county",
+                                population = "foreign born",
+                                race = "black",
+                                sex = "females")
+
+head(population1, n=3)
+
+
+population2 <- demo_population(area = "ca",
+                               areatype = "county",
+                               population = "males",
+                               race = "all races (includes hispanic)")
+
+head(population2, n=3)
+
+population3 <- demo_population(area = "usa",
+                               areatype = "state",
+                               population = "age under 18",
+                               race = "all races (includes hispanic)",
+                               sex = "both sexes")
+
+head(population3, n=3)
