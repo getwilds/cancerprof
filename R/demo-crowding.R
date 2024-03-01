@@ -4,6 +4,7 @@
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county", "hsa" (Health service area), or "state"
+#' @param crowding "household with >1 person per room"
 #' @param race One of the following values:
 #'             "All Races (includes Hispanic)",
 #'             "white (includes hispanic)",
