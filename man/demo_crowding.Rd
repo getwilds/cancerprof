@@ -11,6 +11,8 @@ demo_crowding(area, areatype, crowding, race)
 
 \item{areatype}{Either "county", "hsa" (Health service area), or "state"}
 
+\item{crowding}{"household with >1 person per room"}
+
 \item{race}{One of the following values:
 "All Races (includes Hispanic)",
 "white (includes hispanic)",

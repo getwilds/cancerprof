@@ -21,5 +21,5 @@ create_request <- function(topic) {
   
   url = paste0(url, topic, url_end)
   
-  req <- request(url)
+  request(url)
 }

@@ -28,9 +28,95 @@ These functions are: `demo_crowding()`, `demo_education()`, `demo_food()`, `demo
 Each of these functions require various parameters that must be specified to pull data. Please refer to function documentation for more details.
 
 ### Demo Crowding
-Demo crowding always requires 3 arguments: area, areatype, and race
+Demo crowding **Always** requires 4 arguments: area, areatype, crowding, and race
 
-```{r}
-# demo_education("wa", "county", "at least high school", "males")
-demo_food("wa", "county", "food insecurity", "black")
+```{r crowding}
+results <- demo_crowding(area = "WA", 
+                         areatype = "county",
+                         crowding = "household with >1 person per room",
+                         race = "All Races (includes Hispanic)")
+head(results, n=3)
+```
+
+### Demo Education
+Demo education has 5 arguments: area, areatype, education, sex, race.
+
+**Depending on the education argument, the required arguments will change**
+```{r education}
+#at least high school - requires arguments: area, areatype, education, sex
+education1 <- demo_education(area = "wa",
+                          areatype = "county",
+                          education = "at least high school",
+                          sex = "males")
+
+head(education1, n=3)
+
+#at least bachelors degree - requires arguments: area, areatype, education, sex, race
+education2 <- demo_education(area = "usa",
+                          areatype = "state",
+                          education = "at least bachelors degree",
+                          sex = "both sexes",
+                          race = "all races (includes hispanic)")
+
+head(education2, n=3)
+
+#less than 9th grade - requires arguments: area, areatype, education
+education3 <- demo_education(area = "pr",
+                          areatype = "hsa",
+                          education = "less than 9th grade")
+
+head(education3, n=3)
+```
+
+### Demo Food
+Demo food has 4 arguments: area, areatype, food, race.
+
+```{r food}
+#limited access to healthy food - requires arguments: area, areatype, food
+food1 <- demo_food(area = "usa",
+                     areatype = "state",
+                     food = "limited access to healthy food")
+
+head(food1, n=3)
+
+#food insecurity - requires arguments: area, areatype, food, race
+food2 <- demo_food(area = "pr",
+                     areatype = "county",
+                     food = "food insecurity",
+                     race = "all races (includes hispanic)")
+
+head(food2, n=3)
+```
+
+### Demo Income
+Demo income **Always** requires 4 arguments: area, areatype, income, race.
+
+```{r income}
+#limited access to healthy food - requires arguments: area, areatype, food
+income1 <- demo_income(area = "wa",
+                       areatype = "county",
+                       income = "median household income",
+                       race = "all races (includes hispanic)")
+
+head(income1, n=3)
+
+#food insecurity - requires arguments: area, areatype, food, race
+income2 <- demo_income(area = "usa",
+                       areatype = "state",
+                       income = "median family income",
+                       race = "all races (includes hispanic)")
+
+head(income2, n=3)
+```
+
+### Demo Insurance
+Demo insurance has 6 arguments: area, areatype, insurance, sex, age, race.
+
+**Please note that the age arguments for "both sexes" is different than "Males and "Females"**
+Check function documentations for more details
+
+USA State can select Race, otherwise race should always be "all races (includes hispanic)
+
+```{r insurance}
+
 ```

@@ -27,7 +27,7 @@ This function returns a data frame from Income in State Cancer Profiles
 \dontrun{
 demo_income(area = "wa",
             areatype = "county",
-            income = "median family income",
+            income = "median household income",
             race = "all races (includes hispanic)")
             
 demo_income(area = "usa",
