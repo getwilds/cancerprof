@@ -1,5 +1,5 @@
 ---
-title: "risks-vignette"
+title: "Screening and Risk Factors"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{risks-vignette}
@@ -14,6 +14,59 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Load the package
 ```{r setup}
 library(cancerprof)
 ```
+
+## Retrieving Data
+
+The Screening and Risk Factors category of cancerprof contains 6 unique functions to pull data from the demographics page of [State Cancer Profile](https://statecancerprofiles.cancer.gov/demographics/index.php).
+
+These functions are: `risk_alcohol()`, `risk_colorectal_screening()`, `risk_diet_exercise()`, `risk_smoking()`, `risk_vaccines()`, `risk_womens_health()`
+
+Each of these functions require various parameters that must be specified to pull data. Please refer to function documentation for more details.
+
+### Risk Alcohol
+Risk Alcohol requires 3 arguments: alcohol, race, sex
+
+```{r alcohol}
+alcohol1 <- risk_alcohol(alcohol = paste("binge drinking (4+ drinks on one occasion for women,", 
+                                         "5+ drinks for one occasion for men), ages 21+"), 
+                         race = "all races (includes hispanic)", 
+                         sex = "both sexes")
+head(alcohol1, n=3)
+```
+
+### Risk Colorectal Screening
+Risk Colorectal Screening has 4 arguments: screening, race, sex, area
+
+"home blood stool test in the past year, ages 45-75" and "received at least one recommended crc test, ages 45-75" for the screening arguments requires a race argument and a sex argument and defaults to "direct estimates", "US by state".
+
+"ever had fobt, ages 50-75", "guidance sufficient crc, ages 50-75", "had colonoscopy in past 10 years, ages 50-75" for the screening arguments defaults to "all races", "both sexes", and "county level modeled estimates"
+
+```{r colorectal screening}
+screening1 <- risk_colorectal_screening(screening = "home blood stool test in the past year, ages 45-75",
+                                     race = "all races (includes hispanic)",
+                                     sex = "both sexes")
+head(screening1, n=3)
+
+screening2 <- risk_colorectal_screening(screening = "ever had fobt, ages 50-75",
+                                        area="usa")
+head(screening2, n=3)
+```
+
+
+
+
+
+
+
+

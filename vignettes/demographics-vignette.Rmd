@@ -31,11 +31,11 @@ Each of these functions require various parameters that must be specified to pul
 Demo crowding **Always** requires 4 arguments: area, areatype, crowding, and race
 
 ```{r crowding}
-results <- demo_crowding(area = "WA", 
+crowding <- demo_crowding(area = "WA", 
                          areatype = "county",
                          crowding = "household with >1 person per room",
                          race = "All Races (includes Hispanic)")
-head(results, n=3)
+head(crowding, n=3)
 ```
 
 ### Demo Education
@@ -258,3 +258,23 @@ head(svi2, n=3)
 ```
 
 ### Workforce
+Demo svi **Always** requires 5 arguments: area, areatype, workforce, race, sex. The function defaults to "ages 16+"
+
+```{r workforce}
+workforce1 <- demo_workforce(area = "WA",
+                             areatype = "county",
+                             workforce = "unemployed",
+                             race = "all races (includes hispanic)",
+                             sex = "both sexes")
+
+head(workforce1, n=3)
+
+
+workforce2 <- demo_workforce(area = "usa",
+                             areatype = "state",
+                             workforce = "unemployed",
+                             race = "all races (includes hispanic)",
+                             sex = "females")
+
+head(workforce2, n=3)
+```
