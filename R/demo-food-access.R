@@ -1,6 +1,6 @@
-#' Access to Food Insecurity Data
+#' Access to Food Access Data
 #' 
-#' This function returns a data frame containing demographic data on Food Insecurity in State Cancer Profiles.
+#' This function returns a data frame containing demographic data on Food Access in State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county" or "state"
