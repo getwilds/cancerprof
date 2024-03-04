@@ -4,12 +4,14 @@
 \alias{demo_workforce}
 \title{Access to Workforce Data}
 \usage{
-demo_workforce(area, areatype, race, sex)
+demo_workforce(area, areatype, workforce, race, sex)
 }
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
 \item{areatype}{Either "county", "hsa" (Health service area), or "state"}
+
+\item{workforce}{"unemployed"}
 
 \item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
 "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
@@ -27,16 +29,19 @@ This function returns a data frame from Workforce in State Cancer Profiles
 \dontrun{
 demo_workforce(area = "WA",
                areatype = "county",
+               workforce = "unemployed",
                race = "all races (includes hispanic)",
                sex = "both sexes")
                
 demo_workforce(area = "usa",
                areatype = "state",
+               workforce = "unemployed",
                race = "all races (includes hispanic)",
                sex = "females")
                
 demo_workforce(area = "pr",
                areatype = "hsa",
+               workforce = "unemployed",
                race = "all races (includes hispanic)",
                sex = "both sexes")
 }

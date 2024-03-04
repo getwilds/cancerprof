@@ -68,3 +68,8 @@ demo_crowding <- function(area, areatype, crowding, race) {
   resp %>% 
     setNames(c(areatype_title, areacode_title, "Percent", "Households", "Rank"))
 }
+
+area = "wa"
+areatype = "county"
+race = "all races (includes hispanic)"
+crowding = "household with >1 person per room"

@@ -4,6 +4,7 @@
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county", "hsa" (Health service area), or "state"
+#' @param workforce "unemployed"
 #' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
 #'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
 #'              "asian or pacific islander (includes hispanic)","hispanic (any race)
@@ -20,20 +21,23 @@
 #' \dontrun{
 #' demo_workforce(area = "WA",
 #'                areatype = "county",
+#'                workforce = "unemployed",
 #'                race = "all races (includes hispanic)",
 #'                sex = "both sexes")
 #'                
 #' demo_workforce(area = "usa",
 #'                areatype = "state",
+#'                workforce = "unemployed",
 #'                race = "all races (includes hispanic)",
 #'                sex = "females")
 #'                
 #' demo_workforce(area = "pr",
 #'                areatype = "hsa",
+#'                workforce = "unemployed",
 #'                race = "all races (includes hispanic)",
 #'                sex = "both sexes")
 #' }
-demo_workforce <- function(area, areatype, race, sex) {
+demo_workforce <- function(area, areatype, workforce, race, sex) {
   
   req <- create_request("demographics")
   
@@ -42,7 +46,7 @@ demo_workforce <- function(area, areatype, race, sex) {
       stateFIPS=fips_scp(area),
       areatype=tolower(areatype),
       topic="crowd",
-      demo="00012",
+      demo=handle_workforce(workforce),
       race=handle_race(race),
       sex=handle_sex(sex),
       type="manyareacensus",

@@ -31,11 +31,11 @@ Each of these functions require various parameters that must be specified to pul
 Demo crowding **Always** requires 4 arguments: area, areatype, crowding, and race
 
 ```{r crowding}
-results <- demo_crowding(area = "WA", 
+crowding <- demo_crowding(area = "WA", 
                          areatype = "county",
                          crowding = "household with >1 person per room",
                          race = "All Races (includes Hispanic)")
-head(results, n=3)
+head(crowding, n=3)
 ```
 
 ### Demo Education
@@ -202,3 +202,79 @@ population3 <- demo_population(area = "usa",
                                sex = "both sexes")
 
 head(population3, n=3)
+```
+
+### Demo Poverty
+Demo poverty has 5 arguments: area, areatype, poverty, race, sex. The function defaults to "all ages"
+
+The "persistent poverty" and "persons <150% of poverty" poverty argument will default to "all races", "both sexes", "all ages". 
+
+The "families below poverty" poverty argument will require a race argument and default to "both sexes" and "all ages". 
+
+The "persons below poverty" poverty argument will require a race argument and a sex argument, and default to "all ages".
+
+```{r poverty}
+#Persistent poverty
+poverty1 <- demo_poverty(area = "WA",
+                         areatype = "county",
+                         poverty = "persistent poverty")
+
+head(poverty1, n=3)
+
+#Families below poverty
+poverty2 <- demo_poverty(area = "usa",
+                          areatype = "state",
+                          poverty = "families below poverty",
+                          race = "black")
+
+head(poverty2, n=3)
+
+#Persons below poverty
+poverty3 <- demo_poverty(area = "usa",
+                          areatype = "state",
+                          poverty = "persons below poverty",
+                          race = "black",
+                          sex = "males")
+
+head(poverty3, n=3)
+```
+
+### Demo Social Vulnerability Index (SVI)
+Demo svi **Always** requires 2 arguments: area, svi. The function defaults to "all races", "both sexes", "all ages."
+
+*Please note that the areatype argument is not available for this function because areatype is limited to "county"*
+
+```{r svi}
+svi1 <- demo_svi(area = "WA",
+                 svi = "overall")
+
+head(svi1, n=3)
+
+
+svi2 <- demo_svi(area = "usa",
+                 svi = "socioeconomic status")
+
+head(svi2, n=3)
+```
+
+### Workforce
+Demo svi **Always** requires 5 arguments: area, areatype, workforce, race, sex. The function defaults to "ages 16+"
+
+```{r workforce}
+workforce1 <- demo_workforce(area = "WA",
+                             areatype = "county",
+                             workforce = "unemployed",
+                             race = "all races (includes hispanic)",
+                             sex = "both sexes")
+
+head(workforce1, n=3)
+
+
+workforce2 <- demo_workforce(area = "usa",
+                             areatype = "state",
+                             workforce = "unemployed",
+                             race = "all races (includes hispanic)",
+                             sex = "females")
+
+head(workforce2, n=3)
+```
