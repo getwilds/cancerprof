@@ -11,7 +11,7 @@ Cancerprof is designed to allow programmable research with data from [State Canc
 
 ## Installation
 
-You can install the development version of `rcromwell` from [GitHub](https://github.com/) with:
+You can install the development version of `cancerprof` from [GitHub](https://github.com/) with:
 
 ```r
 # install.packages("pak")
