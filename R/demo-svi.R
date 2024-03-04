@@ -1,6 +1,6 @@
 #' Access to Social Vulnerability Index (SVI) Data
 #' 
-#' This function returns a data frame from Social Vulnerability Index (SVI) in State Cancer Profiles
+#' This function returns a data frame containing demographic data on Social Vulnerability Index (SVI) in State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param svi Either "Overall", "socioeconomic status", "household characteristics", "racial & ethinic minority status", "housing type & transportation"

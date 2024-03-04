@@ -1,6 +1,6 @@
 #' Access to Insurance Data
 #'
-#' This function returns a data frame from Insurance in State Cancer Profiles
+#' This function returns a data frame containing demographic data on Insurance in State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county", "hsa" (Health service area), or "state"

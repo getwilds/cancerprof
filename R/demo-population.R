@@ -1,6 +1,6 @@
 #' Access to Population Data
 #' 
-#' This function returns a data frame from population in State Cancer Profiles
+#' This function returns a data frame containing demographic data on Population in State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county", "hsa" (Health service area), or "state"
