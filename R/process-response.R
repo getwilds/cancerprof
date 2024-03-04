@@ -33,6 +33,9 @@ process_response <- function(resp) {
   resp <- resp_lines[(index_first_line_break + 1):(index_second_line_break -1)] %>% 
     paste(collapse = "\n") %>% 
     (\(x) read.csv(textConnection(x), header=TRUE, colClasses = "character"))()
+    
+  # resp <- resp %>% 
+  #   read.csv(text=.)
 
   column <- c("Health.Service.Area", "County", "State")[c("Health.Service.Area", "County", "State") %in% colnames(resp)]
   
