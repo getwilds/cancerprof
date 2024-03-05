@@ -11,20 +11,50 @@ demo_population(area, areatype, population, race = NULL, sex = NULL)
 
 \item{areatype}{Either "county", "hsa" (Health service area), or "state"}
 
-\item{population}{One of the following values: "age under 18", "age 18-39", "age 40-64", "ages 40 and over", "ages 50 and over", "ages 60 and over",
-"american indian/alaska native", "asian/pacific islander", "black", "foreign born", "hispanic",
-"non-hispanic (origin recode)", "white", "males", "females"}
+\item{population}{One of the following values:
+\itemize{
+\item "age under 18"
+\item "age 18-39"
+\item "age 40-64"
+\item "ages 40 and over"
+\item "ages 50 and over"
+\item "ages 60 and over"
+\item "american indian/alaska native"
+\item "asian/pacific islander"
+\item "black"
+\item "foreign born"
+\item "hispanic"
+\item "non-hispanic (origin recode)"
+\item "white"
+\item "males"
+\item "females"
+}}
 
-\item{race}{One of the following values: "american indian/alaska native", "asian/pacific islander",
-"black", "hispanic", "white (includes hispanic)", "white non-hispanic", "hispanic (any race)"}
+\item{race}{One of the following values:
+\itemize{
+\item "american indian/alaska native"
+\item "asian/pacific islander"
+\item "black"
+\item "hispanic"
+\item "white (includes hispanic)"
+\item "white non-hispanic"
+\item "hispanic (any race)"
+}}
 
 \item{sex}{Either "both sexes", "males", "females"}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, "Percent", "Households", "Rank"
+A data frame with the following columns:
+\itemize{
+\item Area Type
+\item Area Code
+\item Percent
+\item Households
+\item Rank
+}
 }
 \description{
-This function returns a data frame from population in State Cancer Profiles
+This function returns a data frame containing demographic data on Population in State Cancer Profiles.
 }
 \examples{
 \dontrun{

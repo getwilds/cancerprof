@@ -14,19 +14,21 @@ demo_crowding(area, areatype, crowding, race)
 \item{crowding}{"household with >1 person per room"}
 
 \item{race}{One of the following values:
-"All Races (includes Hispanic)",
-"white (includes hispanic)",
-"white non-hispanic",
-"black",
-"amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)",
-"hispanic (any race)"}
+\itemize{
+\item "All Races (includes Hispanic)"
+\item "white (includes hispanic)"
+\item "white non-hispanic"
+\item "black"
+\item "amer. indian/alaskan native (includes hispanic)"
+\item "asian or pacific islander (includes hispanic)"
+\item "hispanic (any race)"
+}}
 }
 \value{
 A data frame with the following columns Area, Area Code, "Percent", "Households", "Rank"
 }
 \description{
-This function returns a data frame from Crowding in State Cancer Profiles
+This function returns a data frame containing demographic data on Crowding in State Cancer Profiles.
 }
 \examples{
 \dontrun{

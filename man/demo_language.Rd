@@ -14,10 +14,17 @@ demo_language(area, areatype, language)
 \item{language}{"language isolation"}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, "Percent", "Households", "Rank"
+A data frame with the following columns:
+\itemize{
+\item Area Type
+\item Area Code
+\item "Percent"
+\item "Households"
+\item "Rank"
+}
 }
 \description{
-This function returns a data frame from Crowding in State Cancer Profiles
+This function returns a data frame containing demographic data on Non-English Language in State Cancer Profiles.
 }
 \examples{
 demo_language(area = "WA",

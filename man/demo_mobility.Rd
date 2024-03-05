@@ -11,15 +11,20 @@ demo_mobility(area, areatype, mobility)
 
 \item{areatype}{Either "county", "hsa" (Health service area), or "state"}
 
-\item{mobility}{One of five choices from "i haven't moved (in past year)", "moved from outside us (in past year)",
-"moved, different state (in past year)", "moved, different county, same state (in past year)",
-"moved, same county (in past year)"}
+\item{mobility}{One of five choices indicating mobility in the past year:
+\itemize{
+\item "i haven't moved (in past year)"
+\item "moved from outside us (in past year)"
+\item "moved, different state (in past year)"
+\item "moved, different county, same state (in past year)"
+\item "moved, same county (in past year)"
+}}
 }
 \value{
 A data frame with the following columns: Area Type, Area Code, "Percent", "People", "Rank"
 }
 \description{
-This function returns a data frame from mobility in State Cancer Profiles
+This function returns a data frame containing demographic data on Mobility in State Cancer Profiles.
 }
 \examples{
 \dontrun{

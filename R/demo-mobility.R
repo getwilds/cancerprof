@@ -4,9 +4,13 @@
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county", "hsa" (Health service area), or "state"
-#' @param mobility One of five choices from "i haven't moved (in past year)", "moved from outside us (in past year)",
-#'                  "moved, different state (in past year)", "moved, different county, same state (in past year)",
-#'                  "moved, same county (in past year)"
+#' @param mobility One of five choices indicating mobility in the past year:
+#'   * "i haven't moved (in past year)"
+#'   * "moved from outside us (in past year)"
+#'   * "moved, different state (in past year)"
+#'   * "moved, different county, same state (in past year)"
+#'   * "moved, same county (in past year)"
+
 #'                  
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort

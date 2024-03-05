@@ -4,18 +4,44 @@
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county", "hsa" (Health service area), or "state"
-#' @param population One of the following values: "age under 18", "age 18-39", "age 40-64", "ages 40 and over", "ages 50 and over", "ages 60 and over",
-#'                                                "american indian/alaska native", "asian/pacific islander", "black", "foreign born", "hispanic", 
-#'                                                "non-hispanic (origin recode)", "white", "males", "females"
-#' @param race One of the following values: "american indian/alaska native", "asian/pacific islander", 
-#'                                          "black", "hispanic", "white (includes hispanic)", "white non-hispanic", "hispanic (any race)"
+#' @param population One of the following values:
+#'   * "age under 18"
+#'   * "age 18-39"
+#'   * "age 40-64"
+#'   * "ages 40 and over"
+#'   * "ages 50 and over"
+#'   * "ages 60 and over"
+#'   * "american indian/alaska native"
+#'   * "asian/pacific islander"
+#'   * "black"
+#'   * "foreign born"
+#'   * "hispanic"
+#'   * "non-hispanic (origin recode)"
+#'   * "white"
+#'   * "males"
+#'   * "females"
+#'                                                
+#' @param race One of the following values:
+#'   * "american indian/alaska native"
+#'   * "asian/pacific islander"
+#'   * "black"
+#'   * "hispanic"
+#'   * "white (includes hispanic)"
+#'   * "white non-hispanic"
+#'   * "hispanic (any race)"
+#'                                          
 #' @param sex Either "both sexes", "males", "females"
 #' 
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
 #' 
-#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "Households", "Rank"
+#' @returns A data frame with the following columns:
+#'   * Area Type
+#'   * Area Code
+#'   * Percent
+#'   * Households
+#'   * Rank
 #' 
 #' @export
 #' 

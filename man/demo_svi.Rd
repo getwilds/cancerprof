@@ -9,13 +9,20 @@ demo_svi(area, svi)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{svi}{Either "Overall", "socioeconomic status", "household characteristics", "racial & ethinic minority status", "housing type & transportation"}
+\item{svi}{Either of the following values:
+\itemize{
+\item "Overall"
+\item "socioeconomic status"
+\item "household characteristics"
+\item "racial & ethnic minority status"
+\item "housing type & transportation"
+}}
 }
 \value{
 A data frame with the following columns "County", "FIPS", "Score"
 }
 \description{
-This function returns a data frame from Social Vulnerability Index (SVI) in State Cancer Profiles
+This function returns a data frame containing demographic data on Social Vulnerability Index (SVI) in State Cancer Profiles.
 }
 \examples{
 \dontrun{

@@ -5,8 +5,12 @@
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype Either "county" or "state"
 #' @param food Either "food insecurity" or "limited access to healthy food"
-#' @param race One of the following values: "All Races (includes Hispanic)", "white non hispanic",
-#'              "black (includes hispanic)","hispanic (any race)
+#' @param race One of the following values: 
+#' 
+#' * "All Races (includes Hispanic)"
+#' * "white non hispanic"
+#' * "black (includes hispanic)"
+#' * "hispanic (any race)"
 #'              
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort

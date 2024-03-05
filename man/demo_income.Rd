@@ -13,15 +13,22 @@ demo_income(area, areatype, income, race)
 
 \item{income}{Either "median family income" or "median household income"}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
-"white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)","hispanic (any race)}
+\item{race}{One of the following values:
+\itemize{
+\item "All Races (includes Hispanic)"
+\item "white (includes hispanic)"
+\item "white non-hispanic"
+\item "black",
+\item "amer. indian/alaskan native (includes hispanic)"
+\item "asian or pacific islander (includes hispanic)"
+\item "hispanic (any race)
+}}
 }
 \value{
 A data frame with the following columns: Area Type, Area Code, "Dollars", "Rank"
 }
 \description{
-This function returns a data frame from Income in State Cancer Profiles
+This function returns a data frame containing demographic data on Income in State Cancer Profiles
 }
 \examples{
 \dontrun{

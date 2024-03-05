@@ -6,13 +6,14 @@
 #' @param areatype Either "county", "hsa" (Health service area), or "state"
 #' @param crowding "household with >1 person per room"
 #' @param race One of the following values:
-#'             "All Races (includes Hispanic)",
-#'             "white (includes hispanic)",
-#'             "white non-hispanic",
-#'             "black",
-#'             "amer. indian/alaskan native (includes hispanic)",
-#'             "asian or pacific islander (includes hispanic)",
-#'             "hispanic (any race)"
+#' 
+#'    * "All Races (includes Hispanic)"
+#'    * "white (includes hispanic)"
+#'    * "white non-hispanic"
+#'    * "black"
+#'    * "amer. indian/alaskan native (includes hispanic)"
+#'    * "asian or pacific islander (includes hispanic)"
+#'    * "hispanic (any race)"
 #' 
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames

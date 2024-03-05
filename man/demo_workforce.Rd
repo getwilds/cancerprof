@@ -13,9 +13,16 @@ demo_workforce(area, areatype, workforce, race, sex)
 
 \item{workforce}{"unemployed"}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
-"white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)","hispanic (any race)}
+\item{race}{One of the following values:
+\itemize{
+\item "All Races (includes Hispanic)"
+\item "white (includes hispanic)" = "01"
+\item "white non-hispanic"
+\item "black"
+\item "amer. indian/alaskan native (includes hispanic)"
+\item "asian or pacific islander (includes hispanic)"
+\item "hispanic (any race)"
+}}
 
 \item{sex}{Either "both sexes", "male", "female"}
 }
@@ -23,7 +30,7 @@ demo_workforce(area, areatype, workforce, race, sex)
 A data frame with the following columns: Area Type, Area Code, "Percent", "People Unemployed", "Rank"
 }
 \description{
-This function returns a data frame from Workforce in State Cancer Profiles
+This function returns a data frame containing demographic data on Workforce in State Cancer Profiles.
 }
 \examples{
 \dontrun{

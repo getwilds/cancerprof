@@ -9,7 +9,12 @@
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
 #' 
-#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "Households", "Rank"
+#' @returns A data frame with the following columns:
+#'   * Area Type
+#'   * Area Code
+#'   * "Percent"
+#'   * "Households"
+#'   * "Rank"
 #' 
 #' @export
 #' 

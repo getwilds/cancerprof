@@ -11,19 +11,39 @@ demo_poverty(area, areatype, poverty, race = NULL, sex = NULL)
 
 \item{areatype}{Either "county", "hsa" (Health service area), or "state"}
 
-\item{poverty}{Either "families below poverty", "persistent poverty", "persons below poverty", "persons < 150\% of poverty"}
+\item{poverty}{Either of the following values:
+\itemize{
+\item "families below poverty"
+\item "persistent poverty"
+\item "persons below poverty"
+\item "persons < 150\% of poverty"
+}}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
-"white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)","hispanic (any race)}
+\item{race}{One of the following values:
+\itemize{
+\item "All Races (includes Hispanic)"
+\item "white (includes hispanic)"
+\item "white non-hispanic"
+\item "black"
+\item "amer. indian/alaskan native (includes hispanic)"
+\item "asian or pacific islander (includes hispanic)"
+\item "hispanic (any race)"
+}}
 
 \item{sex}{Either "both sexes", "male", "female"}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, "Percent", "Households", "Rank"
+A data frame with the following columns:
+\itemize{
+\item Area Type
+\item Area Code
+\item Percent
+\item Households
+\item Rank
+}
 }
 \description{
-This function returns a data frame from Poverty in State Cancer Profiles
+This function returns a data frame containing demographic data on Poverty in State Cancer Profiles.
 }
 \examples{
 \dontrun{

@@ -2,7 +2,7 @@
 % Please edit documentation in R/demo-food-access.R
 \name{demo_food}
 \alias{demo_food}
-\title{Access to Food Insecurity Data}
+\title{Access to Food Access Data}
 \usage{
 demo_food(area, areatype, food, race = NULL)
 }
@@ -13,14 +13,19 @@ demo_food(area, areatype, food, race = NULL)
 
 \item{food}{Either "food insecurity" or "limited access to healthy food"}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white non hispanic",
-"black (includes hispanic)","hispanic (any race)}
+\item{race}{One of the following values:
+\itemize{
+\item "All Races (includes Hispanic)"
+\item "white non hispanic"
+\item "black (includes hispanic)"
+\item "hispanic (any race)"
+}}
 }
 \value{
 A data frame with the following columns: Area Type, Area Code, "Value", "People"
 }
 \description{
-This function returns a data frame from Food Insecurity in State Cancer Profiles
+This function returns a data frame containing demographic data on Food Access in State Cancer Profiles.
 }
 \examples{
 \dontrun{
