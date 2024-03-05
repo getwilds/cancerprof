@@ -9,17 +9,32 @@ risk_alcohol(alcohol, race, sex)
 \arguments{
 \item{alcohol}{"binge drinking (4+ drinks on one occasion for women, 5+ drinks for one occasion for men), ages 21+"}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
-"white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)","hispanic (any race)}
+\item{race}{One of the following values:
+\itemize{
+\item "All Races (includes Hispanic)"
+\item "white (includes hispanic)" = "01"
+\item "white non-hispanic"
+\item "black"
+\item "amer. indian/alaskan native (includes hispanic)"
+\item "asian or pacific islander (includes hispanic)"
+\item "hispanic (any race)"
+}}
 
 \item{sex}{Either "both sexes", "male", "female"}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, "Percent", "Lower 95\% CI", "Upper 95\% CI", "Number of Respondents"
+A data frame with the following columns:
+\itemize{
+\item Area Type
+\item Area Code
+\item "Percent"
+\item "Lower 95\% CI"
+\item "Upper 95\% CI"
+\item "Number of Respondents"
+}
 }
 \description{
-This function returns a data frame from Alcohol in State Cancer Profiles
+This function returns a data frame that includes data on screening and risk factors related to alcohol as presented in the State Cancer Profiles.
 }
 \examples{
 \dontrun{

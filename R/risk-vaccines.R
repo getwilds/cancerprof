@@ -1,12 +1,20 @@
 #' Access to Vaccines Data
 #' 
-#' This function returns a data frame from Vaccines in State Cancer Profiles
+#' This function returns a data frame that includes data on screening and risk
+#' factors related to vaccines and exercise as presented in the State Cancer Profiles.
 #'
-#' @param vaccine Either "percent with up to date hpv vaccination coverage, ages 13-15",
-#'                       "percent with up to date hpv vaccination coverage, ages 13-17"
+#' @param vaccine One of the following values:
+#'   * "percent with up to date hpv vaccination coverage, ages 13-15"
+#'   * "percent with up to date hpv vaccination coverage, ages 13-17"
 #' @param sex Either "both sexes", "males", "females"
 #' 
-#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"
+#' @returns A data frame with the following columns:
+#'   * Area Type
+#'   * Area Code
+#'   * "Percent"
+#'   * "Lower 95% CI"
+#'   * "Upper 95% CI"
+#'   * "Number of Respondents"
 #' 
 #' @export
 #' 

@@ -12,22 +12,40 @@ risk_women_health(
 )
 }
 \arguments{
-\item{women_health}{Either "mammogram in past 2 years, ages 50-74", "mammogram in past 2 years, ages 40+",
-"pap smear in past 3 years, no hysterectomy, ages 21-65"}
+\item{women_health}{One of the following values:
+\itemize{
+\item "mammogram in past 2 years, ages 50-74"
+\item "mammogram in past 2 years, ages 40+"
+\item "pap smear in past 3 years, no hysterectomy, ages 21-65"
+}}
 
-\item{race}{One of the following values: "all races (includes hispanic)", "white (non-hispanic)",
-"black (non-hispanic)", "amer. indian / ak native (non-hispanic)",
-"asian / pacific islander (non-hispanic)","hispanic (any race)"}
+\item{race}{One of the following values:
+\itemize{
+\item "all races (includes hispanic)"
+\item "white (non-hispanic)"
+\item "black (non-hispanic)"
+\item "amer. indian / ak native (non-hispanic)"
+\item "asian / pacific islander (non-hispanic)"
+\item "hispanic (any race)"
+}}
 
 \item{datatype}{Either "direct estimates" or "county level modeled estimates"}
 
 \item{area}{A state/territory abbreviation or USA.}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, "Percent", "People Unemployed", "Rank"
+A data frame with the following columns:
+\itemize{
+\item Area Type
+\item Area Code
+\item "Percent"
+\item "People Unemployed"
+\item "Rank"
+}
 }
 \description{
-This function returns a data frame from Women's Health in State Cancer Profiles
+This function returns a data frame that includes data on screening and risk
+factors related to women's health as presented in the State Cancer Profiles.
 }
 \examples{
 \dontrun{

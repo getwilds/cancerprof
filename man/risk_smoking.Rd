@@ -7,18 +7,36 @@
 risk_smoking(smoking, race = NULL, sex = NULL, datatype = NULL, area = NULL)
 }
 \arguments{
-\item{smoking}{Either "smoking laws (any)", "smoking laws (bars)", "smoking laws (restaurants)",
-"smoking laws (workplace)", "smoking laws (workplace; restaurant; & bar)",
-"smokers (stopped for 1 day or longer)", "smoking not allowed at work (all people)",
-"smoking not allowed in home (all people)", "smoking not allowed at work (current smokers)",
-"smoking not allowed at work (former/never smokers)", "smoking not allowed in home (current smokers)",
-"smoking not allowed in home (former/never smokers)", "former smoker; ages 18+",
-"former smoker, quit 1 year+; ages 18+", "smokers (ever); ages 18+", "e-cigarette use; ages 18+",
-"smokers (current); ages 18+"}
+\item{smoking}{One of the following values:
+\itemize{
+\item "smoking laws (any)"
+\item "smoking laws (bars)"
+\item "smoking laws (restaurants)"
+\item "smoking laws (workplace)"
+\item "smoking laws (workplace; restaurant; & bar)"
+\item "smokers (stopped for 1 day or longer)"
+\item "smoking not allowed at work (all people)"
+\item "smoking not allowed in home (all people)"
+\item "smoking not allowed at work (current smokers)"
+\item "smoking not allowed at work (former/never smokers)"
+\item "smoking not allowed in home (current smokers)"
+\item "smoking not allowed in home (former/never smokers)"
+\item "former smoker; ages 18+"
+\item "former smoker, quit 1 year+; ages 18+"
+\item "smokers (ever); ages 18+"
+\item "e-cigarette use; ages 18+"
+\item "smokers (current); ages 18+"
+}}
 
-\item{race}{One of the following values: "all races (includes hispanic)", "white (non-hispanic)",
-"black (non-hispanic)", "amer. indian / ak native (non-hispanic)",
-"asian / pacific islander (non-hispanic)","hispanic (any race)"}
+\item{race}{One of the following values:
+\itemize{
+\item "all races (includes hispanic)"
+\item "white (non-hispanic)"
+\item "black (non-hispanic)"
+\item "amer. indian / ak native (non-hispanic)"
+\item "asian / pacific islander (non-hispanic)"
+\item "hispanic (any race)"
+}}
 
 \item{sex}{Either "both sexes", "males", "females"}
 
@@ -27,10 +45,19 @@ risk_smoking(smoking, race = NULL, sex = NULL, datatype = NULL, area = NULL)
 \item{area}{A state/territory abbreviation or USA.}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, "Percent", "Lower CI 95\%", "Upper CI 95\%", "Number of Respondents"
+A data frame with the following columns:
+\itemize{
+\item Area Type
+\item Area Code
+\item "Percent"
+\item "Lower CI 95\%"
+\item "Upper CI 95\%"
+\item "Number of Respondents"
+}
 }
 \description{
-This function returns a data frame from Smoking in State Cancer Profiles
+This function returns a data frame that includes data on screening and risk
+factors related to smoking as presented in the State Cancer Profiles.
 }
 \details{
 Please note that this function requires very specific arguments for each smoking type

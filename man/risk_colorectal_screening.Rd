@@ -7,32 +7,51 @@
 risk_colorectal_screening(screening, race = NULL, sex = NULL, area = NULL)
 }
 \arguments{
-\item{screening}{One of the following values: "ever had fobt, ages 50-75",
-"guidance sufficient crc, ages 50-75",
-"had colonoscopy in past 10 years, ages 50-75"
-"home blood stool test in the past year, ages 45-75"
-"received at least one recommended crc test, ages 45-75"}
+\item{screening}{One of the following values:
+\itemize{
+\item "ever had fobt, ages 50-75"
+\item "guidance sufficient crc, ages 50-75"
+\item "had colonoscopy in past 10 years, ages 50-75"
+\item "home blood stool test in the past year, ages 45-75"
+\item "received at least one recommended crc test, ages 45-75"
+}}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
-"white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)","hispanic (any race)}
+\item{race}{One of the following values:
+\itemize{
+\item "All Races (includes Hispanic)"
+\item "white (includes hispanic)"
+\item "white non-hispanic"
+\item "black"
+\item "amer. indian/alaskan native (includes hispanic)"
+\item "asian or pacific islander (includes hispanic)"
+\item "hispanic (any race)"
+}}
 
 \item{sex}{Either "both sexes", "male", "female"}
 
 \item{area}{A state/territory abbreviation or USA.}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, "Percent", "People Unemployed", "Rank"
+A data frame with the following columns:
+\itemize{
+\item Area Type
+\item Area Code
+\item "Percent"
+\item "People Unemployed"
+\item "Rank"
+}
 }
 \description{
-This function returns a data frame from Colorectal Screening in State Cancer Profiles
+This function returns a data frame that includes data on screening and risk
+factors related to colorectal screening as presented in the State Cancer
+Profiles.
 }
 \examples{
 \dontrun{
 risk_colorectal_screening(screening = "home blood stool test in the past year, ages 45-75",
                           race = "all races (includes hispanic)",
                           sex = "both sexes")
-                          
+
 risk_colorectal_screening(screening = "ever had fobt, ages 50-75",
                           area="usa")
 risk_colorectal_screening(screening = "received at least one recommended crc test, ages 45-75",

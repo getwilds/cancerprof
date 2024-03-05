@@ -1,16 +1,30 @@
 #' Access to Women's Health Data
 #' 
-#' This function returns a data frame from Women's Health in State Cancer Profiles
+#' This function returns a data frame that includes data on screening and risk
+#' factors related to women's health as presented in the State Cancer Profiles.
 #'
-#' @param women_health Either "mammogram in past 2 years, ages 50-74", "mammogram in past 2 years, ages 40+", 
-#'                       "pap smear in past 3 years, no hysterectomy, ages 21-65"
-#' @param race One of the following values: "all races (includes hispanic)", "white (non-hispanic)", 
-#'                                          "black (non-hispanic)", "amer. indian / ak native (non-hispanic)", 
-#'                                          "asian / pacific islander (non-hispanic)","hispanic (any race)"
+#' @param women_health One of the following values:
+#'   * "mammogram in past 2 years, ages 50-74"
+#'   * "mammogram in past 2 years, ages 40+"
+#'   * "pap smear in past 3 years, no hysterectomy, ages 21-65"
+#'   
+#' @param race One of the following values:
+#'   * "all races (includes hispanic)"
+#'   * "white (non-hispanic)"
+#'   * "black (non-hispanic)"
+#'   * "amer. indian / ak native (non-hispanic)"
+#'   * "asian / pacific islander (non-hispanic)"
+#'   * "hispanic (any race)"
+#'   
 #' @param datatype Either "direct estimates" or "county level modeled estimates"
 #' @param area A state/territory abbreviation or USA.
 #' 
-#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "People Unemployed", "Rank"
+#' @returns A data frame with the following columns:
+#'   * Area Type
+#'   * Area Code
+#'   * "Percent"
+#'   * "People Unemployed"
+#'   * "Rank"
 #' 
 #' @export
 #' 

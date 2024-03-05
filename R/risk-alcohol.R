@@ -1,14 +1,25 @@
 #' Access to Alcohol Screening and Risk Data
 #' 
-#' This function returns a data frame from Alcohol in State Cancer Profiles
+#' This function returns a data frame that includes data on screening and risk factors related to alcohol as presented in the State Cancer Profiles.
 #'
 #' @param alcohol "binge drinking (4+ drinks on one occasion for women, 5+ drinks for one occasion for men), ages 21+"
-#' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
-#'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-#'              "asian or pacific islander (includes hispanic)","hispanic (any race)
+#' @param race One of the following values:
+#'   * "All Races (includes Hispanic)"
+#'   * "white (includes hispanic)" = "01"
+#'   * "white non-hispanic"
+#'   * "black"
+#'   * "amer. indian/alaskan native (includes hispanic)"
+#'   * "asian or pacific islander (includes hispanic)"
+#'   * "hispanic (any race)"
 #' @param sex Either "both sexes", "male", "female"
 #' 
-#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"
+#' @returns A data frame with the following columns:
+#'   * Area Type
+#'   * Area Code
+#'   * "Percent"
+#'   * "Lower 95% CI"
+#'   * "Upper 95% CI"
+#'   * "Number of Respondents"
 #' 
 #' @export
 #' 

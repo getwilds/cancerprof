@@ -7,16 +7,28 @@
 risk_vaccines(vaccine, sex)
 }
 \arguments{
-\item{vaccine}{Either "percent with up to date hpv vaccination coverage, ages 13-15",
-"percent with up to date hpv vaccination coverage, ages 13-17"}
+\item{vaccine}{One of the following values:
+\itemize{
+\item "percent with up to date hpv vaccination coverage, ages 13-15"
+\item "percent with up to date hpv vaccination coverage, ages 13-17"
+}}
 
 \item{sex}{Either "both sexes", "males", "females"}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, "Percent", "Lower 95\% CI", "Upper 95\% CI", "Number of Respondents"
+A data frame with the following columns:
+\itemize{
+\item Area Type
+\item Area Code
+\item "Percent"
+\item "Lower 95\% CI"
+\item "Upper 95\% CI"
+\item "Number of Respondents"
+}
 }
 \description{
-This function returns a data frame from Vaccines in State Cancer Profiles
+This function returns a data frame that includes data on screening and risk
+factors related to vaccines and exercise as presented in the State Cancer Profiles.
 }
 \examples{
 \dontrun{

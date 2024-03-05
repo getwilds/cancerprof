@@ -1,28 +1,43 @@
 #' Access to Colorectal Screening Data
-#' 
-#' This function returns a data frame from Colorectal Screening in State Cancer Profiles
 #'
-#' @param screening One of the following values: "ever had fobt, ages 50-75",
-#'                                               "guidance sufficient crc, ages 50-75",
-#'                                               "had colonoscopy in past 10 years, ages 50-75"
-#'                                               "home blood stool test in the past year, ages 45-75"
-#'                                               "received at least one recommended crc test, ages 45-75"
-#' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
-#'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-#'              "asian or pacific islander (includes hispanic)","hispanic (any race)
+#' This function returns a data frame that includes data on screening and risk
+#' factors related to colorectal screening as presented in the State Cancer
+#' Profiles.
+#'
+#' @param screening One of the following values:
+#'   * "ever had fobt, ages 50-75"
+#'   * "guidance sufficient crc, ages 50-75"
+#'   * "had colonoscopy in past 10 years, ages 50-75"
+#'   * "home blood stool test in the past year, ages 45-75"
+#'   * "received at least one recommended crc test, ages 45-75"
+
+#' @param race One of the following values:
+#'   * "All Races (includes Hispanic)"
+#'   * "white (includes hispanic)"
+#'   * "white non-hispanic"
+#'   * "black"
+#'   * "amer. indian/alaskan native (includes hispanic)"
+#'   * "asian or pacific islander (includes hispanic)"
+#'   * "hispanic (any race)"
+#'   
 #' @param sex Either "both sexes", "male", "female"
 #' @param area A state/territory abbreviation or USA.
-#' 
-#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "People Unemployed", "Rank"
-#' 
+#'
+#' @returns A data frame with the following columns:
+#'   * Area Type
+#'   * Area Code
+#'   * "Percent"
+#'   * "People Unemployed"
+#'   * "Rank"
+#'
 #' @export
-#' 
+#'
 #' @examples
 #' \dontrun{
 #' risk_colorectal_screening(screening = "home blood stool test in the past year, ages 45-75",
 #'                           race = "all races (includes hispanic)",
 #'                           sex = "both sexes")
-#'                           
+#'
 #' risk_colorectal_screening(screening = "ever had fobt, ages 50-75",
 #'                           area="usa")
 #' risk_colorectal_screening(screening = "received at least one recommended crc test, ages 45-75",

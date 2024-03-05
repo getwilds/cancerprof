@@ -7,22 +7,44 @@
 risk_diet_exercise(diet_exercise, race, sex)
 }
 \arguments{
-\item{diet_exercise}{Either "bmi is healthy, ages 20+", "bmi is obese, ages 20+",
-"bmi is obese, high school survey", "bmi is overweight, high school survey",
-"consumed 1 or more fruits per day", "consumed 1 or more vegetables per day",
-"no leisure time physical activity"}
+\item{diet_exercise}{One of the following values:
+\itemize{
+\item "bmi is healthy, ages 20+"
+\item "bmi is obese, ages 20+"
+\item "bmi is obese, high school survey"
+\item "bmi is overweight, high school survey"
+\item "consumed 1 or more fruits per day"
+\item "consumed 1 or more vegetables per day"
+\item "no leisure time physical activity"
+}}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
-"white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)","hispanic (any race)}
+\item{race}{One of the following values:
+\itemize{
+\item "All Races (includes Hispanic)"
+\item "white (includes hispanic)" = "01"
+\item "white non-hispanic"
+\item "black"
+\item "amer. indian/alaskan native (includes hispanic)"
+\item "asian or pacific islander (includes hispanic)"
+\item "hispanic (any race)"
+}}
 
 \item{sex}{Either "both sexes", "male", "female"}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, "Percent", "Lower 95\% CI", "Upper 95\% CI", "Number of Respondents"
+A data frame with the following columns:
+\itemize{
+\item Area Type
+\item Area Code
+\item "Percent"
+\item "Lower 95\% CI"
+\item "Upper 95\% CI"
+\item "Number of Respondents"
+}
 }
 \description{
-This function returns a data frame from Diet & Exercise in State Cancer Profiles
+This function returns a data frame that includes data on screening and risk
+factors related to diet and exercise as presented in the State Cancer Profiles.
 }
 \examples{
 \dontrun{

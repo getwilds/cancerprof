@@ -1,17 +1,35 @@
 #' Access to Diet & Exercise Screening Data
 #' 
-#' This function returns a data frame from Diet & Exercise in State Cancer Profiles
+#' This function returns a data frame that includes data on screening and risk
+#' factors related to diet and exercise as presented in the State Cancer Profiles.
 #'
-#' @param diet_exercise Either "bmi is healthy, ages 20+", "bmi is obese, ages 20+", 
-#'                             "bmi is obese, high school survey", "bmi is overweight, high school survey",
-#'                             "consumed 1 or more fruits per day", "consumed 1 or more vegetables per day",
-#'                             "no leisure time physical activity"
-#' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
-#'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-#'              "asian or pacific islander (includes hispanic)","hispanic (any race)
+#' @param diet_exercise One of the following values:
+#'   * "bmi is healthy, ages 20+"
+#'   * "bmi is obese, ages 20+"
+#'   * "bmi is obese, high school survey"
+#'   * "bmi is overweight, high school survey"
+#'   * "consumed 1 or more fruits per day"
+#'   * "consumed 1 or more vegetables per day"
+#'   * "no leisure time physical activity"
+#'   
+#' @param race One of the following values:
+#'   * "All Races (includes Hispanic)"
+#'   * "white (includes hispanic)" = "01"
+#'   * "white non-hispanic"
+#'   * "black"
+#'   * "amer. indian/alaskan native (includes hispanic)"
+#'   * "asian or pacific islander (includes hispanic)"
+#'   * "hispanic (any race)"
+#'   
 #' @param sex Either "both sexes", "male", "female"
 #' 
-#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"
+#' @returns A data frame with the following columns:
+#'   * Area Type
+#'   * Area Code
+#'   * "Percent"
+#'   * "Lower 95% CI"
+#'   * "Upper 95% CI"
+#'   * "Number of Respondents"
 #' 
 #' @export
 #' 
