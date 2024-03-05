@@ -1,23 +1,29 @@
 #' Access to Crowding Data
 #' 
-#' This function returns a data frame from Crowding in State Cancer Profiles
+#' This function returns a data frame about crowding demographics from State 
+#' Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county", "hsa" (Health service area), or "state"
-#' @param crowding "household with >1 person per room"
-#' @param race One of the following values:
-#'             "All Races (includes Hispanic)",
-#'             "white (includes hispanic)",
-#'             "white non-hispanic",
-#'             "black",
-#'             "amer. indian/alaskan native (includes hispanic)",
-#'             "asian or pacific islander (includes hispanic)",
-#'             "hispanic (any race)"
+#' @param areatype Either `"county"`, `"hsa"` (Health Service Area), or
+#' `"state"`.
+#' @param crowding The only permissible value is 
+#' `"household with >1 person per room"`.
+#' @param race 
+#' One of the following values:
+#' - "All Races (includes Hispanic)"
+#' - "White (includes Hispanic)"
+#' - "White Non-Hispanic"
+#' - "Black"
+#' - "Amer. Indian/Alaskan Native (includes Hispanic)"
+#' - "Asian or Pacific Islander (includes Hispanic)"
+#' - "Hispanic (Any Race)"
 #' 
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
+#' @importFrom dplyr mutate across
 #' 
-#' @returns A data frame with the following columns Area, Area Code, "Percent", "Households", "Rank"
+#' @returns A data frame with the following columns: Area, Area Code, 
+#' Percent, Households, Rank.
 #' 
 #' @export
 #' 
@@ -39,14 +45,17 @@
 #'               race = "black")
 #' }
 #' 
-demo_crowding <- function(area, areatype, crowding, race) {
+demo_crowding <- function(area, areatype, 
+                          crowding = "household with >1 person per room", 
+                          race) {
 
+  areatype <- tolower(areatype)
   req <- create_request("demographics")
   
   resp <- req %>% 
     req_url_query(
       stateFIPS=fips_scp(area),
-      areatype=tolower(areatype),
+      areatype=areatype,
       topic="crowd",
       demo=handle_crowding(crowding),
       race=handle_race(race),
@@ -59,17 +68,15 @@ demo_crowding <- function(area, areatype, crowding, race) {
   
   resp <- process_response(resp)
   
-  areatype_map <- c("county" = "County", "hsa" = "Health_Service_Area", "state" = "State")
+  areatype_map <- c("county" = "County", "hsa" = "Health_Service_Area", 
+                    "state" = "State")
   areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
   
   areatype_title <- areatype_map[areatype]
   areacode_title <- areacode_map[areatype]
   
   resp %>% 
-    setNames(c(areatype_title, areacode_title, "Percent", "Households", "Rank"))
+    setNames(c(areatype_title, areacode_title, "Percent", 
+               "Households", "Rank")) %>%
+    mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
 }
-
-area = "wa"
-areatype = "county"
-race = "all races (includes hispanic)"
-crowding = "household with >1 person per room"
