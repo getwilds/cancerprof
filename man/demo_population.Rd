@@ -9,22 +9,55 @@ demo_population(area, areatype, population, race = NULL, sex = NULL)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either "county", "hsa" (Health service area), or "state"}
+\item{areatype}{One of the following values:
+\itemize{
+\item \code{"county"}
+\item \code{"hsa"} (Health Service Area)
+\item \code{"state"}.
+}}
 
-\item{population}{One of the following values: "age under 18", "age 18-39", "age 40-64", "ages 40 and over", "ages 50 and over", "ages 60 and over",
-"american indian/alaska native", "asian/pacific islander", "black", "foreign born", "hispanic",
-"non-hispanic (origin recode)", "white", "males", "females"}
+\item{population}{One of the following values:
+\itemize{
+\item \code{"age under 18"}
+\item \code{"age 18-39"}
+\item \code{"age 40-64"}
+\item \code{"ages 40 and over"}
+\item \code{"ages 50 and over"}
+\item \code{"ages 60 and over"}
+\item \code{"american indian/alaska native"}
+\item \code{"asian/pacific islander"}
+\item \code{"black"}
+\item \code{"foreign born"}
+\item \code{"hispanic"}
+\item \code{"non-hispanic (origin recode)"}
+\item \code{"white"}
+\item \code{"males"}
+\item \code{"females"}.
+}}
 
-\item{race}{One of the following values: "american indian/alaska native", "asian/pacific islander",
-"black", "hispanic", "white (includes hispanic)", "white non-hispanic", "hispanic (any race)"}
+\item{race}{One of the following values:
+\itemize{
+\item \code{"American Indian/Alaska Native"}
+\item \code{"Asian/Pacific Islander"}
+\item \code{"Black"}
+\item \code{"Hispanic"}
+\item \code{"White (includes Hispanic)"}
+\item \code{"White non-Hispanic"}
+\item \code{"Hispanic (Any Race)"}.
+}}
 
-\item{sex}{Either "both sexes", "males", "females"}
+\item{sex}{One of the following values:
+\itemize{
+\item \code{"both sexes"}
+\item \code{"male"}
+\item \code{"female"}.
+}}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, "Percent", "Households", "Rank"
+A data frame with the following columns: Area Type, Area Code, Percent, Households, Rank.
 }
 \description{
-This function returns a data frame from population in State Cancer Profiles
+This function returns a data frame from population in State Cancer Profiles.
 }
 \examples{
 \dontrun{

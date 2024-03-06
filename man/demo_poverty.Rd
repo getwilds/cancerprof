@@ -9,21 +9,44 @@ demo_poverty(area, areatype, poverty, race = NULL, sex = NULL)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either "county", "hsa" (Health service area), or "state"}
+\item{areatype}{One of the following values:
+\itemize{
+\item \code{"county"}
+\item \code{"hsa"} (Health Service Area)
+\item \code{"state"}.
+}}
 
-\item{poverty}{Either "families below poverty", "persistent poverty", "persons below poverty", "persons < 150\% of poverty"}
+\item{poverty}{One of the following values:
+\itemize{
+\item \code{"families below poverty"}
+\item \code{"persistent poverty"}
+\item \code{"persons below poverty"}
+\item \code{"persons < 150\% of poverty"}.
+}}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
-"white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)","hispanic (any race)}
+\item{race}{One of the following values:
+\itemize{
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (includes Hispanic)"}
+\item \code{"White non-Hispanic"}
+\item \code{"Black"}
+\item \code{"Amer. Indian/Alaskan Native (includes Hispanic)"}
+\item \code{"Asian or Pacific Islander (includes Hispanic)"}
+\item \verb{"Hispanic (Any Race)}.
+}}
 
-\item{sex}{Either "both sexes", "male", "female"}
+\item{sex}{One of the following values
+\itemize{
+\item \code{"both sexes"}
+\item \code{"male"}
+\item \code{"female"}.
+}}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, "Percent", "Households", "Rank"
+A data frame with the following columns: Area Type, Area Code, Percent, Households, Rank.
 }
 \description{
-This function returns a data frame from Poverty in State Cancer Profiles
+This function returns a data frame about poverty demographics from State Cancer Profiles.
 }
 \examples{
 \dontrun{

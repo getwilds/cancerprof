@@ -1,17 +1,28 @@
 #' Access to Diet & Exercise Screening Data
 #' 
-#' This function returns a data frame from Diet & Exercise in State Cancer Profiles
+#' This function returns a data frame about diet and exercise risk from State Cancer Profiles.
 #'
-#' @param diet_exercise Either "bmi is healthy, ages 20+", "bmi is obese, ages 20+", 
-#'                             "bmi is obese, high school survey", "bmi is overweight, high school survey",
-#'                             "consumed 1 or more fruits per day", "consumed 1 or more vegetables per day",
-#'                             "no leisure time physical activity"
-#' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
-#'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-#'              "asian or pacific islander (includes hispanic)","hispanic (any race)
-#' @param sex Either "both sexes", "male", "female"
+#' @param diet_exercise One of the following values:
+#' - `"bmi is healthy, ages 20+"`
+#' - `"bmi is obese, ages 20+"`
+#' - `"bmi is obese, high school survey"`
+#' - `"bmi is overweight, high school survey"`
+#' - `"consumed 1 or more fruits per day"`
+#' - `"consumed 1 or more vegetables per day"`
+#' - `"no leisure time physical activity"`.
+#' @param race One of the following values:
+#' - `"All Races (includes Hispanic)"`
+#' - `"White (non-Hispanic)"`
+#' - `"Black (non-Hispanic)"`
+#' - `"American Indian / Alaska Native (non-Hispanic)"`
+#' - `"Asian / Pacific Islander (non-Hispanic)"`
+#' - `"Hispanic (Any Race)"`.
+#' @param sex One of the following values:
+#' - `"both sexes"`
+#' - `"male"`
+#' - `"female"`.
 #' 
-#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "Lower 95% CI", "Upper 95% CI", "Number of Respondents"
+#' @returns A data frame with the following columns: Area Type, Area Code, Percent, Lower 95% CI, Upper 95% CI, Number of Respondents.
 #' 
 #' @export
 #' 

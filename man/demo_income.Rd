@@ -9,19 +9,26 @@ demo_income(area, areatype, income, race)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either "county" or "state"}
+\item{areatype}{Either \code{"county"} or \code{"state"}.}
 
-\item{income}{Either "median family income" or "median household income"}
+\item{income}{Either \code{"median family income"} or \code{"median household income"}.}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
-"white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)","hispanic (any race)}
+\item{race}{One of the following values:
+\itemize{
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (includes Hispanic)"}
+\item \code{"White non-Hispanic"}
+\item \code{"Black"}
+\item \code{"Amer. Indian/Alaskan Native (includes Hispanic)"}
+\item \code{"Asian or Pacific Islander (includes Hispanic)"}
+\item \verb{"Hispanic (Any Race)}.
+}}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, "Dollars", "Rank"
+A data frame with the following columns: Area Type, Area Code, Dollars, Rank.
 }
 \description{
-This function returns a data frame from Income in State Cancer Profiles
+This function returns a data frame about income demographics from State Cancer Profiles.
 }
 \examples{
 \dontrun{

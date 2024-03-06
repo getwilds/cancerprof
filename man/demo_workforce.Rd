@@ -9,21 +9,39 @@ demo_workforce(area, areatype, workforce, race, sex)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either "county", "hsa" (Health service area), or "state"}
+\item{areatype}{One of the following values:
+\itemize{
+\item \code{"county"}
+\item \code{"hsa"} (Health Service Area)
+\item \code{"state"}.
+}}
 
-\item{workforce}{"unemployed"}
+\item{workforce}{The only permissible value is
+\code{"unemployed"}}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
-"white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)","hispanic (any race)}
+\item{race}{One of the following values:
+\itemize{
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (includes Hispanic)"}
+\item \code{"White non-Hispanic"}
+\item \code{"Black"}
+\item \code{"Amer. Indian/Alaskan Native (includes Hispanic)"}
+\item \code{"Asian or Pacific Islander (includes Hispanic)"}
+\item \verb{"Hispanic (Any Race)}.
+}}
 
-\item{sex}{Either "both sexes", "male", "female"}
+\item{sex}{One of the following values:
+\itemize{
+\item \code{"both sexes"}
+\item \code{"male"}
+\item \code{"female"}.
+}}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, "Percent", "People Unemployed", "Rank"
+A data frame with the following columns: Area Type, Area Code, Percent, People Unemployed, Rank.
 }
 \description{
-This function returns a data frame from Workforce in State Cancer Profiles
+This function returns a data frame from Workforce in State Cancer Profiles.
 }
 \examples{
 \dontrun{

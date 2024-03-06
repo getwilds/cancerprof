@@ -1,26 +1,54 @@
 #' Access to Insurance Data
 #'
-#' This function returns a data frame from Insurance in State Cancer Profiles
+#' This function returns a data frame about insurance demographics from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county", "hsa" (Health service area), or "state"
-#' @param insurance Either
-#'                  "% Insured in demographic group, all income levels", "% Insured in demographic group, people at or below 138% of Poverty"
-#'                  "% Insured in demographic group, people at or below 200% of Poverty", "% Insured in demographic group, people at or below 250% of Poverty"
-#'                  "% Insured in demographic group, people at or below 400% of Poverty","% Insured in demographic group, people between 138% - 400% of poverty"
-#'                  "% uninsured in demographic group, all income levels","% uninsured in demographic group, people at or below 138% of Poverty"
-#'                  "% uninsured in demographic group, people at or below 200% of Poverty","% uninsured in demographic group, people at or below 250% of Poverty"
-#'                  "% uninsured in demographic group, people at or below 400% of Poverty","% uninsured in demographic group, people between 138% - 400% of poverty"
-#' @param sex Either "both sexes", "male", "female"
-#' @param age Either "under 19 years", "18 to 64 years","21 to 64 years","40 to 64 years","50 to 64 years","under 65 years" for "both sexes"
-#'                  "18 to 64 years","40 to 64 years","50 to 64 years","Under 65 years" for "males" and "females"
-#' @param race Either "all races (includes hispanic)", "white (non-hispanic)", "black (non-hispanic)", "american indian / alaska native non-hispanic",
-#'                    "asian (non-hispanic)", "hispanic (any race)"
+#' @param areatype One of the following values:
+#' - `"county"`
+#' - `"hsa"` (Health Service Area)
+#' - `"state"`.
+#' @param insurance One of the following values:
+#' - `"% Insured in demographic group, all income levels"`
+#' - `"% Insured in demographic group, people at or below 138% of Poverty"`
+#' - `"% Insured in demographic group, people at or below 200% of Poverty"`
+#' - `"% Insured in demographic group, people at or below 250% of Poverty"`
+#' - `"% Insured in demographic group, people at or below 400% of Poverty"`
+#' - `"% Insured in demographic group, people between 138% - 400% of poverty"`
+#' - `"% uninsured in demographic group, all income levels"`
+#' - `"% uninsured in demographic group, people at or below 138% of Poverty"`
+#' - `"% uninsured in demographic group, people at or below 200% of Poverty"`
+#' - `"% uninsured in demographic group, people at or below 250% of Poverty"`
+#' - `"% uninsured in demographic group, people at or below 400% of Poverty"`
+#' - `"% uninsured in demographic group, people between 138% - 400% of poverty"`.
+#' @param sex One of the following values:
+#' - `"both sexes"`
+#' - `"male"`
+#' - `"female"`.
+#' @param age If you specified `"both sexes"` for `sex` choose one of the following values:
+#' - `"under 19 years"`
+#' - `"18 to 64 years"`
+#' - `"21 to 64 years"`
+#' - `"40 to 64 years"`
+#' - `"50 to 64 years"`
+#' - `"under 65 years"`.
+#' 
+#' Otherwise if you specified `"male"` or `"female"` for `sex`, choose one of the following values:
+#' - `"18 to 64 years"`
+#' - `"40 to 64 years"`
+#' - `"50 to 64 years"`
+#' - `"Under 65 years"`.
+#' @param race Only specify `race` if you specified `"state"` for `areatype`
+#' - `"All Races (includes Hispanic)"`
+#' - `"White (non-Hispanic)"`
+#' - `"black (non-Hispanic)"`
+#' - `"American Indian / Alaska Native (non-Hispanic)"`
+#' - `"Asian (non-Hispanic)"`
+#' - `"Hispanic (Any Race)"`.
 #'                  
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #'
-#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "People", "Rank"
+#' @returns A data frame with the following columns: Area Type, Area Code, Percent, People, Rank.
 #' 
 #' @export
 #'

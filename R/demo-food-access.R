@@ -1,19 +1,24 @@
 #' Access to Food Insecurity Data
 #' 
-#' This function returns a data frame from Food Insecurity in State Cancer Profiles
+#' This function returns a data frame about food demographics from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county" or "state"
-#' @param food Either "food insecurity" or "limited access to healthy food"
-#' @param race One of the following values: "All Races (includes Hispanic)", "white non hispanic",
-#'              "black (includes hispanic)","hispanic (any race)
+#' @param areatype Either `"county"` or `"state"`.
+#' @param food One of the following values: 
+#' - `"food insecurity"`
+#' - `"limited access to healthy food"`.
+#' @param race One of the following values:
+#' - `"All Races (includes Hispanic)"`
+#' - `"White non-Hispanic"`
+#' - `"Black (includes Hispanic)"`
+#' - `"Hispanic (Any Race)`.
 #'              
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom dplyr mutate
 #' @importFrom stats setNames
 #' 
-#' @returns A data frame with the following columns: Area Type, Area Code, "Value", "People"
+#' @returns A data frame with the following columns: Area Type, Area Code, Value, People".
 #' 
 #' @export
 #'

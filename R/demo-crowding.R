@@ -4,19 +4,21 @@
 #' Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either `"county"`, `"hsa"` (Health Service Area), or
-#' `"state"`.
+#' @param areatype One of the following values:
+#' - `"county"`
+#' - `"hsa"` (Health Service Area)
+#' - `"state"`.
 #' @param crowding The only permissible value is 
 #' `"household with >1 person per room"`.
 #' @param race 
 #' One of the following values:
-#' - "All Races (includes Hispanic)"
-#' - "White (includes Hispanic)"
-#' - "White Non-Hispanic"
-#' - "Black"
-#' - "Amer. Indian/Alaskan Native (includes Hispanic)"
-#' - "Asian or Pacific Islander (includes Hispanic)"
-#' - "Hispanic (Any Race)"
+#' - `"All Races (includes Hispanic)"`
+#' - `"White (includes Hispanic)"`
+#' - `"White Non-Hispanic"`
+#' - `"Black"`
+#' - `"Amer. Indian/Alaskan Native (includes Hispanic)"`
+#' - `"Asian or Pacific Islander (includes Hispanic)"`
+#' - `"Hispanic (Any Race)"`.
 #' 
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
