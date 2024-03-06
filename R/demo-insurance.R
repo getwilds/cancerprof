@@ -1,21 +1,44 @@
 #' Access to Insurance Data
 #'
-#' This function returns a data frame from Insurance in State Cancer Profiles
+#' This function returns a data frame about insurance demographics from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county", "hsa" (Health service area), or "state"
-#' @param insurance Either
-#'                  "% Insured in demographic group, all income levels", "% Insured in demographic group, people at or below 138% of Poverty"
-#'                  "% Insured in demographic group, people at or below 200% of Poverty", "% Insured in demographic group, people at or below 250% of Poverty"
-#'                  "% Insured in demographic group, people at or below 400% of Poverty","% Insured in demographic group, people between 138% - 400% of poverty"
-#'                  "% uninsured in demographic group, all income levels","% uninsured in demographic group, people at or below 138% of Poverty"
-#'                  "% uninsured in demographic group, people at or below 200% of Poverty","% uninsured in demographic group, people at or below 250% of Poverty"
-#'                  "% uninsured in demographic group, people at or below 400% of Poverty","% uninsured in demographic group, people between 138% - 400% of poverty"
+#' @param areatype Either `"county"`, `"hsa"` (Health Service Area), or
+#' `"state"`.
+#' @param insurance The only permissible values are:
+#' - `"% Insured in demographic group, all income levels"`
+#' - `"% Insured in demographic group, people at or below 138% of Poverty"`
+#' - `"% Insured in demographic group, people at or below 200% of Poverty"`
+#' - `"% Insured in demographic group, people at or below 250% of Poverty"`
+#' - `"% Insured in demographic group, people at or below 400% of Poverty"`
+#' - `"% Insured in demographic group, people between 138% - 400% of poverty"`
+#' - `"% uninsured in demographic group, all income levels"`
+#' - `"% uninsured in demographic group, people at or below 138% of Poverty"`
+#' - `"% uninsured in demographic group, people at or below 200% of Poverty"`
+#' - `"% uninsured in demographic group, people at or below 250% of Poverty"`
+#' - `"% uninsured in demographic group, people at or below 400% of Poverty"`
+#' - `"% uninsured in demographic group, people between 138% - 400% of poverty"`
 #' @param sex Either "both sexes", "male", "female"
-#' @param age Either "under 19 years", "18 to 64 years","21 to 64 years","40 to 64 years","50 to 64 years","under 65 years" for "both sexes"
-#'                  "18 to 64 years","40 to 64 years","50 to 64 years","Under 65 years" for "males" and "females"
-#' @param race Either "all races (includes hispanic)", "white (non-hispanic)", "black (non-hispanic)", "american indian / alaska native non-hispanic",
-#'                    "asian (non-hispanic)", "hispanic (any race)"
+#' @param age The only permissible values for "both sexes" are:
+#' - "under 19 years"
+#' - "18 to 64 years"
+#' - "21 to 64 years"
+#' - "40 to 64 years"
+#' - "50 to 64 years"
+#' - "under 65 years"
+#' 
+#' The only permissible values for "males" and "females" are:
+#' - "18 to 64 years"
+#' - "40 to 64 years"
+#' - "50 to 64 years"
+#' - "Under 65 years"
+#' @param race One of the following values:
+#' - All Races (includes Hispanic)"
+#' - "White (non-Hispanic)"
+#' - "black (non-Hispanic)"
+#' - "American Indian / Alaska Native (non-Hispanic)"
+#' - "Asian (non-Hispanic)"
+#' - "Hispanic (Any Race)"
 #'                  
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort

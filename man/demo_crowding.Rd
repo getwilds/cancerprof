@@ -4,29 +4,40 @@
 \alias{demo_crowding}
 \title{Access to Crowding Data}
 \usage{
-demo_crowding(area, areatype, crowding, race)
+demo_crowding(
+  area,
+  areatype,
+  crowding = "household with >1 person per room",
+  race
+)
 }
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either "county", "hsa" (Health service area), or "state"}
+\item{areatype}{Either \code{"county"}, \code{"hsa"} (Health Service Area), or
+\code{"state"}.}
 
-\item{crowding}{"household with >1 person per room"}
+\item{crowding}{The only permissible value is
+\code{"household with >1 person per room"}.}
 
 \item{race}{One of the following values:
-"All Races (includes Hispanic)",
-"white (includes hispanic)",
-"white non-hispanic",
-"black",
-"amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)",
-"hispanic (any race)"}
+\itemize{
+\item "All Races (includes Hispanic)"
+\item "White (includes Hispanic)"
+\item "White Non-Hispanic"
+\item "Black"
+\item "Amer. Indian/Alaskan Native (includes Hispanic)"
+\item "Asian or Pacific Islander (includes Hispanic)"
+\item "Hispanic (Any Race)"
+}}
 }
 \value{
-A data frame with the following columns Area, Area Code, "Percent", "Households", "Rank"
+A data frame with the following columns: Area, Area Code,
+Percent, Households, Rank.
 }
 \description{
-This function returns a data frame from Crowding in State Cancer Profiles
+This function returns a data frame about crowding demographics from State
+Cancer Profiles.
 }
 \examples{
 \dontrun{

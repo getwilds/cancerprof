@@ -1,18 +1,22 @@
 #' Access to Mobility Data
 #' 
-#' This function returns a data frame from mobility in State Cancer Profiles
+#' This function returns a data frame about mobility demographics from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county", "hsa" (Health service area), or "state"
-#' @param mobility One of five choices from "i haven't moved (in past year)", "moved from outside us (in past year)",
-#'                  "moved, different state (in past year)", "moved, different county, same state (in past year)",
-#'                  "moved, same county (in past year)"
+#' @param areatype Either `"county"`, `"hsa"` (Health Service Area), or
+#' `"state"`.
+#' @param mobility The only permissible values are 
+#' -` "i haven't moved (in past year)"`
+#' - `"moved from outside us (in past year)"`
+#' - `"moved, different state (in past year)"`
+#' - `"moved, different county, same state (in past year)"`
+#' - `"moved, same county (in past year)"`
 #'                  
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
 #' 
-#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "People", "Rank"
+#' @returns A data frame with the following columns: Area Type, Area Code, Percent, People, Rank
 #' 
 #' @export
 #' 
