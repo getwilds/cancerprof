@@ -9,14 +9,18 @@ demo_language(area, areatype, language)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either \code{"county"}, \code{"hsa"} (Health Service Area), or
-\code{"state"}.}
+\item{areatype}{One of the following values:
+\itemize{
+\item \code{"county"}
+\item \code{"hsa"} (Health Service Area)
+\item \code{"state"}.
+}}
 
 \item{language}{The only permissible value is
-\code{"language isolation"}}
+\code{"language isolation"}.}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, Households, Rank
+A data frame with the following columns: Area Type, Area Code, Percent, Households, Rank.
 }
 \description{
 This function returns a data frame about language demographics from State Cancer Profiles.

@@ -7,39 +7,39 @@
 risk_colorectal_screening(screening, race = NULL, sex = NULL, area = NULL)
 }
 \arguments{
-\item{screening}{The only permissible values are
+\item{screening}{One of the following values:
 \itemize{
 \item \code{"ever had fobt, ages 50-75"}
 \item \code{"guidance sufficient crc, ages 50-75"}
 \item \code{"had colonoscopy in past 10 years, ages 50-75"}
 \item \code{"home blood stool test in the past year, ages 45-75"}
-\item \code{"received at least one recommended crc test, ages 45-75"}
+\item \code{"received at least one recommended crc test, ages 45-75"}.
 }}
 
 \item{race}{One of the following values:
 \itemize{
-\item "All Races (includes Hispanic)"
-\item "White (non-Hispanic)"
-\item "Black (non-Hispanic)"
-\item "American Indian / Alaska Native (non-Hispanic)"
-\item "Asian / Pacific Islander (non-Hispanic)"
-\item "Hispanic (Any Race)"
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (non-Hispanic)"}
+\item \code{"Black (non-Hispanic)"}
+\item \code{"American Indian / Alaska Native (non-Hispanic)"}
+\item \code{"Asian / Pacific Islander (non-Hispanic)"}
+\item \code{"Hispanic (Any Race)"}.
 }}
 
-\item{sex}{One of the following values
+\item{sex}{One of the following values:
 \itemize{
-\item "both sexes"
-\item "male"
-\item "female"
+\item \code{"both sexes"}
+\item \code{"male"}
+\item \code{"female"}.
 }}
 
 \item{area}{A state/territory abbreviation or USA.}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, People Unemployed, Rank
+A data frame with the following columns: Area Type, Area Code, Percent, People Unemployed, Rank.
 }
 \description{
-This function returns a data frame about Colorectal Screening from State Cancer Profiles.
+This function returns a data frame about colorectal screening from State Cancer Profiles.
 }
 \examples{
 \dontrun{

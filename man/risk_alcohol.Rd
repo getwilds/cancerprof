@@ -8,27 +8,27 @@ risk_alcohol(alcohol, race, sex)
 }
 \arguments{
 \item{alcohol}{The only permissible value is
-\code{"binge drinking (4+ drinks on one occasion for women, 5+ drinks for one occasion for men), ages 21+"}}
+\code{"binge drinking (4+ drinks on one occasion for women, 5+ drinks for one occasion for men), ages 21+"}.}
 
 \item{race}{One of the following values:
 \itemize{
-\item "All Races (includes Hispanic)"
-\item "White (non-Hispanic)"
-\item "Black (non-Hispanic)"
-\item "American Indian / Alaska Native (non-Hispanic)"
-\item "Asian / Pacific Islander (non-Hispanic)"
-\item "Hispanic (Any Race)"
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (non-Hispanic)"}
+\item \code{"Black (non-Hispanic)"}
+\item \code{"American Indian / Alaska Native (non-Hispanic)"}
+\item \code{"Asian / Pacific Islander (non-Hispanic)"}
+\item \code{"Hispanic (Any Race)"}.
 }}
 
-\item{sex}{One of the following values
+\item{sex}{One of the following values:
 \itemize{
-\item "both sexes"
-\item "male"
-\item "female"
+\item \code{"both sexes"}
+\item \code{"male"}
+\item \code{"female"}.
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, Lower 95\% CI, Upper 95\% CI, Number of Respondents
+A data frame with the following columns: Area Type, Area Code, Percent, Lower 95\% CI, Upper 95\% CI, Number of Respondents.
 }
 \description{
 This function returns a data frame about alcohol risks from State Cancer Profiles.

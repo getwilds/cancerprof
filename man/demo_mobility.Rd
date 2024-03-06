@@ -9,20 +9,24 @@ demo_mobility(area, areatype, mobility)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either \code{"county"}, \code{"hsa"} (Health Service Area), or
-\code{"state"}.}
+\item{areatype}{One of the following values:
+\itemize{
+\item \code{"county"}
+\item \code{"hsa"} (Health Service Area)
+\item \code{"state"}.
+}}
 
 \item{mobility}{The only permissible values are
--\code{ "i haven't moved (in past year)"}
 \itemize{
+\item \code{"i haven't moved (in past year)"}
 \item \code{"moved from outside us (in past year)"}
 \item \code{"moved, different state (in past year)"}
 \item \code{"moved, different county, same state (in past year)"}
-\item \code{"moved, same county (in past year)"}
+\item \code{"moved, same county (in past year)"}.
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, People, Rank
+A data frame with the following columns: Area Type, Area Code, Percent, People, Rank.
 }
 \description{
 This function returns a data frame about mobility demographics from State Cancer Profiles.

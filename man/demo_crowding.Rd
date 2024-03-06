@@ -14,11 +14,11 @@ demo_crowding(
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{One of the following values
+\item{areatype}{One of the following values:
 \itemize{
 \item \code{"county"}
 \item \code{"hsa"} (Health Service Area)
-\item \code{"state"}
+\item \code{"state"}.
 }}
 
 \item{crowding}{The only permissible value is
@@ -32,7 +32,7 @@ demo_crowding(
 \item \code{"Black"}
 \item \code{"Amer. Indian/Alaskan Native (includes Hispanic)"}
 \item \code{"Asian or Pacific Islander (includes Hispanic)"}
-\item \code{"Hispanic (Any Race)"}
+\item \code{"Hispanic (Any Race)"}.
 }}
 }
 \value{

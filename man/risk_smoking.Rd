@@ -25,38 +25,42 @@ risk_smoking(smoking, race = NULL, sex = NULL, datatype = NULL, area = NULL)
 \item \code{"former smoker, quit 1 year+; ages 18+"}
 \item \code{"smokers (ever); ages 18+"}
 \item \code{"e-cigarette use; ages 18+"}
-\item \code{"smokers (current); ages 18+"}
+\item \code{"smokers (current); ages 18+"}.
 }}
 
 \item{race}{One of the following values:
 \itemize{
-\item "All Races (includes Hispanic)"
-\item "White (non-Hispanic)"
-\item "Black (non-Hispanic)"
-\item "American Indian / Alaska Native (non-Hispanic)"
-\item "Asian / Pacific Islander (non-Hispanic)"
-\item "Hispanic (Any Race)"
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (non-Hispanic)"}
+\item \code{"Black (non-Hispanic)"}
+\item \code{"American Indian / Alaska Native (non-Hispanic)"}
+\item \code{"Asian / Pacific Islander (non-Hispanic)"}
+\item \code{"Hispanic (Any Race)"}.
 }}
 
 \item{sex}{One of the following values
 \itemize{
-\item "both sexes"
-\item "male"
-\item "female"
+\item \code{"both sexes"}
+\item \code{"male"}
+\item \code{"female"}.
 }}
 
-\item{datatype}{Either "direct estimates" or "county level modeled estimates"}
+\item{datatype}{One of the following values:
+\itemize{
+\item \code{"direct estimates"}
+\item \code{"county level modeled estimates"}.
+}}
 
 \item{area}{A state/territory abbreviation or USA.}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, Lower CI 95\%, Upper CI 95\%, Number of Respondents
+A data frame with the following columns: Area Type, Area Code, Percent, Lower CI 95\%, Upper CI 95\%, Number of Respondents.
 }
 \description{
-This function returns a data frame about Smoking risks from State Cancer Profiles.
+This function returns a data frame about smoking risks from State Cancer Profiles.
 }
 \details{
-Please note that this function requires very specific arguments for each smoking type
+Please note that this function requires very specific arguments for each smoking type.
 }
 \examples{
 \dontrun{

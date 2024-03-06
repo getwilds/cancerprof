@@ -9,11 +9,11 @@ demo_insurance(area, areatype, insurance, sex, age, race = NULL)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{One of the following values
+\item{areatype}{One of the following values:
 \itemize{
 \item \code{"county"}
 \item \code{"hsa"} (Health Service Area)
-\item \code{"state"}
+\item \code{"state"}.
 }}
 
 \item{insurance}{One of the following values:
@@ -29,14 +29,14 @@ demo_insurance(area, areatype, insurance, sex, age, race = NULL)
 \item \code{"\% uninsured in demographic group, people at or below 200\% of Poverty"}
 \item \code{"\% uninsured in demographic group, people at or below 250\% of Poverty"}
 \item \code{"\% uninsured in demographic group, people at or below 400\% of Poverty"}
-\item \code{"\% uninsured in demographic group, people between 138\% - 400\% of poverty"}
+\item \code{"\% uninsured in demographic group, people between 138\% - 400\% of poverty"}.
 }}
 
 \item{sex}{One of the following values:
 \itemize{
 \item \code{"both sexes"}
 \item \code{"male"}
-\item \code{"female"}
+\item \code{"female"}.
 }}
 
 \item{age}{If you specified \code{"both sexes"} for \code{sex} choose one of the following values:
@@ -46,7 +46,7 @@ demo_insurance(area, areatype, insurance, sex, age, race = NULL)
 \item \code{"21 to 64 years"}
 \item \code{"40 to 64 years"}
 \item \code{"50 to 64 years"}
-\item \code{"under 65 years"}
+\item \code{"under 65 years"}.
 }
 
 Otherwise if you specified \code{"male"} or \code{"female"} for \code{sex}, choose one of the following values:
@@ -54,7 +54,7 @@ Otherwise if you specified \code{"male"} or \code{"female"} for \code{sex}, choo
 \item \code{"18 to 64 years"}
 \item \code{"40 to 64 years"}
 \item \code{"50 to 64 years"}
-\item \code{"Under 65 years"}
+\item \code{"Under 65 years"}.
 }}
 
 \item{race}{Only specify \code{race} if you specified \code{"state"} for \code{areatype}
@@ -64,7 +64,7 @@ Otherwise if you specified \code{"male"} or \code{"female"} for \code{sex}, choo
 \item \code{"black (non-Hispanic)"}
 \item \code{"American Indian / Alaska Native (non-Hispanic)"}
 \item \code{"Asian (non-Hispanic)"}
-\item \code{"Hispanic (Any Race)"}
+\item \code{"Hispanic (Any Race)"}.
 }}
 }
 \value{

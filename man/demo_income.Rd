@@ -9,9 +9,9 @@ demo_income(area, areatype, income, race)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either \code{"county"} or \code{"state"}}
+\item{areatype}{Either \code{"county"} or \code{"state"}.}
 
-\item{income}{Either \code{"median family income"} or \code{"median household income"}}
+\item{income}{Either \code{"median family income"} or \code{"median household income"}.}
 
 \item{race}{One of the following values:
 \itemize{
@@ -21,7 +21,7 @@ demo_income(area, areatype, income, race)
 \item \code{"Black"}
 \item \code{"Amer. Indian/Alaskan Native (includes Hispanic)"}
 \item \code{"Asian or Pacific Islander (includes Hispanic)"}
-\item \verb{"Hispanic (Any Race)}
+\item \verb{"Hispanic (Any Race)}.
 }}
 }
 \value{

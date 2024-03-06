@@ -9,25 +9,25 @@ demo_education(area, areatype, education, sex = NULL, race = NULL)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{One of the following values
+\item{areatype}{One of the following values:
 \itemize{
 \item \code{"county"}
 \item \code{"hsa"} (Health Service Area)
-\item \code{"state"}
+\item \code{"state"}.
 }}
 
 \item{education}{One of the following values:
 \itemize{
 \item \code{"less than 9th grade"}
 \item \code{"at least high school"}
-\item \code{"at least bachelors degree"}
+\item \code{"at least bachelors degree"}.
 }}
 
 \item{sex}{One of the following values:
 \itemize{
 \item \code{"both sexes"}
 \item \code{"male"}
-\item \code{"female"}
+\item \code{"female"}.
 }}
 
 \item{race}{One of the following values:
@@ -38,7 +38,7 @@ demo_education(area, areatype, education, sex = NULL, race = NULL)
 \item \code{"Black"}
 \item \code{"Amer. Indian/Alaskan Native (includes Hispanic)"}
 \item \code{"Asian or Pacific Islander (includes Hispanic)"}
-\item \verb{"Hispanic (Any Race)}
+\item \verb{"Hispanic (Any Race)}.
 }}
 }
 \value{

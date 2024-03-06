@@ -9,10 +9,14 @@ demo_population(area, areatype, population, race = NULL, sex = NULL)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either \code{"county"}, \code{"hsa"} (Health Service Area), or
-\code{"state"}.}
+\item{areatype}{One of the following values:
+\itemize{
+\item \code{"county"}
+\item \code{"hsa"} (Health Service Area)
+\item \code{"state"}.
+}}
 
-\item{population}{The only permissible values are
+\item{population}{One of the following values:
 \itemize{
 \item \code{"age under 18"}
 \item \code{"age 18-39"}
@@ -28,32 +32,32 @@ demo_population(area, areatype, population, race = NULL, sex = NULL)
 \item \code{"non-hispanic (origin recode)"}
 \item \code{"white"}
 \item \code{"males"}
-\item \code{"females"}
+\item \code{"females"}.
 }}
 
-\item{race}{One of the following values
+\item{race}{One of the following values:
 \itemize{
-\item "American Indian/Alaska Native"
-\item "Asian/Pacific Islander"
-\item "Black"
-\item "Hispanic"
-\item "White (includes Hispanic)"
-\item "White non-Hispanic"
-\item "Hispanic (Any Race)"
+\item \code{"American Indian/Alaska Native"}
+\item \code{"Asian/Pacific Islander"}
+\item \code{"Black"}
+\item \code{"Hispanic"}
+\item \code{"White (includes Hispanic)"}
+\item \code{"White non-Hispanic"}
+\item \code{"Hispanic (Any Race)"}.
 }}
 
-\item{sex}{One of the following values
+\item{sex}{One of the following values:
 \itemize{
-\item "both sexes"
-\item "male"
-\item "female"
+\item \code{"both sexes"}
+\item \code{"male"}
+\item \code{"female"}.
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, Households, Rank
+A data frame with the following columns: Area Type, Area Code, Percent, Households, Rank.
 }
 \description{
-This function returns a data frame from population in State Cancer Profiles
+This function returns a data frame from population in State Cancer Profiles.
 }
 \examples{
 \dontrun{

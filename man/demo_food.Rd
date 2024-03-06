@@ -9,12 +9,12 @@ demo_food(area, areatype, food, race = NULL)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either \code{"county"} or \code{"state"}}
+\item{areatype}{Either \code{"county"} or \code{"state"}.}
 
 \item{food}{One of the following values:
 \itemize{
 \item \code{"food insecurity"}
-\item \code{"limited access to healthy food"}
+\item \code{"limited access to healthy food"}.
 }}
 
 \item{race}{One of the following values:
@@ -22,7 +22,7 @@ demo_food(area, areatype, food, race = NULL)
 \item \code{"All Races (includes Hispanic)"}
 \item \code{"White non-Hispanic"}
 \item \code{"Black (includes Hispanic)"}
-\item \verb{"Hispanic (Any Race)}
+\item \verb{"Hispanic (Any Race)}.
 }}
 }
 \value{

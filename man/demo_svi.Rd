@@ -9,20 +9,20 @@ demo_svi(area, svi)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{svi}{The only permissible values are
+\item{svi}{One of the following values:
 \itemize{
 \item \code{"Overall"}
 \item \code{"socioeconomic status"}
 \item \code{"household characteristics"}
 \item \code{"racial & ethinic minority status"}
-\item \code{"housing type & transportation"}
+\item \code{"housing type & transportation"}.
 }}
 }
 \value{
-A data frame with the following columns County, FIPS, Score
+A data frame with the following columns County, FIPS, Score.
 }
 \description{
-This function returns a data frame from Social Vulnerability Index (SVI) in State Cancer Profiles
+This function returns a data frame from social vulnerability index (SVI) in State Cancer Profiles.
 }
 \examples{
 \dontrun{
