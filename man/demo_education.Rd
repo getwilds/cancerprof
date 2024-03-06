@@ -9,10 +9,14 @@ demo_education(area, areatype, education, sex = NULL, race = NULL)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either \code{"county"}, \code{"hsa"} (Health Service Area), or
-\code{"state"}.}
+\item{areatype}{One of the following values
+\itemize{
+\item \code{"county"}
+\item \code{"hsa"} (Health Service Area)
+\item \code{"state"}
+}}
 
-\item{education}{The only permissible values are
+\item{education}{One of the following values:
 \itemize{
 \item \code{"less than 9th grade"}
 \item \code{"at least high school"}
@@ -21,24 +25,24 @@ demo_education(area, areatype, education, sex = NULL, race = NULL)
 
 \item{sex}{One of the following values:
 \itemize{
-\item "both sexes"
-\item "male"
-\item "female"
+\item \code{"both sexes"}
+\item \code{"male"}
+\item \code{"female"}
 }}
 
 \item{race}{One of the following values:
 \itemize{
-\item "All Races (includes Hispanic)"
-\item "White (includes Hispanic)"
-\item "White non-Hispanic"
-\item "Black"
-\item "Amer. Indian/Alaskan Native (includes Hispanic)"
-\item "Asian or Pacific Islander (includes Hispanic)"
-\item "hispanic (Any Race)
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (includes Hispanic)"}
+\item \code{"White non-Hispanic"}
+\item \code{"Black"}
+\item \code{"Amer. Indian/Alaskan Native (includes Hispanic)"}
+\item \code{"Asian or Pacific Islander (includes Hispanic)"}
+\item \verb{"Hispanic (Any Race)}
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, Households, Rank
+A data frame with the following columns: Area Type, Area Code, Percent, Households, Rank.
 }
 \description{
 This function returns a data frame about education demographics from State Cancer Profiles.

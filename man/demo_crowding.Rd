@@ -14,21 +14,25 @@ demo_crowding(
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either \code{"county"}, \code{"hsa"} (Health Service Area), or
-\code{"state"}.}
+\item{areatype}{One of the following values
+\itemize{
+\item \code{"county"}
+\item \code{"hsa"} (Health Service Area)
+\item \code{"state"}
+}}
 
 \item{crowding}{The only permissible value is
 \code{"household with >1 person per room"}.}
 
 \item{race}{One of the following values:
 \itemize{
-\item "All Races (includes Hispanic)"
-\item "White (includes Hispanic)"
-\item "White Non-Hispanic"
-\item "Black"
-\item "Amer. Indian/Alaskan Native (includes Hispanic)"
-\item "Asian or Pacific Islander (includes Hispanic)"
-\item "Hispanic (Any Race)"
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (includes Hispanic)"}
+\item \code{"White Non-Hispanic"}
+\item \code{"Black"}
+\item \code{"Amer. Indian/Alaskan Native (includes Hispanic)"}
+\item \code{"Asian or Pacific Islander (includes Hispanic)"}
+\item \code{"Hispanic (Any Race)"}
 }}
 }
 \value{

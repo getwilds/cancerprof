@@ -3,30 +3,32 @@
 #' This function returns a data frame about education demographics from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either `"county"`, `"hsa"` (Health Service Area), or
-#' `"state"`.
-#' @param education The only permissible values are 
+#' @param areatype One of the following values:
+#' - `"county"`
+#' - `"hsa"` (Health Service Area)
+#' - `"state"`.
+#' @param education One of the following values:
 #' - `"less than 9th grade"`
 #' - `"at least high school"`
-#' - `"at least bachelors degree"`
+#' - `"at least bachelors degree"`.
 #' @param sex One of the following values:
-#' - "both sexes"
-#' - "male"
-#' - "female"
+#' - `"both sexes"`
+#' - `"male"`
+#' - `"female"`.
 #' @param race One of the following values:
-#' - "All Races (includes Hispanic)"
-#' - "White (includes Hispanic)"
-#' - "White non-Hispanic"
-#' - "Black"
-#' - "Amer. Indian/Alaskan Native (includes Hispanic)"
-#' - "Asian or Pacific Islander (includes Hispanic)"
-#' - "hispanic (Any Race)
+#' - `"All Races (includes Hispanic)"`
+#' - `"White (includes Hispanic)"`
+#' - `"White non-Hispanic"`
+#' - `"Black"`
+#' - `"Amer. Indian/Alaskan Native (includes Hispanic)"`
+#' - `"Asian or Pacific Islander (includes Hispanic)"`
+#' - `"Hispanic (Any Race)`.
 #'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
 #'
-#' @returns A data frame with the following columns: Area Type, Area Code, Percent, Households, Rank
+#' @returns A data frame with the following columns: Area Type, Area Code, Percent, Households, Rank.
 #'
 #' @export
 #'

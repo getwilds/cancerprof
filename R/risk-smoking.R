@@ -1,29 +1,48 @@
 #' Access to Smoking Data
 #' 
-#' This function returns a data frame from Smoking in State Cancer Profiles
+#' This function returns a data frame about smoking risks from State Cancer Profiles.
 #' 
-#' Please note that this function requires very specific arguments for each smoking type
+#' Please note that this function requires very specific arguments for each smoking type.
 #'
-#' @param smoking Either "smoking laws (any)", "smoking laws (bars)", "smoking laws (restaurants)", 
-#'                       "smoking laws (workplace)", "smoking laws (workplace; restaurant; & bar)", 
-#'                       "smokers (stopped for 1 day or longer)", "smoking not allowed at work (all people)", 
-#'                       "smoking not allowed in home (all people)", "smoking not allowed at work (current smokers)",
-#'                       "smoking not allowed at work (former/never smokers)", "smoking not allowed in home (current smokers)", 
-#'                       "smoking not allowed in home (former/never smokers)", "former smoker; ages 18+", 
-#'                       "former smoker, quit 1 year+; ages 18+", "smokers (ever); ages 18+", "e-cigarette use; ages 18+",
-#'                       "smokers (current); ages 18+"
-#' @param race One of the following values: "all races (includes hispanic)", "white (non-hispanic)", 
-#'                                          "black (non-hispanic)", "amer. indian / ak native (non-hispanic)", 
-#'                                          "asian / pacific islander (non-hispanic)","hispanic (any race)"
-#' @param sex Either "both sexes", "males", "females"
-#' @param datatype Either "direct estimates" or "county level modeled estimates"
+#' @param smoking The only permissible values are 
+#' - `"smoking laws (any)"`
+#' - `"smoking laws (bars)"`
+#' - `"smoking laws (restaurants)"`
+#' - `"smoking laws (workplace)"`
+#' - `"smoking laws (workplace; restaurant; & bar)"`
+#' - `"smokers (stopped for 1 day or longer)"`
+#' - `"smoking not allowed at work (all people)"`
+#' - `"smoking not allowed in home (all people)"`
+#' - `"smoking not allowed at work (current smokers)"`
+#' - `"smoking not allowed at work (former/never smokers)"`
+#' - `"smoking not allowed in home (current smokers)"`
+#' - `"smoking not allowed in home (former/never smokers)"`
+#' - `"former smoker; ages 18+"`
+#' - `"former smoker, quit 1 year+; ages 18+"`
+#' - `"smokers (ever); ages 18+"`
+#' - `"e-cigarette use; ages 18+"`
+#' - `"smokers (current); ages 18+"`.
+#' @param race One of the following values:
+#' - `"All Races (includes Hispanic)"`
+#' - `"White (non-Hispanic)"`
+#' - `"Black (non-Hispanic)"`
+#' - `"American Indian / Alaska Native (non-Hispanic)"`
+#' - `"Asian / Pacific Islander (non-Hispanic)"`
+#' - `"Hispanic (Any Race)"`.
+#' @param sex One of the following values
+#' - `"both sexes"`
+#' - `"male"`
+#' - `"female"`.
+#' @param datatype One of the following values:
+#' - `"direct estimates"`
+#' - `"county level modeled estimates"`.
 #' @param area A state/territory abbreviation or USA.
 #' 
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
 #' 
-#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "Lower CI 95%", "Upper CI 95%", "Number of Respondents"
+#' @returns A data frame with the following columns: Area Type, Area Code, Percent, Lower CI 95%, Upper CI 95%, Number of Respondents.
 #' 
 #' @export
 #' 

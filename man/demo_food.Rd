@@ -11,21 +11,25 @@ demo_food(area, areatype, food, race = NULL)
 
 \item{areatype}{Either \code{"county"} or \code{"state"}}
 
-\item{food}{Either \code{"food insecurity"} or \code{"limited access to healthy food"}}
+\item{food}{One of the following values:
+\itemize{
+\item \code{"food insecurity"}
+\item \code{"limited access to healthy food"}
+}}
 
 \item{race}{One of the following values:
 \itemize{
-\item "All Races (includes Hispanic)"
-\item "White non-Hispanic"
-\item "Black (includes Hispanic)"
-\item "Hispanic (Any Race)
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White non-Hispanic"}
+\item \code{"Black (includes Hispanic)"}
+\item \verb{"Hispanic (Any Race)}
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Value, People"
+A data frame with the following columns: Area Type, Area Code, Value, People".
 }
 \description{
-This function returns a data frame about Food Insecurity from State Cancer Profiles.
+This function returns a data frame about food demographics from State Cancer Profiles.
 }
 \examples{
 \dontrun{

@@ -9,10 +9,14 @@ demo_insurance(area, areatype, insurance, sex, age, race = NULL)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either \code{"county"}, \code{"hsa"} (Health Service Area), or
-\code{"state"}.}
+\item{areatype}{One of the following values
+\itemize{
+\item \code{"county"}
+\item \code{"hsa"} (Health Service Area)
+\item \code{"state"}
+}}
 
-\item{insurance}{The only permissible values are:
+\item{insurance}{One of the following values:
 \itemize{
 \item \code{"\% Insured in demographic group, all income levels"}
 \item \code{"\% Insured in demographic group, people at or below 138\% of Poverty"}
@@ -28,38 +32,43 @@ demo_insurance(area, areatype, insurance, sex, age, race = NULL)
 \item \code{"\% uninsured in demographic group, people between 138\% - 400\% of poverty"}
 }}
 
-\item{sex}{Either "both sexes", "male", "female"}
-
-\item{age}{The only permissible values for "both sexes" are:
+\item{sex}{One of the following values:
 \itemize{
-\item "under 19 years"
-\item "18 to 64 years"
-\item "21 to 64 years"
-\item "40 to 64 years"
-\item "50 to 64 years"
-\item "under 65 years"
-}
-
-The only permissible values for "males" and "females" are:
-\itemize{
-\item "18 to 64 years"
-\item "40 to 64 years"
-\item "50 to 64 years"
-\item "Under 65 years"
+\item \code{"both sexes"}
+\item \code{"male"}
+\item \code{"female"}
 }}
 
-\item{race}{One of the following values:
+\item{age}{If you specified \code{"both sexes"} for \code{sex} choose one of the following values:
 \itemize{
-\item All Races (includes Hispanic)"
-\item "White (non-Hispanic)"
-\item "black (non-Hispanic)"
-\item "American Indian / Alaska Native (non-Hispanic)"
-\item "Asian (non-Hispanic)"
-\item "Hispanic (Any Race)"
+\item \code{"under 19 years"}
+\item \code{"18 to 64 years"}
+\item \code{"21 to 64 years"}
+\item \code{"40 to 64 years"}
+\item \code{"50 to 64 years"}
+\item \code{"under 65 years"}
+}
+
+Otherwise if you specified \code{"male"} or \code{"female"} for \code{sex}, choose one of the following values:
+\itemize{
+\item \code{"18 to 64 years"}
+\item \code{"40 to 64 years"}
+\item \code{"50 to 64 years"}
+\item \code{"Under 65 years"}
+}}
+
+\item{race}{Only specify \code{race} if you specified \code{"state"} for \code{areatype}
+\itemize{
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (non-Hispanic)"}
+\item \code{"black (non-Hispanic)"}
+\item \code{"American Indian / Alaska Native (non-Hispanic)"}
+\item \code{"Asian (non-Hispanic)"}
+\item \code{"Hispanic (Any Race)"}
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, "Percent", "People", "Rank"
+A data frame with the following columns: Area Type, Area Code, Percent, People, Rank.
 }
 \description{
 This function returns a data frame about insurance demographics from State Cancer Profiles.

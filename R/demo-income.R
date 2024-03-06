@@ -3,23 +3,23 @@
 #' This function returns a data frame about income demographics from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either `"county"` or `"state"`
-#' @param income Either `"median family income"` or `"median household income"`
+#' @param areatype Either `"county"` or `"state"`.
+#' @param income Either `"median family income"` or `"median household income"`.
 #' @param race One of the following values:
-#' - "All Races (includes Hispanic)"
-#' - "White (includes Hispanic)"
-#' - "White non-Hispanic"
-#' - "Black"
-#' - "Amer. Indian/Alaskan Native (includes Hispanic)"
-#' - "Asian or Pacific Islander (includes Hispanic)"
-#' - "hispanic (Any Race)
+#' - `"All Races (includes Hispanic)"`
+#' - `"White (includes Hispanic)"`
+#' - `"White non-Hispanic"`
+#' - `"Black"`
+#' - `"Amer. Indian/Alaskan Native (includes Hispanic)"`
+#' - `"Asian or Pacific Islander (includes Hispanic)"`
+#' - `"Hispanic (Any Race)`.
 #'              
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom dplyr mutate
 #' @importFrom stats setNames
 #'  
-#' @returns A data frame with the following columns: Area Type, Area Code, Dollars, Rank
+#' @returns A data frame with the following columns: Area Type, Area Code, Dollars, Rank.
 #' 
 #' @export
 #' 

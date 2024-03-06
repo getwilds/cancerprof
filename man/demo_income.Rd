@@ -15,17 +15,17 @@ demo_income(area, areatype, income, race)
 
 \item{race}{One of the following values:
 \itemize{
-\item "All Races (includes Hispanic)"
-\item "White (includes Hispanic)"
-\item "White non-Hispanic"
-\item "Black"
-\item "Amer. Indian/Alaskan Native (includes Hispanic)"
-\item "Asian or Pacific Islander (includes Hispanic)"
-\item "hispanic (Any Race)
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (includes Hispanic)"}
+\item \code{"White non-Hispanic"}
+\item \code{"Black"}
+\item \code{"Amer. Indian/Alaskan Native (includes Hispanic)"}
+\item \code{"Asian or Pacific Islander (includes Hispanic)"}
+\item \verb{"Hispanic (Any Race)}
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Dollars, Rank
+A data frame with the following columns: Area Type, Area Code, Dollars, Rank.
 }
 \description{
 This function returns a data frame about income demographics from State Cancer Profiles.

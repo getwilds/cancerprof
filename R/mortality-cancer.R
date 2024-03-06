@@ -1,25 +1,61 @@
 #' Access to Cancer Mortality Data
 #' 
-#' This function returns a data frame from Cancer Mortality in State Cancer Profiles
+#' This function returns a data frame about cancer mortality from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county", "hsa" (Health service area), or "state"
-#' @param cancer Either "all cancer sites","bladder", "brain & ons", "breast (female)", "cervix", 
-#'                      "childhood (ages <15, all sites)", "childhood (ages <20, all sites)", "colon & rectum", "esophagus", 
-#'                      "kidney & renal pelvis", "leukemia", "liver & bile duct", "lung & bronchus", "melanoma of the skin", 
-#'                      "non-hodgkin lymphoma", "oral cavity & pharynx", "ovary", "pancreas", "prostate", "stomach", 
-#'                      "thyroid", "uterus (corpus & uterus, nos)"
-#' @param race One of the following values: "all races (includes hispanic)", "white (non-hispanic)", 
-#'                                          "black (non-hispanic)", "amer. indian / ak native (non-hispanic)", 
-#'                                          "asian / pacific islander (non-hispanic)","hispanic (any race)"
-#' @param sex Defaulted to NULL. Specify either "both sexes", "males", "females" if necessary
-#' @param age Either "all ages", "ages <50", "ages 50+", "ages <65", "ages 65+", ages <15, ages <20
-#' @param year Either "latest 5 year average", "latest single year (us by state)"
+#' @param areatype One of the following values:
+#' - `"county"`
+#' - `"hsa"` (Health Service Area)
+#' - `"state"`.
+#' @param cancer One of the following values: 
+#' `"all cancer sites"`
+#' `"bladder", "brain & ons"`
+#' `"breast (female)"`
+#' `"cervix"`
+#' `"childhood (ages <15, all sites)"`
+#' `"childhood (ages <20, all sites)"`
+#' `"colon & rectum"`
+#' `"esophagus"`
+#' `"kidney & renal pelvis"`
+#' `"leukemia"`
+#' `"liver & bile duct"`
+#' `"lung & bronchus"`
+#' `"melanoma of the skin"`
+#' `"non-hodgkin lymphoma"`
+#' `"oral cavity & pharynx"`
+#' `"ovary"`
+#' `"pancreas"`
+#' `"prostate"`
+#' `"stomach"`
+#' `"thyroid"`
+#' `"uterus (corpus & uterus, nos)"`
+#' @param race One of the following values:
+#' - `"All Races (includes Hispanic)"`
+#' - `"White (non-Hispanic)"`
+#' - `"Black (non-Hispanic)"`
+#' - `"American Indian / Alaska Native (non-Hispanic)"`
+#' - `"Asian / Pacific Islander (non-Hispanic)"`
+#' - `"Hispanic (Any Race)"`.
+#' @param sex One of the following values:
+#' - `"both sexes"`
+#' - `"male"`
+#' - `"female"`.
+#' @param age One of the following values:
+#' - `"all ages"`
+#' - `"ages <50"`
+#' - `"ages 50+"`
+#' - `"ages <65"`
+#' - `"ages 65+"`
+#' - `"ages <15"`
+#' - `"ages <20"`.
+#' @param year One of the following values:
+#' - `"latest 5 year average"`
+#' - `"latest single year (us by state)"`.
 #' 
-#' @returns A data frame with the following columns: Area Type, Area Code, "Met Healthy People Objective of ***?",
-#'          "Age Adjusted Death Rate", "Lower 95% CI Rate", "Upper 95% CI Rate", 
-#'          "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", 
-#'          "Recent Trend", "Recent 5 Year Trend", "Lower 95% CI Trend", "Upper 95% CI Trend"
+#' @returns A data frame with the following columns: Area Type, Area Code, Met Healthy People Objective of ***?,
+#'          Age Adjusted Death Rate, Lower 95% CI Rate, Upper 95% CI Rate, 
+#'          CI Rank, Lower CI Rank, Upper CI Rank, Annual Average Count, 
+#'          Recent Trend, Recent 5 Year Trend, Lower 95% CI Trend, Upper 95% CI Trend.
 #' 
 #' @export
 #' 

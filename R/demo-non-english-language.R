@@ -3,15 +3,17 @@
 #' This function returns a data frame about language demographics from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either `"county"`, `"hsa"` (Health Service Area), or
-#' `"state"`.
+#' @param areatype One of the following values:
+#' - `"county"`
+#' - `"hsa"` (Health Service Area)
+#' - `"state"`.
 #' @param language The only permissible value is 
-#' `"language isolation"`
+#' `"language isolation"`.
 #' 
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
 #' 
-#' @returns A data frame with the following columns: Area Type, Area Code, Percent, Households, Rank
+#' @returns A data frame with the following columns: Area Type, Area Code, Percent, Households, Rank.
 #' 
 #' @export
 #' 

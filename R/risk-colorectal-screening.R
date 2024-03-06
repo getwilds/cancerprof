@@ -1,19 +1,27 @@
 #' Access to Colorectal Screening Data
 #' 
-#' This function returns a data frame from Colorectal Screening in State Cancer Profiles
+#' This function returns a data frame about colorectal screening from State Cancer Profiles.
 #'
-#' @param screening One of the following values: "ever had fobt, ages 50-75",
-#'                                               "guidance sufficient crc, ages 50-75",
-#'                                               "had colonoscopy in past 10 years, ages 50-75"
-#'                                               "home blood stool test in the past year, ages 45-75"
-#'                                               "received at least one recommended crc test, ages 45-75"
-#' @param race One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
-#'              "white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-#'              "asian or pacific islander (includes hispanic)","hispanic (any race)
-#' @param sex Either "both sexes", "male", "female"
+#' @param screening One of the following values:
+#' - `"ever had fobt, ages 50-75"`
+#' - `"guidance sufficient crc, ages 50-75"`
+#' - `"had colonoscopy in past 10 years, ages 50-75"`
+#' - `"home blood stool test in the past year, ages 45-75"`
+#' - `"received at least one recommended crc test, ages 45-75"`.
+#' @param race One of the following values:
+#' - `"All Races (includes Hispanic)"`
+#' - `"White (non-Hispanic)"`
+#' - `"Black (non-Hispanic)"`
+#' - `"American Indian / Alaska Native (non-Hispanic)"`
+#' - `"Asian / Pacific Islander (non-Hispanic)"`
+#' - `"Hispanic (Any Race)"`.
+#' @param sex One of the following values:
+#' - `"both sexes"`
+#' - `"male"`
+#' - `"female"`.
 #' @param area A state/territory abbreviation or USA.
 #' 
-#' @returns A data frame with the following columns: Area Type, Area Code, "Percent", "People Unemployed", "Rank"
+#' @returns A data frame with the following columns: Area Type, Area Code, Percent, People Unemployed, Rank.
 #' 
 #' @export
 #' 
