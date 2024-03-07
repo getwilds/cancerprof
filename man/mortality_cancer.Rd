@@ -74,38 +74,46 @@ mortality_cancer(area, areatype, cancer, race, sex, age, year)
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Met Healthy People Objective of ***?,
+A data frame with the following columns:
+Area Type, Area Code, Met Healthy People Objective of ***?,
 Age Adjusted Death Rate, Lower 95\% CI Rate, Upper 95\% CI Rate,
 CI Rank, Lower CI Rank, Upper CI Rank, Annual Average Count,
 Recent Trend, Recent 5 Year Trend, Lower 95\% CI Trend, Upper 95\% CI Trend.
 }
 \description{
-This function returns a data frame about cancer mortality from State Cancer Profiles.
+This function returns a data frame about cancer mortality
+from State Cancer Profiles.
 }
 \examples{
 \dontrun{
-mortality_cancer(area = "wa",
-                 areatype = "county",
-                 cancer = "all cancer sites",
-                 race = "black (non-hispanic)",
-                 sex = "both sexes",
-                 age = "ages 65+",
-                 year = "latest 5 year average")
+mortality_cancer(
+  area = "wa",
+  areatype = "county",
+  cancer = "all cancer sites",
+  race = "black (non-hispanic)",
+  sex = "both sexes",
+  age = "ages 65+",
+  year = "latest 5 year average"
+)
 
-mortality_cancer(area = "usa",
-                 areatype = "state",
-                 cancer = "prostate",
-                 race = "all races (includes hispanic)",
-                 sex = "males",
-                 age = "ages 50+",
-                 year = "latest single year (us by state)")
-                 
-mortality_cancer(area = "wa",
-                 areatype = "hsa",
-                 cancer = "ovary",
-                 race = "all races (includes hispanic)",
-                 sex = "females",
-                 age = "ages 50+",
-                 year = "latest 5 year average")
+mortality_cancer(
+  area = "usa",
+  areatype = "state",
+  cancer = "prostate",
+  race = "all races (includes hispanic)",
+  sex = "males",
+  age = "ages 50+",
+  year = "latest single year (us by state)"
+)
+
+mortality_cancer(
+  area = "wa",
+  areatype = "hsa",
+  cancer = "ovary",
+  race = "all races (includes hispanic)",
+  sex = "females",
+  age = "ages 50+",
+  year = "latest 5 year average"
+)
 }
 }

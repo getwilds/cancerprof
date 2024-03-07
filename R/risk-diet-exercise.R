@@ -1,6 +1,7 @@
 #' Access to Diet & Exercise Screening Data
 #'
-#' This function returns a data frame about diet and exercise risk from State Cancer Profiles.
+#' This function returns a data frame about diet and exercise risk
+#' from State Cancer Profiles.
 #'
 #' @param diet_exercise One of the following values:
 #' - `"bmi is healthy, ages 20+"`
@@ -22,7 +23,9 @@
 #' - `"male"`
 #' - `"female"`.
 #'
-#' @returns A data frame with the following columns: Area Type, Area Code, Percent, Lower 95% CI, Upper 95% CI, Number of Respondents.
+#' @returns A data frame with the following columns:
+#' Area Type, Area Code, Percent,
+#' Lower 95% CI, Upper 95% CI, Number of Respondents.
 #'
 #' @export
 #'
@@ -64,9 +67,22 @@ risk_diet_exercise <- function(diet_exercise, race, sex) {
 
   if (diet_exercise %in% diet_exercise_type1) {
     resp %>%
-      setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI"))
+      setNames(c(
+        "State",
+        "FIPS",
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI"
+      ))
   } else {
     resp %>%
-      setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
+      setNames(c(
+        "State",
+        "FIPS",
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI",
+        "Number_of_Respondents"
+      ))
   }
 }

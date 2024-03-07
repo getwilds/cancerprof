@@ -84,40 +84,48 @@ incidence_cancer(area, areatype, cancer, race, sex, age, stage, year)
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Age Adjusted Incidence Rate, Lower 95\% CI,
-Upper 95\% CI, CI Rank, Lower CI Rank, Upper CI Rank, Annual Average Count, Recent Trend,
-Recent 5 Year Trend, Trend Lower 95\% CI, Trend Upper 95\% CI.
+A data frame with the following columns:
+Area Type, Area Code, Age Adjusted Incidence Rate, Lower 95\% CI,
+Upper 95\% CI, CI Rank, Lower CI Rank, Upper CI Rank, Annual Average Count,
+Recent Trend, Recent 5 Year Trend, Trend Lower 95\% CI, Trend Upper 95\% CI.
 }
 \description{
-This function returns a data frame about cancer incidence from State Cancer Profiles.
+This function returns a data frame about cancer incidence
+from State Cancer Profiles.
 }
 \examples{
 \dontrun{
-incidence_cancer(area = "wa",
-                 areatype = "county",
-                 cancer = "all cancer sites",
-                 race = "black (non-hispanic)",
-                 sex = "both sexes",
-                 age = "ages 65+",
-                 stage = "all stages",
-                 year = "latest 5 year average")
-                 
-incidence_cancer(area = "usa",
-                 areatype = "state",
-                 cancer = "lung & bronchus",
-                 race = "all races (includes hispanic)",
-                 sex = "males",
-                 age = "ages 50+",
-                 stage = "late stage (regional & distant)",
-                 year = "latest single year (us by state)")
-                 
-incidence_cancer(area = "wa",
-                 areatype = "hsa",
-                 cancer = "ovary",
-                 race = "all races (includes hispanic)",
-                 sex = "females",
-                 age = "ages 50+",
-                 stage = "late stage (regional & distant)",
-                 year = "latest 5 year average")
+incidence_cancer(
+  area = "wa",
+  areatype = "county",
+  cancer = "all cancer sites",
+  race = "black (non-hispanic)",
+  sex = "both sexes",
+  age = "ages 65+",
+  stage = "all stages",
+  year = "latest 5 year average"
+)
+
+incidence_cancer(
+  area = "usa",
+  areatype = "state",
+  cancer = "lung & bronchus",
+  race = "all races (includes hispanic)",
+  sex = "males",
+  age = "ages 50+",
+  stage = "late stage (regional & distant)",
+  year = "latest single year (us by state)"
+)
+
+incidence_cancer(
+  area = "wa",
+  areatype = "hsa",
+  cancer = "ovary",
+  race = "all races (includes hispanic)",
+  sex = "females",
+  age = "ages 50+",
+  stage = "late stage (regional & distant)",
+  year = "latest 5 year average"
+)
 }
 }

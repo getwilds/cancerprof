@@ -1,6 +1,7 @@
 #' Access to Cancer Mortality Data
 #'
-#' This function returns a data frame about cancer mortality from State Cancer Profiles.
+#' This function returns a data frame about cancer mortality
+#' from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype One of the following values:
@@ -52,10 +53,11 @@
 #' - `"latest 5 year average"`
 #' - `"latest single year (us by state)"`.
 #'
-#' @returns A data frame with the following columns: Area Type, Area Code, Met Healthy People Objective of ***?,
-#'          Age Adjusted Death Rate, Lower 95% CI Rate, Upper 95% CI Rate,
-#'          CI Rank, Lower CI Rank, Upper CI Rank, Annual Average Count,
-#'          Recent Trend, Recent 5 Year Trend, Lower 95% CI Trend, Upper 95% CI Trend.
+#' @returns A data frame with the following columns:
+#' Area Type, Area Code, Met Healthy People Objective of ***?,
+#' Age Adjusted Death Rate, Lower 95% CI Rate, Upper 95% CI Rate,
+#' CI Rank, Lower CI Rank, Upper CI Rank, Annual Average Count,
+#' Recent Trend, Recent 5 Year Trend, Lower 95% CI Trend, Upper 95% CI Trend.
 #'
 #' @export
 #'
@@ -92,9 +94,16 @@
 #' )
 #' }
 mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
-  female_cancer <- c("breast (female)", "ovary", "uterus (corpus & uterus, nos)")
+  female_cancer <- c(
+    "breast (female)",
+    "ovary",
+    "uterus (corpus & uterus, nos)"
+  )
 
-  childhood_cancer <- c("childhood (ages <15, all sites)", "childhood (ages <20, all sites)")
+  childhood_cancer <- c(
+    "childhood (ages <15, all sites)",
+    "childhood (ages <20, all sites)"
+  )
 
   if ((areatype == "county" || areatype == "hsa") && year == "latest single year (us by state)") {
     cli_abort("For year latest single year (us by state), areatype must be state")
@@ -140,7 +149,11 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
 
   resp <- process_mortality(resp)
 
-  areatype_map <- c("county" = "County", "hsa" = "Health_Service_Area", "state" = "State")
+  areatype_map <- c(
+    "county" = "County",
+    "hsa" = "Health_Service_Area",
+    "state" = "State"
+  )
   areatype_title <- areatype_map[areatype]
 
   areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
@@ -148,8 +161,19 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
 
   resp %>%
     setNames(c(
-      areatype_title, areacode_title, "Met Healthy People Objective of ***?", "Age Adjusted Death Rate", "Lower 95% CI Rate", "Upper 95% CI Rate",
-      "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", "Recent Trend",
-      "Recent 5 Year Trend", "Lower 95% CI Trend", "Upper 95% CI Trend"
+      areatype_title,
+      areacode_title,
+      "Met Healthy People Objective of ***?",
+      "Age Adjusted Death Rate",
+      "Lower 95% CI Rate",
+      "Upper 95% CI Rate",
+      "CI Rank",
+      "Lower CI Rank",
+      "Upper CI Rank",
+      "Annual Average Count",
+      "Recent Trend",
+      "Recent 5 Year Trend",
+      "Lower 95% CI Trend",
+      "Upper 95% CI Trend"
     ))
 }

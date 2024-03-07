@@ -45,14 +45,20 @@ colorectal screening from State Cancer Profiles.
 }
 \examples{
 \dontrun{
-risk_colorectal_screening(screening = "home blood stool test in the past year, ages 45-75",
-                          race = "all races (includes hispanic)",
-                          sex = "both sexes")
-                          
-risk_colorectal_screening(screening = "ever had fobt, ages 50-75",
-                          area="usa")
-risk_colorectal_screening(screening = "received at least one recommended crc test, ages 45-75",
-                          race = "all races (includes hispanic)",
-                          sex = "both sexes")
+risk_colorectal_screening(
+  screening = "home blood stool test in the past year, ages 45-75",
+  race = "all races (includes hispanic)",
+  sex = "both sexes"
+)
+
+risk_colorectal_screening(
+  screening = "ever had fobt, ages 50-75",
+  area = "usa"
+)
+risk_colorectal_screening(
+  screening = "received at least one recommended crc test, ages 45-75",
+  race = "all races (includes hispanic)",
+  sex = "both sexes"
+)
 }
 }

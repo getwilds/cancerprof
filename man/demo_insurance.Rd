@@ -39,7 +39,8 @@ demo_insurance(area, areatype, insurance, sex, age, race = NULL)
 \item \code{"female"}.
 }}
 
-\item{age}{If you specified \code{"both sexes"} for \code{sex} choose one of the following values:
+\item{age}{If you specified \code{"both sexes"} for \code{sex}
+choose one of the following values:
 \itemize{
 \item \code{"under 19 years"}
 \item \code{"18 to 64 years"}
@@ -49,7 +50,8 @@ demo_insurance(area, areatype, insurance, sex, age, race = NULL)
 \item \code{"under 65 years"}.
 }
 
-Otherwise if you specified \code{"male"} or \code{"female"} for \code{sex}, choose one of the following values:
+Otherwise if you specified \code{"male"} or \code{"female"} for \code{sex},
+choose one of the following values:
 \itemize{
 \item \code{"18 to 64 years"}
 \item \code{"40 to 64 years"}
@@ -68,10 +70,12 @@ Otherwise if you specified \code{"male"} or \code{"female"} for \code{sex}, choo
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, People, Rank.
+A data frame with the following columns:
+Area Type, Area Code, Percent, People, Rank.
 }
 \description{
-This function returns a data frame about insurance demographics from State Cancer Profiles.
+This function returns a data frame about insurance demographics
+from State Cancer Profiles.
 }
 \examples{
 \dontrun{

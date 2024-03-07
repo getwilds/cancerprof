@@ -23,7 +23,11 @@ womens_health_options <- c(
 for (option in womens_health_options) {
   test_that("risk_womens_health returns non-empty data frame", {
     skip_on_cran()
-    result <- risk_women_health(option, "all races (includes hispanic)", "direct estimates")
+    result <- risk_women_health(
+      option,
+      "all races (includes hispanic)",
+      "direct estimates"
+    )
     expect_true(is.data.frame(result))
   })
 }

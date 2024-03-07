@@ -1,6 +1,7 @@
 #' Access to Insurance Data
 #'
-#' This function returns a data frame about insurance demographics from State Cancer Profiles.
+#' This function returns a data frame about insurance demographics
+#' from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype One of the following values:
@@ -24,7 +25,8 @@
 #' - `"both sexes"`
 #' - `"male"`
 #' - `"female"`.
-#' @param age If you specified `"both sexes"` for `sex` choose one of the following values:
+#' @param age If you specified `"both sexes"` for `sex`
+#' choose one of the following values:
 #' - `"under 19 years"`
 #' - `"18 to 64 years"`
 #' - `"21 to 64 years"`
@@ -32,7 +34,8 @@
 #' - `"50 to 64 years"`
 #' - `"under 65 years"`.
 #'
-#' Otherwise if you specified `"male"` or `"female"` for `sex`, choose one of the following values:
+#' Otherwise if you specified `"male"` or `"female"` for `sex`,
+#' choose one of the following values:
 #' - `"18 to 64 years"`
 #' - `"40 to 64 years"`
 #' - `"50 to 64 years"`
@@ -48,7 +51,8 @@
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #'
-#' @returns A data frame with the following columns: Area Type, Area Code, Percent, People, Rank.
+#' @returns A data frame with the following columns:
+#' Area Type, Area Code, Percent, People, Rank.
 #'
 #' @export
 #'
@@ -125,7 +129,11 @@ demo_insurance <- function(area, areatype, insurance, sex, age, race = NULL) {
 
   resp <- process_response(resp)
 
-  areatype_map <- c("county" = "County", "hsa" = "Health_Service_Area", "state" = "State")
+  areatype_map <- c(
+    "county" = "County",
+    "hsa" = "Health_Service_Area",
+    "state" = "State"
+  )
   areatype_title <- areatype_map[areatype]
 
   areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")

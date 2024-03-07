@@ -32,12 +32,25 @@ for (option in cancer_options) {
   })
 }
 
-female_cancer_options <- c("breast (female)", "cervix", "ovary", "uterus (corpus & uterus, nos)")
+female_cancer_options <- c(
+  "breast (female)",
+  "cervix",
+  "ovary",
+  "uterus (corpus & uterus, nos)"
+)
 
 for (option in female_cancer_options) {
   test_that("mortality female cancer returns non-empty data frame", {
     skip_on_cran()
-    result <- mortality_cancer("wa", "county", option, "all races (includes hispanic)", "females", "ages 50+", "latest 5 year average")
+    result <- mortality_cancer(
+      "wa",
+      "county",
+      option,
+      "all races (includes hispanic)",
+      "females",
+      "ages 50+",
+      "latest 5 year average"
+    )
 
     expect_true(is.data.frame(result))
   })
@@ -45,16 +58,31 @@ for (option in female_cancer_options) {
 
 childhood_male_cancer_options <- list(
   childhood15 = mortality_cancer(
-    "ca", "hsa", "childhood (ages <20, all sites)", "all races (includes hispanic)",
-    "males", "ages <20", "latest 5 year average"
+    "ca",
+    "hsa",
+    "childhood (ages <20, all sites)",
+    "all races (includes hispanic)",
+    "males",
+    "ages <20",
+    "latest 5 year average"
   ),
   childhood20 = mortality_cancer(
-    "ca", "hsa", "childhood (ages <20, all sites)", "all races (includes hispanic)",
-    "males", "ages <20", "latest 5 year average"
+    "ca",
+    "hsa",
+    "childhood (ages <20, all sites)",
+    "all races (includes hispanic)",
+    "males",
+    "ages <20",
+    "latest 5 year average"
   ),
   prostate = mortality_cancer(
-    "usa", "state", "prostate", "all races (includes hispanic)",
-    "males", "ages 50+", "latest 5 year average"
+    "usa",
+    "state",
+    "prostate",
+    "all races (includes hispanic)",
+    "males",
+    "ages 50+",
+    "latest 5 year average"
   )
 )
 

@@ -24,7 +24,11 @@ diet_exercise_options <- c(
 for (option in diet_exercise_options) {
   test_that("risk_diet_exercise returns non-empty data frame", {
     skip_on_cran()
-    result <- risk_diet_exercise(option, "all races (includes hispanic)", "both sexes")
+    result <- risk_diet_exercise(
+      option,
+      "all races (includes hispanic)",
+      "both sexes"
+    )
     expect_true(is.data.frame(result))
   })
 }

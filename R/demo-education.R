@@ -95,7 +95,11 @@ demo_education <- function(area, areatype, education, sex = NULL, race = NULL) {
 
   resp <- process_response(resp)
 
-  areatype_map <- c("county" = "County", "hsa" = "Health_Service_Area", "state" = "State")
+  areatype_map <- c(
+    "county" = "County",
+    "hsa" = "Health_Service_Area",
+    "state" = "State"
+  )
   areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
 
   areatype_title <- areatype_map[areatype]

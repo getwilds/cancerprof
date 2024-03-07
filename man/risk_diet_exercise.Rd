@@ -36,18 +36,25 @@ risk_diet_exercise(diet_exercise, race, sex)
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, Lower 95\% CI, Upper 95\% CI, Number of Respondents.
+A data frame with the following columns:
+Area Type, Area Code, Percent,
+Lower 95\% CI, Upper 95\% CI, Number of Respondents.
 }
 \description{
-This function returns a data frame about diet and exercise risk from State Cancer Profiles.
+This function returns a data frame about diet and exercise risk
+from State Cancer Profiles.
 }
 \examples{
 \dontrun{
-risk_diet_exercise(diet_exercise = "bmi is healthy, ages 20+",
-                   race = "all races (includes hispanic)", 
-                   sex = "both sexes")
-risk_diet_exercise(diet_exercise = "bmi is obese, high school survey",
-                   race = "all races (includes hispanic)",
-                   sex = "males")
+risk_diet_exercise(
+  diet_exercise = "bmi is healthy, ages 20+",
+  race = "all races (includes hispanic)",
+  sex = "both sexes"
+)
+risk_diet_exercise(
+  diet_exercise = "bmi is obese, high school survey",
+  race = "all races (includes hispanic)",
+  sex = "males"
+)
 }
 }
