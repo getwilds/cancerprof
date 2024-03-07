@@ -4,6 +4,7 @@
 #' 
 #tests class and typeof output
 test_that("Output data type is correct", {
+  skip_on_cran()
   output <- demo_population("WA", "county", "asian/pacific islander", sex="females")
   
   expect_true(inherits(output, "data.frame"))
@@ -24,6 +25,7 @@ population_options <- list(
 
 for (option_name in names(population_options)) {
   test_that("demo-population returns non-empty data frame", {
+    skip_on_cran()
     option <- population_options[[option_name]]
     expect_true(is.data.frame(option))
   })
@@ -34,12 +36,14 @@ race_options <- c("american indian/alaska native", "asian/pacific islander",
 
 for (option in race_options) {
   test_that("demo-population returns non-empty data frame", {
+    skip_on_cran()
     expect_true(is.data.frame(demo_population("wa", "county", option, sex="both sexes")))
   })
 }
 
 #demo-population must have 5 columns
 test_that("demo-population has correct number of columns", {
+  skip_on_cran()
   df <- demo_population("WA", "county", "asian/pacific islander", sex="females")
   expected_columns <- 5
   expect_equal(ncol(df), expected_columns)
@@ -47,6 +51,7 @@ test_that("demo-population has correct number of columns", {
 
 #test error handling
 test_that("demo-population handles invalid population parameters", {
+  skip_on_cran()
   expect_error(
     demo_population("wa", "county", "ages 40 and over", race="all races includes hispanic"),
     "ages 40 and over and ages 50 and over, Race and Sex must be NULL"

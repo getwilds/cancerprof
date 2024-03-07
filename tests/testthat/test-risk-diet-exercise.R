@@ -4,6 +4,7 @@
 #' 
 #tests class and typeof output
 test_that("Output data type is correct", {
+  skip_on_cran()
   output <- risk_diet_exercise("bmi is healthy, ages 20+", 
                                "all races (includes hispanic)", "both sexes")
   
@@ -18,6 +19,7 @@ diet_exercise_options <- c("bmi is healthy, ages 20+", "bmi is obese, ages 20+",
 
 for (option in diet_exercise_options) {
   test_that("risk_diet_exercise returns non-empty data frame", {
+    skip_on_cran()
     result <- risk_diet_exercise(option, "all races (includes hispanic)", "both sexes")
     expect_true(is.data.frame(result))
   })
@@ -25,6 +27,7 @@ for (option in diet_exercise_options) {
 
 #risk-diet-exercise must have 5 columns
 test_that("risk-diet-exercise has correct number of columns", {
+  skip_on_cran()
   df1 <- risk_diet_exercise("bmi is healthy, ages 20+", 
                            "all races (includes hispanic)", "both sexes")
   df2 <- risk_diet_exercise("bmi is obese, high school survey", 

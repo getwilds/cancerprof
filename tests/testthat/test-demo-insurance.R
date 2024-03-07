@@ -4,6 +4,7 @@
 #' 
 #tests class and typeof output
 test_that("Output data type is correct", {
+  skip_on_cran()
   output <- demo_insurance("usa", "state", "% Insured in demographic group, all income levels", 
                            "both sexes", "under 19 years", "all races (includes hispanic)")
   
@@ -26,6 +27,7 @@ insurance_options <- c("% Insured in demographic group, all income levels",
 
 for (option in insurance_options) {
   test_that("demo-insurance returns non-empty data frame", {
+    skip_on_cran()
     expect_true(is.data.frame(demo_insurance("usa", "state", option, "both sexes", 
                                              "under 19 years", "all races (includes hispanic)")))
   })
@@ -33,6 +35,7 @@ for (option in insurance_options) {
 
 #demo-insurance must have 5 columns
 test_that("demo-insurance has correct number of columns", {
+  skip_on_cran()
   df <- demo_insurance("wa", "hsa", "% Insured in demographic group, all income levels", 
                        "males", "18 to 64 years")
   expected_columns <- 5
@@ -40,9 +43,8 @@ test_that("demo-insurance has correct number of columns", {
 })
 
 #test error handling
-
-#write one for error handling in insurance - mention in the message how values could have chnaged in SCP
 test_that("demo-insurance handles invalid insurance parameters", {
+  skip_on_cran()
   expect_error(
     demo_insurance("wa", "county", "% Insured in demographic group, all income levels", 
                    "males", "18 to 64 years", "all races (includes hispanic)")

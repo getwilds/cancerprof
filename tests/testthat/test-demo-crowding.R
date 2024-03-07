@@ -4,6 +4,7 @@
 #' 
 #tests class and typeof output
 test_that("Output data type is correct", {
+  skip_on_cran()
   output <- demo_crowding(area = "wa",
                           areatype = "hsa", 
                           crowding = "household with >1 person per room",
@@ -14,6 +15,7 @@ test_that("Output data type is correct", {
 
 #Ensures that variables are present and working on SCP
 test_that("demo-crowding returns non-empty data frame", {
+  skip_on_cran()
   crowding1 <- demo_crowding(area = "wa",
                              areatype = "hsa", 
                              crowding = "household with >1 person per room",
@@ -23,6 +25,7 @@ test_that("demo-crowding returns non-empty data frame", {
 
 #demo-crowding must have 5 columns
 test_that("demo-crowding has correct number of columns", {
+  skip_on_cran()
   df <- demo_crowding(area = "wa",
                       areatype = "hsa", 
                       crowding = "household with >1 person per room",

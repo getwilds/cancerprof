@@ -4,6 +4,7 @@
 #' 
 #tests class and typeof output
 test_that("Output data type is correct", {
+  skip_on_cran()
   output <- risk_smoking("smoking laws (any)")
   
   expect_true(inherits(output, "data.frame"))
@@ -20,6 +21,7 @@ smoking_group1_options <- c("smoking laws (any)",
 
 for (option in smoking_group1_options) {
   test_that("smoking group1 returns non-empty data frame", {
+    skip_on_cran()
     result <- risk_smoking(option)
     expect_true(is.data.frame(result))
   })
@@ -32,6 +34,7 @@ smoking_group2_options <- c("smokers (stopped for 1 day or longer)",
 
 for (option in smoking_group2_options) {
   test_that("smoking group2 returns non-empty data frame", {
+    skip_on_cran()
     result <- risk_smoking(option, sex="both sexes", datatype="direct estimates")
     expect_true(is.data.frame(result))
   })
@@ -45,6 +48,7 @@ smoking_group3_options <- c("smoking not allowed at work (current smokers)",
 
 for (option in smoking_group3_options) {
   test_that("smoking group3 returns non-empty data frame", {
+    skip_on_cran()
     result <- risk_smoking(option, sex="both sexes", datatype="direct estimates")
     expect_true(is.data.frame(result))
   })
@@ -56,6 +60,7 @@ smoking_group4_options <- c("former smoker; ages 18+",
 
 for (option in smoking_group4_options) {
   test_that("smoking group4 returns non-empty data frame", {
+    skip_on_cran()
     result <- risk_smoking(option, sex="both sexes", 
                            datatype="county level modeled estimates", area="ca")
     expect_true(is.data.frame(result))
@@ -68,6 +73,7 @@ smoking_group5_options <- c("smokers (ever); ages 18+",
 
 for (option in smoking_group5_options) {
   test_that("smoking group5 returns non-empty data frame", {
+    skip_on_cran()
     result <- risk_smoking(option, race="hispanic (any race)", 
                            sex="both sexes", datatype="direct estimates")
     expect_true(is.data.frame(result))
@@ -76,6 +82,7 @@ for (option in smoking_group5_options) {
 
 #group6
 test_that("smoking group6 returns non-empty data frame", {
+  skip_on_cran()
   result <- risk_smoking("smokers (current); ages 18+", race="hispanic (any race)", 
                          sex="both sexes", datatype="direct estimates")
   expect_true(is.data.frame(result))
@@ -84,6 +91,7 @@ test_that("smoking group6 returns non-empty data frame", {
 
 #risk-smoking must have 5 columns
 test_that("risk-smoking has correct number of columns", {
+  skip_on_cran()
   df1 <- risk_smoking("smoking laws (any)")
   df2 <- risk_smoking("smokers (stopped for 1 day or longer)", sex="both sexes", 
                       datatype="county level modeled estimates", area="wa")
@@ -99,6 +107,7 @@ test_that("risk-smoking has correct number of columns", {
 
 #test error handling
 test_that("risk-smoking handles invalid smoking parameters", {
+  skip_on_cran()
   expect_error(
     risk_smoking("smoking laws (any)", sex="both sexes"),
     "For this smoking type, Race, Sex, Datatype, and Area must ALL be NULL"

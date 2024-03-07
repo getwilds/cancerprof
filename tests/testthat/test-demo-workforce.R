@@ -4,6 +4,7 @@
 #' 
 #tests class and typeof output
 test_that("Output data type is correct", {
+  skip_on_cran()
   output <- demo_workforce("wa", "county", "unemployed",
                            "all races (includes hispanic)", "both sexes")
   
@@ -12,6 +13,7 @@ test_that("Output data type is correct", {
 
 #Ensures that variables are present and working on SCP
 test_that("demo-workforce returns non-empty data frame", {
+  skip_on_cran()
   workforce1 <- demo_workforce("wa", "county", "unemployed",
                                "all races (includes hispanic)", "both sexes")
   expect_true(is.data.frame(workforce1))
@@ -19,6 +21,7 @@ test_that("demo-workforce returns non-empty data frame", {
 
 #demo-workforce must have 5 columns
 test_that("demo-workforce has correct number of columns", {
+  skip_on_cran()
   df <- demo_workforce("wa", "county", "unemployed",
                        "all races (includes hispanic)", "both sexes")
   expected_columns <- 5

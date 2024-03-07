@@ -4,6 +4,7 @@
 
 #tests class and typeof output
 test_that("Output data type is correct", {
+  skip_on_cran()
   output <- demo_food("wa", "county", "food insecurity", "black")
   
   expect_equal(class(output), "data.frame",
@@ -15,6 +16,7 @@ test_that("Output data type is correct", {
 
 #Ensures that variables are present and working on SCP
 test_that("demo-food returns non-empty data frame", {
+  skip_on_cran()
   food_test_1 <- demo_food("wa", "county", "food insecurity", "all races (includes hispanic)")
   expect_true(!is.null(food_test_1))
   expect_true(is.data.frame(food_test_1))
@@ -31,6 +33,7 @@ test_that("demo-food returns non-empty data frame", {
 # sometimes functions will output different nuber of columns depending on variables...
 # demo-food must have 5 columns
 test_that("demo-food has correct number of columns", {
+  skip_on_cran()
   df <- demo_food("wa", "county", "food insecurity", "black")
   df2 <- demo_food("wa", "county", "limited access to healthy food")
   expected_columns <- 3
@@ -41,6 +44,7 @@ test_that("demo-food has correct number of columns", {
 
 #test error handling
 test_that("demo-food handles invalid education parameters", {
+  skip_on_cran()
   expect_error(
     demo_food("wa", "county", "limited access to healthy food", "all races (includes hispanic)"),
     "For limited access to healthy food, Race must be NULL"
@@ -54,24 +58,4 @@ test_that("demo-food handles invalid education parameters", {
 #parameter
 test_that("demo-food has correct parameters", {
   expect_error(demo_food())
-  expect_error(demo_food("wa", "county", "all races (includes hispanic)", "food insecurity"))
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

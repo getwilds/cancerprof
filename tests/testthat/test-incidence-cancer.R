@@ -4,6 +4,7 @@
 #'
 # tests class and typeof output
 test_that("Output data type is correct", {
+  skip_on_cran()
   output <- incidence_cancer("wa", "county", "all cancer sites", "black (non-hispanic)", 
                              "both sexes", "ages 65+", "all stages", "latest 5 year average")
   
@@ -18,6 +19,7 @@ cancer_options <- c("all cancer sites","bladder", "brain & ons", "colon & rectum
 
 for (option in cancer_options) {
   test_that("incidence cancer returns non-empty data frame", {
+    skip_on_cran()
     result <- incidence_cancer("wa", "county", option, "all races (includes hispanic)", 
                                "both sexes", "all ages", "all stages", "latest 5 year average")
     expect_true(is.data.frame(result))
@@ -29,6 +31,7 @@ female_cancer_options <- c("breast (female)", "breast (female in situ)",
 
 for (option in female_cancer_options) {
   test_that("incidence female cancer returns non-empty data frame", {
+    skip_on_cran()
     result <- incidence_cancer("wa", "county", option, 
                                "all races (includes hispanic)", "females", 
                                "ages 50+", "all stages", "latest 5 year average")
@@ -48,6 +51,7 @@ childhood_male_cancer_options <- list(
 
 for (option_name in names(childhood_male_cancer_options)) {
   test_that("incidence cancer returns non-empty data frame", {
+    skip_on_cran()
     option <- childhood_male_cancer_options[[option_name]]
     expect_true(is.data.frame(option))
   })
@@ -55,6 +59,7 @@ for (option_name in names(childhood_male_cancer_options)) {
 
 #incidence_cancer must have 14 columns
 test_that("incidence_cancer has correct number of columns", {
+  skip_on_cran()
   df1 <- incidence_cancer("wa", "county", "all cancer sites", "black (non-hispanic)", 
                          "both sexes", "ages 65+", "all stages", "latest 5 year average")
   df2 <- incidence_cancer("usa", "state", "lung & bronchus", "all races (includes hispanic)", "males", 
