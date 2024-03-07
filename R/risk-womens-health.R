@@ -1,6 +1,7 @@
 #' Access to Women's Health Data
 #'
-#' This function returns a data frame about women's health risks from State Cancer Profiles.
+#' This function returns a data frame about women's health risks
+#' from State Cancer Profiles.
 #'
 #' @param women_health One of the following values:
 #' - `"mammogram in past 2 years, ages 50-74"`
@@ -18,7 +19,8 @@
 #' - `"county level modeled estimates"`.
 #' @param area A state/territory abbreviation or USA.
 #'
-#' @returns A data frame with the following columns: Area Type, Area Code, Percent, People Unemployed, Rank.
+#' @returns A data frame with the following columns:
+#' Area Type, Area Code, Percent, People Unemployed, Rank.
 #'
 #' @export
 #'
@@ -46,8 +48,11 @@ risk_women_health <- function(women_health, race, datatype = "direct estimates",
   req <- create_request("risk")
 
   risk_races <- c(
-    "all races (includes hispanic)", "white (non-hispanic)", "black (non-hispanic)",
-    "amer. indian / ak native (non-hispanic)", "asian / pacific islander (non-hispanic)",
+    "all races (includes hispanic)",
+    "white (non-hispanic)",
+    "black (non-hispanic)",
+    "amer. indian / ak native (non-hispanic)",
+    "asian / pacific islander (non-hispanic)",
     "hispanic (any race)"
   )
 
@@ -88,13 +93,33 @@ risk_women_health <- function(women_health, race, datatype = "direct estimates",
   if (datatype == "county level modeled estimates") {
     if (women_health == "pap smear in past 3 years, no hysterectomy, ages 21-65") {
       resp %>%
-        setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
+        setNames(c(
+          "State",
+          "FIPS",
+          "Percent",
+          "Lower_95%_CI",
+          "Upper_95%_CI",
+          "Number_of_Respondents"
+        ))
     } else {
       resp %>%
-        setNames(c("County", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI"))
+        setNames(c(
+          "County",
+          "FIPS",
+          "Percent",
+          "Lower_95%_CI",
+          "Upper_95%_CI"
+        ))
     }
   } else {
     resp %>%
-      setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
+      setNames(c(
+        "State",
+        "FIPS",
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI",
+        "Number_of_Respondents"
+      ))
   }
 }

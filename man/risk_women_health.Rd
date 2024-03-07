@@ -38,23 +38,31 @@ risk_women_health(
 \item{area}{A state/territory abbreviation or USA.}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, People Unemployed, Rank.
+A data frame with the following columns:
+Area Type, Area Code, Percent, People Unemployed, Rank.
 }
 \description{
-This function returns a data frame about women's health risks from State Cancer Profiles.
+This function returns a data frame about women's health risks
+from State Cancer Profiles.
 }
 \examples{
 \dontrun{
-risk_women_health(women_health = "mammogram in past 2 years, ages 50-74", 
-                  race = "all races (includes hispanic)",
-                  datatype = "direct estimates")
-                  
-risk_women_health(women_health = "pap smear in past 3 years, no hysterectomy, ages 21-65", 
-                  race = "all races (includes hispanic)",
-                  datatype = "county level modeled estimates",
-                  area = "wa")
-                  
-risk_women_health(women_health = "pap smear in past 3 years, no hysteroetomy, ages 21-65",
-                  race = "black (non-hispanic)")
+risk_women_health(
+  women_health = "mammogram in past 2 years, ages 50-74",
+  race = "all races (includes hispanic)",
+  datatype = "direct estimates"
+)
+
+risk_women_health(
+  women_health = "pap smear in past 3 years, no hysterectomy, ages 21-65",
+  race = "all races (includes hispanic)",
+  datatype = "county level modeled estimates",
+  area = "wa"
+)
+
+risk_women_health(
+  women_health = "pap smear in past 3 years, no hysteroetomy, ages 21-65",
+  race = "black (non-hispanic)"
+)
 }
 }

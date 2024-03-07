@@ -52,16 +52,34 @@ for (option in female_cancer_options) {
 
 childhood_male_cancer_options <- list(
   childhood15 = incidence_cancer(
-    "ca", "hsa", "childhood (ages <20, all sites)", "all races (includes hispanic)",
-    "males", "ages <20", "all stages", "latest 5 year average"
+    "ca",
+    "hsa",
+    "childhood (ages <20, all sites)",
+    "all races (includes hispanic)",
+    "males",
+    "ages <20",
+    "all stages",
+    "latest 5 year average"
   ),
   childhood20 = incidence_cancer(
-    "ca", "hsa", "childhood (ages <20, all sites)", "all races (includes hispanic)",
-    "males", "ages <20", "all stages", "latest 5 year average"
+    "ca",
+    "hsa",
+    "childhood (ages <20, all sites)",
+    "all races (includes hispanic)",
+    "males",
+    "ages <20",
+    "all stages",
+    "latest 5 year average"
   ),
   prostate = incidence_cancer(
-    "usa", "state", "prostate", "all races (includes hispanic)",
-    "males", "ages 50+", "all stages", "latest 5 year average"
+    "usa",
+    "state",
+    "prostate",
+    "all races (includes hispanic)",
+    "males",
+    "ages 50+",
+    "all stages",
+    "latest 5 year average"
   )
 )
 

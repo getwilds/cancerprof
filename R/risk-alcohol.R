@@ -1,6 +1,7 @@
 #' Access to Alcohol Screening and Risk Data
 #'
-#' This function returns a data frame about alcohol risks from State Cancer Profiles.
+#' This function returns a data frame about alcohol risks
+#' from State Cancer Profiles.
 #'
 #' @param alcohol The only permissible value is
 #' `"binge drinking (4+ drinks on one occasion for women, 5+ drinks for one occasion for men), ages 21+"`.
@@ -16,7 +17,9 @@
 #' - `"male"`
 #' - `"female"`.
 #'
-#' @returns A data frame with the following columns: Area Type, Area Code, Percent, Lower 95% CI, Upper 95% CI, Number of Respondents.
+#' @returns A data frame with the following columns:
+#' Area Type, Area Code, Percent, Lower 95% CI,
+#' Upper 95% CI, Number of Respondents.
 #'
 #' @export
 #'
@@ -50,5 +53,12 @@ risk_alcohol <- function(alcohol, race, sex) {
   resp <- process_screening(resp)
 
   resp %>%
-    setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
+    setNames(c(
+      "State",
+      "FIPS",
+      "Percent",
+      "Lower_95%_CI",
+      "Upper_95%_CI",
+      "Number_of_Respondents"
+    ))
 }

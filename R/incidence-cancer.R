@@ -1,6 +1,7 @@
 #' Access to Cancer Incident Data
 #'
-#' This function returns a data frame about cancer incidence from State Cancer Profiles.
+#' This function returns a data frame about cancer incidence
+#' from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
 #' @param areatype One of the following values:
@@ -57,9 +58,10 @@
 #' - `"latest 5 year average"`
 #' - `"latest single year (us by state)"`.
 #'
-#' @returns A data frame with the following columns: Area Type, Area Code, Age Adjusted Incidence Rate, Lower 95% CI,
-#'          Upper 95% CI, CI Rank, Lower CI Rank, Upper CI Rank, Annual Average Count, Recent Trend,
-#'          Recent 5 Year Trend, Trend Lower 95% CI, Trend Upper 95% CI.
+#' @returns A data frame with the following columns:
+#' Area Type, Area Code, Age Adjusted Incidence Rate, Lower 95% CI,
+#' Upper 95% CI, CI Rank, Lower CI Rank, Upper CI Rank, Annual Average Count,
+#' Recent Trend, Recent 5 Year Trend, Trend Lower 95% CI, Trend Upper 95% CI.
 #'
 #' @export
 #'
@@ -100,13 +102,24 @@
 #' }
 incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year) {
   allstage_cancer <- c(
-    "all cancer sites", "breast (female in situ)", "childhood (ages <15, all sites)",
-    "childhood (ages <20, all sites)", "leukemia"
+    "all cancer sites",
+    "breast (female in situ)",
+    "childhood (ages <15, all sites)",
+    "childhood (ages <20, all sites)",
+    "leukemia"
   )
 
-  female_cancer <- c("breast (female)", "breast (female in situ)", "ovary", "uterus (corpus & uterus, nos)")
+  female_cancer <- c(
+    "breast (female)",
+    "breast (female in situ)",
+    "ovary",
+    "uterus (corpus & uterus, nos)"
+  )
 
-  childhood_cancer <- c("childhood (ages <15, all sites)", "childhood (ages <20, all sites)")
+  childhood_cancer <- c(
+    "childhood (ages <15, all sites)",
+    "childhood (ages <20, all sites)"
+  )
 
   if ((areatype == "county" || areatype == "hsa") && year == "latest single year (us by state)") {
     cli_abort("For year latest single year (us by state), areatype must be state")
@@ -158,7 +171,11 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
   resp <- process_incidence(resp)
 
 
-  areatype_map <- c("county" = "County", "hsa" = "Health Service Area", "state" = "State")
+  areatype_map <- c(
+    "county" = "County",
+    "hsa" = "Health Service Area",
+    "state" = "State"
+  )
   areatype_title <- areatype_map[areatype]
 
   areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
@@ -166,9 +183,33 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
 
   if (stage == "all stages") {
     resp %>%
-      setNames(c(areatype_title, areacode_title, "Age Adjusted Incidence Rate", "Lower 95% CI", "Upper 95% CI", "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", "Recent Trend", "Recent 5 Year Trend", "Trend Lower 95% CI", "Trend Upper 95% CI"))
+      setNames(c(
+        areatype_title,
+        areacode_title,
+        "Age Adjusted Incidence Rate",
+        "Lower 95% CI",
+        "Upper 95% CI", "CI Rank",
+        "Lower CI Rank",
+        "Upper CI Rank",
+        "Annual Average Count",
+        "Recent Trend",
+        "Recent 5 Year Trend",
+        "Trend Lower 95% CI",
+        "Trend Upper 95% CI"
+      ))
   } else if (stage == "late stage (regional & distant)") {
     resp %>%
-      setNames(c(areatype_title, areacode_title, "Age Adjusted Incidence Rate", "Lower 95% CI", "Upper 95% CI", "CI Rank", "Lower CI Rank", "Upper CI Rank", "Annual Average Count", "Percentage of Cases with Late Stage"))
+      setNames(c(
+        areatype_title,
+        areacode_title,
+        "Age Adjusted Incidence Rate",
+        "Lower 95% CI",
+        "Upper 95% CI",
+        "CI Rank",
+        "Lower CI Rank",
+        "Upper CI Rank",
+        "Annual Average Count",
+        "Percentage of Cases with Late Stage"
+      ))
   }
 }

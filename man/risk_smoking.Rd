@@ -70,19 +70,25 @@ very specific arguments for each smoking type.
 \dontrun{
 risk_smoking(smoking = "smoking laws (any)")
 
-risk_smoking(smoking = "smokers (stopped for 1 day or longer)",
-             sex = "both sexes", 
-             datatype = "county level modeled estimates",
-             area = "wa")
-             
-risk_smoking(smoking = "smoking not allowed at work (current smokers)",
-             sex = "both sexes", 
-             datatype = "direct estimates")
-             
-risk_smoking(smoking = "smokers (current); ages 18+",
-             race = "all races (includes hispanic)",
-             sex = "both sexes",
-             datatype = "county level modeled estimates",
-             area="wa")
+risk_smoking(
+  smoking = "smokers (stopped for 1 day or longer)",
+  sex = "both sexes",
+  datatype = "county level modeled estimates",
+  area = "wa"
+)
+
+risk_smoking(
+  smoking = "smoking not allowed at work (current smokers)",
+  sex = "both sexes",
+  datatype = "direct estimates"
+)
+
+risk_smoking(
+  smoking = "smokers (current); ages 18+",
+  race = "all races (includes hispanic)",
+  sex = "both sexes",
+  datatype = "county level modeled estimates",
+  area = "wa"
+)
 }
 }

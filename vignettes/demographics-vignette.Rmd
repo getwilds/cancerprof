@@ -55,7 +55,8 @@ education1 <- demo_education(
 
 head(education1, n = 3)
 
-# at least bachelors degree - requires arguments: area, areatype, education, sex, race
+# at least bachelors degree - requires arguments:
+# area, areatype, education, sex, race
 education2 <- demo_education(
   area = "usa",
   areatype = "state",

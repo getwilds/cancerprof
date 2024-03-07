@@ -1,6 +1,7 @@
 #' Access to Vaccines Data
 #'
-#' This function returns a data frame about vaccines risks from State Cancer Profiles.
+#' This function returns a data frame about vaccines risks
+#' from State Cancer Profiles.
 #'
 #' @param vaccine One of the following values:
 #' - `"percent with up to date hpv vaccination coverage, ages 13-15",`
@@ -10,7 +11,9 @@
 #' - `"male"`
 #' - `"female"`.
 #'
-#' @returns A data frame with the following columns: Area Type, Area Code, Percent, Lower 95% CI, Upper 95% CI, Number of Respondents.
+#' @returns A data frame with the following columns:
+#' Area Type, Area Code, Percent,
+#' Lower 95% CI, Upper 95% CI, Number of Respondents.
 #'
 #' @export
 #'
@@ -53,9 +56,24 @@ risk_vaccines <- function(vaccine, sex) {
 
   if (vaccine %in% vaccine_type1) {
     resp %>%
-      setNames(c("State", "FIPS", "Met_Objective_of_80.0%?", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
+      setNames(c(
+        "State",
+        "FIPS",
+        "Met_Objective_of_80.0%?",
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI",
+        "Number_of_Respondents"
+      ))
   } else {
     resp %>%
-      setNames(c("State", "FIPS", "Percent", "Lower_95%_CI", "Upper_95%_CI", "Number_of_Respondents"))
+      setNames(c(
+        "State",
+        "FIPS",
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI",
+        "Number_of_Respondents"
+      ))
   }
 }

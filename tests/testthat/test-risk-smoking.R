@@ -39,7 +39,10 @@ smoking_group2_options <- c(
 for (option in smoking_group2_options) {
   test_that("smoking group2 returns non-empty data frame", {
     skip_on_cran()
-    result <- risk_smoking(option, sex = "both sexes", datatype = "direct estimates")
+    result <- risk_smoking(option,
+      sex = "both sexes",
+      datatype = "direct estimates"
+    )
     expect_true(is.data.frame(result))
   })
 }
@@ -55,7 +58,10 @@ smoking_group3_options <- c(
 for (option in smoking_group3_options) {
   test_that("smoking group3 returns non-empty data frame", {
     skip_on_cran()
-    result <- risk_smoking(option, sex = "both sexes", datatype = "direct estimates")
+    result <- risk_smoking(option,
+      sex = "both sexes",
+      datatype = "direct estimates"
+    )
     expect_true(is.data.frame(result))
   })
 }
@@ -137,7 +143,8 @@ test_that("risk-smoking handles invalid smoking parameters", {
       sex = "both sexes",
       datatype = "county level modeled estimates"
     ),
-    "For county level modeled estimates on this smoking type, area must NOT be null"
+    paste("For county level modeled estimates on this smoking type,",
+          "area must NOT be null")
   )
   expect_error(
     risk_smoking("smoking not allowed at work (current smokers)",
@@ -151,11 +158,16 @@ test_that("risk-smoking handles invalid smoking parameters", {
       sex = "both sexes",
       datatype = "county level modeled estimates"
     ),
-    "For this smoking type, Sex, Datatype, and Area must not be NULL AND Race must be NULL"
+    paste("For this smoking type, Sex, Datatype,",
+          "and Area must not be NULL AND Race must be NULL")
   )
   expect_error(
-    risk_smoking("smokers (ever); ages 18+", race = "hispanic (any race)", sex = "both sexes"),
-    "For this smoking type, Race, Sex, and Datatype must not be NULL AND Datatype and Area must be NULL"
+    risk_smoking("smokers (ever); ages 18+",
+      race = "hispanic (any race)",
+      sex = "both sexes"
+    ),
+    paste("For this smoking type, Race, Sex,",
+          "and Datatype must not be NULL AND Datatype and Area must be NULL")
   )
   expect_error(
     risk_smoking("smokers (current); ages 18+",

@@ -21,17 +21,24 @@ risk_vaccines(vaccine, sex)
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, Lower 95\% CI, Upper 95\% CI, Number of Respondents.
+A data frame with the following columns:
+Area Type, Area Code, Percent,
+Lower 95\% CI, Upper 95\% CI, Number of Respondents.
 }
 \description{
-This function returns a data frame about vaccines risks from State Cancer Profiles.
+This function returns a data frame about vaccines risks
+from State Cancer Profiles.
 }
 \examples{
 \dontrun{
-risk_vaccines(vaccine = "percent with up to date hpv vaccination coverage, ages 13-15",
-              sex = "both sexes")
-              
-risk_vaccines(vaccine = "percent with up to date hpv vaccination coverage, ages 13-17",
-              sex = "females")
+risk_vaccines(
+  vaccine = "percent with up to date hpv vaccination coverage, ages 13-15",
+  sex = "both sexes"
+)
+
+risk_vaccines(
+  vaccine = "percent with up to date hpv vaccination coverage, ages 13-17",
+  sex = "females"
+)
 }
 }
