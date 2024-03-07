@@ -36,10 +36,12 @@ risk_colorectal_screening(screening, race = NULL, sex = NULL, area = NULL)
 \item{area}{A state/territory abbreviation or USA.}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, People Unemployed, Rank.
+A data frame with the following columns:
+Area Type, Area Code, Percent, People Unemployed, Rank.
 }
 \description{
-This function returns a data frame about colorectal screening from State Cancer Profiles.
+This function returns a data frame about
+colorectal screening from State Cancer Profiles.
 }
 \examples{
 \dontrun{

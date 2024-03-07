@@ -26,25 +26,33 @@ demo_food(area, areatype, food, race = NULL)
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Value, People".
+A data frame with the following columns:
+Area Type, Area Code, Value, People.
 }
 \description{
-This function returns a data frame about food demographics from State Cancer Profiles.
+This function returns a data frame about food demographics from
+State Cancer Profiles.
 }
 \examples{
 \dontrun{
-demo_food(area = "wa",
-          areatype = "county",
-          food = "food insecurity", 
-          race = "black")
-          
-demo_food(area = "usa",
-          areatype = "state",
-          food = "limited access to healthy food")
-          
-demo_food(area = "pr",
-          areatype = "county",
-          food = "food insecurity",
-          race = "all races (includes hispanic)")
+demo_food(
+  area = "wa",
+  areatype = "county",
+  food = "food insecurity",
+  race = "black"
+)
+
+demo_food(
+  area = "usa",
+  areatype = "state",
+  food = "limited access to healthy food"
+)
+
+demo_food(
+  area = "pr",
+  areatype = "county",
+  food = "food insecurity",
+  race = "all races (includes hispanic)"
+)
 }
 }

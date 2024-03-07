@@ -38,29 +38,36 @@ demo_workforce(area, areatype, workforce, race, sex)
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, People Unemployed, Rank.
+A data frame with the following columns:
+Area Type, Area Code, Percent, People Unemployed, Rank.
 }
 \description{
 This function returns a data frame from Workforce in State Cancer Profiles.
 }
 \examples{
 \dontrun{
-demo_workforce(area = "WA",
-               areatype = "county",
-               workforce = "unemployed",
-               race = "all races (includes hispanic)",
-               sex = "both sexes")
-               
-demo_workforce(area = "usa",
-               areatype = "state",
-               workforce = "unemployed",
-               race = "all races (includes hispanic)",
-               sex = "females")
-               
-demo_workforce(area = "pr",
-               areatype = "hsa",
-               workforce = "unemployed",
-               race = "all races (includes hispanic)",
-               sex = "both sexes")
+demo_workforce(
+  area = "WA",
+  areatype = "county",
+  workforce = "unemployed",
+  race = "all races (includes hispanic)",
+  sex = "both sexes"
+)
+
+demo_workforce(
+  area = "usa",
+  areatype = "state",
+  workforce = "unemployed",
+  race = "all races (includes hispanic)",
+  sex = "females"
+)
+
+demo_workforce(
+  area = "pr",
+  areatype = "hsa",
+  workforce = "unemployed",
+  race = "all races (includes hispanic)",
+  sex = "both sexes"
+)
 }
 }

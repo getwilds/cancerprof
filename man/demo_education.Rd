@@ -42,26 +42,34 @@ demo_education(area, areatype, education, sex = NULL, race = NULL)
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, Households, Rank.
+A data frame with the following columns:
+Area Type, Area Code, Percent, Households, Rank.
 }
 \description{
-This function returns a data frame about education demographics from State Cancer Profiles.
+This function returns a data frame about education demographics from
+State Cancer Profiles.
 }
 \examples{
 \dontrun{
-demo_education(area = "wa",
-               areatype = "county",
-               education = "at least high school",
-               sex = "males")
-               
-demo_education(area = "usa",
-               areatype = "state",
-               education = "at least bachelors degree",
-               sex = "both sexes",
-               race = "all races (includes hispanic)")
-               
-demo_education(area = "pr",
-               areatype = "hsa",
-               education = "less than 9th grade")
+demo_education(
+  area = "wa",
+  areatype = "county",
+  education = "at least high school",
+  sex = "males"
+)
+
+demo_education(
+  area = "usa",
+  areatype = "state",
+  education = "at least bachelors degree",
+  sex = "both sexes",
+  race = "all races (includes hispanic)"
+)
+
+demo_education(
+  area = "pr",
+  areatype = "hsa",
+  education = "less than 9th grade"
+)
 }
 }
