@@ -4,6 +4,7 @@
 #' 
 #tests class and typeof output
 test_that("Output data type is correct", {
+  skip_on_cran()
   output <- demo_svi("wa", "overall")
   
   expect_true(inherits(output, "data.frame"))
@@ -16,12 +17,14 @@ svi_options <- c("Overall", "socioeconomic status", "household characteristics",
 
 for (option in svi_options) {
   test_that("demo-svireturns non-empty data frame", {
+    skip_on_cran()
     expect_true(is.data.frame(demo_svi("wa", option)))
   })
 }
 
 #demo-svi must have 5 columns
 test_that("demo-svi has correct number of columns", {
+  skip_on_cran()
   df <- demo_svi("wa", "overall")
   expected_columns <- 3
   expect_equal(ncol(df), expected_columns)

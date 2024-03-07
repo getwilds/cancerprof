@@ -4,6 +4,7 @@
 #' 
 #tests class and typeof output
 test_that("Output data type is correct", {
+  skip_on_cran()
   output <- demo_education("wa", "county", "at least high school", "males")
   
   expect_true(inherits(output, "data.frame"))
@@ -11,6 +12,7 @@ test_that("Output data type is correct", {
 
 #Ensures that variables are present and working on SCP
 test_that("demo-education returns non-empty data frame", {
+  skip_on_cran()
   education1 <- demo_education("wa", "county", "at least high school", "males")
   expect_true(is.data.frame(education1))
   
@@ -24,6 +26,7 @@ test_that("demo-education returns non-empty data frame", {
 
 #demo-education must have 5 columns
 test_that("demo-education has correct number of columns", {
+  skip_on_cran()
   df <- demo_education("wa", "county", "at least high school", "both sexes")
   expected_columns <- 5
   expect_equal(ncol(df), expected_columns)
@@ -33,6 +36,7 @@ test_that("demo-education has correct number of columns", {
 
 #write one for error handling in education - mention in the message how values could have chnaged in SCP
 test_that("demo-education handles invalid education parameters", {
+  skip_on_cran()
   expect_error(
     demo_education("wa", "county", "less than 9th grade", "males"),
     "For Less than 9th Grade, Race and Sex must be NULL"

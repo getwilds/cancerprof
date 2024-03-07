@@ -4,6 +4,7 @@
 #' 
 #tests class and typeof output
 test_that("Output data type is correct", {
+  skip_on_cran()
   output <- risk_colorectal_screening("ever had fobt, ages 50-75", area="wa")
   
   expect_true(inherits(output, "data.frame"))
@@ -21,6 +22,7 @@ screening_options <- list(
 )
 
 for (option_name in names(screening_options)) {
+  skip_on_cran()
   test_that("risk-colorectal-screening returns non-empty data frame", {
     option <- screening_options[[option_name]]
     expect_true(is.data.frame(option))
@@ -29,6 +31,7 @@ for (option_name in names(screening_options)) {
 
 #risk-colorectal-screening must have 5 columns
 test_that("risk-colorectal-screening has correct number of columns", {
+  skip_on_cran()
   df1 <- risk_colorectal_screening("ever had fobt, ages 50-75", area="wa")
   df2 <- risk_colorectal_screening("home blood stool test in the past year, ages 45-75",
                                    "all races (includes hispanic)","both sexes")
@@ -40,6 +43,7 @@ test_that("risk-colorectal-screening has correct number of columns", {
 
 #test error handling
 test_that("risk-colorectal-screening handles invalid colorectal_screening parameters", {
+  skip_on_cran()
   expect_error(
     risk_colorectal_screening("ever had fobt, ages 50-75", race="all races (includes hispanic)"),
     "for this screening type, area must NOT be NULL and Race and Sex must be NULL"

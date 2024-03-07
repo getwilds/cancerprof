@@ -4,6 +4,7 @@
 #'
 # tests class and typeof output
 test_that("Output data type is correct", {
+  skip_on_cran()
   output <- risk_vaccines("percent with up to date hpv vaccination coverage, ages 13-15",
                          "both sexes")
   
@@ -16,6 +17,7 @@ vaccine_options <- c("percent with up to date hpv vaccination coverage, ages 13-
 
 for (option in vaccine_options) {
   test_that("risk_womens_health returns non-empty data frame", {
+    skip_on_cran()
     result <- risk_vaccines(option, "both sexes")
     expect_true(is.data.frame(result))
   })
@@ -23,6 +25,7 @@ for (option in vaccine_options) {
 
 #risk-vaccines must have 5 columns
 test_that("risk-vaccines has correct number of columns", {
+  skip_on_cran()
   df <- risk_vaccines("percent with up to date hpv vaccination coverage, ages 13-15",
                       "both sexes")
   expected_columns <- 6

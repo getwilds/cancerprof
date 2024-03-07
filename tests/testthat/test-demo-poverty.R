@@ -4,6 +4,7 @@
 #' 
 #tests class and typeof output
 test_that("Output data type is correct", {
+  skip_on_cran()
   output <- demo_poverty("wa", "county", "persistent poverty")
   
   expect_true(inherits(output, "data.frame"))
@@ -19,6 +20,7 @@ poverty_options <- list(
 
 for (option_name in names(poverty_options)) {
   test_that("demo-poverty returns non-empty data frame", {
+    skip_on_cran()
     option <- poverty_options[[option_name]]
     expect_true(is.data.frame(option))
   })
@@ -26,6 +28,7 @@ for (option_name in names(poverty_options)) {
 
 #demo-poverty must have 5 columns
 test_that("demo-poverty has correct number of columns", {
+  skip_on_cran()
   df1 <- demo_poverty("wa", "county", "persistent poverty")
   df2 <- demo_poverty("wa", "county", "families below poverty", "black")
   expected_columns1 <- 3
@@ -36,6 +39,7 @@ test_that("demo-poverty has correct number of columns", {
 
 #test error handling
 test_that("demo-poverty handles invalid poverty parameters", {
+  skip_on_cran()
   expect_error(
     demo_poverty("wa", "hsa", "persistent poverty"),
     "For persistent poverty, areatype must be county"

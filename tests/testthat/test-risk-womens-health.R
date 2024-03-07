@@ -4,6 +4,7 @@
 #'
 # tests class and typeof output
 test_that("Output data type is correct", {
+  skip_on_cran()
   output <- risk_women_health("mammogram in past 2 years, ages 50-74", 
                          "all races (includes hispanic)", "direct estimates")
 
@@ -17,6 +18,7 @@ womens_health_options <- c("mammogram in past 2 years, ages 50-74",
 
 for (option in womens_health_options) {
   test_that("risk_womens_health returns non-empty data frame", {
+    skip_on_cran()
     result <- risk_women_health(option, "all races (includes hispanic)", "direct estimates")
     expect_true(is.data.frame(result))
   })
@@ -24,6 +26,7 @@ for (option in womens_health_options) {
 
 #risk-womens health must have 5 columns
 test_that("risk-womens health has correct number of columns", {
+  skip_on_cran()
   df1 <- risk_women_health("mammogram in past 2 years, ages 50-74", 
                       "all races (includes hispanic)", "direct estimates")
   df2 <- risk_women_health("mammogram in past 2 years, ages 50-74", 
