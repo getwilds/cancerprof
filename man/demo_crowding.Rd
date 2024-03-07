@@ -45,20 +45,26 @@ Cancer Profiles.
 }
 \examples{
 \dontrun{
-demo_crowding(area = "WA", 
-              areatype = "hsa",
-              crowding = "household with >1 person per room",
-              race = "All Races (includes Hispanic)")
-             
-demo_crowding(area = "usa",
-              areatype = "state",
-              crowding = "household with >1 person per room",
-              race = "All Races (includes Hispanic)")
+demo_crowding(
+  area = "WA",
+  areatype = "hsa",
+  crowding = "household with >1 person per room",
+  race = "All Races (includes Hispanic)"
+)
 
-demo_crowding(area = "pr",
-              areatype = "hsa",
-              crowding = "household with >1 person per room",
-              race = "black")
+demo_crowding(
+  area = "usa",
+  areatype = "state",
+  crowding = "household with >1 person per room",
+  race = "All Races (includes Hispanic)"
+)
+
+demo_crowding(
+  area = "pr",
+  areatype = "hsa",
+  crowding = "household with >1 person per room",
+  race = "black"
+)
 }
 
 }

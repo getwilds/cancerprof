@@ -75,23 +75,29 @@ This function returns a data frame about insurance demographics from State Cance
 }
 \examples{
 \dontrun{
-demo_insurance(area = "usa",
-               areatype = "state",
-               insurance = "\% Insured in demographic group, all income levels", 
-               sex = "both sexes",
-               age = "18 to 64 years",
-               race = "white (non-hispanic)")
-               
-demo_insurance(area = "wa", 
-               areatype = "hsa",
-               insurance = "\% Insured in demographic group, all income levels", 
-               sex = "males",
-               age = "18 to 64 years")
-               
-demo_insurance(area = "dc",
-               areatype = "county",
-               insurance = "\% Insured in demographic group, all income levels", 
-               sex = "males",
-               age = "18 to 64 years")
+demo_insurance(
+  area = "usa",
+  areatype = "state",
+  insurance = "\% Insured in demographic group, all income levels",
+  sex = "both sexes",
+  age = "18 to 64 years",
+  race = "white (non-hispanic)"
+)
+
+demo_insurance(
+  area = "wa",
+  areatype = "hsa",
+  insurance = "\% Insured in demographic group, all income levels",
+  sex = "males",
+  age = "18 to 64 years"
+)
+
+demo_insurance(
+  area = "dc",
+  areatype = "county",
+  insurance = "\% Insured in demographic group, all income levels",
+  sex = "males",
+  age = "18 to 64 years"
+)
 }
 }

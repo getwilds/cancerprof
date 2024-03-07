@@ -31,11 +31,13 @@ Each of these functions require various parameters that must be specified to pul
 Demo crowding **Always** requires 4 arguments: area, areatype, crowding, and race
 
 ```{r crowding}
-crowding <- demo_crowding(area = "WA", 
-                         areatype = "county",
-                         crowding = "household with >1 person per room",
-                         race = "All Races (includes Hispanic)")
-head(crowding, n=3)
+crowding <- demo_crowding(
+  area = "WA",
+  areatype = "county",
+  crowding = "household with >1 person per room",
+  race = "All Races (includes Hispanic)"
+)
+head(crowding, n = 3)
 ```
 
 ### Demo Education
@@ -43,70 +45,84 @@ Demo education has 5 arguments: area, areatype, education, sex, race.
 
 **Depending on the education argument, the required arguments will change**
 ```{r education}
-#at least high school - requires arguments: area, areatype, education, sex
-education1 <- demo_education(area = "wa",
-                          areatype = "county",
-                          education = "at least high school",
-                          sex = "males")
+# at least high school - requires arguments: area, areatype, education, sex
+education1 <- demo_education(
+  area = "wa",
+  areatype = "county",
+  education = "at least high school",
+  sex = "males"
+)
 
-head(education1, n=3)
+head(education1, n = 3)
 
-#at least bachelors degree - requires arguments: area, areatype, education, sex, race
-education2 <- demo_education(area = "usa",
-                          areatype = "state",
-                          education = "at least bachelors degree",
-                          sex = "both sexes",
-                          race = "all races (includes hispanic)")
+# at least bachelors degree - requires arguments: area, areatype, education, sex, race
+education2 <- demo_education(
+  area = "usa",
+  areatype = "state",
+  education = "at least bachelors degree",
+  sex = "both sexes",
+  race = "all races (includes hispanic)"
+)
 
-head(education2, n=3)
+head(education2, n = 3)
 
-#less than 9th grade - requires arguments: area, areatype, education
-education3 <- demo_education(area = "pr",
-                          areatype = "hsa",
-                          education = "less than 9th grade")
+# less than 9th grade - requires arguments: area, areatype, education
+education3 <- demo_education(
+  area = "pr",
+  areatype = "hsa",
+  education = "less than 9th grade"
+)
 
-head(education3, n=3)
+head(education3, n = 3)
 ```
 
 ### Demo Food
 Demo food has 4 arguments: area, areatype, food, race.
 
 ```{r food}
-#limited access to healthy food - requires arguments: area, areatype, food
-food1 <- demo_food(area = "usa",
-                     areatype = "state",
-                     food = "limited access to healthy food")
+# limited access to healthy food - requires arguments: area, areatype, food
+food1 <- demo_food(
+  area = "usa",
+  areatype = "state",
+  food = "limited access to healthy food"
+)
 
-head(food1, n=3)
+head(food1, n = 3)
 
-#food insecurity - requires arguments: area, areatype, food, race
-food2 <- demo_food(area = "pr",
-                     areatype = "county",
-                     food = "food insecurity",
-                     race = "all races (includes hispanic)")
+# food insecurity - requires arguments: area, areatype, food, race
+food2 <- demo_food(
+  area = "pr",
+  areatype = "county",
+  food = "food insecurity",
+  race = "all races (includes hispanic)"
+)
 
-head(food2, n=3)
+head(food2, n = 3)
 ```
 
 ### Demo Income
 Demo income **Always** requires 4 arguments: area, areatype, income, race.
 
 ```{r income}
-#limited access to healthy food - requires arguments: area, areatype, food
-income1 <- demo_income(area = "wa",
-                       areatype = "county",
-                       income = "median household income",
-                       race = "all races (includes hispanic)")
+# limited access to healthy food - requires arguments: area, areatype, food
+income1 <- demo_income(
+  area = "wa",
+  areatype = "county",
+  income = "median household income",
+  race = "all races (includes hispanic)"
+)
 
-head(income1, n=3)
+head(income1, n = 3)
 
-#food insecurity - requires arguments: area, areatype, food, race
-income2 <- demo_income(area = "usa",
-                       areatype = "state",
-                       income = "median family income",
-                       race = "all races (includes hispanic)")
+# food insecurity - requires arguments: area, areatype, food, race
+income2 <- demo_income(
+  area = "usa",
+  areatype = "state",
+  income = "median family income",
+  race = "all races (includes hispanic)"
+)
 
-head(income2, n=3)
+head(income2, n = 3)
 ```
 
 ### Demo Insurance
@@ -118,58 +134,70 @@ Check function documentations for more details
 Only Areatype "State" can select Race, otherwise race should always be "all races (includes hispanic)
 
 ```{r insurance}
-insurance1 <- demo_insurance(area = "usa",
-                             areatype = "state",
-                             insurance = "% Insured in demographic group, all income levels",
-                             sex = "both sexes",
-                             age = "18 to 64 years",
-                             race = "white (non-hispanic)")
+insurance1 <- demo_insurance(
+  area = "usa",
+  areatype = "state",
+  insurance = "% Insured in demographic group, all income levels",
+  sex = "both sexes",
+  age = "18 to 64 years",
+  race = "white (non-hispanic)"
+)
 
-head(insurance1, n=3)
+head(insurance1, n = 3)
 
-insurance2 <- demo_insurance(area = "wa", 
-                             areatype = "county",
-                             insurance = "% Insured in demographic group, all income levels",
-                             sex = "males",
-                             age = "18 to 64 years")
+insurance2 <- demo_insurance(
+  area = "wa",
+  areatype = "county",
+  insurance = "% Insured in demographic group, all income levels",
+  sex = "males",
+  age = "18 to 64 years"
+)
 
-head(insurance2, n=3)
+head(insurance2, n = 3)
 ```
 
 ### Demo Mobility
 Demo mobility **Always** requires 3 arguments: area, areatype, mobility. The function defaults to "all races", "both sexes", "ages 1+"
 
 ```{r mobility}
-mobility1 <- demo_mobility(area = "usa",
-                           areatype = "state",
-                           mobility = "moved, same county (in past year)")
+mobility1 <- demo_mobility(
+  area = "usa",
+  areatype = "state",
+  mobility = "moved, same county (in past year)"
+)
 
-head(mobility1, n=3)
+head(mobility1, n = 3)
 
 
-mobility2 <- demo_mobility(area = "WA",
-                           areatype = "county",
-                           mobility = "moved, different county, same state (in past year)")
+mobility2 <- demo_mobility(
+  area = "WA",
+  areatype = "county",
+  mobility = "moved, different county, same state (in past year)"
+)
 
-head(mobility2, n=3)
+head(mobility2, n = 3)
 ```
 
 ### Demo Language
 Demo Language **Always** requires 3 arguments: area, areatype, language. The function defaults to "all races", "both sexes", "ages 14+"
 
 ```{r Language}
-non_english1 <- demo_language(area = "wa",
-                              areatype = "county",
-                              language = "language isolation")
+non_english1 <- demo_language(
+  area = "wa",
+  areatype = "county",
+  language = "language isolation"
+)
 
-head(non_english1, n=3)
+head(non_english1, n = 3)
 
 
-non_english2 <- demo_language(area = "usa", 
-                              areatype = "state",
-                              language = "language isolation")
+non_english2 <- demo_language(
+  area = "usa",
+  areatype = "state",
+  language = "language isolation"
+)
 
-head(non_english2, n=3)
+head(non_english2, n = 3)
 ```
 
 ### Demo Population
@@ -179,29 +207,35 @@ Demo Population has 5 arguments: area, areatype, population, race, sex. The popu
 
 ```{r population}
 #
-population1 <- demo_population(area = "wa",
-                                areatype = "county",
-                                population = "foreign born",
-                                race = "black",
-                                sex = "females")
+population1 <- demo_population(
+  area = "wa",
+  areatype = "county",
+  population = "foreign born",
+  race = "black",
+  sex = "females"
+)
 
-head(population1, n=3)
+head(population1, n = 3)
 
 
-population2 <- demo_population(area = "ca",
-                               areatype = "county",
-                               population = "males",
-                               race = "all races (includes hispanic)")
+population2 <- demo_population(
+  area = "ca",
+  areatype = "county",
+  population = "males",
+  race = "all races (includes hispanic)"
+)
 
-head(population2, n=3)
+head(population2, n = 3)
 
-population3 <- demo_population(area = "usa",
-                               areatype = "state",
-                               population = "age under 18",
-                               race = "all races (includes hispanic)",
-                               sex = "both sexes")
+population3 <- demo_population(
+  area = "usa",
+  areatype = "state",
+  population = "age under 18",
+  race = "all races (includes hispanic)",
+  sex = "both sexes"
+)
 
-head(population3, n=3)
+head(population3, n = 3)
 ```
 
 ### Demo Poverty
@@ -214,29 +248,35 @@ The "families below poverty" poverty argument will require a race argument and d
 The "persons below poverty" poverty argument will require a race argument and a sex argument, and default to "all ages".
 
 ```{r poverty}
-#Persistent poverty
-poverty1 <- demo_poverty(area = "WA",
-                         areatype = "county",
-                         poverty = "persistent poverty")
+# Persistent poverty
+poverty1 <- demo_poverty(
+  area = "WA",
+  areatype = "county",
+  poverty = "persistent poverty"
+)
 
-head(poverty1, n=3)
+head(poverty1, n = 3)
 
-#Families below poverty
-poverty2 <- demo_poverty(area = "usa",
-                          areatype = "state",
-                          poverty = "families below poverty",
-                          race = "black")
+# Families below poverty
+poverty2 <- demo_poverty(
+  area = "usa",
+  areatype = "state",
+  poverty = "families below poverty",
+  race = "black"
+)
 
-head(poverty2, n=3)
+head(poverty2, n = 3)
 
-#Persons below poverty
-poverty3 <- demo_poverty(area = "usa",
-                          areatype = "state",
-                          poverty = "persons below poverty",
-                          race = "black",
-                          sex = "males")
+# Persons below poverty
+poverty3 <- demo_poverty(
+  area = "usa",
+  areatype = "state",
+  poverty = "persons below poverty",
+  race = "black",
+  sex = "males"
+)
 
-head(poverty3, n=3)
+head(poverty3, n = 3)
 ```
 
 ### Demo Social Vulnerability Index (SVI)
@@ -245,36 +285,44 @@ Demo svi **Always** requires 2 arguments: area, svi. The function defaults to "a
 *Please note that the areatype argument is not available for this function because areatype is limited to "county"*
 
 ```{r svi}
-svi1 <- demo_svi(area = "WA",
-                 svi = "overall")
+svi1 <- demo_svi(
+  area = "WA",
+  svi = "overall"
+)
 
-head(svi1, n=3)
+head(svi1, n = 3)
 
 
-svi2 <- demo_svi(area = "usa",
-                 svi = "socioeconomic status")
+svi2 <- demo_svi(
+  area = "usa",
+  svi = "socioeconomic status"
+)
 
-head(svi2, n=3)
+head(svi2, n = 3)
 ```
 
 ### Workforce
 Demo svi **Always** requires 5 arguments: area, areatype, workforce, race, sex. The function defaults to "ages 16+"
 
 ```{r workforce}
-workforce1 <- demo_workforce(area = "WA",
-                             areatype = "county",
-                             workforce = "unemployed",
-                             race = "all races (includes hispanic)",
-                             sex = "both sexes")
+workforce1 <- demo_workforce(
+  area = "WA",
+  areatype = "county",
+  workforce = "unemployed",
+  race = "all races (includes hispanic)",
+  sex = "both sexes"
+)
 
-head(workforce1, n=3)
+head(workforce1, n = 3)
 
 
-workforce2 <- demo_workforce(area = "usa",
-                             areatype = "state",
-                             workforce = "unemployed",
-                             race = "all races (includes hispanic)",
-                             sex = "females")
+workforce2 <- demo_workforce(
+  area = "usa",
+  areatype = "state",
+  workforce = "unemployed",
+  race = "all races (includes hispanic)",
+  sex = "females"
+)
 
-head(workforce2, n=3)
+head(workforce2, n = 3)
 ```

@@ -38,11 +38,15 @@ Each of these functions require various parameters that must be specified to pul
 Risk Alcohol requires 3 arguments: alcohol, race, sex
 
 ```{r alcohol}
-alcohol1 <- risk_alcohol(alcohol = paste("binge drinking (4+ drinks on one occasion for women,", 
-                                         "5+ drinks for one occasion for men), ages 21+"), 
-                         race = "all races (includes hispanic)", 
-                         sex = "both sexes")
-head(alcohol1, n=3)
+alcohol1 <- risk_alcohol(
+  alcohol = paste(
+    "binge drinking (4+ drinks on one occasion for women,",
+    "5+ drinks for one occasion for men), ages 21+"
+  ),
+  race = "all races (includes hispanic)",
+  sex = "both sexes"
+)
+head(alcohol1, n = 3)
 ```
 
 ### Risk Colorectal Screening
@@ -53,14 +57,18 @@ Risk Colorectal Screening has 4 arguments: screening, race, sex, area
 "ever had fobt, ages 50-75", "guidance sufficient crc, ages 50-75", "had colonoscopy in past 10 years, ages 50-75" for the screening arguments defaults to "all races", "both sexes", and "county level modeled estimates"
 
 ```{r colorectal screening}
-screening1 <- risk_colorectal_screening(screening = "home blood stool test in the past year, ages 45-75",
-                                     race = "all races (includes hispanic)",
-                                     sex = "both sexes")
-head(screening1, n=3)
+screening1 <- risk_colorectal_screening(
+  screening = "home blood stool test in the past year, ages 45-75",
+  race = "all races (includes hispanic)",
+  sex = "both sexes"
+)
+head(screening1, n = 3)
 
-screening2 <- risk_colorectal_screening(screening = "ever had fobt, ages 50-75",
-                                        area="usa")
-head(screening2, n=3)
+screening2 <- risk_colorectal_screening(
+  screening = "ever had fobt, ages 50-75",
+  area = "usa"
+)
+head(screening2, n = 3)
 ```
 
 

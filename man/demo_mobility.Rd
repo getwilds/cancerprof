@@ -26,23 +26,31 @@ demo_mobility(area, areatype, mobility)
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, People, Rank.
+A data frame with the following columns:
+Area Type, Area Code, Percent, People, Rank.
 }
 \description{
-This function returns a data frame about mobility demographics from State Cancer Profiles.
+This function returns a data frame about mobility demographics
+from State Cancer Profiles.
 }
 \examples{
 \dontrun{
-demo_mobility(area = "WA",
-              areatype = "county",
-              mobility = "moved, different county, same state (in past year)")
-              
-demo_mobility(area = "usa",
-              areatype = "state",
-              mobility = "moved, same county (in past year)")
-              
-demo_mobility(area = "dc",
-              areatype = "hsa",
-              mobility = "moved, same county (in past year)")
+demo_mobility(
+  area = "WA",
+  areatype = "county",
+  mobility = "moved, different county, same state (in past year)"
+)
+
+demo_mobility(
+  area = "usa",
+  areatype = "state",
+  mobility = "moved, same county (in past year)"
+)
+
+demo_mobility(
+  area = "dc",
+  areatype = "hsa",
+  mobility = "moved, same county (in past year)"
+)
 }
 }

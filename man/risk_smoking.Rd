@@ -54,13 +54,17 @@ risk_smoking(smoking, race = NULL, sex = NULL, datatype = NULL, area = NULL)
 \item{area}{A state/territory abbreviation or USA.}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, Lower CI 95\%, Upper CI 95\%, Number of Respondents.
+A data frame with the following columns:
+Area Type, Area Code, Percent, Lower CI 95\%, Upper CI 95\%,
+Number of Respondents.
 }
 \description{
-This function returns a data frame about smoking risks from State Cancer Profiles.
+This function returns a data frame about smoking risks
+from State Cancer Profiles.
 }
 \details{
-Please note that this function requires very specific arguments for each smoking type.
+Please note that this function requires
+very specific arguments for each smoking type.
 }
 \examples{
 \dontrun{

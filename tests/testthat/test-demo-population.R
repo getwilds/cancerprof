@@ -1,16 +1,16 @@
 #' Test demo-population
-#' 
+#'
 #' This testthat file test the demo-population function
-#' 
-#tests class and typeof output
+#'
+# tests class and typeof output
 test_that("Output data type is correct", {
   skip_on_cran()
-  output <- demo_population("WA", "county", "asian/pacific islander", sex="females")
-  
+  output <- demo_population("WA", "county", "asian/pacific islander", sex = "females")
+
   expect_true(inherits(output, "data.frame"))
 })
 
-#Ensures that variables are present and working on SCP
+# Ensures that variables are present and working on SCP
 population_options <- list(
   age1 = demo_population("wa", "county", "age under 18", "all races (includes hispanic)", "both sexes"),
   age2 = demo_population("wa", "county", "ages 60 and over", "all races (includes hispanic)", "both sexes"),
@@ -31,29 +31,31 @@ for (option_name in names(population_options)) {
   })
 }
 
-race_options <- c("american indian/alaska native", "asian/pacific islander", 
-           "black", "hispanic", "non-hispanic (origin recode)")
+race_options <- c(
+  "american indian/alaska native", "asian/pacific islander",
+  "black", "hispanic", "non-hispanic (origin recode)"
+)
 
 for (option in race_options) {
   test_that("demo-population returns non-empty data frame", {
     skip_on_cran()
-    expect_true(is.data.frame(demo_population("wa", "county", option, sex="both sexes")))
+    expect_true(is.data.frame(demo_population("wa", "county", option, sex = "both sexes")))
   })
 }
 
-#demo-population must have 5 columns
+# demo-population must have 5 columns
 test_that("demo-population has correct number of columns", {
   skip_on_cran()
-  df <- demo_population("WA", "county", "asian/pacific islander", sex="females")
+  df <- demo_population("WA", "county", "asian/pacific islander", sex = "females")
   expected_columns <- 5
   expect_equal(ncol(df), expected_columns)
 })
 
-#test error handling
+# test error handling
 test_that("demo-population handles invalid population parameters", {
   skip_on_cran()
   expect_error(
-    demo_population("wa", "county", "ages 40 and over", race="all races includes hispanic"),
+    demo_population("wa", "county", "ages 40 and over", race = "all races includes hispanic"),
     "ages 40 and over and ages 50 and over, Race and Sex must be NULL"
   )
   expect_error(
@@ -66,7 +68,7 @@ test_that("demo-population handles invalid population parameters", {
   )
 })
 
-#parameter
+# parameter
 test_that("demo-population has correct parameters", {
   expect_error(demo_population())
 })

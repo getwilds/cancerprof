@@ -54,29 +54,36 @@ demo_population(area, areatype, population, race = NULL, sex = NULL)
 }}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, Households, Rank.
+A data frame with the following columns:
+Area Type, Area Code, Percent, Households, Rank.
 }
 \description{
-This function returns a data frame from population in State Cancer Profiles.
+This function returns a data frame about population
+from State Cancer Profiles.
 }
 \examples{
 \dontrun{
-demo_population(area = "WA",
-                areatype = "county",
-                population = "males",
-                race = "all races (includes hispanic)")
-                
-demo_population(area = "dc",
-                areatype = "hsa",
-                population = "foreign born",
-                race = "black",
-                sex = "females")
-                
-demo_population(area = "usa",
-                areatype = "state",
-                population = "foreign born",
-                race = "hispanic (any race)", 
-                sex = "females")
+demo_population(
+  area = "WA",
+  areatype = "county",
+  population = "males",
+  race = "all races (includes hispanic)"
+)
 
+demo_population(
+  area = "dc",
+  areatype = "hsa",
+  population = "foreign born",
+  race = "black",
+  sex = "females"
+)
+
+demo_population(
+  area = "usa",
+  areatype = "state",
+  population = "foreign born",
+  race = "hispanic (any race)",
+  sex = "females"
+)
 }
 }

@@ -5,16 +5,20 @@
 # tests class and typeof output
 test_that("Output data type is correct", {
   skip_on_cran()
-  output <- risk_women_health("mammogram in past 2 years, ages 50-74", 
-                         "all races (includes hispanic)", "direct estimates")
+  output <- risk_women_health(
+    "mammogram in past 2 years, ages 50-74",
+    "all races (includes hispanic)", "direct estimates"
+  )
 
   expect_true(inherits(output, "data.frame"))
 })
 
-#Ensures that variables are present and working on SCP
-womens_health_options <- c("mammogram in past 2 years, ages 50-74",
-                           "mammogram in past 2 years, ages 40+", 
-                           "pap smear in past 3 years, no hysterectomy, ages 21-65")
+# Ensures that variables are present and working on SCP
+womens_health_options <- c(
+  "mammogram in past 2 years, ages 50-74",
+  "mammogram in past 2 years, ages 40+",
+  "pap smear in past 3 years, no hysterectomy, ages 21-65"
+)
 
 for (option in womens_health_options) {
   test_that("risk_womens_health returns non-empty data frame", {
@@ -24,22 +28,25 @@ for (option in womens_health_options) {
   })
 }
 
-#risk-womens health must have 5 columns
+# risk-womens health must have 5 columns
 test_that("risk-womens health has correct number of columns", {
   skip_on_cran()
-  df1 <- risk_women_health("mammogram in past 2 years, ages 50-74", 
-                      "all races (includes hispanic)", "direct estimates")
-  df2 <- risk_women_health("mammogram in past 2 years, ages 50-74", 
-                      "all races (includes hispanic)", "county level modeled estimates", "wa")
-  
+  df1 <- risk_women_health(
+    "mammogram in past 2 years, ages 50-74",
+    "all races (includes hispanic)", "direct estimates"
+  )
+  df2 <- risk_women_health(
+    "mammogram in past 2 years, ages 50-74",
+    "all races (includes hispanic)", "county level modeled estimates", "wa"
+  )
+
   expected_columns1 <- 6
   expected_columns2 <- 5
   expect_equal(ncol(df1), expected_columns1)
   expect_equal(ncol(df2), expected_columns2)
-
 })
 
-#parameter
+# parameter
 test_that("risk-womens health has correct parameters", {
   expect_error(risk_women_health())
 })

@@ -20,21 +20,29 @@ demo_language(area, areatype, language)
 \code{"language isolation"}.}
 }
 \value{
-A data frame with the following columns: Area Type, Area Code, Percent, Households, Rank.
+A data frame with the following columns:
+Area Type, Area Code, Percent, Households, Rank.
 }
 \description{
-This function returns a data frame about language demographics from State Cancer Profiles.
+This function returns a data frame about language demographics
+from State Cancer Profiles.
 }
 \examples{
-demo_language(area = "WA",
-              areatype = "county",
-              language = "language isolation")
-              
-demo_language(area = "dc",
-              areatype = "hsa",
-              language = "language isolation")
-              
-demo_language(area = "usa", 
-              areatype = "state",
-              language = "language isolation")
+demo_language(
+  area = "WA",
+  areatype = "county",
+  language = "language isolation"
+)
+
+demo_language(
+  area = "dc",
+  areatype = "hsa",
+  language = "language isolation"
+)
+
+demo_language(
+  area = "usa",
+  areatype = "state",
+  language = "language isolation"
+)
 }

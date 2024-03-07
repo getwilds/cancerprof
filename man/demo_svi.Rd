@@ -19,20 +19,27 @@ demo_svi(area, svi)
 }}
 }
 \value{
-A data frame with the following columns County, FIPS, Score.
+A data frame with the following columns: County, FIPS, Score.
 }
 \description{
-This function returns a data frame from social vulnerability index (SVI) in State Cancer Profiles.
+This function returns a data frame about social vulnerability index (SVI)
+from State Cancer Profiles.
 }
 \examples{
 \dontrun{
-demo_svi(area = "WA",
-         svi = "overall")
-         
-demo_svi(area = "usa",
-         svi = "overall")
-         
-demo_svi(area = "dc",
-         svi = "socioeconomic status")
+demo_svi(
+  area = "WA",
+  svi = "overall"
+)
+
+demo_svi(
+  area = "usa",
+  svi = "overall"
+)
+
+demo_svi(
+  area = "dc",
+  svi = "socioeconomic status"
+)
 }
 }
