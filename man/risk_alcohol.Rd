@@ -8,7 +8,8 @@ risk_alcohol(alcohol, race, sex)
 }
 \arguments{
 \item{alcohol}{The only permissible value is
-\code{"binge drinking (4+ drinks on one occasion for women, 5+ drinks for one occasion for men), ages 21+"}.}
+`paste("binge drinking (4+ drinks on one occasion for women,",
+"5+ drinks for one occasion for men), ages 21+")}
 
 \item{race}{One of the following values:
 \itemize{

@@ -1,6 +1,7 @@
 #' Test dput-resp-demo
 #'
-#' This function creates a response object from the Demographics section of State Cancer Profiles for
+#' This function creates a response object from the Demographics section of
+#' State Cancer Profiles to be used in testing
 #'
 #'
 #' @returns A httr2 response object
@@ -13,12 +14,20 @@
 #' }
 dput_resp_risk <- function() {
   resp <- structure(list(
-    method = "GET", url = "https://statecancerprofiles.cancer.gov/risk/index.php?topic=colorec&risk=v304&type=risk&sortVariableName=percent&sortOrder=default&output=1&race=00&stateFIPS=44",
+    method = "GET",
+    url = paste0(
+      "https://statecancerprofiles.cancer.gov/risk/",
+      "index.php?topic=colorec&risk=v304&type=risk&",
+      "sortVariableName=percent&sortOrder=default&",
+      "output=1&race=00&stateFIPS=44"
+    ),
     status_code = 200L, headers = structure(list(
       date = "Tue, 20 Feb 2024 20:40:10 GMT",
-      server = "Apache", `content-disposition` = "attachment; filename=\"screening_risk.csv\"",
+      server = "Apache",
+      `content-disposition` = "attachment; filename=\"screening_risk.csv\"",
       `x-frame-options` = "SAMEORIGIN", `cache-control` = "public, max-age=300",
-      `content-type` = "text/csv; charset=iso-8859-1", `strict-transport-security` = "max-age=31536000;preload",
+      `content-type` = "text/csv; charset=iso-8859-1",
+      `strict-transport-security` = "max-age=31536000;preload",
       `set-cookie` = "TKTID=web-dmzst-03; path=/; HttpOnly; Secure",
       `cache-control` = "private"
     ), class = "httr2_headers"),
@@ -154,10 +163,16 @@ dput_resp_risk <- function() {
       0x20, 0x50, 0x75, 0x65, 0x72, 0x74, 0x6f, 0x20, 0x52, 0x69,
       0x63, 0x6f, 0x2e, 0x0a
     )), request = structure(list(
-      url = "https://statecancerprofiles.cancer.gov/risk/index.php?topic=colorec&risk=v304&type=risk&sortVariableName=percent&sortOrder=default&output=1&race=00&stateFIPS=44",
+      url = paste0(
+        "https://statecancerprofiles.cancer.gov/risk/",
+        "index.php?topic=colorec&risk=v304&type=risk&",
+        "sortVariableName=percent&sortOrder=default&",
+        "output=1&race=00&stateFIPS=44"
+      ),
       method = NULL, headers = list(), body = NULL, fields = list(),
       options = list(), policies = list()
     ), class = "httr2_request"),
     cache = new.env()
   ), class = "httr2_response")
+  return(resp)
 }

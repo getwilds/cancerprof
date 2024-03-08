@@ -1,6 +1,7 @@
 #' Test dput-resp-mortality
 #'
-#' This function creates a response object from the Mortality section of State Cancer Profiles for
+#' This function creates a response object from the Mortality section of
+#' State Cancer Profiles to be used in testing
 #'
 #'
 #' @returns A httr2 response object
@@ -13,12 +14,20 @@
 #' }
 dput_resp_mortality <- function() {
   resp <- structure(list(
-    method = "GET", url = "https://statecancerprofiles.cancer.gov/deathrates/index.php?stateFIPS=10&areatype=county&cancer=001&race=00&age=157&year=0&type=death&sortVariableName=rate&sortOrder=default&output=1&sex=0",
+    method = "GET",
+    url = paste0(
+      "https://statecancerprofiles.cancer.gov/deathrates/",
+      "index.php?stateFIPS=10&areatype=county&cancer=001",
+      "&race=00&age=157&year=0&type=death&",
+      "sortVariableName=rate&sortOrder=default&output=1&sex=0"
+    ),
     status_code = 200L, headers = structure(list(
       date = "Wed, 21 Feb 2024 19:51:18 GMT",
-      server = "Apache", `content-disposition` = "attachment; filename=\"death.csv\"",
+      server = "Apache",
+      `content-disposition` = "attachment; filename=\"death.csv\"",
       `x-frame-options` = "SAMEORIGIN", `cache-control` = "public, max-age=300",
-      `content-type` = "text/csv; charset=iso-8859-1", `strict-transport-security` = "max-age=31536000;preload",
+      `content-type` = "text/csv; charset=iso-8859-1",
+      `strict-transport-security` = "max-age=31536000;preload",
       `set-cookie` = "TKTID=web-dmzst-02; path=/; HttpOnly; Secure",
       `cache-control` = "private"
     ), class = "httr2_headers"),
@@ -340,10 +349,16 @@ dput_resp_mortality <- function() {
       0x6c, 0x75, 0x64, 0x65, 0x20, 0x50, 0x75, 0x65, 0x72, 0x74,
       0x6f, 0x20, 0x52, 0x69, 0x63, 0x6f, 0x2e, 0x0a
     )), request = structure(list(
-      url = "https://statecancerprofiles.cancer.gov/deathrates/index.php?stateFIPS=10&areatype=county&cancer=001&race=00&age=157&year=0&type=death&sortVariableName=rate&sortOrder=default&output=1&sex=0",
+      url = paste0(
+        "https://statecancerprofiles.cancer.gov/deathrates/",
+        "index.php?stateFIPS=10&areatype=county&cancer=001",
+        "&race=00&age=157&year=0&type=death&",
+        "sortVariableName=rate&sortOrder=default&output=1&sex=0"
+      ),
       method = NULL, headers = list(), body = NULL, fields = list(),
       options = list(), policies = list()
     ), class = "httr2_request"),
     cache = new.env()
   ), class = "httr2_response")
+  return(resp)
 }
