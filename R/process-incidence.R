@@ -1,6 +1,7 @@
 #' Process Cancer Incidence Response Data
 #'
-#' This function processes the Cancer Incidence response data from State Cancer Profiles
+#' This function processes the Cancer Incidence response data
+#' from State Cancer Profiles
 #'
 #' @param resp A response object
 #'
@@ -21,7 +22,7 @@
 process_incidence <- function(resp) {
   nenv <- new.env()
   data("state", envir = nenv)
-  state.name <- nenv$state.name
+  state_name <- nenv$state.name
 
   resp_lines <- resp %>%
     resp_body_string() %>%
@@ -31,12 +32,29 @@ process_incidence <- function(resp) {
   index_first_line_break <- which(resp_lines == "")[4]
   index_second_line_break <- which(resp_lines == "")[5]
 
-  resp <- resp_lines[(index_first_line_break + 1):(index_second_line_break - 1)] %>%
+  resp <- resp_lines[
+    (index_first_line_break + 1):
+      (index_second_line_break - 1)
+  ] %>%
     paste(collapse = "\n") %>%
-    (\(x) read.csv(textConnection(x), header = TRUE, colClasses = "character"))()
+    (
+      \(x) {
+        read.csv(textConnection(x),
+          header = TRUE,
+          colClasses = "character"
+        )
+      }
+    )()
 
-
-  column <- c("County", "Health.Service.Area", "State")[c("County", "Health.Service.Area", "State") %in% colnames(resp)]
+  column <- c(
+    "County",
+    "Health.Service.Area",
+    "State"
+  )[c(
+    "County",
+    "Health.Service.Area",
+    "State"
+  ) %in% colnames(resp)]
 
   resp <- resp %>%
     filter(!!sym(column) != "US (SEER+NPCR)(1)") %>%
@@ -45,7 +63,7 @@ process_incidence <- function(resp) {
 
   if (column %in% c("Health.Service.Area", "County")) {
     resp <- resp %>%
-      filter(!(!!sym(column) %in% state.name))
+      filter(!(!!sym(column) %in% state_name))
   }
   resp
 }

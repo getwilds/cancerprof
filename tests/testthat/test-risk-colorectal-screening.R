@@ -60,8 +60,7 @@ test_that("risk-colorectal-screening has correct number of columns", {
 })
 
 # test error handling
-test_that("risk-colorectal-screening handles
-          invalid colorectal_screening parameters", {
+test_that("risk-colorectal-screening handles invalid parameters", {
   skip_on_cran()
   expect_error(
     risk_colorectal_screening(

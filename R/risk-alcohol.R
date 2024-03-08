@@ -4,7 +4,8 @@
 #' from State Cancer Profiles.
 #'
 #' @param alcohol The only permissible value is
-#' `"binge drinking (4+ drinks on one occasion for women, 5+ drinks for one occasion for men), ages 21+"`.
+#' `paste("binge drinking (4+ drinks on one occasion for women,",
+#'        "5+ drinks for one occasion for men), ages 21+")
 #' @param race One of the following values:
 #' - `"All Races (includes Hispanic)"`
 #' - `"White (non-Hispanic)"`

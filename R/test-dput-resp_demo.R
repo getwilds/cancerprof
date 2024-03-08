@@ -1,6 +1,7 @@
 #' Test dput-resp-demo
 #'
-#' This function creates a response object from the Demographics section of State Cancer Profiles for
+#' This function creates a response object from the Demographics section of
+#' State Cancer Profiles to be used for testing.
 #'
 #'
 #' @returns A httr2 response object
@@ -13,12 +14,20 @@
 #' }
 dput_resp_demo <- function() {
   resp <- structure(list(
-    method = "GET", url = "https://statecancerprofiles.cancer.gov/demographics/index.php?stateFIPS=72&areatype=county&topic=crowd&demo=00027&race=00&type=manyareacensus&sortVariableName=value&sortOrder=default&output=1",
+    method = "GET",
+    url = paste0(
+      "https://statecancerprofiles.cancer.gov/demographics/",
+      "index.php?stateFIPS=72&areatype=county&topic=crowd&",
+      "demo=00027&race=00&type=manyareacensus&",
+      "sortVariableName=value&sortOrder=default&output=1"
+    ),
     status_code = 200L, headers = structure(list(
       date = "Thu, 15 Feb 2024 19:23:41 GMT",
-      server = "Apache", `content-disposition` = "attachment; filename=\"census.csv\"",
+      server = "Apache",
+      `content-disposition` = "attachment; filename=\"census.csv\"",
       `x-frame-options` = "SAMEORIGIN", `cache-control` = "public, max-age=300",
-      `content-type` = "text/csv;charset=UTF-8", `strict-transport-security` = "max-age=31536000;preload",
+      `content-type` = "text/csv;charset=UTF-8",
+      `strict-transport-security` = "max-age=31536000;preload",
       `set-cookie` = "TKTID=web-dmzst-02; path=/; HttpOnly; Secure",
       `cache-control` = "private"
     ), class = "httr2_headers"),
@@ -104,7 +113,12 @@ dput_resp_demo <- function() {
       0x75, 0x64, 0x65, 0x20, 0x50, 0x75, 0x65, 0x72, 0x74, 0x6f,
       0x20, 0x52, 0x69, 0x63, 0x6f, 0x2e, 0x0a
     )), request = structure(list(
-      url = "https://statecancerprofiles.cancer.gov/demographics/index.php?stateFIPS=72&areatype=county&topic=crowd&demo=00027&race=00&type=manyareacensus&sortVariableName=value&sortOrder=default&output=1",
+      url = paste0(
+        "https://statecancerprofiles.cancer.gov/demographics/",
+        "index.php?stateFIPS=72&areatype=county&topic=crowd&",
+        "demo=00027&race=00&type=manyareacensus&",
+        "sortVariableName=value&sortOrder=default&output=1"
+      ),
       method = NULL, headers = list(), body = NULL, fields = list(),
       options = list(), policies = list()
     ), class = "httr2_request"),

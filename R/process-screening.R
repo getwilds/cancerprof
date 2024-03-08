@@ -18,10 +18,6 @@
 #' process_screening(resp)
 #' }
 process_screening <- function(resp) {
-  nenv <- new.env()
-  data("state", envir = nenv)
-  state.name <- nenv$state.name
-
   resp_lines <- resp %>%
     resp_body_string() %>%
     strsplit("\\n") %>%
@@ -30,9 +26,19 @@ process_screening <- function(resp) {
   index_first_line_break <- which(resp_lines == "")[3]
   index_second_line_break <- which(resp_lines == "")[4]
 
-  resp <- resp_lines[(index_first_line_break + 1):(index_second_line_break - 1)] %>%
+  resp <- resp_lines[
+    (index_first_line_break + 1):
+      (index_second_line_break - 1)
+  ] %>%
     paste(collapse = "\n") %>%
-    (\(x) read.csv(textConnection(x), header = TRUE, colClasses = "character"))()
+    (
+      \(x) {
+        read.csv(textConnection(x),
+          header = TRUE,
+          colClasses = "character"
+        )
+      }
+    )()
 
   column <- c("County", "State")[c("County", "State") %in% colnames(resp)]
 

@@ -84,7 +84,8 @@ race_options <- c(
 for (option in race_options) {
   test_that("demo-population returns non-empty data frame", {
     skip_on_cran()
-    expect_true(is.data.frame(demo_population("wa",
+    expect_true(is.data.frame(demo_population(
+      "wa",
       "county",
       option,
       sex = "both sexes"
