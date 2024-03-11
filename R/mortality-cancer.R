@@ -147,7 +147,7 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
   resp <- resp %>%
     req_perform()
 
-  resp <- process_mortality(resp)
+  resp <- process_resp(resp, "mortality")
 
   areatype_map <- c(
     "county" = "County",

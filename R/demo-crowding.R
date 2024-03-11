@@ -70,7 +70,7 @@ demo_crowding <- function(area, areatype, crowding, race) {
     ) %>%
     req_perform()
 
-  resp <- process_response(resp)
+  resp <- process_resp(resp, "demographics")
 
   areatype_map <- c(
     "county" = "County", "hsa" = "Health_Service_Area",
@@ -83,8 +83,11 @@ demo_crowding <- function(area, areatype, crowding, race) {
 
   resp %>%
     setNames(c(
-      areatype_title, areacode_title, "Percent",
-      "Households", "Rank"
+      areatype_title,
+      areacode_title,
+      "Percent",
+      "Households",
+      "Rank"
     )) %>%
     mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
 }

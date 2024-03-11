@@ -51,7 +51,7 @@ risk_alcohol <- function(alcohol, race, sex) {
     ) %>%
     req_perform()
 
-  resp <- process_screening(resp)
+  resp <- process_resp(resp, "risks")
 
   resp %>%
     setNames(c(

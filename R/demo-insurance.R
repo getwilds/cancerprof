@@ -126,7 +126,7 @@ demo_insurance <- function(area, areatype, insurance, sex, age, race = NULL) {
   resp <- resp %>%
     req_perform()
 
-  resp <- process_response(resp)
+  resp <- process_resp(resp, "demographics")
 
   areatype_map <- c(
     "county" = "County",

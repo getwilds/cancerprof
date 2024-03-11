@@ -93,7 +93,7 @@ demo_education <- function(area, areatype, education, sex = NULL, race = NULL) {
   resp <- resp %>%
     req_perform()
 
-  resp <- process_response(resp)
+  resp <- process_resp(resp, "demographics")
 
   areatype_map <- c(
     "county" = "County",

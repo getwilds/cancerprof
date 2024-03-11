@@ -93,7 +93,7 @@ risk_colorectal_screening <- function(screening, race = NULL, sex = NULL, area =
   resp <- resp %>%
     req_perform()
 
-  resp <- process_screening(resp)
+  resp <- process_resp(resp, "risks")
 
   if (screening %in% screening_type_1) {
     resp %>%

@@ -1,10 +1,14 @@
-#' Process Cancer Mortality Response Data
+#' Process Response Data
 #'
-#' This function processes the Cancer Mortality response data
-#' from State Cancer Profiles
+#' This function processes the response data from State Cancer Profiles
 #'
 #' @param resp A response object
-#'
+#' @param topic One of the following values:
+#' - "demographics"
+#' - "risks"
+#' - "incidence"
+#' - "mortality"
+#' 
 #' @importFrom httr2 resp_body_string
 #' @importFrom dplyr mutate_all na_if filter
 #' @importFrom rlang sym
@@ -16,21 +20,32 @@
 #'
 #' @examples
 #' \dontrun{
-#' process_mortality(resp)
+#' process_resp(resp, demographics)
 #' }
-process_mortality <- function(resp) {
+process_resp <- function(resp, topic) {
+ 
   nenv <- new.env()
   data("state", envir = nenv)
   state_name <- nenv$state.name
-
+  
   resp_lines <- resp %>%
     resp_body_string() %>%
     strsplit("\\n") %>%
     unlist()
-
-  index_first_line_break <- which(resp_lines == "")[4]
-  index_second_line_break <- which(resp_lines == "")[5]
-
+  
+  if (topic == "demographics") {
+    index_first_line_break <- which(resp_lines == "")[1]
+    index_second_line_break <- which(resp_lines == "")[2] 
+  } else if (topic == "risks") {
+    index_first_line_break <- which(resp_lines == "")[3]
+    index_second_line_break <- which(resp_lines == "")[4]
+  } else if (topic == "incidence" || topic == "mortality") {
+    index_first_line_break <- which(resp_lines == "")[4]
+    index_second_line_break <- which(resp_lines == "")[5]
+  } else {
+    cli_abort("Incorrect topic argument, please ensure that correct.")
+  }
+  
   resp <- resp_lines[
     (index_first_line_break + 1):
       (index_second_line_break - 1)
@@ -39,31 +54,31 @@ process_mortality <- function(resp) {
     (
       \(x) {
         read.csv(textConnection(x),
-          header = TRUE,
-          colClasses = "character"
+                 header = TRUE,
+                 colClasses = "character"
         )
       }
     )()
-
+  
   column <- c(
-    "County",
     "Health.Service.Area",
+    "County",
     "State"
   )[c(
-    "County",
     "Health.Service.Area",
+    "County",
     "State"
   ) %in% colnames(resp)]
-
+  
   resp <- resp %>%
     filter(!!sym(column) != "United States")
-
+  
   if (column %in% c("Health.Service.Area", "County")) {
     resp <- resp %>%
       filter(!(!!sym(column) %in% state_name))
   }
-
   resp %>%
     mutate_all(\(x) na_if(x, "N/A")) %>%
     mutate_all(\(x) na_if(x, "data not available"))
+  
 }

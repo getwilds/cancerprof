@@ -54,7 +54,7 @@ demo_language <- function(area, areatype, language) {
     req_perform()
 
 
-  resp <- process_response(resp)
+  resp <- process_resp(resp, "demographics")
 
   areatype_map <- c(
     "county" = "County",

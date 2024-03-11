@@ -58,7 +58,7 @@ risk_diet_exercise <- function(diet_exercise, race, sex) {
     ) %>%
     req_perform()
 
-  resp <- process_screening(resp)
+  resp <- process_resp(resp, "risks")
 
   diet_exercise_type1 <- c(
     "bmi is overweight, high school survey",

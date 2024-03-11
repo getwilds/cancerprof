@@ -88,29 +88,17 @@ risk_women_health <- function(women_health, race, datatype = "direct estimates",
   resp <- resp %>%
     req_perform()
 
-  resp <- process_screening(resp)
+  resp <- process_resp(resp, "risks")
 
   if (datatype == "county level modeled estimates") {
-    if (women_health == "pap smear in past 3 years, no hysterectomy, ages 21-65") {
-      resp %>%
-        setNames(c(
-          "State",
-          "FIPS",
-          "Percent",
-          "Lower_95%_CI",
-          "Upper_95%_CI",
-          "Number_of_Respondents"
-        ))
-    } else {
-      resp %>%
-        setNames(c(
-          "County",
-          "FIPS",
-          "Percent",
-          "Lower_95%_CI",
-          "Upper_95%_CI"
-        ))
-    }
+    resp %>%
+      setNames(c(
+        "State",
+        "FIPS",
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI"
+      ))
   } else {
     resp %>%
       setNames(c(
