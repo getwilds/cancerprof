@@ -63,7 +63,7 @@ demo_workforce <- function(area, areatype, workforce, race, sex) {
     req_url_query(
       stateFIPS = fips_scp(area),
       areatype = tolower(areatype),
-      topic = "crowd",
+      topic = "work",
       demo = handle_workforce(workforce),
       race = handle_race(race),
       sex = handle_sex(sex),

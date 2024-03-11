@@ -52,17 +52,14 @@
 #'   race = "black"
 #' )
 #' }
-#'
-demo_crowding <- function(area, areatype,
-                          crowding = "household with >1 person per room",
-                          race) {
-  areatype <- tolower(areatype)
+demo_crowding <- function(area, areatype, crowding, race) {
+  
   req <- create_request("demographics")
 
   resp <- req %>%
     req_url_query(
       stateFIPS = fips_scp(area),
-      areatype = areatype,
+      areatype = tolower(areatype),
       topic = "crowd",
       demo = handle_crowding(crowding),
       race = handle_race(race),
