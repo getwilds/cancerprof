@@ -52,7 +52,7 @@ demo_svi <- function(area, svi) {
     req_perform()
 
 
-  resp <- process_response(resp)
+  resp <- process_resp(resp, "demographics")
 
   resp %>%
     setNames(c("County", "FIPS", "Score"))

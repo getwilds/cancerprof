@@ -168,7 +168,7 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
   resp <- resp %>%
     req_perform()
 
-  resp <- process_incidence(resp)
+  resp <- process_resp(resp, "incidence")
 
 
   areatype_map <- c(

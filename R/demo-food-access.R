@@ -75,7 +75,7 @@ demo_food <- function(area, areatype, food, race = NULL) {
   resp <- req_draft %>%
     req_perform()
 
-  resp <- process_response(resp) %>%
+  resp <- process_resp(resp, "demographics") %>%
     mutate(Value..Percent. = as.integer(Value..Percent.))
 
   areatype_map <- c("county" = "County", "state" = "State")

@@ -89,10 +89,9 @@ demo_insurance <- function(area, areatype, insurance, sex, age, race = NULL) {
     "asian non-hispanic", "hispanic (any race)"
   )
 
-
   req <- create_request("demographics")
 
-  if ((sex == "males" || sex == "females") & (age == "under 19 years" || age == "21 to 64 years")) {
+  if ((sex == "males" || sex == "females") && (age == "under 19 years" || age == "21 to 64 years")) {
     cli_abort("For males and females, age CANNOT be under 19 years OR 21 to 64 years")
   } else if (areatype == "state" && is.null(race)) {
     cli_abort("For areatype State, Race must not be null")
@@ -127,7 +126,7 @@ demo_insurance <- function(area, areatype, insurance, sex, age, race = NULL) {
   resp <- resp %>%
     req_perform()
 
-  resp <- process_response(resp)
+  resp <- process_resp(resp, "demographics")
 
   areatype_map <- c(
     "county" = "County",

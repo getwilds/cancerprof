@@ -46,7 +46,7 @@ risk_vaccines <- function(vaccine, sex) {
   resp <- resp %>%
     req_perform()
 
-  resp <- process_screening(resp)
+  resp <- process_resp(resp, "risks")
 
 
   vaccine_type1 <- c(

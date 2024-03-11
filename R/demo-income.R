@@ -65,7 +65,7 @@ demo_income <- function(area, areatype, income, race) {
     ) %>%
     req_perform()
 
-  resp <- process_response(resp) %>%
+  resp <- process_resp(resp, "demographics") %>%
     mutate(Value..Dollars. = as.integer(Value..Dollars.))
 
   areatype_map <- c("county" = "County", "state" = "State")

@@ -60,7 +60,7 @@ demo_mobility <- function(area, areatype, mobility) {
     ) %>%
     req_perform()
 
-  resp <- process_response(resp)
+  resp <- process_resp(resp, "demographics")
 
   areatype_map <- c(
     "county" = "County",

@@ -202,7 +202,7 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
   resp <- resp %>%
     req_perform()
 
-  resp <- process_screening(resp)
+  resp <- process_resp(resp, "risks")
 
 
   if (smoking %in% smoking_group1) {
