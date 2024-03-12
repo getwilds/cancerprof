@@ -20,7 +20,8 @@
 #' - `"Asian or Pacific Islander (includes Hispanic)"`
 #' - `"Hispanic (Any Race)"`.
 #'
-#' @importFrom httr2 req_url_query req_perform
+#' @importFrom httr2 req_url_query req_perform resp_content_type
+#' @importFrom cli cli_abort
 #' @importFrom stats setNames
 #' @importFrom dplyr mutate across
 #'
@@ -69,6 +70,10 @@ demo_crowding <- function(area, areatype, crowding, race) {
       output = 1
     ) %>%
     req_perform()
+  
+  if (httr2::resp_content_type(resp) != "text/csv") {
+    cli_abort("Invalid input, please check documentation for valid arguments.")
+  }
 
   resp <- process_resp(resp, "demographics")
 

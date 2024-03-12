@@ -14,9 +14,9 @@
 #' - `"Black (includes Hispanic)"`
 #' - `"Hispanic (Any Race)`.
 #'
-#' @importFrom httr2 req_url_query req_perform
+#' @importFrom httr2 req_url_query req_perform resp_content_type
 #' @importFrom cli cli_abort
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate across
 #' @importFrom stats setNames
 #'
 #' @returns A data frame with the following columns:
@@ -75,6 +75,10 @@ demo_food <- function(area, areatype, food, race = NULL) {
   resp <- req_draft %>%
     req_perform()
 
+  if (httr2::resp_content_type(resp) != "text/csv") {
+    cli_abort("Invalid input, please check documentation for valid arguments.")
+  }
+  
   resp <- process_resp(resp, "demographics") %>%
     mutate(Value..Percent. = as.integer(Value..Percent.))
 
@@ -83,9 +87,11 @@ demo_food <- function(area, areatype, food, race = NULL) {
 
   if (food == "limited access to healthy food") {
     resp %>%
-      setNames(c(areatype_title, "FIPS", "Percent", "People"))
+      setNames(c(areatype_title, "FIPS", "Percent", "People")) %>% 
+      mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
   } else if (food == "food insecurity") {
     resp %>%
-      setNames(c(areatype_title, "FIPS", "Percent"))
+      setNames(c(areatype_title, "FIPS", "Percent")) %>% 
+      mutate(across(c("Percent"), \(x) as.numeric(x)))
   }
 }

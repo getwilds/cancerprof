@@ -22,6 +22,11 @@
 #' - `"both sexes"`
 #' - `"male"`
 #' - `"female"`.
+#' 
+#' @importFrom httr2 req_url_query req_perform resp_content_type
+#' @importFrom cli cli_abort
+#' @importFrom stats setNames
+#' @importFrom dplyr mutate across
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent,
@@ -57,6 +62,10 @@ risk_diet_exercise <- function(diet_exercise, race, sex) {
       output = 1
     ) %>%
     req_perform()
+  
+  if (httr2::resp_content_type(resp) != "text/csv") {
+    cli_abort("Invalid input, please check documentation for valid arguments.")
+  }
 
   resp <- process_resp(resp, "risks")
 
@@ -73,7 +82,12 @@ risk_diet_exercise <- function(diet_exercise, race, sex) {
         "Percent",
         "Lower_95%_CI",
         "Upper_95%_CI"
-      ))
+      )) %>% 
+      mutate(across(c(
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI"
+      ), \(x) as.numeric(x)))
   } else {
     resp %>%
       setNames(c(
@@ -83,6 +97,12 @@ risk_diet_exercise <- function(diet_exercise, race, sex) {
         "Lower_95%_CI",
         "Upper_95%_CI",
         "Number_of_Respondents"
-      ))
+      )) %>% 
+      mutate(across(c(
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI",
+        "Number_of_Respondents"
+      ), \(x) as.numeric(x)))
   }
 }

@@ -22,8 +22,10 @@
 #' - `"male"`
 #' - `"female"`.
 #'
-#' @importFrom httr2 req_url_query req_perform
+#' @importFrom httr2 req_url_query req_perform resp_content_type
+#' @importFrom cli cli_abort
 #' @importFrom stats setNames
+#' @importFrom dplyr mutate across
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, People Unemployed, Rank.
@@ -73,6 +75,10 @@ demo_workforce <- function(area, areatype, workforce, race, sex) {
       output = 1
     ) %>%
     req_perform()
+  
+  if (httr2::resp_content_type(resp) != "text/csv") {
+    cli_abort("Invalid input, please check documentation for valid arguments.")
+  }
 
   resp <- process_resp(resp, "demographics")
 
@@ -91,7 +97,8 @@ demo_workforce <- function(area, areatype, workforce, race, sex) {
       areatype_title,
       areacode_title,
       "Percent",
-      "People Unemployed",
+      "People_Unemployed",
       "Rank"
-    ))
+    )) %>% 
+    mutate(across(c("Percent", "People_Unemployed"), \(x) as.numeric(x)))
 }

@@ -21,6 +21,11 @@
 #' - `"male"`
 #' - `"female"`.
 #' @param area A state/territory abbreviation or USA.
+#' 
+#' @importFrom httr2 req_url_query req_perform resp_content_type
+#' @importFrom cli cli_abort
+#' @importFrom stats setNames
+#' @importFrom dplyr mutate across
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, People Unemployed, Rank.
@@ -92,6 +97,10 @@ risk_colorectal_screening <- function(screening, race = NULL, sex = NULL, area =
 
   resp <- resp %>%
     req_perform()
+  
+  if (httr2::resp_content_type(resp) != "text/csv") {
+    cli_abort("Invalid input, please check documentation for valid arguments.")
+  }
 
   resp <- process_resp(resp, "risks")
 
@@ -104,7 +113,13 @@ risk_colorectal_screening <- function(screening, race = NULL, sex = NULL, area =
         "Lower_95%_CI",
         "Upper_95%_CI",
         "Number_of_Respondents"
-      ))
+      )) %>% 
+      mutate(across(c(
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI",
+        "Number_of_Respondents"
+      ), \(x) as.numeric(x)))
   } else if (screening %in% screening_type_2) {
     resp %>%
       setNames(c(
@@ -113,6 +128,11 @@ risk_colorectal_screening <- function(screening, race = NULL, sex = NULL, area =
         "Model_Based_Percent (95%_Confidence_Interval)",
         "Lower_95%_CI",
         "Upper_95%_CI"
-      ))
+      )) %>% 
+      mutate(across(c(
+        "Model_Based_Percent (95%_Confidence_Interval)",
+        "Lower_95%_CI",
+        "Upper_95%_CI"
+      ), \(x) as.numeric(x)))
   }
 }
