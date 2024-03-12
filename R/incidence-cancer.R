@@ -189,19 +189,22 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
 
   areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
   areacode_title <- areacode_map[areatype]
-  
 
-  if (stage == "all stages") {
-    resp %>%
-      setNames(c(
-        areatype_title,
-        areacode_title,
+  shared_names_to_numeric <- c(
         "Age_Adjusted_Incidence_Rate",
         "Lower_95%_CI",
         "Upper_95%_CI",
         "CI_Rank",
         "Lower_CI_Rank",
         "Upper_CI_Rank",
+      )
+
+  if (stage == "all stages") {
+    resp %>%
+      setNames(c(
+        areatype_title,
+        areacode_title,
+        shared_names_to_numeric,
         "Annual_Average_Count",
         "Recent_Trend",
         "Recent_5_Year_Trend",
@@ -209,13 +212,7 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
         "Trend_Upper_95%_CI"
       )) %>% 
       mutate(across(c(
-        "Age_Adjusted_Incidence_Rate",
-        "Lower_95%_CI",
-        "Upper_95%_CI",
-        "CI_Rank",
-        "Lower_CI_Rank",
-        "Upper_CI_Rank",
-        "Annual_Average_Count",
+        shared_names_to_numeric,
         "Recent_5_Year_Trend",
         "Trend_Lower_95%_CI",
         "Trend_Upper_95%_CI"
@@ -225,23 +222,12 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
       setNames(c(
         areatype_title,
         areacode_title,
-        "Age_Adjusted_Incidence_Rate",
-        "Lower_95%_CI",
-        "Upper_95%_CI",
-        "CI_Rank",
-        "Lower_CI_Rank",
-        "Upper_CI_Rank",
+        shared_names_to_numeric,
         "Annual_Average_Count",
         "Percentage_of_Cases_with_Late_Stage"
       )) %>% 
       mutate(across(c(
-        "Age_Adjusted_Incidence_Rate",
-        "Lower_95%_CI",
-        "Upper_95%_CI",
-        "CI_Rank",
-        "Lower_CI_Rank",
-        "Upper_CI_Rank",
-        "Annual_Average_Count",
+        shared_names_to_numeric,
         "Percentage_of_Cases_with_Late_Stage"
       ), \(x) as.numeric(x)))
   }
