@@ -168,6 +168,15 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
   areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
   areacode_title <- areacode_map[areatype]
 
+  names_to_numeric <- c(
+    "Age_Adjusted_Death_Rate",
+    "Lower_95%_CI_Rate",
+    "Upper_95%_CI_Rate",
+    "CI_Rank",
+    "Lower_CI_Rank",
+    "Upper_CI_Rank"
+  )
+  
   resp %>%
     setNames(c(
       areatype_title,
@@ -186,13 +195,7 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
       "Upper_95%_CI_Trend"
     )) %>% 
     mutate(across(c(
-      "Age_Adjusted_Death_Rate",
-      "Lower_95%_CI_Rate",
-      "Upper_95%_CI_Rate",
-      "CI_Rank",
-      "Lower_CI_Rank",
-      "Upper_CI_Rank",
-      "Annual_Average_Count",
+      names_to_numeric,
       "Recent_5_Year_Trend",
       "Lower_95%_CI_Trend",
       "Upper_95%_CI_Trend"

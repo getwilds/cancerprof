@@ -70,10 +70,6 @@ demo_crowding <- function(area, areatype, crowding, race) {
       output = 1
     ) %>%
     req_perform()
-  
-  if (httr2::resp_content_type(resp) != "text/csv") {
-    cli_abort("Invalid input, please check documentation for valid arguments.")
-  }
 
   resp <- process_resp(resp, "demographics")
 

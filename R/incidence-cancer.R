@@ -191,13 +191,13 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
   areacode_title <- areacode_map[areatype]
 
   shared_names_to_numeric <- c(
-        "Age_Adjusted_Incidence_Rate",
-        "Lower_95%_CI",
-        "Upper_95%_CI",
-        "CI_Rank",
-        "Lower_CI_Rank",
-        "Upper_CI_Rank",
-      )
+    "Age_Adjusted_Incidence_Rate",
+    "Lower_95%_CI",
+    "Upper_95%_CI",
+    "CI_Rank",
+    "Lower_CI_Rank",
+    "Upper_CI_Rank"
+  )
 
   if (stage == "all stages") {
     resp %>%
