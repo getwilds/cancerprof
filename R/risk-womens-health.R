@@ -18,9 +18,16 @@
 #' - `"direct estimates"`
 #' - `"county level modeled estimates"`.
 #' @param area A state/territory abbreviation or USA.
+#' 
+#' @importFrom httr2 req_url_query req_perform
+#' @importFrom cli cli_abort
+#' @importFrom stats setNames
+#' @importFrom dplyr mutate across
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, People Unemployed, Rank.
+#' 
+#' @family risks
 #'
 #' @export
 #'
@@ -98,7 +105,12 @@ risk_women_health <- function(women_health, race, datatype = "direct estimates",
         "Percent",
         "Lower_95%_CI",
         "Upper_95%_CI"
-      ))
+      )) %>% 
+      mutate(across(c(
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI"
+      ), \(x) as.numeric(x)))
   } else {
     resp %>%
       setNames(c(
@@ -108,6 +120,12 @@ risk_women_health <- function(women_health, race, datatype = "direct estimates",
         "Lower_95%_CI",
         "Upper_95%_CI",
         "Number_of_Respondents"
-      ))
+      )) %>% 
+      mutate(across(c(
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI",
+        "Number_of_Respondents"
+      ), \(x) as.numeric(x)))
   }
 }

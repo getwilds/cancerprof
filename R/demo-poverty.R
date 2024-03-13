@@ -27,10 +27,14 @@
 #' - `"female"`.
 #'
 #' @importFrom httr2 req_url_query req_perform
+#' @importFrom cli cli_abort
 #' @importFrom stats setNames
+#' @importFrom dplyr mutate across
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, Households, Rank.
+#' 
+#' @family demographics
 #'
 #' @export
 #'
@@ -109,9 +113,20 @@ demo_poverty <- function(area, areatype, poverty, race = NULL, sex = NULL) {
 
   if (poverty == "persistent poverty") {
     resp %>%
-      setNames(c(areatype_title, areacode_title, "Persistent Poverty"))
+      setNames(c(
+        areatype_title,
+        areacode_title,
+        "Persistent Poverty"
+      ))
   } else {
     resp %>%
-      setNames(c(areatype_title, areacode_title, "Percent", "People", "Rank"))
+      setNames(c(
+        areatype_title,
+        areacode_title,
+        "Percent",
+        "People",
+        "Rank"
+      )) %>% 
+      mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
   }
 }

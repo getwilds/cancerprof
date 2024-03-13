@@ -16,11 +16,13 @@
 #' - `"moved, same county (in past year)"`.
 #'
 #' @importFrom httr2 req_url_query req_perform
-#' @importFrom cli cli_abort
 #' @importFrom stats setNames
+#' @importFrom dplyr mutate across
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, People, Rank.
+#' 
+#' @family demographics
 #'
 #' @export
 #'
@@ -73,5 +75,12 @@ demo_mobility <- function(area, areatype, mobility) {
   areacode_title <- areacode_map[areatype]
 
   resp %>%
-    setNames(c(areatype_title, areacode_title, "Percent", "Households", "Rank"))
+    setNames(c(
+      areatype_title,
+      areacode_title,
+      "Percent",
+      "People",
+      "Rank"
+    )) %>% 
+    mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
 }

@@ -41,12 +41,14 @@
 #' @param area A state/territory abbreviation or USA.
 #'
 #' @importFrom httr2 req_url_query req_perform
-#' @importFrom cli cli_abort
 #' @importFrom stats setNames
+#' @importFrom dplyr mutate across
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, Lower CI 95%, Upper CI 95%,
 #' Number of Respondents.
+#' 
+#' @family risks
 #'
 #' @export
 #'
@@ -221,10 +223,16 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
         "State",
         "FIPS",
         "Percent",
-        "Lower_CI_95%",
-        "Upper_CI_95%",
+        "Lower_95%_CI",
+        "Upper_95%_CI",
         "Number_of_Respondents"
-      ))
+      )) %>% 
+      mutate(across(c(
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI",
+        "Number_of_Respondents"
+      ), \(x) as.numeric(x)))
   } else if ((smoking %in% c(
     smoking_group2,
     smoking_group3,
@@ -238,8 +246,13 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
         "County",
         "FIPS",
         "Percent",
-        "Lower_CI_95%",
-        "Upper_CI_95%"
-      ))
+        "Lower_95%_CI",
+        "Upper_95%_CI"
+      )) %>% 
+      mutate(across(c(
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI"
+      ), \(x) as.numeric(x)))
   }
 }

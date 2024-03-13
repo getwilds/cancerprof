@@ -18,9 +18,15 @@
 #' - `"male"`
 #' - `"female"`.
 #'
+#' @importFrom httr2 req_url_query req_perform
+#' @importFrom stats setNames
+#' @importFrom dplyr mutate across
+#'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, Lower 95% CI,
 #' Upper 95% CI, Number of Respondents.
+#' 
+#' @family risks
 #'
 #' @export
 #'
@@ -61,5 +67,11 @@ risk_alcohol <- function(alcohol, race, sex) {
       "Lower_95%_CI",
       "Upper_95%_CI",
       "Number_of_Respondents"
-    ))
+    )) %>%
+    mutate(across(c(
+      "Percent",
+      "Lower_95%_CI",
+      "Upper_95%_CI",
+      "Number_of_Respondents"
+    ), \(x) as.numeric(x)))
 }

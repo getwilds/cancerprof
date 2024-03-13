@@ -50,9 +50,13 @@
 #'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
+#' @importFrom dplyr mutate across
+#' @importFrom stats setNames
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, People, Rank.
+#' 
+#' @family demographics
 #'
 #' @export
 #'
@@ -139,5 +143,6 @@ demo_insurance <- function(area, areatype, insurance, sex, age, race = NULL) {
   areacode_title <- areacode_map[areatype]
 
   resp %>%
-    setNames(c(areatype_title, areacode_title, "Percent", "People", "Rank"))
+    setNames(c(areatype_title, areacode_title, "Percent", "People", "Rank")) %>% 
+    mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
 }

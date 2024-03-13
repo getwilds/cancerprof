@@ -52,6 +52,11 @@
 #' @param year One of the following values:
 #' - `"latest 5 year average"`
 #' - `"latest single year (us by state)"`.
+#' 
+#' @importFrom httr2 req_url_query req_perform
+#' @importFrom cli cli_abort
+#' @importFrom stats setNames
+#' @importFrom dplyr mutate across
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Met Healthy People Objective of ***?,
@@ -159,21 +164,36 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
   areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
   areacode_title <- areacode_map[areatype]
 
+  names_to_numeric <- c(
+    "Age_Adjusted_Death_Rate",
+    "Lower_95%_CI_Rate",
+    "Upper_95%_CI_Rate",
+    "CI_Rank",
+    "Lower_CI_Rank",
+    "Upper_CI_Rank"
+  )
+  
   resp %>%
     setNames(c(
       areatype_title,
       areacode_title,
       "Met Healthy People Objective of ***?",
-      "Age Adjusted Death Rate",
-      "Lower 95% CI Rate",
-      "Upper 95% CI Rate",
-      "CI Rank",
-      "Lower CI Rank",
-      "Upper CI Rank",
-      "Annual Average Count",
-      "Recent Trend",
-      "Recent 5 Year Trend",
-      "Lower 95% CI Trend",
-      "Upper 95% CI Trend"
-    ))
+      "Age_Adjusted_Death_Rate",
+      "Lower_95%_CI_Rate",
+      "Upper_95%_CI_Rate",
+      "CI_Rank",
+      "Lower_CI_Rank",
+      "Upper_CI_Rank",
+      "Annual_Average_Count",
+      "Recent_Trend",
+      "Recent_5_Year_Trend",
+      "Lower_95%_CI_Trend",
+      "Upper_95%_CI_Trend"
+    )) %>% 
+    mutate(across(c(
+      names_to_numeric,
+      "Recent_5_Year_Trend",
+      "Lower_95%_CI_Trend",
+      "Upper_95%_CI_Trend"
+    ), \(x) as.numeric(x)))
 }

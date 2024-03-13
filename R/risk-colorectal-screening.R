@@ -21,9 +21,16 @@
 #' - `"male"`
 #' - `"female"`.
 #' @param area A state/territory abbreviation or USA.
+#' 
+#' @importFrom httr2 req_url_query req_perform
+#' @importFrom cli cli_abort
+#' @importFrom stats setNames
+#' @importFrom dplyr mutate across
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, People Unemployed, Rank.
+#' 
+#' @family risks
 #'
 #' @export
 #'
@@ -104,7 +111,13 @@ risk_colorectal_screening <- function(screening, race = NULL, sex = NULL, area =
         "Lower_95%_CI",
         "Upper_95%_CI",
         "Number_of_Respondents"
-      ))
+      )) %>% 
+      mutate(across(c(
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI",
+        "Number_of_Respondents"
+      ), \(x) as.numeric(x)))
   } else if (screening %in% screening_type_2) {
     resp %>%
       setNames(c(
@@ -113,6 +126,11 @@ risk_colorectal_screening <- function(screening, race = NULL, sex = NULL, area =
         "Model_Based_Percent (95%_Confidence_Interval)",
         "Lower_95%_CI",
         "Upper_95%_CI"
-      ))
+      )) %>% 
+      mutate(across(c(
+        "Model_Based_Percent (95%_Confidence_Interval)",
+        "Lower_95%_CI",
+        "Upper_95%_CI"
+      ), \(x) as.numeric(x)))
   }
 }

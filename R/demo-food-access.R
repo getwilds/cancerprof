@@ -16,11 +16,13 @@
 #'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate across
 #' @importFrom stats setNames
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Value, People.
+#' 
+#' @family demographics
 #'
 #' @export
 #'
@@ -83,9 +85,11 @@ demo_food <- function(area, areatype, food, race = NULL) {
 
   if (food == "limited access to healthy food") {
     resp %>%
-      setNames(c(areatype_title, "FIPS", "Percent", "People"))
+      setNames(c(areatype_title, "FIPS", "Percent", "People")) %>% 
+      mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
   } else if (food == "food insecurity") {
     resp %>%
-      setNames(c(areatype_title, "FIPS", "Percent"))
+      setNames(c(areatype_title, "FIPS", "Percent")) %>% 
+      mutate(across(c("Percent"), \(x) as.numeric(x)))
   }
 }

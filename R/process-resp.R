@@ -13,6 +13,7 @@
 #' @importFrom dplyr mutate_all na_if filter
 #' @importFrom rlang sym
 #' @importFrom utils read.csv data
+#' @importFrom stringr str_trim
 #'
 #' @returns A processed response data frame
 #'
@@ -23,6 +24,10 @@
 #' process_resp(resp, demographics)
 #' }
 process_resp <- function(resp, topic) {
+  
+  if (httr2::resp_content_type(resp) != "text/csv") {
+    cli_abort("Invalid input, please check documentation for valid arguments.")
+  }
  
   nenv <- new.env()
   data("state", envir = nenv)
@@ -78,7 +83,8 @@ process_resp <- function(resp, topic) {
       filter(!(!!sym(column) %in% state_name))
   }
   resp %>%
+    mutate_all(stringr::str_trim) %>% 
     mutate_all(\(x) na_if(x, "N/A")) %>%
-    mutate_all(\(x) na_if(x, "data not available"))
-  
+    mutate_all(\(x) na_if(x, "data not available")) %>% 
+    mutate_all(\(x) na_if(x, "*"))
 }

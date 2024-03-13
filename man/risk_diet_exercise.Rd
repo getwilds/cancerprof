@@ -58,3 +58,12 @@ risk_diet_exercise(
 )
 }
 }
+\seealso{
+Other risks: 
+\code{\link{risk_alcohol}()},
+\code{\link{risk_colorectal_screening}()},
+\code{\link{risk_smoking}()},
+\code{\link{risk_vaccines}()},
+\code{\link{risk_women_health}()}
+}
+\concept{risks}

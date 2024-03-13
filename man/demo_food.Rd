@@ -56,3 +56,17 @@ demo_food(
 )
 }
 }
+\seealso{
+Other demographics: 
+\code{\link{demo_crowding}()},
+\code{\link{demo_education}()},
+\code{\link{demo_income}()},
+\code{\link{demo_insurance}()},
+\code{\link{demo_language}()},
+\code{\link{demo_mobility}()},
+\code{\link{demo_population}()},
+\code{\link{demo_poverty}()},
+\code{\link{demo_svi}()},
+\code{\link{demo_workforce}()}
+}
+\concept{demographics}

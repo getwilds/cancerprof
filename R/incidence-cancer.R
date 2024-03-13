@@ -57,6 +57,11 @@
 #' @param year One of the following values:
 #' - `"latest 5 year average"`
 #' - `"latest single year (us by state)"`.
+#' 
+#' @importFrom httr2 req_url_query req_perform
+#' @importFrom cli cli_abort
+#' @importFrom stats setNames
+#' @importFrom dplyr mutate across
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Age Adjusted Incidence Rate, Lower 95% CI,
@@ -181,35 +186,45 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
   areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
   areacode_title <- areacode_map[areatype]
 
+  shared_names_to_numeric <- c(
+    "Age_Adjusted_Incidence_Rate",
+    "Lower_95%_CI",
+    "Upper_95%_CI",
+    "CI_Rank",
+    "Lower_CI_Rank",
+    "Upper_CI_Rank"
+  )
+
   if (stage == "all stages") {
     resp %>%
       setNames(c(
         areatype_title,
         areacode_title,
-        "Age Adjusted Incidence Rate",
-        "Lower 95% CI",
-        "Upper 95% CI", "CI Rank",
-        "Lower CI Rank",
-        "Upper CI Rank",
-        "Annual Average Count",
-        "Recent Trend",
-        "Recent 5 Year Trend",
-        "Trend Lower 95% CI",
-        "Trend Upper 95% CI"
-      ))
+        shared_names_to_numeric,
+        "Annual_Average_Count",
+        "Recent_Trend",
+        "Recent_5_Year_Trend",
+        "Trend_Lower_95%_CI",
+        "Trend_Upper_95%_CI"
+      )) %>% 
+      mutate(across(c(
+        shared_names_to_numeric,
+        "Recent_5_Year_Trend",
+        "Trend_Lower_95%_CI",
+        "Trend_Upper_95%_CI"
+      ), \(x) as.numeric(x)))
   } else if (stage == "late stage (regional & distant)") {
     resp %>%
       setNames(c(
         areatype_title,
         areacode_title,
-        "Age Adjusted Incidence Rate",
-        "Lower 95% CI",
-        "Upper 95% CI",
-        "CI Rank",
-        "Lower CI Rank",
-        "Upper CI Rank",
-        "Annual Average Count",
-        "Percentage of Cases with Late Stage"
-      ))
+        shared_names_to_numeric,
+        "Annual_Average_Count",
+        "Percentage_of_Cases_with_Late_Stage"
+      )) %>% 
+      mutate(across(c(
+        shared_names_to_numeric,
+        "Percentage_of_Cases_with_Late_Stage"
+      ), \(x) as.numeric(x)))
   }
 }

@@ -13,8 +13,11 @@
 #'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
+#' @importFrom dplyr mutate across
 #'
 #' @returns A data frame with the following columns: County, FIPS, Score.
+#' 
+#' @family demographics
 #'
 #' @export
 #'
@@ -50,10 +53,10 @@ demo_svi <- function(area, svi) {
       output = 1
     ) %>%
     req_perform()
-
-
+  
   resp <- process_resp(resp, "demographics")
 
   resp %>%
-    setNames(c("County", "FIPS", "Score"))
+    setNames(c("County", "FIPS", "Score")) %>% 
+    mutate(across(c("Score"), \(x) as.numeric(x)))
 }

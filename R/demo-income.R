@@ -16,12 +16,13 @@
 #' - `"Hispanic (Any Race)`.
 #'
 #' @importFrom httr2 req_url_query req_perform
-#' @importFrom cli cli_abort
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate across
 #' @importFrom stats setNames
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Dollars, Rank.
+#' 
+#' @family demographics
 #'
 #' @export
 #'
@@ -72,5 +73,6 @@ demo_income <- function(area, areatype, income, race) {
   areatype_title <- areatype_map[areatype]
 
   resp %>%
-    setNames(c(areatype_title, "FIPS", "Dollars", "Rank"))
+    setNames(c(areatype_title, "FIPS", "Dollars", "Rank")) %>% 
+    mutate(across(c("Dollars"), \(x) as.numeric(x)))
 }
