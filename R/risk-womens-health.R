@@ -26,6 +26,8 @@
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, People Unemployed, Rank.
+#' 
+#' @family risks
 #'
 #' @export
 #'

@@ -55,6 +55,8 @@
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, People, Rank.
+#' 
+#' @family demographics
 #'
 #' @export
 #'

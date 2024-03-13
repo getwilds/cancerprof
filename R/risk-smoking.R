@@ -47,6 +47,8 @@
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, Lower CI 95%, Upper CI 95%,
 #' Number of Respondents.
+#' 
+#' @family risks
 #'
 #' @export
 #'

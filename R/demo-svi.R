@@ -16,6 +16,8 @@
 #' @importFrom dplyr mutate across
 #'
 #' @returns A data frame with the following columns: County, FIPS, Score.
+#' 
+#' @family demographics
 #'
 #' @export
 #'
