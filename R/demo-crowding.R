@@ -20,8 +20,7 @@
 #' - `"Asian or Pacific Islander (includes Hispanic)"`
 #' - `"Hispanic (Any Race)"`.
 #'
-#' @importFrom httr2 req_url_query req_perform resp_content_type
-#' @importFrom cli cli_abort
+#' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
 #' @importFrom dplyr mutate across
 #'

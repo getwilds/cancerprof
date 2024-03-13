@@ -19,7 +19,7 @@
 #' - `"county level modeled estimates"`.
 #' @param area A state/territory abbreviation or USA.
 #' 
-#' @importFrom httr2 req_url_query req_perform resp_content_type
+#' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
 #' @importFrom dplyr mutate across
@@ -92,10 +92,6 @@ risk_women_health <- function(women_health, race, datatype = "direct estimates",
 
   resp <- resp %>%
     req_perform()
-  
-  if (httr2::resp_content_type(resp) != "text/csv") {
-    cli_abort("Invalid input, please check documentation for valid arguments.")
-  }
 
   resp <- process_resp(resp, "risks")
 

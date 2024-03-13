@@ -15,8 +15,7 @@
 #' - `"moved, different county, same state (in past year)"`
 #' - `"moved, same county (in past year)"`.
 #'
-#' @importFrom httr2 req_url_query req_perform resp_content_type
-#' @importFrom cli cli_abort
+#' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
 #' @importFrom dplyr mutate across
 #'
@@ -60,10 +59,6 @@ demo_mobility <- function(area, areatype, mobility) {
       output = 1
     ) %>%
     req_perform()
-
-  if (httr2::resp_content_type(resp) != "text/csv") {
-    cli_abort("Invalid input, please check documentation for valid arguments.")
-  }
 
   resp <- process_resp(resp, "demographics")
 
