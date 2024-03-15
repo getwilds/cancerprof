@@ -35,7 +35,7 @@
 #' \dontrun{
 #' demo_crowding(
 #'   area = "WA",
-#'   areatype = "hsa",
+#'   areatype = "county",
 #'   crowding = "household with >1 person per room",
 #'   race = "All Races (includes Hispanic)"
 #' )
@@ -74,19 +74,13 @@ demo_crowding <- function(area, areatype, crowding, race) {
 
   resp <- process_resp(resp, "demographics")
 
-  areatype_map <- c(
-    "county" = "County", "hsa" = "Health_Service_Area",
-    "state" = "State"
-  )
-  areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
-
-  areatype_title <- areatype_map[areatype]
-  areacode_title <- areacode_map[areatype]
+  area_type <- get_area(areatype)[1]
+  area_code <- get_area(areatype)[2]
 
   resp %>%
     setNames(c(
-      areatype_title,
-      areacode_title,
+      area_type,
+      area_code,
       "Percent",
       "Households",
       "Rank"

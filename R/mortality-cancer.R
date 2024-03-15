@@ -56,7 +56,7 @@
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
-#' @importFrom dplyr mutate across
+#' @importFrom dplyr mutate across all_of
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Met Healthy People Objective of ***?,
@@ -154,15 +154,8 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
 
   resp <- process_resp(resp, "mortality")
 
-  areatype_map <- c(
-    "county" = "County",
-    "hsa" = "Health_Service_Area",
-    "state" = "State"
-  )
-  areatype_title <- areatype_map[areatype]
-
-  areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
-  areacode_title <- areacode_map[areatype]
+  area_type <- get_area(areatype)[1]
+  area_code <- get_area(areatype)[2]
 
   names_to_numeric <- c(
     "Age_Adjusted_Death_Rate",
@@ -175,8 +168,8 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
   
   resp %>%
     setNames(c(
-      areatype_title,
-      areacode_title,
+      area_type,
+      area_code,
       "Met Healthy People Objective of ***?",
       "Age_Adjusted_Death_Rate",
       "Lower_95%_CI_Rate",
@@ -191,7 +184,7 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
       "Upper_95%_CI_Trend"
     )) %>% 
     mutate(across(c(
-      names_to_numeric,
+      all_of(names_to_numeric),
       "Recent_5_Year_Trend",
       "Lower_95%_CI_Trend",
       "Upper_95%_CI_Trend"

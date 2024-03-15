@@ -66,13 +66,12 @@ demo_income <- function(area, areatype, income, race) {
     ) %>%
     req_perform()
 
-  resp <- process_resp(resp, "demographics") %>%
-    mutate(Value..Dollars. = as.integer(Value..Dollars.))
+  resp <- process_resp(resp, "demographics")
 
-  areatype_map <- c("county" = "County", "state" = "State")
-  areatype_title <- areatype_map[areatype]
+  area_type <- get_area(areatype)[1]
+  area_code <- get_area(areatype)[2]
 
   resp %>%
-    setNames(c(areatype_title, "FIPS", "Dollars", "Rank")) %>% 
+    setNames(c(area_type, area_code, "Dollars", "Rank")) %>% 
     mutate(across(c("Dollars"), \(x) as.numeric(x)))
 }

@@ -61,7 +61,7 @@
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
-#' @importFrom dplyr mutate across
+#' @importFrom dplyr mutate across all_of
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Age Adjusted Incidence Rate, Lower 95% CI,
@@ -174,17 +174,9 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
     req_perform()
 
   resp <- process_resp(resp, "incidence")
-
-
-  areatype_map <- c(
-    "county" = "County",
-    "hsa" = "Health Service Area",
-    "state" = "State"
-  )
-  areatype_title <- areatype_map[areatype]
-
-  areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
-  areacode_title <- areacode_map[areatype]
+  
+  area_type <- get_area(areatype)[1]
+  area_code <- get_area(areatype)[2]
 
   shared_names_to_numeric <- c(
     "Age_Adjusted_Incidence_Rate",
@@ -198,8 +190,8 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
   if (stage == "all stages") {
     resp %>%
       setNames(c(
-        areatype_title,
-        areacode_title,
+        area_type,
+        area_code,
         shared_names_to_numeric,
         "Annual_Average_Count",
         "Recent_Trend",
@@ -208,7 +200,7 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
         "Trend_Upper_95%_CI"
       )) %>% 
       mutate(across(c(
-        shared_names_to_numeric,
+        all_of(shared_names_to_numeric),
         "Recent_5_Year_Trend",
         "Trend_Lower_95%_CI",
         "Trend_Upper_95%_CI"
@@ -216,14 +208,14 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
   } else if (stage == "late stage (regional & distant)") {
     resp %>%
       setNames(c(
-        areatype_title,
-        areacode_title,
+        area_type,
+        area_code,
         shared_names_to_numeric,
         "Annual_Average_Count",
         "Percentage_of_Cases_with_Late_Stage"
       )) %>% 
       mutate(across(c(
-        shared_names_to_numeric,
+        all_of(shared_names_to_numeric),
         "Percentage_of_Cases_with_Late_Stage"
       ), \(x) as.numeric(x)))
   }
