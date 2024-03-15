@@ -21,6 +21,8 @@ A character vector containing the title and code of the specified area type.
 This function returns the title and code corresponding to the specified area type.
 }
 \examples{
+ \dontrun{
 get_area("county")
 get_area("hsa")
+}
 }

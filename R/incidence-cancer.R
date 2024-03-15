@@ -61,7 +61,7 @@
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
-#' @importFrom dplyr mutate across
+#' @importFrom dplyr mutate across all_of
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Age Adjusted Incidence Rate, Lower 95% CI,
