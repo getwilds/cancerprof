@@ -100,7 +100,7 @@ risk_women_health <- function(women_health, race, datatype = "direct estimates",
   if (datatype == "county level modeled estimates") {
     resp %>%
       setNames(c(
-        "State",
+        "County",
         "FIPS",
         "Percent",
         "Lower_95%_CI",

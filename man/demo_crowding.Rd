@@ -42,7 +42,7 @@ Cancer Profiles.
 \dontrun{
 demo_crowding(
   area = "WA",
-  areatype = "hsa",
+  areatype = "county",
   crowding = "household with >1 person per room",
   race = "All Races (includes Hispanic)"
 )

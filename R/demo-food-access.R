@@ -77,19 +77,18 @@ demo_food <- function(area, areatype, food, race = NULL) {
   resp <- req_draft %>%
     req_perform()
 
-  resp <- process_resp(resp, "demographics") %>%
-    mutate(Value..Percent. = as.integer(Value..Percent.))
+  resp <- process_resp(resp, "demographics")
 
-  areatype_map <- c("county" = "County", "state" = "State")
-  areatype_title <- areatype_map[areatype]
+  area_type <- get_area(areatype)[1]
+  area_code <- get_area(areatype)[2]
 
   if (food == "limited access to healthy food") {
     resp %>%
-      setNames(c(areatype_title, "FIPS", "Percent", "People")) %>% 
+      setNames(c(area_type, area_code, "Percent", "People")) %>% 
       mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
   } else if (food == "food insecurity") {
     resp %>%
-      setNames(c(areatype_title, "FIPS", "Percent")) %>% 
+      setNames(c(area_type, area_code, "Percent")) %>% 
       mutate(across(c("Percent"), \(x) as.numeric(x)))
   }
 }
