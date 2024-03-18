@@ -111,14 +111,15 @@ test_that("mortality_cancer handles invalid cancer parameters", {
     mortality_cancer(
       area = "wa", areatype = "county", cancer = "ovary",
       race = "all races (includes hispanic)",
-      sex = "both sexes", age = "ages 50+"
+      sex = "both sexes", age = "ages 50+",
+      year = "latest 5 year average"
     ),
     "For this cancer type, sex must be females"
   )
   expect_error(
     mortality_cancer(
       "usa", "state", "prostate", "all races (includes hispanic)",
-      "both sexes", "ages 50+"
+      "both sexes", "ages 50+", "latest 5 year average"
     ),
     "For prostate cancer, sex must be males."
   )
