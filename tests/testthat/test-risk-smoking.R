@@ -143,8 +143,10 @@ test_that("risk-smoking handles invalid smoking parameters", {
       sex = "both sexes",
       datatype = "county level modeled estimates"
     ),
-    paste("For county level modeled estimates on this smoking type,",
-          "area must NOT be null")
+    paste(
+      "For county level modeled estimates on this smoking type,",
+      "area must NOT be null"
+    )
   )
   expect_error(
     risk_smoking("smoking not allowed at work (current smokers)",
@@ -158,16 +160,20 @@ test_that("risk-smoking handles invalid smoking parameters", {
       sex = "both sexes",
       datatype = "county level modeled estimates"
     ),
-    paste("For this smoking type, Sex, Datatype,",
-          "and Area must not be NULL AND Race must be NULL")
+    paste(
+      "For this smoking type, Sex, Datatype,",
+      "and Area must not be NULL AND Race must be NULL"
+    )
   )
   expect_error(
     risk_smoking("smokers (ever); ages 18+",
       race = "hispanic (any race)",
       sex = "both sexes"
     ),
-    paste("For this smoking type, Race, Sex,",
-          "and Datatype must not be NULL AND Datatype and Area must be NULL")
+    paste(
+      "For this smoking type, Race, Sex,",
+      "and Datatype must not be NULL AND Datatype and Area must be NULL"
+    )
   )
   expect_error(
     risk_smoking("smokers (current); ages 18+",

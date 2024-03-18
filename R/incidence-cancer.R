@@ -57,7 +57,7 @@
 #' @param year One of the following values:
 #' - `"latest 5 year average"`
 #' - `"latest single year (us by state)"`.
-#' 
+#'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
@@ -174,7 +174,7 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
     req_perform()
 
   resp <- process_resp(resp, "incidence")
-  
+
   area_type <- get_area(areatype)[1]
   area_code <- get_area(areatype)[2]
 
@@ -198,7 +198,7 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
         "Recent_5_Year_Trend",
         "Trend_Lower_95%_CI",
         "Trend_Upper_95%_CI"
-      )) %>% 
+      )) %>%
       mutate(across(c(
         all_of(shared_names_to_numeric),
         "Recent_5_Year_Trend",
@@ -213,7 +213,7 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
         shared_names_to_numeric,
         "Annual_Average_Count",
         "Percentage_of_Cases_with_Late_Stage"
-      )) %>% 
+      )) %>%
       mutate(across(c(
         all_of(shared_names_to_numeric),
         "Percentage_of_Cases_with_Late_Stage"

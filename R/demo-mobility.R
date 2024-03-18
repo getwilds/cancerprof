@@ -21,7 +21,7 @@
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, People, Rank.
-#' 
+#'
 #' @family demographics
 #'
 #' @export
@@ -74,6 +74,6 @@ demo_mobility <- function(area, areatype, mobility) {
       "Percent",
       "People",
       "Rank"
-    )) %>% 
+    )) %>%
     mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
 }

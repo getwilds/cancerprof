@@ -21,7 +21,7 @@
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Value, People.
-#' 
+#'
 #' @family demographics
 #'
 #' @export
@@ -84,11 +84,11 @@ demo_food <- function(area, areatype, food, race = NULL) {
 
   if (food == "limited access to healthy food") {
     resp %>%
-      setNames(c(area_type, area_code, "Percent", "People")) %>% 
+      setNames(c(area_type, area_code, "Percent", "People")) %>%
       mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
   } else if (food == "food insecurity") {
     resp %>%
-      setNames(c(area_type, area_code, "Percent")) %>% 
+      setNames(c(area_type, area_code, "Percent")) %>%
       mutate(across(c("Percent"), \(x) as.numeric(x)))
   }
 }

@@ -33,7 +33,7 @@
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, Households, Rank.
-#' 
+#'
 #' @family demographics
 #'
 #' @export
@@ -66,7 +66,8 @@ demo_poverty <- function(area, areatype, poverty, race = NULL, sex = NULL) {
   if (poverty == "persistent poverty" && (areatype == "hsa" || areatype == "state")) {
     cli_abort("For persistent poverty, areatype must be county")
   }
-  if ((poverty == "persistent poverty" || poverty == "persons < 150% of poverty") && (!is.null(race) || !is.null(sex))) {
+  if ((poverty == "persistent poverty" || poverty == "persons < 150% of poverty") &&
+        (!is.null(race) || !is.null(sex))) {
     cli_abort("for persistent poverty and persons < 150% of poverty, Race and Sex must be NULL")
   } else if ((poverty == "families below poverty") && (!is.null(sex) || is.null(race))) {
     cli_abort("for families below poverty, Sex must be NULL and Race must not be NULL")
@@ -119,7 +120,7 @@ demo_poverty <- function(area, areatype, poverty, race = NULL, sex = NULL) {
         "Percent",
         "People",
         "Rank"
-      )) %>% 
+      )) %>%
       mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
   }
 }

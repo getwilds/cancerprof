@@ -17,7 +17,7 @@
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, Households, Rank.
-#' 
+#'
 #' @family demographics
 #'
 #' @export
@@ -68,6 +68,6 @@ demo_language <- function(area, areatype, language) {
       "Percent",
       "Households",
       "Rank"
-    )) %>% 
+    )) %>%
     mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
 }

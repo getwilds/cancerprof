@@ -44,7 +44,7 @@
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, Households, Rank.
-#' 
+#'
 #' @family demographics
 #'
 #' @export
@@ -87,8 +87,8 @@ demo_population <- function(area, areatype, population, race = NULL, sex = NULL)
     cli_abort("for males, Race must not be NULL and Sex must be NULL")
   } else if (population == "foreign born" && (is.null(race) || is.null(sex))) {
     cli_abort("for foreign born, race and sex must not be NULL")
-  } else if ((population == "american indian/alaska native" || population == "asian/pacific islander" || population == "black" ||
-    population == "hispanic" || population == "non-hispanic (origin recode)" ||
+  } else if ((population == "american indian/alaska native" || population == "asian/pacific islander" || 
+              population == "black" || population == "hispanic" || population == "non-hispanic (origin recode)" ||
     population == "white") && (is.null(sex) || !is.null(race))) {
     cli_abort("for races other than foreign born, Sex must not be NULL and race must be NULL")
   }
@@ -117,7 +117,7 @@ demo_population <- function(area, areatype, population, race = NULL, sex = NULL)
 
   resp <- resp %>%
     req_perform()
-  
+
   resp <- process_resp(resp, "demographics")
 
   area_type <- get_area(areatype)[1]
@@ -130,6 +130,6 @@ demo_population <- function(area, areatype, population, race = NULL, sex = NULL)
       "Percent",
       "People",
       "Rank"
-    )) %>% 
+    )) %>%
     mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
 }
