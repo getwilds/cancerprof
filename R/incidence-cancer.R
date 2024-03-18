@@ -175,9 +175,6 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
 
   resp <- process_resp(resp, "incidence")
 
-  area_type <- get_area(areatype)[1]
-  area_code <- get_area(areatype)[2]
-
   shared_names_to_numeric <- c(
     "Age_Adjusted_Incidence_Rate",
     "Lower_95%_CI",
@@ -190,8 +187,7 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
   if (stage == "all stages") {
     resp %>%
       setNames(c(
-        area_type,
-        area_code,
+        get_area(areatype),
         shared_names_to_numeric,
         "Annual_Average_Count",
         "Recent_Trend",
@@ -208,8 +204,7 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
   } else if (stage == "late stage (regional & distant)") {
     resp %>%
       setNames(c(
-        area_type,
-        area_code,
+        get_area(areatype),
         shared_names_to_numeric,
         "Annual_Average_Count",
         "Percentage_of_Cases_with_Late_Stage"

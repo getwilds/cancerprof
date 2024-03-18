@@ -73,13 +73,9 @@ demo_crowding <- function(area, areatype, crowding, race) {
 
   resp <- process_resp(resp, "demographics")
 
-  area_type <- get_area(areatype)[1]
-  area_code <- get_area(areatype)[2]
-
   resp %>%
     setNames(c(
-      area_type,
-      area_code,
+      get_area(areatype),
       "Percent",
       "Households",
       "Rank"

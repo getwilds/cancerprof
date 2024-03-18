@@ -102,21 +102,16 @@ demo_poverty <- function(area, areatype, poverty, race = NULL, sex = NULL) {
 
   resp <- process_resp(resp, "demographics")
 
-  area_type <- get_area(areatype)[1]
-  area_code <- get_area(areatype)[2]
-
   if (poverty == "persistent poverty") {
     resp %>%
       setNames(c(
-        area_type,
-        area_code,
+        get_area(areatype),
         "Persistent Poverty"
       ))
   } else {
     resp %>%
       setNames(c(
-        area_type,
-        area_code,
+        get_area(areatype),
         "Percent",
         "People",
         "Rank"
