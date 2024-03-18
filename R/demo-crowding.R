@@ -26,7 +26,7 @@
 #'
 #' @returns A data frame with the following columns: Area, Area Code,
 #' Percent, Households, Rank.
-#' 
+#'
 #' @family demographics
 #'
 #' @export
@@ -55,7 +55,6 @@
 #' )
 #' }
 demo_crowding <- function(area, areatype, crowding, race) {
-  
   req <- create_request("demographics")
 
   resp <- req %>%

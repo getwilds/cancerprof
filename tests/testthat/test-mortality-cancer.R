@@ -105,23 +105,26 @@ test_that("mortality_cancer has correct number of columns", {
   expect_equal(ncol(df), expected_columns)
 })
 
-#test error handling
+# test error handling
 test_that("mortality_cancer handles invalid cancer parameters", {
   expect_error(
-    mortality_cancer(area="wa", areatype="county", cancer="ovary", 
-                     race="all races (includes hispanic)", 
-                     sex="both sexes", age="ages 50+"),
+    mortality_cancer(
+      area = "wa", areatype = "county", cancer = "ovary",
+      race = "all races (includes hispanic)",
+      sex = "both sexes", age = "ages 50+"
+    ),
     "For this cancer type, sex must be females"
   )
   expect_error(
-    mortality_cancer("usa", "state", "prostate", "all races (includes hispanic)", 
-                     "both sexes", "ages 50+"),
+    mortality_cancer(
+      "usa", "state", "prostate", "all races (includes hispanic)",
+      "both sexes", "ages 50+"
+    ),
     "For prostate cancer, sex must be males."
   )
 })
 
-#parameter
+# parameter
 test_that("mortality_cancer has correct parameters", {
   expect_error(mortality_cancer())
 })
-

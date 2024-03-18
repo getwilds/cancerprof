@@ -21,7 +21,7 @@
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Dollars, Rank.
-#' 
+#'
 #' @family demographics
 #'
 #' @export
@@ -72,6 +72,6 @@ demo_income <- function(area, areatype, income, race) {
   area_code <- get_area(areatype)[2]
 
   resp %>%
-    setNames(c(area_type, area_code, "Dollars", "Rank")) %>% 
+    setNames(c(area_type, area_code, "Dollars", "Rank")) %>%
     mutate(across(c("Dollars"), \(x) as.numeric(x)))
 }

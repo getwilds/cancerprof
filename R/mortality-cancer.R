@@ -52,7 +52,7 @@
 #' @param year One of the following values:
 #' - `"latest 5 year average"`
 #' - `"latest single year (us by state)"`.
-#' 
+#'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
@@ -165,7 +165,7 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
     "Lower_CI_Rank",
     "Upper_CI_Rank"
   )
-  
+
   resp %>%
     setNames(c(
       area_type,
@@ -182,7 +182,7 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
       "Recent_5_Year_Trend",
       "Lower_95%_CI_Trend",
       "Upper_95%_CI_Trend"
-    )) %>% 
+    )) %>%
     mutate(across(c(
       all_of(names_to_numeric),
       "Recent_5_Year_Trend",

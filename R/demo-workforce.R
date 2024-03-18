@@ -28,7 +28,7 @@
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, People Unemployed, Rank.
-#' 
+#'
 #' @family demographics
 #'
 #' @export
@@ -89,6 +89,6 @@ demo_workforce <- function(area, areatype, workforce, race, sex) {
       "Percent",
       "People_Unemployed",
       "Rank"
-    )) %>% 
+    )) %>%
     mutate(across(c("Percent", "People_Unemployed"), \(x) as.numeric(x)))
 }
