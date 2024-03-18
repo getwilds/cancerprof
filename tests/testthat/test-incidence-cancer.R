@@ -113,14 +113,15 @@ test_that("incidence_cancer handles invalid cancer parameters", {
   expect_error(
     incidence_cancer(
       "wa", "county", "all cancer sites", "black (non-hispanic)",
-      "both sexes", "ages 65+", "late stage (regional & distant)"
+      "both sexes", "ages 65+", "late stage (regional & distant)",
+      "latest 5 year average"
     ),
     "For this cancer type, stage must be all stages"
   )
   expect_error(
     incidence_cancer(
       "ca", "hsa", "prostate", "all races (includes hispanic)", "both sexes",
-      "ages 50+", "all stages"
+      "ages 50+", "all stages", "latest 5 year average"
     ),
     "For prostate cancer, sex must be males."
   )
