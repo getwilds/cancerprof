@@ -154,9 +154,6 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
 
   resp <- process_resp(resp, "mortality")
 
-  area_type <- get_area(areatype)[1]
-  area_code <- get_area(areatype)[2]
-
   names_to_numeric <- c(
     "Age_Adjusted_Death_Rate",
     "Lower_95%_CI_Rate",
@@ -168,8 +165,7 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
 
   resp %>%
     setNames(c(
-      area_type,
-      area_code,
+      get_area(areatype),
       "Met Healthy People Objective of ***?",
       "Age_Adjusted_Death_Rate",
       "Lower_95%_CI_Rate",

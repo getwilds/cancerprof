@@ -79,16 +79,13 @@ demo_food <- function(area, areatype, food, race = NULL) {
 
   resp <- process_resp(resp, "demographics")
 
-  area_type <- get_area(areatype)[1]
-  area_code <- get_area(areatype)[2]
-
   if (food == "limited access to healthy food") {
     resp %>%
-      setNames(c(area_type, area_code, "Percent", "People")) %>%
+      setNames(c(get_area(areatype), "Percent", "People")) %>%
       mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
   } else if (food == "food insecurity") {
     resp %>%
-      setNames(c(area_type, area_code, "Percent")) %>%
+      setNames(c(get_area(areatype), "Percent")) %>%
       mutate(across(c("Percent"), \(x) as.numeric(x)))
   }
 }
