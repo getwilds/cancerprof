@@ -7,20 +7,47 @@
 risk_vaccines(vaccine, sex)
 }
 \arguments{
-\item{vaccine}{Either "percent with up to date hpv vaccination coverage, ages 13-15",
-"percent with up to date hpv vaccination coverage, ages 13-17"}
+\item{vaccine}{One of the following values:
+\itemize{
+\item \verb{"percent with up to date hpv vaccination coverage, ages 13-15",}
+\item \code{"percent with up to date hpv vaccination coverage, ages 13-17"}.
+}}
 
-\item{sex}{Either "both sexes", "males", "females"}
+\item{sex}{One of the following values:
+\itemize{
+\item \code{"both sexes"}
+\item \code{"male"}
+\item \code{"female"}.
+}}
 }
 \value{
-A data frame with the following columns "State", "FIPS", "Percent", "Lower 95\% CI", "Upper 95\% CI", "Number of Respondents"
+A data frame with the following columns:
+Area Type, Area Code, Percent,
+Lower 95\% CI, Upper 95\% CI, Number of Respondents.
 }
 \description{
-This function returns a data frame from Vaccines in State Cancer Profiles
+This function returns a data frame about vaccines risks
+from State Cancer Profiles.
 }
 \examples{
 \dontrun{
-risk_vaccines("percent with up to date hpv vaccination coverage, ages 13-15", "both sexes")
-risk_vaccines("percent with up to date hpv vaccination coverage, ages 13-17", "females")
+risk_vaccines(
+  vaccine = "percent with up to date hpv vaccination coverage, ages 13-15",
+  sex = "both sexes"
+)
+
+risk_vaccines(
+  vaccine = "percent with up to date hpv vaccination coverage, ages 13-17",
+  sex = "females"
+)
 }
 }
+\seealso{
+Other risks: 
+\code{\link{risk_alcohol}()},
+\code{\link{risk_colorectal_screening}()},
+\code{\link{risk_diet_exercise}()},
+\code{\link{risk_smoking}()},
+\code{\link{risk_women_health}()}
+}
+\concept{risks}

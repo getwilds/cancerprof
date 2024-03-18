@@ -1,52 +1,79 @@
 #' Access to Mobility Data
-#' 
-#' This function returns a data frame from mobility in State Cancer Profiles
+#'
+#' This function returns a data frame about mobility demographics
+#' from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county", "hsa" (Health service area), or "state"
-#' @param mobility One of five choices from "i haven't moved (in past year)", "moved from outside us (in past year)",
-#'                  "moved, different state (in past year)", "moved, different county, same state (in past year)",
-#'                  "moved, same county (in past year)"
-#'                  
+#' @param areatype One of the following values:
+#' - `"county"`
+#' - `"hsa"` (Health Service Area)
+#' - `"state"`.
+#' @param mobility The only permissible values are
+#' - `"i haven't moved (in past year)"`
+#' - `"moved from outside us (in past year)"`
+#' - `"moved, different state (in past year)"`
+#' - `"moved, different county, same state (in past year)"`
+#' - `"moved, same county (in past year)"`.
+#'
 #' @importFrom httr2 req_url_query req_perform
-#' @importFrom cli cli_abort
 #' @importFrom stats setNames
+#' @importFrom dplyr mutate across
+#'
+#' @returns A data frame with the following columns:
+#' Area Type, Area Code, Percent, People, Rank.
 #' 
-#' @returns A data frame with the following columns "County", "FIPS", "Percent", "People", "Rank"
-#' 
+#' @family demographics
+#'
 #' @export
-#' 
-#' @examples 
+#'
+#' @examples
 #' \dontrun{
-#' demo_mobility("WA", "county", "moved, different county, same state (in past year)")
-#' demo_mobility("usa", "state", "moved, same county (in past year)")
-#' demo_mobility("dc", "hsa", "moved, same county (in past year)")
+#' demo_mobility(
+#'   area = "WA",
+#'   areatype = "county",
+#'   mobility = "moved, different county, same state (in past year)"
+#' )
+#'
+#' demo_mobility(
+#'   area = "usa",
+#'   areatype = "state",
+#'   mobility = "moved, same county (in past year)"
+#' )
+#'
+#' demo_mobility(
+#'   area = "dc",
+#'   areatype = "hsa",
+#'   mobility = "moved, same county (in past year)"
+#' )
 #' }
 demo_mobility <- function(area, areatype, mobility) {
-  
   req <- create_request("demographics")
-  
-  resp <- req %>% 
+
+  resp <- req %>%
     req_url_query(
-      stateFIPS=fips_scp(area),
-      areatype=tolower(areatype),
-      topic="mob",
-      demo=handle_mobility(mobility),
-      type="manyareacensus",
-      sortVariableName="value",
-      sortOrder="default",
-      output=1
-    ) %>% 
+      stateFIPS = fips_scp(area),
+      areatype = tolower(areatype),
+      topic = "mob",
+      demo = handle_mobility(mobility),
+      type = "manyareacensus",
+      sortVariableName = "value",
+      sortOrder = "default",
+      output = 1
+    ) %>%
     req_perform()
 
-    resp <- process_response(resp)
-    
-    areatype_map <- c("county" = "County", "hsa" = "Health_Service_Area", "state" = "State")
-    areatype_title <- areatype_map[areatype]
-    
-    areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
-    areacode_title <- areacode_map[areatype]
-    
-    resp %>% 
-      setNames(c(areatype_title, areacode_title, "Percent", "Households", "Rank"))
+  resp <- process_resp(resp, "demographics")
+
+  area_type <- get_area(areatype)[1]
+  area_code <- get_area(areatype)[2]
+
+  resp %>%
+    setNames(c(
+      area_type,
+      area_code,
+      "Percent",
+      "People",
+      "Rank"
+    )) %>% 
+    mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
 }

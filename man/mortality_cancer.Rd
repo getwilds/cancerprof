@@ -4,57 +4,116 @@
 \alias{mortality_cancer}
 \title{Access to Cancer Mortality Data}
 \usage{
-mortality_cancer(
-  area,
-  areatype,
-  cancer,
-  race,
-  sex = NULL,
-  age,
-  year = "latest 5 year average"
-)
+mortality_cancer(area, areatype, cancer, race, sex, age, year)
 }
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either "county", "hsa" (Health service area), or "state"}
+\item{areatype}{One of the following values:
+\itemize{
+\item \code{"county"}
+\item \code{"hsa"} (Health Service Area)
+\item \code{"state"}.
+}}
 
-\item{cancer}{Either "all cancer sites","bladder", "brain & ons", "breast (female)", "cervix",
-"childhood (ages <15, all sites)", "childhood (ages <20, all sites)", "colon & rectum", "esophagus",
-"kidney & renal pelvis", "leukemia", "liver & bile duct", "lung & bronchus", "melanoma of the skin",
-"non-hodgkin lymphoma", "oral cavity & pharynx", "ovary", "pancreas", "prostate", "stomach",
-"thyroid", "uterus (corpus & uterus, nos)"}
+\item{cancer}{One of the following values:
+\code{"all cancer sites"}
+\verb{"bladder", "brain & ons"}
+\code{"breast (female)"}
+\code{"cervix"}
+\code{"childhood (ages <15, all sites)"}
+\code{"childhood (ages <20, all sites)"}
+\code{"colon & rectum"}
+\code{"esophagus"}
+\code{"kidney & renal pelvis"}
+\code{"leukemia"}
+\code{"liver & bile duct"}
+\code{"lung & bronchus"}
+\code{"melanoma of the skin"}
+\code{"non-hodgkin lymphoma"}
+\code{"oral cavity & pharynx"}
+\code{"ovary"}
+\code{"pancreas"}
+\code{"prostate"}
+\code{"stomach"}
+\code{"thyroid"}
+\code{"uterus (corpus & uterus, nos)"}}
 
-\item{race}{One of the following values: "all races (includes hispanic)", "white (non-hispanic)",
-"black (non-hispanic)", "amer. indian / ak native (non-hispanic)",
-"asian / pacific islander (non-hispanic)","hispanic (any race)"}
+\item{race}{One of the following values:
+\itemize{
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (non-Hispanic)"}
+\item \code{"Black (non-Hispanic)"}
+\item \code{"American Indian / Alaska Native (non-Hispanic)"}
+\item \code{"Asian / Pacific Islander (non-Hispanic)"}
+\item \code{"Hispanic (Any Race)"}.
+}}
 
-\item{sex}{Either "both sexes", "males", "females"}
+\item{sex}{One of the following values:
+\itemize{
+\item \code{"both sexes"}
+\item \code{"male"}
+\item \code{"female"}.
+}}
 
-\item{age}{Either "all ages", "ages <50", "ages 50+", "ages <65", "ages 65+", ages <15, ages <20}
+\item{age}{One of the following values:
+\itemize{
+\item \code{"all ages"}
+\item \code{"ages <50"}
+\item \code{"ages 50+"}
+\item \code{"ages <65"}
+\item \code{"ages 65+"}
+\item \code{"ages <15"}
+\item \code{"ages <20"}.
+}}
 
-\item{year}{Either "latest 5 year average", "latest single year (us by state)"}
+\item{year}{One of the following values:
+\itemize{
+\item \code{"latest 5 year average"}
+\item \code{"latest single year (us by state)"}.
+}}
 }
 \value{
-A data frame with the following columns "State", "FIPS", "Percent", "Lower 95\% CI", "Upper 95\% CI", "Number of Respondents"
+A data frame with the following columns:
+Area Type, Area Code, Met Healthy People Objective of ***?,
+Age Adjusted Death Rate, Lower 95\% CI Rate, Upper 95\% CI Rate,
+CI Rank, Lower CI Rank, Upper CI Rank, Annual Average Count,
+Recent Trend, Recent 5 Year Trend, Lower 95\% CI Trend, Upper 95\% CI Trend.
 }
 \description{
-This function returns a data frame from Cancer Mortality in State Cancer Profiles
-}
-\details{
-This is the details section this is where the finer details of the function are explained
+This function returns a data frame about cancer mortality
+from State Cancer Profiles.
 }
 \examples{
 \dontrun{
-mortality_cancer("wa", "county", "all cancer sites", "black (non-hispanic)", 
-                 "both sexes", "ages 65+")
-mortality_cancer("ca", "hsa", "lung & bronchus", "all races (includes hispanic)", 
-                 "males", "ages 50+")
-mortality_cancer("usa", "state", "prostate", "all races (includes hispanic)", 
-                 "males", "ages 50+")
-mortality_cancer(area="wa", areatype="county", cancer="ovary", race="all races (includes hispanic)", 
-                 sex="females", age="ages 50+")
-mortality_cancer("ca", "hsa", "childhood (ages <20, all sites)", "all races (includes hispanic)", 
-                 "males", "ages <20")
+mortality_cancer(
+  area = "wa",
+  areatype = "county",
+  cancer = "all cancer sites",
+  race = "black (non-hispanic)",
+  sex = "both sexes",
+  age = "ages 65+",
+  year = "latest 5 year average"
+)
+
+mortality_cancer(
+  area = "usa",
+  areatype = "state",
+  cancer = "prostate",
+  race = "all races (includes hispanic)",
+  sex = "males",
+  age = "ages 50+",
+  year = "latest single year (us by state)"
+)
+
+mortality_cancer(
+  area = "wa",
+  areatype = "hsa",
+  cancer = "ovary",
+  race = "all races (includes hispanic)",
+  sex = "females",
+  age = "ages 50+",
+  year = "latest 5 year average"
+)
 }
 }

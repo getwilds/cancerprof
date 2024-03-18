@@ -1,24 +1,41 @@
 #' Handles Diet & Exercise Values to Code
-#' 
-#' This function returns a matching code value for a Diet & Exercise for the api to use to get data from State Cancer Profiles
 #'
-#' @param diet_exercise Either "ever had colorectal endoscopy (sigmoidoscopy or colonoscopy), ages 50+",
-#'               "ever had fobt, ages 50-75", "fobt (1yr) / flex sig (5yr) / fobt (3yr) / colonoscopy (10yr), ages 50-75",
-#'               "guidance sufficient crc, ages 50-75", "had colonoscopy in past 10 years, ages 50-75",
-#'               "home-based fecal occult blood test (fobt) in past two years",
-#'               "home-based fobt in the past two years or ever had a colorectal endoscopy"
-#' 
+#' This function returns a matching code value for a Diet & Exercise
+#' for the api to use to get data from State Cancer Profiles
+#'
+#' @param diet_exercise One of the following values:
+#' - `"bmi is healthy, ages 20+"`
+#' - `"bmi is obese, ages 20+"`
+#' - `"bmi is obese, high school survey"`
+#' - `"bmi is overweight, high school survey"`
+#' - `"consumed 1 or more fruits per day"`
+#' - `"consumed 1 or more vegetables per day"`
+#' - `"no leisure time physical activity"`.
+#' @param race One of the following values:
+#' - `"All Races (includes Hispanic)"`
+#' - `"White (non-Hispanic)"`
+#' - `"Black (non-Hispanic)"`
+#' - `"American Indian / Alaska Native (non-Hispanic)"`
+#' - `"Asian / Pacific Islander (non-Hispanic)"`
+#' - `"Hispanic (Any Race)"`.
+#' @param sex One of the following values:
+#' - `"both sexes"`
+#' - `"male"`
+#' - `"female"`.
+#'
 #' @importFrom rlang is_na
-#' 
+#'
 #' @returns A string for its respective Diet & Exercise Value
-#' 
-#' @examples 
+#'
+#' @noRd
+#'
+#' @examples
 #' \dontrun{
 #' handle_diet_exercise("guidance sufficient crc, ages 50-75")
 #' }
 handle_diet_exercise <- function(diet_exercise) {
   diet_exercise <- tolower(diet_exercise)
-  
+
   diet_exercise_mapping <- c(
     "bmi is healthy, ages 20+" = "v01",
     "bmi is obese, ages 20+" = "v02",
@@ -28,12 +45,17 @@ handle_diet_exercise <- function(diet_exercise) {
     "consumed 1 or more vegetables per day" = "v51",
     "no leisure time physical activity" = "v18"
   )
-  
+
   diet_exercise_code <- diet_exercise_mapping[diet_exercise]
-  
+
   if (is_na(diet_exercise_code)) {
-    stop("Invalid diet excerise input, please check the documentation for valid inputs")
+    stop(
+      paste(
+        "Invalid diet-exercise input, please check",
+        "the documentation for valid inputs"
+      )
+    )
   }
-  
+
   return(as.character(diet_exercise_code))
 }

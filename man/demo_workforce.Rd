@@ -4,29 +4,84 @@
 \alias{demo_workforce}
 \title{Access to Workforce Data}
 \usage{
-demo_workforce(area, areatype, race, sex)
+demo_workforce(area, areatype, workforce, race, sex)
 }
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either "county", "hsa" (Health service area), or "state"}
+\item{areatype}{One of the following values:
+\itemize{
+\item \code{"county"}
+\item \code{"hsa"} (Health Service Area)
+\item \code{"state"}.
+}}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
-"white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)","hispanic (any race)}
+\item{workforce}{The only permissible value is
+\code{"unemployed"}}
 
-\item{sex}{Either "both sexes", "male", "female"}
+\item{race}{One of the following values:
+\itemize{
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (includes Hispanic)"}
+\item \code{"White non-Hispanic"}
+\item \code{"Black"}
+\item \code{"Amer. Indian/Alaskan Native (includes Hispanic)"}
+\item \code{"Asian or Pacific Islander (includes Hispanic)"}
+\item \verb{"Hispanic (Any Race)}.
+}}
+
+\item{sex}{One of the following values:
+\itemize{
+\item \code{"both sexes"}
+\item \code{"male"}
+\item \code{"female"}.
+}}
 }
 \value{
-A data frame with the following columns "County", "FIPS", "Percent", "People Unemployed", "Rank"
+A data frame with the following columns:
+Area Type, Area Code, Percent, People Unemployed, Rank.
 }
 \description{
-This function returns a data frame from Workforce in State Cancer Profiles
+This function returns a data frame from Workforce in State Cancer Profiles.
 }
 \examples{
 \dontrun{
-demo_workforce("WA", "county", "all races (includes hispanic)", "both sexes")
-demo_workforce("usa", "state", "all races (includes hispanic)", "females")
-demo_workforce("pr", "hsa", "all races (includes hispanic)", "both sexes")
+demo_workforce(
+  area = "WA",
+  areatype = "county",
+  workforce = "unemployed",
+  race = "all races (includes hispanic)",
+  sex = "both sexes"
+)
+
+demo_workforce(
+  area = "usa",
+  areatype = "state",
+  workforce = "unemployed",
+  race = "all races (includes hispanic)",
+  sex = "females"
+)
+
+demo_workforce(
+  area = "pr",
+  areatype = "hsa",
+  workforce = "unemployed",
+  race = "all races (includes hispanic)",
+  sex = "both sexes"
+)
 }
 }
+\seealso{
+Other demographics: 
+\code{\link{demo_crowding}()},
+\code{\link{demo_education}()},
+\code{\link{demo_food}()},
+\code{\link{demo_income}()},
+\code{\link{demo_insurance}()},
+\code{\link{demo_language}()},
+\code{\link{demo_mobility}()},
+\code{\link{demo_population}()},
+\code{\link{demo_poverty}()},
+\code{\link{demo_svi}()}
+}
+\concept{demographics}

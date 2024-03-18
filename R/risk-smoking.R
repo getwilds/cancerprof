@@ -1,77 +1,124 @@
 #' Access to Smoking Data
-#' 
-#' This function returns a data frame from Smoking in State Cancer Profiles
 #'
-#' @param smoking Either "smoking laws (any)", "smoking laws (bars)", "smoking laws (restaurants)", 
-#'                       "smoking laws (workplace)", "smoking laws (workplace; restaurant; & bar)", 
-#'                       "smokers (stopped for 1 day or longer)", "smoking not allowed at work (all people)", 
-#'                       "smoking not allowed in home (all people)", "smoking not allowed at work (current smokers)",
-#'                       "smoking not allowed at work (former/never smokers)", "smoking not allowed in home (current smokers)", 
-#'                       "smoking not allowed in home (former/never smokers)", "former smoker; ages 18+", 
-#'                       "former smoker, quit 1 year+; ages 18+", "smokers (ever); ages 18+", "e-cigarette use; ages 18+",
-#'                       "smokers (current); ages 18+"
-#' @param race One of the following values: "all races (includes hispanic)", "white (non-hispanic)", 
-#'                                          "black (non-hispanic)", "amer. indian / ak native (non-hispanic)", 
-#'                                          "asian / pacific islander (non-hispanic)","hispanic (any race)"
-#' @param sex Either "both sexes", "males", "females"
-#' @param datatype Either "direct estimates" or "county level modeled estimates"
+#' This function returns a data frame about smoking risks
+#' from State Cancer Profiles.
+#'
+#' Please note that this function requires
+#' very specific arguments for each smoking type.
+#'
+#' @param smoking The only permissible values are
+#' - `"smoking laws (any)"`
+#' - `"smoking laws (bars)"`
+#' - `"smoking laws (restaurants)"`
+#' - `"smoking laws (workplace)"`
+#' - `"smoking laws (workplace; restaurant; & bar)"`
+#' - `"smokers (stopped for 1 day or longer)"`
+#' - `"smoking not allowed at work (all people)"`
+#' - `"smoking not allowed in home (all people)"`
+#' - `"smoking not allowed at work (current smokers)"`
+#' - `"smoking not allowed at work (former/never smokers)"`
+#' - `"smoking not allowed in home (current smokers)"`
+#' - `"smoking not allowed in home (former/never smokers)"`
+#' - `"former smoker; ages 18+"`
+#' - `"former smoker, quit 1 year+; ages 18+"`
+#' - `"smokers (ever); ages 18+"`
+#' - `"e-cigarette use; ages 18+"`
+#' - `"smokers (current); ages 18+"`.
+#' @param race One of the following values:
+#' - `"All Races (includes Hispanic)"`
+#' - `"White (non-Hispanic)"`
+#' - `"Black (non-Hispanic)"`
+#' - `"American Indian / Alaska Native (non-Hispanic)"`
+#' - `"Asian / Pacific Islander (non-Hispanic)"`
+#' - `"Hispanic (Any Race)"`.
+#' @param sex One of the following values
+#' - `"both sexes"`
+#' - `"male"`
+#' - `"female"`.
+#' @param datatype One of the following values:
+#' - `"direct estimates"`
+#' - `"county level modeled estimates"`.
 #' @param area A state/territory abbreviation or USA.
-#' 
+#'
 #' @importFrom httr2 req_url_query req_perform
-#' @importFrom cli cli_abort
 #' @importFrom stats setNames
+#' @importFrom dplyr mutate across
+#'
+#' @returns A data frame with the following columns:
+#' Area Type, Area Code, Percent, Lower CI 95%, Upper CI 95%,
+#' Number of Respondents.
 #' 
-#' @returns A data frame with the following columns #"State", "FIPS", "Percent", "Lower CI 95%", "Upper CI 95%", "Number of Respondents"
-#' 
+#' @family risks
+#'
 #' @export
-#' 
+#'
 #' @examples
 #' \dontrun{
-#' risk_smoking("smoking laws (any)")
-#' risk_smoking("smokers (stopped for 1 day or longer)", sex="both sexes", 
-#'               datatype="county level modeled estimates", area="wa")
-#' risk_smoking("smoking not allowed at work (current smokers)", sex="both sexes", 
-#'               datatype="direct estimates")
-#' risk_smoking("former smoker; ages 18+", sex="both sexes", 
-#'               datatype="county level modeled estimates", area="ca")
-#' risk_smoking("smokers (ever); ages 18+", race="hispanic (any race)", sex="both sexes", 
-#'               datatype="direct estimates")
-#' risk_smoking("smokers (current); ages 18+", race="all races (includes hispanic)", 
-#'               sex="both sexes", datatype="county level modeled estimates", area="wa")
+#' risk_smoking(smoking = "smoking laws (any)")
+#'
+#' risk_smoking(
+#'   smoking = "smokers (stopped for 1 day or longer)",
+#'   sex = "both sexes",
+#'   datatype = "county level modeled estimates",
+#'   area = "wa"
+#' )
+#'
+#' risk_smoking(
+#'   smoking = "smoking not allowed at work (current smokers)",
+#'   sex = "both sexes",
+#'   datatype = "direct estimates"
+#' )
+#'
+#' risk_smoking(
+#'   smoking = "smokers (current); ages 18+",
+#'   race = "all races (includes hispanic)",
+#'   sex = "both sexes",
+#'   datatype = "county level modeled estimates",
+#'   area = "wa"
+#' )
 #' }
-risk_smoking <- function(smoking, race=NULL, sex=NULL, datatype=NULL, area=NULL) {
-  
+risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area = NULL) {
   req <- create_request("risk")
 
-  smoking_group1 = c("smoking laws (any)",
-                     "smoking laws (bars)",
-                     "smoking laws (restaurants)",
-                     "smoking laws (workplace)",
-                     "smoking laws (workplace; restaurant; & bar)")
+  smoking_group1 <- c(
+    "smoking laws (any)",
+    "smoking laws (bars)",
+    "smoking laws (restaurants)",
+    "smoking laws (workplace)",
+    "smoking laws (workplace; restaurant; & bar)"
+  )
 
-  smoking_group2 = c("smokers (stopped for 1 day or longer)",
-                     "smoking not allowed at work (all people)",
-                     "smoking not allowed in home (all people)")
+  smoking_group2 <- c(
+    "smokers (stopped for 1 day or longer)",
+    "smoking not allowed at work (all people)",
+    "smoking not allowed in home (all people)"
+  )
 
-  smoking_group3 = c("smoking not allowed at work (current smokers)",
-                     "smoking not allowed at work (former/never smokers)",
-                     "smoking not allowed in home (current smokers)",
-                     "smoking not allowed in home (former/never smokers)")
+  smoking_group3 <- c(
+    "smoking not allowed at work (current smokers)",
+    "smoking not allowed at work (former/never smokers)",
+    "smoking not allowed in home (current smokers)",
+    "smoking not allowed in home (former/never smokers)"
+  )
 
-  smoking_group4 = c("former smoker; ages 18+",
-                     "former smoker, quit 1 year+; ages 18+")
-  
-  smoking_group5 = c("smokers (ever); ages 18+",
-                     "e-cigarette use; ages 18+")
+  smoking_group4 <- c(
+    "former smoker; ages 18+",
+    "former smoker, quit 1 year+; ages 18+"
+  )
 
-  smoking_group6 = "smokers (current); ages 18+"
-  
-  #smoking group 1
+  smoking_group5 <- c(
+    "smokers (ever); ages 18+",
+    "e-cigarette use; ages 18+"
+  )
+
+  smoking_group6 <- "smokers (current); ages 18+"
+
+  # smoking group 1
   if (smoking %in% smoking_group1 && (!is.null(race) || !is.null(sex) || !is.null(sex) || !is.null(area))) {
     cli_abort("For this smoking type, Race, Sex, Datatype, and Area must ALL be NULL")
   }
-  
-  #smoking group 2
+
+  # smoking group 2
   if (smoking %in% smoking_group2 && !is.null(sex)) {
     if (sex == "both sexes") {
       if (datatype == "county level modeled estimates" && is.null(area)) {
@@ -87,8 +134,8 @@ risk_smoking <- function(smoking, race=NULL, sex=NULL, datatype=NULL, area=NULL)
   } else if (smoking %in% smoking_group2 && is.null(sex)) {
     cli_abort("For this smoking type, sex must NOT be NULL")
   }
-  
-  #smoking group 3
+
+  # smoking group 3
   if (smoking %in% smoking_group3 && !is.null(sex)) {
     if (!is.null(race) || !is.null(area)) {
       cli_abort("For all sexes in this smoking type, race and area should be NULL")
@@ -96,22 +143,22 @@ risk_smoking <- function(smoking, race=NULL, sex=NULL, datatype=NULL, area=NULL)
   } else if (smoking %in% smoking_group3 && (is.null(sex) || is.null(datatype))) {
     cli_abort("For this smoking type, sex and dattype must NOT be NULL")
   }
-  
-  #smoking group 4
+
+  # smoking group 4
   if (smoking %in% smoking_group4 && ((is.null(sex) || is.null(area) || is.null(datatype)) || !is.null(race))) {
     cli_abort("For this smoking type, Sex, Datatype, and Area must not be NULL AND Race must be NULL")
   } else if (smoking %in% smoking_group4 && datatype == "direct estimates") {
     cli_abort("For this smoking type, Datatype must be county level modeled estimates")
   }
-  
-  #smoking group 5
+
+  # smoking group 5
   if (smoking %in% smoking_group5 && ((is.null(race) || is.null(sex) || is.null(datatype)) || !is.null(area))) {
     cli_abort("For this smoking type, Race, Sex, and Datatype must not be NULL AND Datatype and Area must be NULL")
   } else if (smoking %in% smoking_group5 && datatype == "county level modeled estimates") {
     cli_abort("For this smoking type, Datatype must be direct estimates")
   }
-  
-  #smoking group 6
+
+  # smoking group 6
   if (smoking %in% smoking_group6 && (is.null(race) || is.null(sex))) {
     cli_abort("For this smoking group, Race and Sex must not be NULL")
   } else if (smoking %in% smoking_group6 && (!is.null(race) && !is.null(sex)) && race == "all races (includes hispanic)") {
@@ -121,55 +168,91 @@ risk_smoking <- function(smoking, race=NULL, sex=NULL, datatype=NULL, area=NULL)
       cli_abort("For direct estimates for this smoking type, Area must be NULL")
     } else if (datatype == "county level modeled estimates" && is.null(area)) {
       cli_abort("For county level modeled estimates for this smoking type, Area must NOT be NULL")
-    } 
+    }
   }
-  
+
   resp <- req %>%
     req_url_query(
-      topic="smoke",
-      risk=handle_smoking(smoking),
-      type="risk",
-      sortVariableName="percent",
-      sortOrder="default",
-      output=1
+      topic = "smoke",
+      risk = handle_smoking(smoking),
+      type = "risk",
+      sortVariableName = "percent",
+      sortOrder = "default",
+      output = 1
     )
-  
-  if(!is.null(race)) {
+
+  if (!is.null(race)) {
     resp <- resp %>%
-      req_url_query(race=handle_race(race))
+      req_url_query(race = handle_race(race))
   }
-  
-  if(!is.null(sex)) {
+
+  if (!is.null(sex)) {
     resp <- resp %>%
-      req_url_query(sex=handle_sex(sex))
+      req_url_query(sex = handle_sex(sex))
   }
-  
-  if(!is.null(datatype)) {
+
+  if (!is.null(datatype)) {
     resp <- resp %>%
-      req_url_query(datatype=handle_datatype(datatype))
+      req_url_query(datatype = handle_datatype(datatype))
   }
-  
-  if(!is.null(area)) {
+
+  if (!is.null(area)) {
     resp <- resp %>%
-      req_url_query(stateFIPS=fips_scp(area))
+      req_url_query(stateFIPS = fips_scp(area))
   }
-  
+
   resp <- resp %>%
     req_perform()
-  
-  resp <- process_screening(resp)
-  
-  
+
+  resp <- process_resp(resp, "risks")
+
+
   if (smoking %in% smoking_group1) {
-    resp %>% 
-      setNames(c("State", "FIPS", "Percent")) 
-  } else if ((smoking %in% c(smoking_group2, smoking_group3, smoking_group4, smoking_group5, smoking_group6))
-              && (datatype=="direct estimates")) {
-    resp %>% 
-      setNames(c("State", "FIPS", "Percent", "Lower_CI_95%", "Upper_CI_95%", "Number_of_Respondents")) 
-  } else if ((smoking %in% c(smoking_group2, smoking_group3, smoking_group4, smoking_group5, smoking_group6)
-              && datatype=="county level modeled estimates")) {
-    resp %>% 
-      setNames(c("County", "FIPS", "Percent", "Lower_CI_95%", "Upper_CI_95%")) 
+    resp %>%
+      setNames(c("State", "FIPS", "Percent"))
+  } else if ((smoking %in% c(
+    smoking_group2,
+    smoking_group3,
+    smoking_group4,
+    smoking_group5,
+    smoking_group6
+  )) &&
+    (datatype == "direct estimates")) {
+    resp %>%
+      setNames(c(
+        "State",
+        "FIPS",
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI",
+        "Number_of_Respondents"
+      )) %>% 
+      mutate(across(c(
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI",
+        "Number_of_Respondents"
+      ), \(x) as.numeric(x)))
+  } else if ((smoking %in% c(
+    smoking_group2,
+    smoking_group3,
+    smoking_group4,
+    smoking_group5,
+    smoking_group6
+  ) &&
+    datatype == "county level modeled estimates")) {
+    resp %>%
+      setNames(c(
+        "County",
+        "FIPS",
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI"
+      )) %>% 
+      mutate(across(c(
+        "Percent",
+        "Lower_95%_CI",
+        "Upper_95%_CI"
+      ), \(x) as.numeric(x)))
   }
 }

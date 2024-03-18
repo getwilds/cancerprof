@@ -1,10 +1,10 @@
 Package: cancerprof
-Title: Open Cancer Informatics
+Title: API Client for State Cancer Profiles
 Version: 0.0.0.9000
 Authors@R: 
     person("Brian", "Park", , "joon.brianpark@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: An API Client for accessing data from State Cancer Profiles for programmable analysis.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -19,5 +19,8 @@ Imports:
     stringr,
     utils
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat
 Config/testthat/edition: 3
+VignetteBuilder: knitr

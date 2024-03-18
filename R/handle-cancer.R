@@ -1,24 +1,46 @@
 #' Handles Cancer Values to Code
-#' 
-#' This function returns a matching code value for a Cancer for the api to use to get data from State Cancer Profiles
 #'
-#' @param cancer Either "all cancer sites","bladder", "brain & ons", "breast (female)", "breast (female in situ)", "cervix", 
-#'                      "childhood (ages <15, all sites)", "childhood (ages <20, all sites)", "colon & rectum", "esophagus", 
-#'                      "kidney & renal pelvis", "leukemia", "liver & bile duct", "lung & bronchus", "melanoma of the skin", 
-#'                      "non-hodgkin lymphoma", "oral cavity & pharynx", "ovary", "pancreas", "prostate", "stomach", 
-#'                      "thyroid", "uterus (corpus & uterus, nos)"
-#' 
+#' This function returns a matching code value for a Cancer for the
+#' api to use to get data from State Cancer Profiles
+#'
+#' @param cancer One of the following values:
+#' - `"all cancer sites"`
+#' - `"bladder"`
+#' - `"brain & ons"`
+#' - `"breast (female)"`
+#' - `"breast (female in situ)"`
+#' - `"cervix"`
+#' - `"childhood (ages <15, all sites)"`
+#' - `"childhood (ages <20, all sites)"`
+#' - `"colon & rectum"`
+#' - `"esophagus"`
+#' - `"kidney & renal pelvis"`
+#' - `"leukemia"`
+#' - `"liver & bile duct"`
+#' - `"lung & bronchus"`
+#' - `"melanoma of the skin"`
+#' - `"non-hodgkin lymphoma"`
+#' - `"oral cavity & pharynx"`
+#' - `"ovary"`
+#' - `"pancreas"`
+#' - `"prostate"`
+#' - `"stomach"`
+#' - `"thyroid"`
+#' - `"uterus (corpus & uterus, nos)"`.
+#'
 #' @importFrom rlang is_na
-#' 
+#'
 #' @returns A string for its respective cancer type
-#' 
-#' @examples 
+#'
+#' @noRd
+#'
+#' @examples
 #' \dontrun{
 #' handle_cancer("bladder")
 #' }
-handle_cancer <-function(cancer) {
+handle_cancer <- function(cancer) {
   cancer <- tolower(cancer)
-  
+
   cancer_mapping <- c(
     "all cancer sites" = "001",
     "bladder" = "071",
@@ -44,12 +66,17 @@ handle_cancer <-function(cancer) {
     "thyroid" = "080",
     "uterus (corpus & uterus, nos)" = "058"
   )
-  
+
   cancer_code <- cancer_mapping[cancer]
-  
+
   if (is_na(cancer_code)) {
-    stop("Invalid cancer input, please check the documentation for valid inputs")
+    stop(
+      paste(
+        "Invalid cancer input, please check",
+        "the documentation for valid inputs"
+      )
+    )
   }
-  
+
   return(as.character(cancer_code))
 }

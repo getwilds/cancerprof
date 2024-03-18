@@ -9,39 +9,113 @@ demo_insurance(area, areatype, insurance, sex, age, race = NULL)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either "county", "hsa" (Health service area), or "state"}
+\item{areatype}{One of the following values:
+\itemize{
+\item \code{"county"}
+\item \code{"hsa"} (Health Service Area)
+\item \code{"state"}.
+}}
 
-\item{insurance}{Either
-"\% Insured in demographic group, all income levels", "\% Insured in demographic group, people at or below 138\% of Poverty"
-"\% Insured in demographic group, people at or below 200\% of Poverty", "\% Insured in demographic group, people at or below 250\% of Poverty"
-"\% Insured in demographic group, people at or below 400\% of Poverty","\% Insured in demographic group, people between 138\% - 400\% of poverty"
-"\% uninsured in demographic group, all income levels","\% uninsured in demographic group, people at or below 138\% of Poverty"
-"\% uninsured in demographic group, people at or below 200\% of Poverty","\% uninsured in demographic group, people at or below 250\% of Poverty"
-"\% uninsured in demographic group, people at or below 400\% of Poverty","\% uninsured in demographic group, people between 138\% - 400\% of poverty"}
+\item{insurance}{One of the following values:
+\itemize{
+\item \code{"\% Insured in demographic group, all income levels"}
+\item \code{"\% Insured in demographic group, people at or below 138\% of Poverty"}
+\item \code{"\% Insured in demographic group, people at or below 200\% of Poverty"}
+\item \code{"\% Insured in demographic group, people at or below 250\% of Poverty"}
+\item \code{"\% Insured in demographic group, people at or below 400\% of Poverty"}
+\item \code{"\% Insured in demographic group, people between 138\% - 400\% of poverty"}
+\item \code{"\% uninsured in demographic group, all income levels"}
+\item \code{"\% uninsured in demographic group, people at or below 138\% of Poverty"}
+\item \code{"\% uninsured in demographic group, people at or below 200\% of Poverty"}
+\item \code{"\% uninsured in demographic group, people at or below 250\% of Poverty"}
+\item \code{"\% uninsured in demographic group, people at or below 400\% of Poverty"}
+\item \code{"\% uninsured in demographic group, people between 138\% - 400\% of poverty"}.
+}}
 
-\item{sex}{Either "both sexes", "male", "female"}
+\item{sex}{One of the following values:
+\itemize{
+\item \code{"both sexes"}
+\item \code{"male"}
+\item \code{"female"}.
+}}
 
-\item{age}{Either "under 19 years", "18 to 64 years","21 to 64 years","40 to 64 years","50 to 64 years","under 65 years" for "both sexes"
-"18 to 64 years","40 to 64 years","50 to 64 years","Under 65 years" for "males" and "females"}
+\item{age}{If you specified \code{"both sexes"} for \code{sex}
+choose one of the following values:
+\itemize{
+\item \code{"under 19 years"}
+\item \code{"18 to 64 years"}
+\item \code{"21 to 64 years"}
+\item \code{"40 to 64 years"}
+\item \code{"50 to 64 years"}
+\item \code{"under 65 years"}.
+}
 
-\item{race}{Either "all races (includes hispanic)", "white non hispanic", "black non hispanic", "american indian / alaska native non-hispanic",
-"asian non-hispanic", "hispanic (any race)"}
+Otherwise if you specified \code{"male"} or \code{"female"} for \code{sex},
+choose one of the following values:
+\itemize{
+\item \code{"18 to 64 years"}
+\item \code{"40 to 64 years"}
+\item \code{"50 to 64 years"}
+\item \code{"Under 65 years"}.
+}}
+
+\item{race}{Only specify \code{race} if you specified \code{"state"} for \code{areatype}
+\itemize{
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (non-Hispanic)"}
+\item \code{"black (non-Hispanic)"}
+\item \code{"American Indian / Alaska Native (non-Hispanic)"}
+\item \code{"Asian (non-Hispanic)"}
+\item \code{"Hispanic (Any Race)"}.
+}}
 }
 \value{
-A data frame with the following columns "County", "FIPS", "Percent", "People", "Rank"
+A data frame with the following columns:
+Area Type, Area Code, Percent, People, Rank.
 }
 \description{
-This function returns a data frame from Insurance in State Cancer Profiles
+This function returns a data frame about insurance demographics
+from State Cancer Profiles.
 }
 \examples{
 \dontrun{
-demo_insurance("usa", "state", "\% Insured in demographic group, all income levels", 
-               "both sexes", "under 19 years", "all races (includes hispanic)")
-demo_insurance("wa", "hsa", "\% Insured in demographic group, all income levels", 
-               "males", "18 to 64 years")
-demo_insurance("dc", "county", "\% Insured in demographic group, all income levels", 
-               "males", "18 to 64 years")
-demo_insurance("usa", "state", "\% Insured in demographic group, all income levels", 
-               "both sexes", "18 to 64 years", "hispanic (any race)")
+demo_insurance(
+  area = "usa",
+  areatype = "state",
+  insurance = "\% Insured in demographic group, all income levels",
+  sex = "both sexes",
+  age = "18 to 64 years",
+  race = "white (non-hispanic)"
+)
+
+demo_insurance(
+  area = "wa",
+  areatype = "hsa",
+  insurance = "\% Insured in demographic group, all income levels",
+  sex = "males",
+  age = "18 to 64 years"
+)
+
+demo_insurance(
+  area = "dc",
+  areatype = "county",
+  insurance = "\% Insured in demographic group, all income levels",
+  sex = "males",
+  age = "18 to 64 years"
+)
 }
 }
+\seealso{
+Other demographics: 
+\code{\link{demo_crowding}()},
+\code{\link{demo_education}()},
+\code{\link{demo_food}()},
+\code{\link{demo_income}()},
+\code{\link{demo_language}()},
+\code{\link{demo_mobility}()},
+\code{\link{demo_population}()},
+\code{\link{demo_poverty}()},
+\code{\link{demo_svi}()},
+\code{\link{demo_workforce}()}
+}
+\concept{demographics}

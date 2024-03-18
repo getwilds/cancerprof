@@ -7,24 +7,54 @@
 risk_alcohol(alcohol, race, sex)
 }
 \arguments{
-\item{alcohol}{"binge drinking (4+ drinks on one occasion for women, 5+ drinks for one occasion for men), ages 21+"}
+\item{alcohol}{The only permissible value is
+`paste("binge drinking (4+ drinks on one occasion for women,",
+"5+ drinks for one occasion for men), ages 21+")}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)" = "01",
-"white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)","hispanic (any race)}
+\item{race}{One of the following values:
+\itemize{
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (non-Hispanic)"}
+\item \code{"Black (non-Hispanic)"}
+\item \code{"American Indian / Alaska Native (non-Hispanic)"}
+\item \code{"Asian / Pacific Islander (non-Hispanic)"}
+\item \code{"Hispanic (Any Race)"}.
+}}
 
-\item{sex}{Either "both sexes", "male", "female"}
+\item{sex}{One of the following values:
+\itemize{
+\item \code{"both sexes"}
+\item \code{"male"}
+\item \code{"female"}.
+}}
 }
 \value{
-A data frame with the following columns "State", "FIPS", "Percent", "Lower 95\% CI", "Upper 95\% CI", "Number of Respondents"
+A data frame with the following columns:
+Area Type, Area Code, Percent, Lower 95\% CI,
+Upper 95\% CI, Number of Respondents.
 }
 \description{
-This function returns a data frame from Alcohol in State Cancer Profiles
+This function returns a data frame about alcohol risks
+from State Cancer Profiles.
 }
 \examples{
 \dontrun{
-risk_alcohol(paste("binge drinking (4+ drinks on one occasion for women,", 
-                   "5+ drinks for one occasion for men), ages 21+"), 
-                   "all races (includes hispanic)", "both sexes")
+risk_alcohol(
+  alcohol = paste(
+    "binge drinking (4+ drinks on one occasion for women,",
+    "5+ drinks for one occasion for men), ages 21+"
+  ),
+  race = "all races (includes hispanic)",
+  sex = "both sexes"
+)
 }
 }
+\seealso{
+Other risks: 
+\code{\link{risk_colorectal_screening}()},
+\code{\link{risk_diet_exercise}()},
+\code{\link{risk_smoking}()},
+\code{\link{risk_vaccines}()},
+\code{\link{risk_women_health}()}
+}
+\concept{risks}

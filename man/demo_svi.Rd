@@ -9,18 +9,51 @@ demo_svi(area, svi)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{svi}{Either "Overall", "socioeconomic status", "household characteristics", "racial & ethinic minority status", "housing type & transportation"}
+\item{svi}{One of the following values:
+\itemize{
+\item \code{"Overall"}
+\item \code{"socioeconomic status"}
+\item \code{"household characteristics"}
+\item \code{"racial & ethinic minority status"}
+\item \code{"housing type & transportation"}.
+}}
 }
 \value{
-A data frame with the following columns "County", "FIPS", "Score"
+A data frame with the following columns: County, FIPS, Score.
 }
 \description{
-This function returns a data frame from Social Vulnerability Index (SVI) in State Cancer Profiles
+This function returns a data frame about social vulnerability index (SVI)
+from State Cancer Profiles.
 }
 \examples{
 \dontrun{
-demo_svi("WA", "overall")
-demo_svi("usa", "overall")
-demo_svi("dc", "socioeconomic status")
+demo_svi(
+  area = "WA",
+  svi = "overall"
+)
+
+demo_svi(
+  area = "usa",
+  svi = "overall"
+)
+
+demo_svi(
+  area = "dc",
+  svi = "socioeconomic status"
+)
 }
 }
+\seealso{
+Other demographics: 
+\code{\link{demo_crowding}()},
+\code{\link{demo_education}()},
+\code{\link{demo_food}()},
+\code{\link{demo_income}()},
+\code{\link{demo_insurance}()},
+\code{\link{demo_language}()},
+\code{\link{demo_mobility}()},
+\code{\link{demo_population}()},
+\code{\link{demo_poverty}()},
+\code{\link{demo_workforce}()}
+}
+\concept{demographics}

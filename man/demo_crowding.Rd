@@ -4,27 +4,75 @@
 \alias{demo_crowding}
 \title{Access to Crowding Data}
 \usage{
-demo_crowding(area, areatype, race)
+demo_crowding(area, areatype, crowding, race)
 }
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either "county", "hsa" (Health service area), or "state"}
+\item{areatype}{One of the following values:
+\itemize{
+\item \code{"county"}
+\item \code{"hsa"} (Health Service Area)
+\item \code{"state"}.
+}}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
-"white non-hispanic", "black", "amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)", "hispanic (any race)}
+\item{crowding}{The only permissible value is
+\code{"household with >1 person per room"}.}
+
+\item{race}{One of the following values:
+\itemize{
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (includes Hispanic)"}
+\item \code{"White Non-Hispanic"}
+\item \code{"Black"}
+\item \code{"Amer. Indian/Alaskan Native (includes Hispanic)"}
+\item \code{"Asian or Pacific Islander (includes Hispanic)"}
+\item \code{"Hispanic (Any Race)"}.
+}}
 }
 \value{
-A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
+A data frame with the following columns: Area, Area Code,
+Percent, Households, Rank.
 }
 \description{
-This function returns a data frame from Crowding in State Cancer Profiles
+This function returns a data frame about crowding demographics from State
+Cancer Profiles.
 }
 \examples{
 \dontrun{
-demo_crowding("WA", "hsa", "All Races (includes Hispanic)")
-demo_crowding("usa", "state", "All Races (includes Hispanic)")
-demo_crowding("pr", "hsa", "black")
+demo_crowding(
+  area = "WA",
+  areatype = "county",
+  crowding = "household with >1 person per room",
+  race = "All Races (includes Hispanic)"
+)
+
+demo_crowding(
+  area = "usa",
+  areatype = "state",
+  crowding = "household with >1 person per room",
+  race = "All Races (includes Hispanic)"
+)
+
+demo_crowding(
+  area = "pr",
+  areatype = "hsa",
+  crowding = "household with >1 person per room",
+  race = "black"
+)
 }
 }
+\seealso{
+Other demographics: 
+\code{\link{demo_education}()},
+\code{\link{demo_food}()},
+\code{\link{demo_income}()},
+\code{\link{demo_insurance}()},
+\code{\link{demo_language}()},
+\code{\link{demo_mobility}()},
+\code{\link{demo_population}()},
+\code{\link{demo_poverty}()},
+\code{\link{demo_svi}()},
+\code{\link{demo_workforce}()}
+}
+\concept{demographics}

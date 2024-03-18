@@ -9,22 +9,62 @@ demo_mobility(area, areatype, mobility)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either "county", "hsa" (Health service area), or "state"}
+\item{areatype}{One of the following values:
+\itemize{
+\item \code{"county"}
+\item \code{"hsa"} (Health Service Area)
+\item \code{"state"}.
+}}
 
-\item{mobility}{One of five choices from "i haven't moved (in past year)", "moved from outside us (in past year)",
-"moved, different state (in past year)", "moved, different county, same state (in past year)",
-"moved, same county (in past year)"}
+\item{mobility}{The only permissible values are
+\itemize{
+\item \code{"i haven't moved (in past year)"}
+\item \code{"moved from outside us (in past year)"}
+\item \code{"moved, different state (in past year)"}
+\item \code{"moved, different county, same state (in past year)"}
+\item \code{"moved, same county (in past year)"}.
+}}
 }
 \value{
-A data frame with the following columns "County", "FIPS", "Percent", "People", "Rank"
+A data frame with the following columns:
+Area Type, Area Code, Percent, People, Rank.
 }
 \description{
-This function returns a data frame from mobility in State Cancer Profiles
+This function returns a data frame about mobility demographics
+from State Cancer Profiles.
 }
 \examples{
 \dontrun{
-demo_mobility("WA", "county", "moved, different county, same state (in past year)")
-demo_mobility("usa", "state", "moved, same county (in past year)")
-demo_mobility("dc", "hsa", "moved, same county (in past year)")
+demo_mobility(
+  area = "WA",
+  areatype = "county",
+  mobility = "moved, different county, same state (in past year)"
+)
+
+demo_mobility(
+  area = "usa",
+  areatype = "state",
+  mobility = "moved, same county (in past year)"
+)
+
+demo_mobility(
+  area = "dc",
+  areatype = "hsa",
+  mobility = "moved, same county (in past year)"
+)
 }
 }
+\seealso{
+Other demographics: 
+\code{\link{demo_crowding}()},
+\code{\link{demo_education}()},
+\code{\link{demo_food}()},
+\code{\link{demo_income}()},
+\code{\link{demo_insurance}()},
+\code{\link{demo_language}()},
+\code{\link{demo_population}()},
+\code{\link{demo_poverty}()},
+\code{\link{demo_svi}()},
+\code{\link{demo_workforce}()}
+}
+\concept{demographics}

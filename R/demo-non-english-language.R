@@ -1,47 +1,73 @@
 #' Access to Non-English Language
-#' 
-#' This function returns a data frame from Crowding in State Cancer Profiles
+#'
+#' This function returns a data frame about language demographics
+#' from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype Either "county", "hsa" (Health service area), or "state"
-#' 
+#' @param areatype One of the following values:
+#' - `"county"`
+#' - `"hsa"` (Health Service Area)
+#' - `"state"`.
+#' @param language The only permissible value is
+#' `"language isolation"`.
+#'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
+#' @importFrom dplyr mutate across
+#'
+#' @returns A data frame with the following columns:
+#' Area Type, Area Code, Percent, Households, Rank.
 #' 
-#' @returns A data frame with the following columns "County", "FIPS", "Percent", "Households", "Rank"
-#' 
+#' @family demographics
+#'
 #' @export
-#' 
-#' @examples 
-#' demo_language("WA", "county")
-#' demo_language("dc", "hsa")
-#' demo_language("usa", "state")
-demo_language <- function(area, areatype) {
-  
+#'
+#' @examples
+#' demo_language(
+#'   area = "WA",
+#'   areatype = "county",
+#'   language = "language isolation"
+#' )
+#'
+#' demo_language(
+#'   area = "dc",
+#'   areatype = "hsa",
+#'   language = "language isolation"
+#' )
+#'
+#' demo_language(
+#'   area = "usa",
+#'   areatype = "state",
+#'   language = "language isolation"
+#' )
+demo_language <- function(area, areatype, language) {
   req <- create_request("demographics")
-  
-  resp <- req %>%  
+
+  resp <- req %>%
     req_url_query(
-      stateFIPS=fips_scp(area),
-      areatype=tolower(areatype),
-      topic="lang",
-      demo="00015",
-      type="manyareacensus",
-      sortVariableName="value",
-      sortOrder="default",
-      output=1
-    ) %>% 
+      stateFIPS = fips_scp(area),
+      areatype = tolower(areatype),
+      topic = "lang",
+      demo = handle_non_english(language),
+      type = "manyareacensus",
+      sortVariableName = "value",
+      sortOrder = "default",
+      output = 1
+    ) %>%
     req_perform()
-  
-  
-  resp <- process_response(resp)
-  
-  areatype_map <- c("county" = "County", "hsa" = "Health_Service_Area", "state" = "State")
-  areatype_title <- areatype_map[areatype]
-  
-  areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
-  areacode_title <- areacode_map[areatype]
-  
-  resp %>% 
-    setNames(c(areatype_title, areacode_title, "Percent", "Households", "Rank"))
+
+  resp <- process_resp(resp, "demographics")
+
+  area_type <- get_area(areatype)[1]
+  area_code <- get_area(areatype)[2]
+
+  resp %>%
+    setNames(c(
+      area_type,
+      area_code,
+      "Percent",
+      "Households",
+      "Rank"
+    )) %>% 
+    mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
 }

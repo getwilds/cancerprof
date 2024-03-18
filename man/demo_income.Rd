@@ -9,24 +9,64 @@ demo_income(area, areatype, income, race)
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
 
-\item{areatype}{Either "county" or "state"}
+\item{areatype}{Either \code{"county"} or \code{"state"}.}
 
-\item{income}{Either "median family income" or "median household income"}
+\item{income}{Either \code{"median family income"} or \code{"median household income"}.}
 
-\item{race}{One of the following values: "All Races (includes Hispanic)", "white (includes hispanic)",
-"white non-hispanic","black","amer. indian/alaskan native (includes hispanic)",
-"asian or pacific islander (includes hispanic)","hispanic (any race)}
+\item{race}{One of the following values:
+\itemize{
+\item \code{"All Races (includes Hispanic)"}
+\item \code{"White (includes Hispanic)"}
+\item \code{"White non-Hispanic"}
+\item \code{"Black"}
+\item \code{"Amer. Indian/Alaskan Native (includes Hispanic)"}
+\item \code{"Asian or Pacific Islander (includes Hispanic)"}
+\item \verb{"Hispanic (Any Race)}.
+}}
 }
 \value{
-A data frame with the following columns "County", "FIPS", "Dollars", "Rank"
+A data frame with the following columns:
+Area Type, Area Code, Dollars, Rank.
 }
 \description{
-This function returns a data frame from Income in State Cancer Profiles
+This function returns a data frame about income demographics from
+State Cancer Profiles.
 }
 \examples{
 \dontrun{
-demo_income("wa", "county", "median family income", "all races (includes hispanic)")
-demo_income("usa", "state", "median family income", "all races (includes hispanic)")
-demo_income("pr", "county", "median family income", "all races (includes hispanic)")
+demo_income(
+  area = "wa",
+  areatype = "county",
+  income = "median household income",
+  race = "all races (includes hispanic)"
+)
+
+demo_income(
+  area = "usa",
+  areatype = "state",
+  income = "median family income",
+  race = "all races (includes hispanic)"
+)
+
+demo_income(
+  area = "pr",
+  areatype = "county",
+  income = "median family income",
+  race = "all races (includes hispanic)"
+)
 }
 }
+\seealso{
+Other demographics: 
+\code{\link{demo_crowding}()},
+\code{\link{demo_education}()},
+\code{\link{demo_food}()},
+\code{\link{demo_insurance}()},
+\code{\link{demo_language}()},
+\code{\link{demo_mobility}()},
+\code{\link{demo_population}()},
+\code{\link{demo_poverty}()},
+\code{\link{demo_svi}()},
+\code{\link{demo_workforce}()}
+}
+\concept{demographics}
