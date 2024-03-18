@@ -161,7 +161,8 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
   # smoking group 6
   if (smoking %in% smoking_group6 && (is.null(race) || is.null(sex))) {
     cli_abort("For this smoking group, Race and Sex must not be NULL")
-  } else if (smoking %in% smoking_group6 && (!is.null(race) && !is.null(sex)) && race == "all races (includes hispanic)") {
+  } else if (smoking %in% smoking_group6 && (!is.null(race) && !is.null(sex)) && 
+             race == "all races (includes hispanic)") {
     if (is.null(datatype)) {
       cli_abort("For all races for this smoking type, Datatype must not be NULL")
     } else if (datatype == "direct estimates" && !is.null(area)) {
