@@ -51,17 +51,12 @@ process_resp <- function(resp, topic) {
   }
 
   resp <- resp_lines[
-    (index_first_line_break + 1):
-    (index_second_line_break - 1)
+    (index_first_line_break + 1):(index_second_line_break - 1)
   ] %>%
     paste(collapse = "\n") %>%
-    (
-      \(x) {
-        read.csv(textConnection(x),
-          header = TRUE,
-          colClasses = "character"
-        )
-      })()
+    (\(x) {
+      read.csv(textConnection(x), header = TRUE, colClasses = "character")
+    })()
 
   column <- c(
     "Health.Service.Area",
