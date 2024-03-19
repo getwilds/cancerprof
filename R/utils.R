@@ -7,9 +7,9 @@
 #' - "hsa"
 #' - "state".
 #' @return A character vector containing the title and code of the specified area type.
-#' 
+#'
 #' @noRd
-#' 
+#'
 #' @examples
 #' \dontrun{
 #' get_area("county")

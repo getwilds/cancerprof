@@ -68,7 +68,7 @@ risk_women_health <- function(women_health, race, datatype = "direct estimates",
   } else if ((race %in% risk_races && race != "all races (includes hispanic)") && (!is.null(area))) {
     cli_abort("For races other than all races (includes hispanic), area must be NULL")
   } else if ((race == "all races (includes hispanic)" && datatype == "county level modeled estimates") &&
-    is.null(area)) {
+               is.null(area)) {
     cli_abort("For county level modeled estimates, Area must NOT be NULL")
   }
 
