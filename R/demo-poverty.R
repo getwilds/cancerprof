@@ -4,10 +4,7 @@
 #' from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype One of the following values:
-#' - `"county"`
-#' - `"hsa"` (Health Service Area)
-#' - `"state"`.
+#' @template param-areatype
 #' @param poverty One of the following values:
 #' - `"families below poverty"`
 #' - `"persistent poverty"`
@@ -21,10 +18,7 @@
 #' - `"Amer. Indian/Alaskan Native (includes Hispanic)"`
 #' - `"Asian or Pacific Islander (includes Hispanic)"`
 #' - `"Hispanic (Any Race)`.
-#' @param sex One of the following values
-#' - `"both sexes"`
-#' - `"male"`
-#' - `"female"`.
+#' @template param-sex
 #'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort

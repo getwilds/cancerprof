@@ -4,18 +4,12 @@
 #' State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype One of the following values:
-#' - `"county"`
-#' - `"hsa"` (Health Service Area)
-#' - `"state"`.
+#' @template param-areatype
 #' @param education One of the following values:
 #' - `"less than 9th grade"`
 #' - `"at least high school"`
 #' - `"at least bachelors degree"`.
-#' @param sex One of the following values:
-#' - `"both sexes"`
-#' - `"male"`
-#' - `"female"`.
+#' @template param-sex
 #' @param race One of the following values:
 #' - `"All Races (includes Hispanic)"`
 #' - `"White (includes Hispanic)"`

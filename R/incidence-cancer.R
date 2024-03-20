@@ -4,10 +4,7 @@
 #' from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype One of the following values:
-#' - `"county"`
-#' - `"hsa"` (Health Service Area)
-#' - `"state"`.
+#' @template param-areatype
 #' @param cancer One of the following values:
 #' - `"all cancer sites"`
 #' - `"bladder"`
@@ -39,10 +36,7 @@
 #' - `"American Indian / Alaska Native (non-Hispanic)"`
 #' - `"Asian / Pacific Islander (non-Hispanic)"`
 #' - `"Hispanic (Any Race)"`.
-#' @param sex One of the following values:
-#' - `"both sexes"`
-#' - `"male"`
-#' - `"female"`.
+#' @template param-sex
 #' @param age One of the following values:
 #' - `"all ages"`
 #' - `"ages <50"`
