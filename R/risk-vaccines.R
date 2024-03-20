@@ -6,10 +6,7 @@
 #' @param vaccine One of the following values:
 #' - `"percent with up to date hpv vaccination coverage, ages 13-15",`
 #' - `"percent with up to date hpv vaccination coverage, ages 13-17"`.
-#' @param sex One of the following values:
-#' - `"both sexes"`
-#' - `"male"`
-#' - `"female"`.
+#' @template param-sex
 #'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames

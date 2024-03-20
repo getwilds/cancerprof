@@ -4,10 +4,7 @@
 #' from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype One of the following values:
-#' - `"county"`
-#' - `"hsa"` (Health Service Area)
-#' - `"state"`.
+#' @template param-areatype
 #' @param language The only permissible value is
 #' `"language isolation"`.
 #'

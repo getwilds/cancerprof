@@ -4,10 +4,7 @@
 #' from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype One of the following values:
-#' - `"county"`
-#' - `"hsa"` (Health Service Area)
-#' - `"state"`.
+#' @template param-areatype
 #' @param insurance One of the following values:
 #' - `"% Insured in demographic group, all income levels"`
 #' - `"% Insured in demographic group, people at or below 138% of Poverty"`
@@ -21,10 +18,7 @@
 #' - `"% uninsured in demographic group, people at or below 250% of Poverty"`
 #' - `"% uninsured in demographic group, people at or below 400% of Poverty"`
 #' - `"% uninsured in demographic group, people between 138% - 400% of poverty"`.
-#' @param sex One of the following values:
-#' - `"both sexes"`
-#' - `"male"`
-#' - `"female"`.
+#' @template param-sex
 #' @param age If you specified `"both sexes"` for `sex`
 #' choose one of the following values:
 #' - `"under 19 years"`

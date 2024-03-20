@@ -31,10 +31,7 @@
 #' - `"American Indian / Alaska Native (non-Hispanic)"`
 #' - `"Asian / Pacific Islander (non-Hispanic)"`
 #' - `"Hispanic (Any Race)"`.
-#' @param sex One of the following values
-#' - `"both sexes"`
-#' - `"male"`
-#' - `"female"`.
+#' @template param-sex
 #' @param datatype One of the following values:
 #' - `"direct estimates"`
 #' - `"county level modeled estimates"`.
