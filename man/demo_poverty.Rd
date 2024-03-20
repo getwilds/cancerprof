@@ -35,7 +35,7 @@ demo_poverty(area, areatype, poverty, race = NULL, sex = NULL)
 \item \verb{"Hispanic (Any Race)}.
 }}
 
-\item{sex}{One of the following values
+\item{sex}{One of the following values:
 \itemize{
 \item \code{"both sexes"}
 \item \code{"male"}
