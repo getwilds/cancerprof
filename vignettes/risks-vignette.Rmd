@@ -28,14 +28,14 @@ library(cancerprof)
 
 ## Retrieving Data
 
-The Screening and Risk Factors category of cancerprof contains 6 unique functions to pull data from the demographics page of [State Cancer Profile](https://statecancerprofiles.cancer.gov/demographics/index.php).
+The Screening and Risk Factors category of cancerprof contains 6 unique functions to pull data from the Screening and Risk Factor page of [State Cancer Profile](https://statecancerprofiles.cancer.gov/risk/index.php).
 
 These functions are: `risk_alcohol()`, `risk_colorectal_screening()`, `risk_diet_exercise()`, `risk_smoking()`, `risk_vaccines()`, `risk_womens_health()`
 
 Each of these functions require various parameters that must be specified to pull data. Please refer to function documentation for more details.
 
 ### Risk Alcohol
-Risk Alcohol requires 3 arguments: alcohol, race, sex
+Risk Alcohol requires 3 arguments: `alcohol`, `race`, `sex`
 
 ```{r alcohol}
 alcohol1 <- risk_alcohol(
@@ -50,11 +50,11 @@ head(alcohol1, n = 3)
 ```
 
 ### Risk Colorectal Screening
-Risk Colorectal Screening has 4 arguments: screening, race, sex, area
+Risk Colorectal Screening has 4 arguments: `screening`, `race`, `sex`, `area`
 
-"home blood stool test in the past year, ages 45-75" and "received at least one recommended crc test, ages 45-75" for the screening arguments requires a race argument and a sex argument and defaults to "direct estimates", "US by state".
+`"home blood stool test in the past year, ages 45-75"` and `"received at least one recommended crc test, ages 45-75"` for the screening arguments requires a `race` argument and a `sex` argument and defaults to `"direct estimates"`, `"US by state"`.
 
-"ever had fobt, ages 50-75", "guidance sufficient crc, ages 50-75", "had colonoscopy in past 10 years, ages 50-75" for the screening arguments defaults to "all races", "both sexes", and "county level modeled estimates"
+`"ever had fobt, ages 50-75"`, `"guidance sufficient crc, ages 50-75"`, `"had colonoscopy in past 10 years, ages 50-75"` for the screening arguments defaults to `"all races"`, `"both sexes"`, and `"county level modeled estimates"`.
 
 ```{r colorectal screening}
 screening1 <- risk_colorectal_screening(
@@ -71,10 +71,154 @@ screening2 <- risk_colorectal_screening(
 head(screening2, n = 3)
 ```
 
+### Risk Diet-Exercise
+Risk Diet-Exercise requires 3 arguments: `diet_exercise` , `race`, `sex`
 
+```{r diet-exercise}
+diet_exercise1 <- risk_diet_exercise(
+  diet_exercise = "bmi is healthy, ages 20+",
+  race = "all races (includes hispanic)",
+  sex = "both sexes"
+)
+head(diet_exercise1, n = 3)
 
+diet_exercise2 <- risk_diet_exercise(
+  diet_exercise = "bmi is obese, high school survey",
+  race = "all races (includes hispanic)",
+  sex = "males"
+)
+head(diet_exercise2, n = 3)
+```
 
+### Risk Smoking
+Risk Smoking has arguments 5: `smoking`, `race`, `sex`, `datatype`, `area`.
 
+**For the following smoking arguments:**
 
+- `"smoking laws (any)"`
+- `"smoking laws (bars)"`
+- `"smoking laws (restaurants)"`
+- `"smoking laws (workplace)"`
+- `"smoking laws (workplace; restaurant; & bar)"`
 
+Only include the `smoking` argument.
 
+`race`, `sex`, `datatype`, `area` will be defaulted to `"all races"`, `"both sexes"`, `"direct estimates"`, `"US by State"`
+
+**For the following smoking arguments:**
+
+- "smokers (stopped for 1 day or longer)",
+- "smoking not allowed at work (all people)",
+- "smoking not allowed in home (all people)"
+
+Select a `sex` argument.
+
+If `"both sexes"` is selected for `sex`, then select a `datatype` argument.
+
+If `"county level modeled estimates"` is selected for `datatype`, then select an `area` argument.
+
+`race`, will always be defaulted to `"all races"`.
+
+`datatype` and `area` will always be defaulted to `"direct estimates"`, and `"US by State"` if sex is "male" or "female".
+
+**For the following smoking arguments:**
+
+- `"smoking not allowed at work (current smokers)"`
+- `"smoking not allowed at work (former/never smokers)"`
+- `"smoking not allowed in home (current smokers)"`
+- `"smoking not allowed in home (former/never smokers)"`
+
+Select a `sex` argument.
+
+`race`, `datatype`, `area` will be defaulted to `"all races"`, `"direct estimates"`, `"US by State"`.
+
+**For the following smoking arguments:**
+
+- `"former smoker; ages 18+"`
+- `"former smoker, quit 1 year+; ages 18+"`
+
+Select a `sex` and `area` argument.
+
+`race` and `datatype` will be defaulted to `"all races"`, `"direct estimates"`
+
+**For the following smoking arguments:**
+
+- `"smokers (ever); ages 18+"`
+- `"e-cigarette use; ages 18+"`
+
+Select a `race` and `sex` argument.
+
+`datatype` and `area` will be defaulted to `"direct estimates"` and `"US by State"`.
+
+**For "smokers (current); ages 18+"**
+
+Select a `race` and `sex` argument.
+
+If `"all races (includes hispanic)"` is selected for `race`, select a `datatype` argument.
+
+If `"county level modeled estimates"` is selected for `datatype`, then select an `area` argument.
+
+`datatype` and `area` will always be defaulted to `"direct estimates"`, and `"US by State"` if race is NOT `"all races (includes hispanic)"`.
+
+```{r smoking}
+smoking1 <- risk_smoking(
+  smoking = "smokers (stopped for 1 day or longer)",
+  sex = "both sexes",
+  datatype = "county level modeled estimates",
+  area = "wa"
+)
+head(smoking1, n = 3)
+
+smoking2 <- risk_smoking(
+  smoking = "smoking not allowed at work (current smokers)",
+  sex = "both sexes",
+  datatype = "direct estimates"
+)
+head(smoking2, n = 3)
+
+smoking3 <- risk_smoking(
+  smoking = "smokers (current); ages 18+",
+  race = "all races (includes hispanic)",
+  sex = "both sexes",
+  datatype = "county level modeled estimates",
+  area = "wa"
+)
+head(smoking3, n = 3)
+```
+
+### Risk Vaccines
+Risk Vaccines requires 2 arguments: `vaccines` and `sex`
+
+```{r vaccines}
+vaccines1 <- risk_vaccines(
+   vaccine = "percent with up to date hpv vaccination coverage, ages 13-17",
+   sex = "females"
+)
+head(vaccines1, n = 3)
+
+vaccines2 <- risk_vaccines(
+   vaccine = "percent with up to date hpv vaccination coverage, ages 13-15",
+   sex = "both sexes"
+)
+head(vaccines2, n = 3)
+```
+
+### Risk Women's Health
+Risk Women's Health has 4 arguments: `women_health`, `race`, `datatype`, `area`
+
+If `"all races (includes hispanic)"` is selected for `race`, select a `datatype` argument.
+If any other `race` is selected, then `datatype` and `area` will be defaulted to `"direct estimates"` and `"US by State"`.
+
+```{r womens health}
+vaccines1 <- risk_vaccines(
+   vaccine = "percent with up to date hpv vaccination coverage, ages 13-17",
+   sex = "females"
+)
+head(vaccines1, n = 3)
+
+vaccines2 <- risk_vaccines(
+   vaccine = "percent with up to date hpv vaccination coverage, ages 13-15",
+   sex = "both sexes"
+)
+head(vaccines2, n = 3)
+```

@@ -14,6 +14,68 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Load the package
 ```{r setup}
 library(cancerprof)
+```
+
+## Retrieving Data
+
+The Cancer Mortality category of cancerprof contains a single functions to pull data from the Mortality page of [State Cancer Profile](https://statecancerprofiles.cancer.gov/deathrates/index.php).
+
+The function for retrieving incidence data is `mortality_cancer()`
+
+## Mortality Cancer
+Mortality cancer has 22 cancer types to choose from. In total, incidence cancer has 7 arguments:
+area, areatype, cancer, race, sex, age, year
+
+### Argument Details
+- The `"latest single year (us by state)"` argument for year can only be selected if `area` is `"state"`
+
+- For the following cancer types: 
+    + "breast (female)",
+    + "ovary",
+    + "uterus (corpus & uterus, nos)"
+
+  The `sex` argument must by `"females"` 
+  
+- For `"prostate"` cancer, sex must be `"males"`
+- For `"childhood (ages <15, all sites)"`, age must be `"ages <15"`
+- For `"childhood (ages <20, all sites)"`, age must be `"ages <20"`
+
+### Examples
+
+```{r mortality}
+mortality1 <- mortality_cancer(
+  area = "wa",
+  areatype = "county",
+  cancer = "all cancer sites",
+  race = "black (non-hispanic)",
+  sex = "both sexes",
+  age = "ages 65+",
+  year = "latest 5 year average"
+)
+head(mortality1, n = 3)
+
+mortality2 <- mortality_cancer(
+  area = "usa",
+  areatype = "state",
+  cancer = "prostate",
+  race = "all races (includes hispanic)",
+  sex = "males",
+  age = "ages 50+",
+  year = "latest single year (us by state)"
+)
+head(mortality2, n = 3)
+
+mortality3 <- mortality_cancer(
+  area = "wa",
+  areatype = "hsa",
+  cancer = "ovary",
+  race = "all races (includes hispanic)",
+  sex = "females",
+  age = "ages 50+",
+  year = "latest 5 year average"
+)
+head(mortality3, n = 3)
 ```
