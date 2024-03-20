@@ -6,27 +6,28 @@
 #' @param area A state/territory abbreviation or USA.
 #' @template param-areatype
 #' @param cancer One of the following values:
-#' `"all cancer sites"`
-#' `"bladder", "brain & ons"`
-#' `"breast (female)"`
-#' `"cervix"`
-#' `"childhood (ages <15, all sites)"`
-#' `"childhood (ages <20, all sites)"`
-#' `"colon & rectum"`
-#' `"esophagus"`
-#' `"kidney & renal pelvis"`
-#' `"leukemia"`
-#' `"liver & bile duct"`
-#' `"lung & bronchus"`
-#' `"melanoma of the skin"`
-#' `"non-hodgkin lymphoma"`
-#' `"oral cavity & pharynx"`
-#' `"ovary"`
-#' `"pancreas"`
-#' `"prostate"`
-#' `"stomach"`
-#' `"thyroid"`
-#' `"uterus (corpus & uterus, nos)"`
+#' - `"all cancer sites"`
+#' - `"bladder"`
+#' - `"brain & ons"`
+#' - `"breast (female)"`
+#' - `"cervix"`
+#' - `"childhood (ages <15, all sites)"`
+#' - `"childhood (ages <20, all sites)"`
+#' - `"colon & rectum"`
+#' - `"esophagus"`
+#' - `"kidney & renal pelvis"`
+#' - `"leukemia"`
+#' - `"liver & bile duct"`
+#' - `"lung & bronchus"`
+#' - `"melanoma of the skin"`
+#' - `"non-hodgkin lymphoma"`
+#' - `"oral cavity & pharynx"`
+#' - `"ovary"`
+#' - `"pancreas"`
+#' - `"prostate"`
+#' - `"stomach"`
+#' - `"thyroid"`
+#' - `"uterus (corpus & uterus, nos)"`
 #' @param race One of the following values:
 #' - `"All Races (includes Hispanic)"`
 #' - `"White (non-Hispanic)"`

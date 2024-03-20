@@ -17,27 +17,30 @@ mortality_cancer(area, areatype, cancer, race, sex, age, year)
 }}
 
 \item{cancer}{One of the following values:
-\code{"all cancer sites"}
-\verb{"bladder", "brain & ons"}
-\code{"breast (female)"}
-\code{"cervix"}
-\code{"childhood (ages <15, all sites)"}
-\code{"childhood (ages <20, all sites)"}
-\code{"colon & rectum"}
-\code{"esophagus"}
-\code{"kidney & renal pelvis"}
-\code{"leukemia"}
-\code{"liver & bile duct"}
-\code{"lung & bronchus"}
-\code{"melanoma of the skin"}
-\code{"non-hodgkin lymphoma"}
-\code{"oral cavity & pharynx"}
-\code{"ovary"}
-\code{"pancreas"}
-\code{"prostate"}
-\code{"stomach"}
-\code{"thyroid"}
-\code{"uterus (corpus & uterus, nos)"}}
+\itemize{
+\item \code{"all cancer sites"}
+\item \code{"bladder"}
+\item \code{"brain & ons"}
+\item \code{"breast (female)"}
+\item \code{"cervix"}
+\item \code{"childhood (ages <15, all sites)"}
+\item \code{"childhood (ages <20, all sites)"}
+\item \code{"colon & rectum"}
+\item \code{"esophagus"}
+\item \code{"kidney & renal pelvis"}
+\item \code{"leukemia"}
+\item \code{"liver & bile duct"}
+\item \code{"lung & bronchus"}
+\item \code{"melanoma of the skin"}
+\item \code{"non-hodgkin lymphoma"}
+\item \code{"oral cavity & pharynx"}
+\item \code{"ovary"}
+\item \code{"pancreas"}
+\item \code{"prostate"}
+\item \code{"stomach"}
+\item \code{"thyroid"}
+\item \code{"uterus (corpus & uterus, nos)"}
+}}
 
 \item{race}{One of the following values:
 \itemize{
