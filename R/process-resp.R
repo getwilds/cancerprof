@@ -21,7 +21,7 @@
 #'
 #' @examples
 #' process_resp(resp, "demographics")
-#' 
+#'
 process_resp <- function(resp, topic) {
   if (httr2::resp_content_type(resp) != "text/csv") {
     cli_abort("Invalid input, please check documentation for valid arguments.")

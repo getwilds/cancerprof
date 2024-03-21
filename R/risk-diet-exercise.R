@@ -19,7 +19,7 @@
 #' - `"Asian / Pacific Islander (non-Hispanic)"`
 #' - `"Hispanic (Any Race)"`.
 #' @template param-sex
-#' 
+#'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
 #' @importFrom dplyr mutate across
