@@ -7,13 +7,22 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
-
-
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
 ## Load the package
-
-```r
+```{r setup}
 library(cancerprof)
 ```
 
@@ -28,8 +37,7 @@ Each of these functions require various parameters that must be specified to pul
 ### Risk Alcohol
 Risk Alcohol requires 3 arguments: `alcohol`, `race`, `sex`
 
-
-```r
+```{r alcohol}
 alcohol1 <- risk_alcohol(
   alcohol = paste(
     "binge drinking (4+ drinks on one occasion for women,",
@@ -39,10 +47,6 @@ alcohol1 <- risk_alcohol(
   sex = "both sexes"
 )
 head(alcohol1, n = 3)
-#>                  State  FIPS Percent Lower_95%_CI Upper_95%_CI Number_of_Respondents
-#> 1 District of Columbia 11001    26.2         23.9         28.4                   566
-#> 2         North Dakota 38000    22.8         21.1         24.5                   676
-#> 3                 Iowa 19000    21.9         20.7         23.1                  1515
 ```
 
 ### Risk Colorectal Screening
@@ -52,45 +56,31 @@ Risk Colorectal Screening has 4 arguments: `screening`, `race`, `sex`, `area`
 
 `"ever had fobt, ages 50-75"`, `"guidance sufficient crc, ages 50-75"`, `"had colonoscopy in past 10 years, ages 50-75"` for the screening arguments defaults to `"all races"`, `"both sexes"`, and `"county level modeled estimates"`.
 
-
-```r
+```{r colorectal screening}
 screening1 <- risk_colorectal_screening(
   screening = "home blood stool test in the past year, ages 45-75",
   race = "all races (includes hispanic)",
   sex = "both sexes"
 )
 head(screening1, n = 3)
-#>         State  FIPS Percent Lower_95%_CI Upper_95%_CI Number_of_Respondents
-#> 1     Wyoming 56000     3.0          2.2          3.7                    75
-#> 2 Mississippi 28000     3.4          2.3          4.5                    64
-#> 3    Delaware 10000     3.8          3.0          4.7                   106
 
 screening2 <- risk_colorectal_screening(
   screening = "ever had fobt, ages 50-75",
   area = "usa"
 )
 head(screening2, n = 3)
-#>               County  FIPS Model_Based_Percent (95%_Confidence_Interval) Lower_95%_CI Upper_95%_CI
-#> 1 New Hanover County 37129                                           0.2            0          1.2
-#> 2    Columbus County 37047                                           0.3            0          1.5
-#> 3       Dixon County 31051                                           0.3            0          1.5
 ```
 
 ### Risk Diet-Exercise
 Risk Diet-Exercise requires 3 arguments: `diet_exercise` , `race`, `sex`
 
-
-```r
+```{r diet-exercise}
 diet_exercise1 <- risk_diet_exercise(
   diet_exercise = "bmi is healthy, ages 20+",
   race = "all races (includes hispanic)",
   sex = "both sexes"
 )
 head(diet_exercise1, n = 3)
-#>           State  FIPS Percent Lower_95%_CI Upper_95%_CI Number_of_Respondents
-#> 1 West Virginia 54000    22.5         21.0         24.0                  1061
-#> 2   Mississippi 28000    24.8         23.0         26.6                   906
-#> 3      Oklahoma 40000    25.1         23.6         26.5                  1304
 
 diet_exercise2 <- risk_diet_exercise(
   diet_exercise = "bmi is obese, high school survey",
@@ -98,10 +88,6 @@ diet_exercise2 <- risk_diet_exercise(
   sex = "males"
 )
 head(diet_exercise2, n = 3)
-#>           State  FIPS Percent Lower_95%_CI Upper_95%_CI
-#> 1 West Virginia 54000    29.5         20.6         40.2
-#> 2   Mississippi 28000    28.0         25.2         30.9
-#> 3         Texas 48000    25.7         22.4         29.3
 ```
 
 ### Risk Smoking
@@ -174,8 +160,7 @@ If `"county level modeled estimates"` is selected for `datatype`, then select an
 
 `datatype` and `area` will always be defaulted to `"direct estimates"`, and `"US by State"` if race is NOT `"all races (includes hispanic)"`.
 
-
-```r
+```{r smoking}
 smoking1 <- risk_smoking(
   smoking = "smokers (stopped for 1 day or longer)",
   sex = "both sexes",
@@ -183,10 +168,6 @@ smoking1 <- risk_smoking(
   area = "wa"
 )
 head(smoking1, n = 3)
-#>            County  FIPS Percent Lower_95%_CI Upper_95%_CI
-#> 1    Grant County 53025    40.8         28.2         53.8
-#> 2 Kittitas County 53037    41.4         29.0         54.3
-#> 3 Thurston County 53067    41.7         29.2         54.3
 
 smoking2 <- risk_smoking(
   smoking = "smoking not allowed at work (current smokers)",
@@ -194,10 +175,6 @@ smoking2 <- risk_smoking(
   datatype = "direct estimates"
 )
 head(smoking2, n = 3)
-#>     State  FIPS Percent Lower_95%_CI Upper_95%_CI Number_of_Respondents
-#> 1  Nevada 32000    55.2         43.9         65.9                    55
-#> 2 Wyoming 56000    57.9         47.1         68.0                    69
-#> 3    Utah 49000    61.2         47.5         73.3                    39
 
 smoking3 <- risk_smoking(
   smoking = "smokers (current); ages 18+",
@@ -207,36 +184,23 @@ smoking3 <- risk_smoking(
   area = "wa"
 )
 head(smoking3, n = 3)
-#>           County  FIPS Percent Lower_95%_CI Upper_95%_CI
-#> 1   Mason County 53045    17.9         13.6         22.8
-#> 2 Cowlitz County 53015    17.8         13.9         22.2
-#> 3 Stevens County 53065    17.1         12.9         21.8
 ```
 
 ### Risk Vaccines
 Risk Vaccines requires 2 arguments: `vaccines` and `sex`
 
-
-```r
+```{r vaccines}
 vaccines1 <- risk_vaccines(
    vaccine = "percent with up to date hpv vaccination coverage, ages 13-17",
    sex = "females"
 )
 head(vaccines1, n = 3)
-#>         State  FIPS Percent Lower_95%_CI Upper_95%_CI Number_of_Respondents
-#> 1 Mississippi 28000    32.6         23.9         42.6                    48
-#> 2     Wyoming 56000    48.7         38.2         59.3                    70
-#> 3    Kentucky 21000    48.9         37.2         60.7                    59
 
 vaccines2 <- risk_vaccines(
    vaccine = "percent with up to date hpv vaccination coverage, ages 13-15",
    sex = "both sexes"
 )
 head(vaccines2, n = 3)
-#>         State  FIPS Percent Lower_95%_CI Upper_95%_CI Number_of_Respondents
-#> 1 Mississippi 28000    35.9         27.7         45.0                    59
-#> 2     Wyoming 56000    44.0         34.9         53.5                    79
-#> 3       Texas 48000    46.4         39.6         53.3                   318
 ```
 
 ### Risk Women's Health
@@ -245,25 +209,16 @@ Risk Women's Health has 4 arguments: `women_health`, `race`, `datatype`, `area`
 If `"all races (includes hispanic)"` is selected for `race`, select a `datatype` argument.
 If any other `race` is selected, then `datatype` and `area` will be defaulted to `"direct estimates"` and `"US by State"`.
 
-
-```r
+```{r womens health}
 vaccines1 <- risk_vaccines(
    vaccine = "percent with up to date hpv vaccination coverage, ages 13-17",
    sex = "females"
 )
 head(vaccines1, n = 3)
-#>         State  FIPS Percent Lower_95%_CI Upper_95%_CI Number_of_Respondents
-#> 1 Mississippi 28000    32.6         23.9         42.6                    48
-#> 2     Wyoming 56000    48.7         38.2         59.3                    70
-#> 3    Kentucky 21000    48.9         37.2         60.7                    59
 
 vaccines2 <- risk_vaccines(
    vaccine = "percent with up to date hpv vaccination coverage, ages 13-15",
    sex = "both sexes"
 )
 head(vaccines2, n = 3)
-#>         State  FIPS Percent Lower_95%_CI Upper_95%_CI Number_of_Respondents
-#> 1 Mississippi 28000    35.9         27.7         45.0                    59
-#> 2     Wyoming 56000    44.0         34.9         53.5                    79
-#> 3       Texas 48000    46.4         39.6         53.3                   318
 ```
