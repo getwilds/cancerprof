@@ -7,15 +7,11 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
+
 
 ## Load the package
-```{r setup}
+
+```r
 library(cancerprof)
 ```
 
@@ -45,7 +41,8 @@ area, areatype, cancer, race, sex, age, year
 
 ### Examples
 
-```{r mortality}
+
+```r
 mortality1 <- mortality_cancer(
   area = "wa",
   areatype = "county",
@@ -56,6 +53,14 @@ mortality1 <- mortality_cancer(
   year = "latest 5 year average"
 )
 head(mortality1, n = 3)
+#>            County  FIPS Met Healthy People Objective of ***? Age_Adjusted_Death_Rate Lower_95%_CI_Rate Upper_95%_CI_Rate CI_Rank Lower_CI_Rank
+#> 1   Yakima County 53077                                   No                  1676.3             947.3            2727.3       1             1
+#> 2 Thurston County 53067                                   No                  1187.5             791.2            1704.8       2             1
+#> 3   Pierce County 53053                                   No                  1099.3             971.9            1238.8       3             1
+#>   Upper_CI_Rank Annual_Average_Count Recent_Trend Recent_5_Year_Trend Lower_95%_CI_Trend Upper_95%_CI_Trend
+#> 1             5                    3         <NA>                  NA                 NA                 NA
+#> 2             7                    7         <NA>                  NA                 NA                 NA
+#> 3             5                   59      falling                -0.9               -1.7               -0.1
 
 mortality2 <- mortality_cancer(
   area = "usa",
@@ -67,6 +72,14 @@ mortality2 <- mortality_cancer(
   year = "latest single year (us by state)"
 )
 head(mortality2, n = 3)
+#>                  State  FIPS Met Healthy People Objective of ***? Age_Adjusted_Death_Rate Lower_95%_CI_Rate Upper_95%_CI_Rate CI_Rank
+#> 1 District of Columbia 11001                                   No                    98.9              77.6             124.1       1
+#> 2             Colorado 08000                                   No                    86.1              79.3              93.3       2
+#> 3              Vermont 50000                                   No                    84.4              67.8             103.9       3
+#>   Lower_CI_Rank Upper_CI_Rank Annual_Average_Count Recent_Trend Recent_5_Year_Trend Lower_95%_CI_Trend Upper_95%_CI_Trend
+#> 1             1            35                   76      falling                -3.3               -3.9               -2.8
+#> 2             1             9                  623       stable                -0.1               -1.0                0.9
+#> 3             1            46                   93       stable                 4.7               -3.8               13.9
 
 mortality3 <- mortality_cancer(
   area = "wa",
@@ -78,4 +91,12 @@ mortality3 <- mortality_cancer(
   year = "latest 5 year average"
 )
 head(mortality3, n = 3)
+#>           Health_Service_Area HSA_Code Met Healthy People Objective of ***? Age_Adjusted_Death_Rate Lower_95%_CI_Rate Upper_95%_CI_Rate
+#> 1 Clallam, WA - Jefferson, WA     0785                                  ***                    34.6              26.3              44.8
+#> 2                 Whatcom, WA     0815                                  ***                    31.4              24.2              40.0
+#> 3                  Pierce, WA     0794                                  ***                    24.6              21.1              28.6
+#>   CI_Rank Lower_CI_Rank Upper_CI_Rank Annual_Average_Count Recent_Trend Recent_5_Year_Trend Lower_95%_CI_Trend Upper_95%_CI_Trend
+#> 1       1             1             4                   12       stable                -1.0               -2.4                0.3
+#> 2       2             1             6                   14       stable                -0.7               -2.1                0.7
+#> 3       3             2             9                   36      falling                -1.4               -2.0               -0.9
 ```

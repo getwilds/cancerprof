@@ -24,7 +24,7 @@ These functions are: `demo_crowding()`, `demo_education()`, `demo_food()`, `demo
 Each of these functions require various parameters that must be specified to pull data. Please refer to function documentation for more details.
 
 ### Demo Crowding
-Demo crowding **Always** requires 4 arguments: area, areatype, crowding, and race
+Demo crowding **Always** requires 4 arguments: `area`, `areatype`, `crowding`, and `race`
 
 
 ```r
@@ -42,7 +42,7 @@ head(crowding, n = 3)
 ```
 
 ### Demo Education
-Demo education has 5 arguments: area, areatype, education, sex, race.
+Demo education has 5 arguments: `area`, `areatype`, `education`, `sex`, `race`.
 
 **Depending on the education argument, the required arguments will change**
 
@@ -90,7 +90,7 @@ head(education3, n = 3)
 ```
 
 ### Demo Food
-Demo food has 4 arguments: area, areatype, food, race.
+Demo food has 4 arguments: `area`, `areatype`, `food`, `race`.
 
 
 ```r
@@ -121,7 +121,7 @@ head(food2, n = 3)
 ```
 
 ### Demo Income
-Demo income **Always** requires 4 arguments: area, areatype, income, race.
+Demo income **Always** requires 4 arguments: `area`, `areatype`, `income`, `race`.
 
 
 ```r
@@ -157,10 +157,10 @@ head(income2, n = 3)
 ### Demo Insurance
 Demo insurance has 6 arguments: area, areatype, insurance, sex, age, race.
 
-**Please note that the age arguments for "both sexes" is different than "Males and "Females"**
+**Please note that the age arguments for `"both sexes"` is different than "Males and "Females"**
 Check function documentations for more details
 
-Only Areatype "State" can select Race, otherwise race should always be "all races (includes hispanic)
+Only Areatype `"state"` can select Race, otherwise race should always be `"all races (includes hispanic)"`
 
 
 ```r
@@ -195,7 +195,7 @@ head(insurance2, n = 3)
 ```
 
 ### Demo Mobility
-Demo mobility **Always** requires 3 arguments: area, areatype, mobility. The function defaults to "all races", "both sexes", "ages 1+"
+Demo mobility **Always** requires 3 arguments: `area`, `areatype`, `mobility`. The function defaults to `"all races"`, `"both sexes"`, `"ages 1+"`
 
 
 ```r
@@ -226,7 +226,7 @@ head(mobility2, n = 3)
 ```
 
 ### Demo Language
-Demo Language **Always** requires 3 arguments: area, areatype, language. The function defaults to "all races", "both sexes", "ages 14+"
+Demo Language **Always** requires 3 arguments: `area`, `areatype`, `language`. The function defaults to `"all races"`, `"both sexes"`, `"ages 14+"`
 
 
 ```r
@@ -257,9 +257,9 @@ head(non_english2, n = 3)
 ```
 
 ### Demo Population
-Demo Population has 5 arguments: area, areatype, population, race, sex. The population argument is used to input a population variable such as age, race, or sex. Please note that this different from the race and sex arguments and different population variables will default race, sex, and age.
+Demo Population has 5 arguments: `area`, `areatype`, `population`, `race`, `sex`. The population argument is used to input a population variable such as age, race, or sex. Please note that this different from the race and sex arguments and different population variables will default race, sex, and age.
 
-*If you select "foreign born" for population, you must provide another race for the race argument*
+*If you select `"foreign born"` for population, you must provide another race for the race argument*
 
 
 ```r
@@ -308,13 +308,13 @@ head(population3, n = 3)
 ```
 
 ### Demo Poverty
-Demo poverty has 5 arguments: area, areatype, poverty, race, sex. The function defaults to "all ages"
+Demo poverty has 5 arguments: `area`, `areatype`, `poverty`, `race`, `sex.` The function defaults to `"all ages"`
 
-The "persistent poverty" and "persons <150% of poverty" poverty argument will default to "all races", "both sexes", "all ages". 
+The `"persistent poverty"` and `"persons <150% of poverty"` poverty argument will default to `"all races"`, `"both sexes"`, `"all ages"`. 
 
-The "families below poverty" poverty argument will require a race argument and default to "both sexes" and "all ages". 
+The `"families below poverty"` poverty argument will require a race argument and default to `"both sexes"` and `"all ages"`. 
 
-The "persons below poverty" poverty argument will require a race argument and a sex argument, and default to "all ages".
+The `"persons below poverty"` poverty argument will require a race argument and a sex argument, and default to `"all ages"`.
 
 
 ```r
@@ -362,9 +362,9 @@ head(poverty3, n = 3)
 ```
 
 ### Demo Social Vulnerability Index (SVI)
-Demo svi **Always** requires 2 arguments: area, svi. The function defaults to "all races", "both sexes", "all ages."
+Demo svi **Always** requires 2 arguments: `area`, `svi`. The function defaults to `"all races"`, `"both sexes"`, `"all ages"`.
 
-*Please note that the areatype argument is not available for this function because areatype is limited to "county"*
+*Please note that the areatype argument is not available for this function because areatype is limited to `"county"`*
 
 
 ```r
@@ -393,7 +393,7 @@ head(svi2, n = 3)
 ```
 
 ### Workforce
-Demo svi **Always** requires 5 arguments: area, areatype, workforce, race, sex. The function defaults to "ages 16+"
+Demo svi **Always** requires 5 arguments: `area`, `areatype`, `workforce`, `race`, `sex`. The function defaults to "ages 16+"
 
 
 ```r
