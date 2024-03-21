@@ -7,13 +7,108 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+
+
+## Load the package
+
+```r
+library(cancerprof)
 ```
 
-```{r setup}
-library(cancerprof)
+## Retrieving Data
+
+The Cancer Incidence category of cancerprof contains a single functions to pull data from the Incidence page of [State Cancer Profile](https://statecancerprofiles.cancer.gov/incidencerates/index.php).
+
+The function for retrieving incidence data is `incidence_cancer()`
+
+## Incidence Cancer
+Incidence cancer has 23 cancer types to choose from. In total, incidence cancer has 8 arguments:
+area, areatype, cancer, race, sex, age, stage, year
+
+### Argument Details
+- The `"latest single year (us by state)"` argument for year can only be selected if `area` is `"state"`
+
+- For the following cancer types: 
+    + "breast (female in situ)",
+    + "childhood (ages <15, all sites)",
+    + "childhood (ages <20, all sites)",
+    + "leukemia"
+
+  The `stage` argument must by `"all stages"` 
+
+- For the following cancer types: 
+    + "breast (female)",
+    + "breast (female in situ)",
+    + "ovary",
+    + "uterus (corpus & uterus, nos)"
+
+  The `sex` argument must by `"females"` 
+  
+- For `"prostate"` cancer, sex must be `"males"`
+- For `"childhood (ages <15, all sites)"`, age must be `"ages <15"`
+- For `"childhood (ages <20, all sites)"`, age must be `"ages <20"`
+
+### Examples
+
+
+```r
+incidence1 <- incidence_cancer(
+  area = "usa",
+  areatype = "state",
+  cancer = "lung & bronchus",
+  race = "all races (includes hispanic)",
+  sex = "males",
+  age = "ages 50+",
+  stage = "late stage (regional & distant)",
+  year = "latest single year (us by state)"
+)
+head(incidence1, n = 3)
+#>               State  FIPS Age_Adjusted_Incidence_Rate Lower_95%_CI Upper_95%_CI CI_Rank Lower_CI_Rank Upper_CI_Rank Annual_Average_Count
+#> 1 US (SEER+NPCR)(1) 00000                       122.7        121.8        123.7      NA            NA            NA                65692
+#> 2       Kentucky(3) 21000                       216.2        205.7        227.2       1             1             1                 1660
+#> 3    Mississippi(2) 28000                       178.0        166.0        190.6       2             2             7                  868
+#>   Percentage_of_Cases_with_Late_Stage
+#> 1                                67.0
+#> 2                                70.3
+#> 3                                68.3
+
+incidence2 <- incidence_cancer(
+  area = "wa",
+  areatype = "hsa",
+  cancer = "ovary",
+  race = "all races (includes hispanic)",
+  sex = "females",
+  age = "ages 50+",
+  stage = "late stage (regional & distant)",
+  year = "latest 5 year average"
+)
+head(incidence2, n = 3)
+#>          Health_Service_Area HSA_Code Age_Adjusted_Incidence_Rate Lower_95%_CI Upper_95%_CI CI_Rank Lower_CI_Rank Upper_CI_Rank
+#> 1              Washington(5)    53000                        20.5         19.4         21.6      NA             4            29
+#> 2          US (SEER+NPCR)(1)    00000                        19.7         19.6         19.9      NA            NA            NA
+#> 3 Lewis, WA - Pacific, WA(6)     0832                        28.4         19.2         40.5       1             1             9
+#>   Annual_Average_Count Percentage_of_Cases_with_Late_Stage
+#> 1                  278                                76.0
+#> 2                11948                                73.5
+#> 3                    7                                76.7
+
+incidence3 <- incidence_cancer(
+  area = "wa",
+  areatype = "county",
+  cancer = "all cancer sites",
+  race = "black (non-hispanic)",
+  sex = "both sexes",
+  age = "ages 65+",
+  stage = "all stages",
+  year = "latest 5 year average"
+)
+head(incidence3, n = 3)
+#>               County  FIPS Age_Adjusted_Incidence_Rate Lower_95%_CI Upper_95%_CI CI_Rank Lower_CI_Rank Upper_CI_Rank Annual_Average_Count
+#> 1      Washington(5) 53000                      1926.6       1847.1       2008.6      NA             5            32                  493
+#> 2  US (SEER+NPCR)(1) 00000                      1898.1       1892.4       1903.8      NA            NA            NA                89582
+#> 3 Thurston County(7) 53067                      2720.3       2140.8       3408.4       2             1             8                   18
+#>   Recent_Trend Recent_5_Year_Trend Trend_Lower_95%_CI Trend_Upper_95%_CI
+#> 1      falling                -1.7               -2.4               -0.9
+#> 2      falling                -0.5               -0.8               -0.2
+#> 3         <NA>                  NA                 NA                 NA
 ```

@@ -4,10 +4,7 @@
 #' Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype One of the following values:
-#' - `"county"`
-#' - `"hsa"` (Health Service Area)
-#' - `"state"`.
+#' @template param-areatype
 #' @param crowding The only permissible value is
 #' `"household with >1 person per room"`.
 #' @param race
@@ -26,7 +23,7 @@
 #'
 #' @returns A data frame with the following columns: Area, Area Code,
 #' Percent, Households, Rank.
-#' 
+#'
 #' @family demographics
 #'
 #' @export
@@ -55,7 +52,6 @@
 #' )
 #' }
 demo_crowding <- function(area, areatype, crowding, race) {
-  
   req <- create_request("demographics")
 
   resp <- req %>%
@@ -74,13 +70,9 @@ demo_crowding <- function(area, areatype, crowding, race) {
 
   resp <- process_resp(resp, "demographics")
 
-  area_type <- get_area(areatype)[1]
-  area_code <- get_area(areatype)[2]
-
   resp %>%
     setNames(c(
-      area_type,
-      area_code,
+      get_area(areatype),
       "Percent",
       "Households",
       "Rank"

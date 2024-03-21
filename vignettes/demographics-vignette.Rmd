@@ -7,15 +7,11 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
+
 
 ## Load the package
-```{r setup}
+
+```r
 library(cancerprof)
 ```
 
@@ -28,9 +24,10 @@ These functions are: `demo_crowding()`, `demo_education()`, `demo_food()`, `demo
 Each of these functions require various parameters that must be specified to pull data. Please refer to function documentation for more details.
 
 ### Demo Crowding
-Demo crowding **Always** requires 4 arguments: area, areatype, crowding, and race
+Demo crowding **Always** requires 4 arguments: `area`, `areatype`, `crowding`, and `race`
 
-```{r crowding}
+
+```r
 crowding <- demo_crowding(
   area = "WA",
   areatype = "county",
@@ -38,13 +35,18 @@ crowding <- demo_crowding(
   race = "All Races (includes Hispanic)"
 )
 head(crowding, n = 3)
+#>             County  FIPS Percent Households         Rank
+#> 1  Columbia County 53013     1.4         25 2111 of 3143
+#> 2 Jefferson County 53031     1.4        211 2095 of 3143
+#> 3   Whitman County 53075     1.4        246 2090 of 3143
 ```
 
 ### Demo Education
-Demo education has 5 arguments: area, areatype, education, sex, race.
+Demo education has 5 arguments: `area`, `areatype`, `education`, `sex`, `race`.
 
 **Depending on the education argument, the required arguments will change**
-```{r education}
+
+```r
 # at least high school - requires arguments: area, areatype, education, sex
 education1 <- demo_education(
   area = "wa",
@@ -54,6 +56,10 @@ education1 <- demo_education(
 )
 
 head(education1, n = 3)
+#>           County  FIPS Percent Households         Rank
+#> 1 Whitman County 53075    95.5      11789 3037 of 3143
+#> 2  Kitsap County 53035    95.1      91509 3012 of 3143
+#> 3  Island County 53029    95.0      29073 2995 of 3143
 
 # at least bachelors degree - requires arguments:
 # area, areatype, education, sex, race
@@ -66,6 +72,10 @@ education2 <- demo_education(
 )
 
 head(education2, n = 3)
+#>           State  FIPS Percent Households     Rank
+#> 1 West Virginia 54000    21.8     278281 52 of 52
+#> 2   Mississippi 28000    23.2     458928 51 of 52
+#> 3      Arkansas 05000    24.3     491269 50 of 52
 
 # less than 9th grade - requires arguments: area, areatype, education
 education3 <- demo_education(
@@ -75,12 +85,15 @@ education3 <- demo_education(
 )
 
 head(education3, n = 3)
+#>   Health_Service_Area HSA_Code Percent Households       Rank
+#> 1         Puerto Rico     0995    14.1     337405 935 of 950
 ```
 
 ### Demo Food
-Demo food has 4 arguments: area, areatype, food, race.
+Demo food has 4 arguments: `area`, `areatype`, `food`, `race`.
 
-```{r food}
+
+```r
 # limited access to healthy food - requires arguments: area, areatype, food
 food1 <- demo_food(
   area = "usa",
@@ -89,6 +102,10 @@ food1 <- demo_food(
 )
 
 head(food1, n = 3)
+#>         State  FIPS Percent People
+#> 1  New Mexico 35000      13 268515
+#> 2   Louisiana 22000      11 483383
+#> 3 Mississippi 28000      11 337505
 
 # food insecurity - requires arguments: area, areatype, food, race
 food2 <- demo_food(
@@ -99,12 +116,15 @@ food2 <- demo_food(
 )
 
 head(food2, n = 3)
+#>        County  FIPS Percent
+#> 1 Puerto Rico 72001      NA
 ```
 
 ### Demo Income
-Demo income **Always** requires 4 arguments: area, areatype, income, race.
+Demo income **Always** requires 4 arguments: `area`, `areatype`, `income`, `race`.
 
-```{r income}
+
+```r
 # limited access to healthy food - requires arguments: area, areatype, food
 income1 <- demo_income(
   area = "wa",
@@ -114,6 +134,10 @@ income1 <- demo_income(
 )
 
 head(income1, n = 3)
+#>            County  FIPS Dollars         Rank
+#> 1  Whitman County 53075   43613 2700 of 3142
+#> 2    Ferry County 53019   45907 2529 of 3142
+#> 3 Garfield County 53023   50625 2168 of 3142
 
 # food insecurity - requires arguments: area, areatype, food, race
 income2 <- demo_income(
@@ -124,17 +148,22 @@ income2 <- demo_income(
 )
 
 head(income2, n = 3)
+#>         State  FIPS Dollars     Rank
+#> 1 Puerto Rico 72001   26745 52 of 52
+#> 2 Mississippi 28000   62802 51 of 52
+#> 3    Arkansas 05000   65673 50 of 52
 ```
 
 ### Demo Insurance
 Demo insurance has 6 arguments: area, areatype, insurance, sex, age, race.
 
-**Please note that the age arguments for "both sexes" is different than "Males and "Females"**
+**Please note that the age arguments for `"both sexes"` is different than "Males and "Females"**
 Check function documentations for more details
 
-Only Areatype "State" can select Race, otherwise race should always be "all races (includes hispanic)
+Only Areatype `"state"` can select Race, otherwise race should always be `"all races (includes hispanic)"`
 
-```{r insurance}
+
+```r
 insurance1 <- demo_insurance(
   area = "usa",
   areatype = "state",
@@ -145,6 +174,10 @@ insurance1 <- demo_insurance(
 )
 
 head(insurance1, n = 3)
+#>         State  FIPS Percent  People     Rank
+#> 1    Oklahoma 40000    84.6 1256749 51 of 51
+#> 2 Mississippi 28000    85.2  809125 50 of 51
+#> 3     Wyoming 56000    85.4  238655 49 of 51
 
 insurance2 <- demo_insurance(
   area = "wa",
@@ -155,12 +188,17 @@ insurance2 <- demo_insurance(
 )
 
 head(insurance2, n = 3)
+#>          County  FIPS Percent People         Rank
+#> 1  Adams County 53001    73.8   4073 2890 of 3141
+#> 2 Yakima County 53077    77.2  54771 2679 of 3141
+#> 3  Grant County 53025    79.4  23081 2464 of 3141
 ```
 
 ### Demo Mobility
-Demo mobility **Always** requires 3 arguments: area, areatype, mobility. The function defaults to "all races", "both sexes", "ages 1+"
+Demo mobility **Always** requires 3 arguments: `area`, `areatype`, `mobility`. The function defaults to `"all races"`, `"both sexes"`, `"ages 1+"`
 
-```{r mobility}
+
+```r
 mobility1 <- demo_mobility(
   area = "usa",
   areatype = "state",
@@ -168,6 +206,10 @@ mobility1 <- demo_mobility(
 )
 
 head(mobility1, n = 3)
+#>                  State  FIPS Percent People     Rank
+#> 1               Nevada 32000    10.6 321900 51 of 51
+#> 2              Arizona 04000    10.2 716304 50 of 51
+#> 3 District of Columbia 11001    10.2  68557 49 of 51
 
 
 mobility2 <- demo_mobility(
@@ -177,12 +219,17 @@ mobility2 <- demo_mobility(
 )
 
 head(mobility2, n = 3)
+#>                County  FIPS Percent People         Rank
+#> 1     Kittitas County 53037    12.7   5563 3114 of 3142
+#> 2      Whitman County 53075    10.9   5224 3093 of 3142
+#> 3 Grays Harbor County 53027     5.8   4314 2619 of 3142
 ```
 
 ### Demo Language
-Demo Language **Always** requires 3 arguments: area, areatype, language. The function defaults to "all races", "both sexes", "ages 14+"
+Demo Language **Always** requires 3 arguments: `area`, `areatype`, `language`. The function defaults to `"all races"`, `"both sexes"`, `"ages 14+"`
 
-```{r Language}
+
+```r
 non_english1 <- demo_language(
   area = "wa",
   areatype = "county",
@@ -190,6 +237,10 @@ non_english1 <- demo_language(
 )
 
 head(non_english1, n = 3)
+#>            County  FIPS Percent Households         Rank
+#> 1    Adams County 53001    18.9       1165 3127 of 3142
+#> 2 Franklin County 53021    11.0       3044 3087 of 3142
+#> 3    Grant County 53025     8.6       2810 3044 of 3142
 
 
 non_english2 <- demo_language(
@@ -199,14 +250,19 @@ non_english2 <- demo_language(
 )
 
 head(non_english2, n = 3)
+#>        State  FIPS Percent Households     Rank
+#> 1 California 06000     8.5    1119486 51 of 51
+#> 2   New York 36000     7.6     571749 50 of 51
+#> 3      Texas 48000     7.1     731111 49 of 51
 ```
 
 ### Demo Population
-Demo Population has 5 arguments: area, areatype, population, race, sex. The population argument is used to input a population variable such as age, race, or sex. Please note that this different from the race and sex arguments and different population variables will default race, sex, and age.
+Demo Population has 5 arguments: `area`, `areatype`, `population`, `race`, `sex`. The population argument is used to input a population variable such as age, race, or sex. Please note that this different from the race and sex arguments and different population variables will default race, sex, and age.
 
-*If you select "foreign born" for population, you must provide another race for the race argument*
+*If you select `"foreign born"` for population, you must provide another race for the race argument*
 
-```{r population}
+
+```r
 #
 population1 <- demo_population(
   area = "wa",
@@ -217,6 +273,10 @@ population1 <- demo_population(
 )
 
 head(population1, n = 3)
+#>                County  FIPS Percent People         Rank
+#> 1     Columbia County 53013       0      0 1666 of 2885
+#> 2 Grays Harbor County 53027       0      0 1666 of 2885
+#> 3    Jefferson County 53031       0      0 1666 of 2885
 
 
 population2 <- demo_population(
@@ -227,6 +287,10 @@ population2 <- demo_population(
 )
 
 head(population2, n = 3)
+#>          County  FIPS Percent People         Rank
+#> 1 Lassen County 06035    64.8  21361 3134 of 3143
+#> 2  Kings County 06031    55.2  83872 3015 of 3143
+#> 3   Mono County 06051    54.8   7284 2987 of 3143
 
 population3 <- demo_population(
   area = "usa",
@@ -237,18 +301,23 @@ population3 <- demo_population(
 )
 
 head(population3, n = 3)
+#>                  State  FIPS Percent People     Rank
+#> 1          Puerto Rico 72001    18.0 597277 52 of 52
+#> 2 District of Columbia 11001    18.3 125022 51 of 52
+#> 3              Vermont 50000    18.5 118889 50 of 52
 ```
 
 ### Demo Poverty
-Demo poverty has 5 arguments: area, areatype, poverty, race, sex. The function defaults to "all ages"
+Demo poverty has 5 arguments: `area`, `areatype`, `poverty`, `race`, `sex.` The function defaults to `"all ages"`
 
-The "persistent poverty" and "persons <150% of poverty" poverty argument will default to "all races", "both sexes", "all ages". 
+The `"persistent poverty"` and `"persons <150% of poverty"` poverty argument will default to `"all races"`, `"both sexes"`, `"all ages"`. 
 
-The "families below poverty" poverty argument will require a race argument and default to "both sexes" and "all ages". 
+The `"families below poverty"` poverty argument will require a race argument and default to `"both sexes"` and `"all ages"`. 
 
-The "persons below poverty" poverty argument will require a race argument and a sex argument, and default to "all ages".
+The `"persons below poverty"` poverty argument will require a race argument and a sex argument, and default to `"all ages"`.
 
-```{r poverty}
+
+```r
 # Persistent poverty
 poverty1 <- demo_poverty(
   area = "WA",
@@ -257,6 +326,10 @@ poverty1 <- demo_poverty(
 )
 
 head(poverty1, n = 3)
+#>           County  FIPS Persistent Poverty
+#> 1 Whitman County 53075                yes
+#> 2   Adams County 53001                 no
+#> 3  Asotin County 53003                 no
 
 # Families below poverty
 poverty2 <- demo_poverty(
@@ -267,6 +340,10 @@ poverty2 <- demo_poverty(
 )
 
 head(poverty2, n = 3)
+#>         State  FIPS Percent People     Rank
+#> 1 Puerto Rico 72001    40.9  33658 52 of 52
+#> 2     Wyoming 56000    33.1    349 51 of 52
+#> 3        Iowa 19000    26.6   6200 50 of 52
 
 # Persons below poverty
 poverty3 <- demo_poverty(
@@ -278,20 +355,29 @@ poverty3 <- demo_poverty(
 )
 
 head(poverty3, n = 3)
+#>         State  FIPS Percent People     Rank
+#> 1 Puerto Rico 72001    42.2  67037 52 of 52
+#> 2   Louisiana 22000    28.3 188456 51 of 52
+#> 3 Mississippi 28000    28.2 139358 50 of 52
 ```
 
 ### Demo Social Vulnerability Index (SVI)
-Demo svi **Always** requires 2 arguments: area, svi. The function defaults to "all races", "both sexes", "all ages."
+Demo svi **Always** requires 2 arguments: `area`, `svi`. The function defaults to `"all races"`, `"both sexes"`, `"all ages"`.
 
-*Please note that the areatype argument is not available for this function because areatype is limited to "county"*
+*Please note that the areatype argument is not available for this function because areatype is limited to `"county"`*
 
-```{r svi}
+
+```r
 svi1 <- demo_svi(
   area = "WA",
   svi = "overall"
 )
 
 head(svi1, n = 3)
+#>            County  FIPS  Score
+#> 1    Adams County 53001 0.9656
+#> 2   Yakima County 53077 0.9570
+#> 3 Okanogan County 53047 0.9532
 
 
 svi2 <- demo_svi(
@@ -300,12 +386,17 @@ svi2 <- demo_svi(
 )
 
 head(svi2, n = 3)
+#>                                       County  FIPS  Score
+#> 1 Oglala Lakota/Shannon County, South Dakota 46102 1.0000
+#> 2                      Macon County, Georgia 13193 0.9997
+#> 3              Humphreys County, Mississippi 28053 0.9994
 ```
 
 ### Workforce
-Demo svi **Always** requires 5 arguments: area, areatype, workforce, race, sex. The function defaults to "ages 16+"
+Demo svi **Always** requires 5 arguments: `area`, `areatype`, `workforce`, `race`, `sex`. The function defaults to "ages 16+"
 
-```{r workforce}
+
+```r
 workforce1 <- demo_workforce(
   area = "WA",
   areatype = "county",
@@ -315,6 +406,10 @@ workforce1 <- demo_workforce(
 )
 
 head(workforce1, n = 3)
+#>             County  FIPS Percent People_Unemployed         Rank
+#> 1  Garfield County 53023    11.0               110 3045 of 3143
+#> 2 Jefferson County 53031     7.6               953 2735 of 3143
+#> 3   Whitman County 53075     7.5              1849 2700 of 3143
 
 
 workforce2 <- demo_workforce(
@@ -326,4 +421,8 @@ workforce2 <- demo_workforce(
 )
 
 head(workforce2, n = 3)
+#>                  State  FIPS Percent People_Unemployed     Rank
+#> 1          Puerto Rico 72001    14.5             85552 52 of 52
+#> 2               Nevada 32000     7.2             50777 51 of 52
+#> 3 District of Columbia 11001     7.1             14769 50 of 52
 ```

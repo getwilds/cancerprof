@@ -4,10 +4,7 @@
 #' from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype One of the following values:
-#' - `"county"`
-#' - `"hsa"` (Health Service Area)
-#' - `"state"`.
+#' @template param-areatype
 #' @param cancer One of the following values:
 #' - `"all cancer sites"`
 #' - `"bladder"`
@@ -39,10 +36,7 @@
 #' - `"American Indian / Alaska Native (non-Hispanic)"`
 #' - `"Asian / Pacific Islander (non-Hispanic)"`
 #' - `"Hispanic (Any Race)"`.
-#' @param sex One of the following values:
-#' - `"both sexes"`
-#' - `"male"`
-#' - `"female"`.
+#' @template param-sex
 #' @param age One of the following values:
 #' - `"all ages"`
 #' - `"ages <50"`
@@ -57,7 +51,7 @@
 #' @param year One of the following values:
 #' - `"latest 5 year average"`
 #' - `"latest single year (us by state)"`.
-#' 
+#'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
@@ -174,9 +168,6 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
     req_perform()
 
   resp <- process_resp(resp, "incidence")
-  
-  area_type <- get_area(areatype)[1]
-  area_code <- get_area(areatype)[2]
 
   shared_names_to_numeric <- c(
     "Age_Adjusted_Incidence_Rate",
@@ -190,15 +181,14 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
   if (stage == "all stages") {
     resp %>%
       setNames(c(
-        area_type,
-        area_code,
+        get_area(areatype),
         shared_names_to_numeric,
         "Annual_Average_Count",
         "Recent_Trend",
         "Recent_5_Year_Trend",
         "Trend_Lower_95%_CI",
         "Trend_Upper_95%_CI"
-      )) %>% 
+      )) %>%
       mutate(across(c(
         all_of(shared_names_to_numeric),
         "Recent_5_Year_Trend",
@@ -208,12 +198,11 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
   } else if (stage == "late stage (regional & distant)") {
     resp %>%
       setNames(c(
-        area_type,
-        area_code,
+        get_area(areatype),
         shared_names_to_numeric,
         "Annual_Average_Count",
         "Percentage_of_Cases_with_Late_Stage"
-      )) %>% 
+      )) %>%
       mutate(across(c(
         all_of(shared_names_to_numeric),
         "Percentage_of_Cases_with_Late_Stage"

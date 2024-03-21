@@ -4,32 +4,30 @@
 #' from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype One of the following values:
-#' - `"county"`
-#' - `"hsa"` (Health Service Area)
-#' - `"state"`.
+#' @template param-areatype
 #' @param cancer One of the following values:
-#' `"all cancer sites"`
-#' `"bladder", "brain & ons"`
-#' `"breast (female)"`
-#' `"cervix"`
-#' `"childhood (ages <15, all sites)"`
-#' `"childhood (ages <20, all sites)"`
-#' `"colon & rectum"`
-#' `"esophagus"`
-#' `"kidney & renal pelvis"`
-#' `"leukemia"`
-#' `"liver & bile duct"`
-#' `"lung & bronchus"`
-#' `"melanoma of the skin"`
-#' `"non-hodgkin lymphoma"`
-#' `"oral cavity & pharynx"`
-#' `"ovary"`
-#' `"pancreas"`
-#' `"prostate"`
-#' `"stomach"`
-#' `"thyroid"`
-#' `"uterus (corpus & uterus, nos)"`
+#' - `"all cancer sites"`
+#' - `"bladder"`
+#' - `"brain & ons"`
+#' - `"breast (female)"`
+#' - `"cervix"`
+#' - `"childhood (ages <15, all sites)"`
+#' - `"childhood (ages <20, all sites)"`
+#' - `"colon & rectum"`
+#' - `"esophagus"`
+#' - `"kidney & renal pelvis"`
+#' - `"leukemia"`
+#' - `"liver & bile duct"`
+#' - `"lung & bronchus"`
+#' - `"melanoma of the skin"`
+#' - `"non-hodgkin lymphoma"`
+#' - `"oral cavity & pharynx"`
+#' - `"ovary"`
+#' - `"pancreas"`
+#' - `"prostate"`
+#' - `"stomach"`
+#' - `"thyroid"`
+#' - `"uterus (corpus & uterus, nos)"`
 #' @param race One of the following values:
 #' - `"All Races (includes Hispanic)"`
 #' - `"White (non-Hispanic)"`
@@ -37,10 +35,7 @@
 #' - `"American Indian / Alaska Native (non-Hispanic)"`
 #' - `"Asian / Pacific Islander (non-Hispanic)"`
 #' - `"Hispanic (Any Race)"`.
-#' @param sex One of the following values:
-#' - `"both sexes"`
-#' - `"male"`
-#' - `"female"`.
+#' @template param-sex
 #' @param age One of the following values:
 #' - `"all ages"`
 #' - `"ages <50"`
@@ -52,7 +47,7 @@
 #' @param year One of the following values:
 #' - `"latest 5 year average"`
 #' - `"latest single year (us by state)"`.
-#' 
+#'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
@@ -154,9 +149,6 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
 
   resp <- process_resp(resp, "mortality")
 
-  area_type <- get_area(areatype)[1]
-  area_code <- get_area(areatype)[2]
-
   names_to_numeric <- c(
     "Age_Adjusted_Death_Rate",
     "Lower_95%_CI_Rate",
@@ -165,11 +157,10 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
     "Lower_CI_Rank",
     "Upper_CI_Rank"
   )
-  
+
   resp %>%
     setNames(c(
-      area_type,
-      area_code,
+      get_area(areatype),
       "Met Healthy People Objective of ***?",
       "Age_Adjusted_Death_Rate",
       "Lower_95%_CI_Rate",
@@ -182,7 +173,7 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
       "Recent_5_Year_Trend",
       "Lower_95%_CI_Trend",
       "Upper_95%_CI_Trend"
-    )) %>% 
+    )) %>%
     mutate(across(c(
       all_of(names_to_numeric),
       "Recent_5_Year_Trend",

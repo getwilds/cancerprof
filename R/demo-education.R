@@ -4,18 +4,12 @@
 #' State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype One of the following values:
-#' - `"county"`
-#' - `"hsa"` (Health Service Area)
-#' - `"state"`.
+#' @template param-areatype
 #' @param education One of the following values:
 #' - `"less than 9th grade"`
 #' - `"at least high school"`
 #' - `"at least bachelors degree"`.
-#' @param sex One of the following values:
-#' - `"both sexes"`
-#' - `"male"`
-#' - `"female"`.
+#' @template param-sex
 #' @param race One of the following values:
 #' - `"All Races (includes Hispanic)"`
 #' - `"White (includes Hispanic)"`
@@ -31,7 +25,7 @@
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, Households, Rank.
-#' 
+#'
 #' @family demographics
 #'
 #' @export
@@ -96,17 +90,13 @@ demo_education <- function(area, areatype, education, sex = NULL, race = NULL) {
     req_perform()
 
   resp <- process_resp(resp, "demographics")
-  
-  area_type <- get_area(areatype)[1]
-  area_code <- get_area(areatype)[2]
 
   resp %>%
     setNames(c(
-      area_type,
-      area_code,
+      get_area(areatype),
       "Percent",
       "Households",
       "Rank"
-    )) %>% 
+    )) %>%
     mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
 }

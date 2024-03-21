@@ -108,16 +108,21 @@ test_that("incidence_cancer has correct number of columns", {
   expect_equal(ncol(df2), expected_columns2)
 })
 
-#test error handling
+# test error handling
 test_that("incidence_cancer handles invalid cancer parameters", {
   expect_error(
-    incidence_cancer("wa", "county", "all cancer sites", "black (non-hispanic)", 
-                     "both sexes", "ages 65+", "late stage (regional & distant)"),
+    incidence_cancer(
+      "wa", "county", "all cancer sites", "black (non-hispanic)",
+      "both sexes", "ages 65+", "late stage (regional & distant)",
+      "latest 5 year average"
+    ),
     "For this cancer type, stage must be all stages"
   )
   expect_error(
-    incidence_cancer("ca", "hsa", "prostate", "all races (includes hispanic)", "both sexes", 
-                     "ages 50+", "all stages"),
+    incidence_cancer(
+      "ca", "hsa", "prostate", "all races (includes hispanic)", "both sexes",
+      "ages 50+", "all stages", "latest 5 year average"
+    ),
     "For prostate cancer, sex must be males."
   )
 })

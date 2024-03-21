@@ -3,10 +3,7 @@
 #' This function returns a data frame from Workforce in State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype One of the following values:
-#' - `"county"`
-#' - `"hsa"` (Health Service Area)
-#' - `"state"`.
+#' @template param-areatype
 #' @param workforce The only permissible value is
 #' `"unemployed"`
 #' @param race One of the following values:
@@ -17,10 +14,7 @@
 #' - `"Amer. Indian/Alaskan Native (includes Hispanic)"`
 #' - `"Asian or Pacific Islander (includes Hispanic)"`
 #' - `"Hispanic (Any Race)`.
-#' @param sex One of the following values:
-#' - `"both sexes"`
-#' - `"male"`
-#' - `"female"`.
+#' @template param-sex
 #'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
@@ -28,7 +22,7 @@
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, People Unemployed, Rank.
-#' 
+#'
 #' @family demographics
 #'
 #' @export
@@ -79,16 +73,12 @@ demo_workforce <- function(area, areatype, workforce, race, sex) {
 
   resp <- process_resp(resp, "demographics")
 
-  area_type <- get_area(areatype)[1]
-  area_code <- get_area(areatype)[2]
-
   resp %>%
     setNames(c(
-      area_type,
-      area_code,
+      get_area(areatype),
       "Percent",
       "People_Unemployed",
       "Rank"
-    )) %>% 
+    )) %>%
     mutate(across(c("Percent", "People_Unemployed"), \(x) as.numeric(x)))
 }

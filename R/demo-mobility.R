@@ -4,10 +4,7 @@
 #' from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype One of the following values:
-#' - `"county"`
-#' - `"hsa"` (Health Service Area)
-#' - `"state"`.
+#' @template param-areatype
 #' @param mobility The only permissible values are
 #' - `"i haven't moved (in past year)"`
 #' - `"moved from outside us (in past year)"`
@@ -21,7 +18,7 @@
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, People, Rank.
-#' 
+#'
 #' @family demographics
 #'
 #' @export
@@ -64,16 +61,12 @@ demo_mobility <- function(area, areatype, mobility) {
 
   resp <- process_resp(resp, "demographics")
 
-  area_type <- get_area(areatype)[1]
-  area_code <- get_area(areatype)[2]
-
   resp %>%
     setNames(c(
-      area_type,
-      area_code,
+      get_area(areatype),
       "Percent",
       "People",
       "Rank"
-    )) %>% 
+    )) %>%
     mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
 }

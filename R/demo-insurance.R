@@ -4,10 +4,7 @@
 #' from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype One of the following values:
-#' - `"county"`
-#' - `"hsa"` (Health Service Area)
-#' - `"state"`.
+#' @template param-areatype
 #' @param insurance One of the following values:
 #' - `"% Insured in demographic group, all income levels"`
 #' - `"% Insured in demographic group, people at or below 138% of Poverty"`
@@ -21,10 +18,7 @@
 #' - `"% uninsured in demographic group, people at or below 250% of Poverty"`
 #' - `"% uninsured in demographic group, people at or below 400% of Poverty"`
 #' - `"% uninsured in demographic group, people between 138% - 400% of poverty"`.
-#' @param sex One of the following values:
-#' - `"both sexes"`
-#' - `"male"`
-#' - `"female"`.
+#' @template param-sex
 #' @param age If you specified `"both sexes"` for `sex`
 #' choose one of the following values:
 #' - `"under 19 years"`
@@ -55,7 +49,7 @@
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, People, Rank.
-#' 
+#'
 #' @family demographics
 #'
 #' @export
@@ -132,10 +126,7 @@ demo_insurance <- function(area, areatype, insurance, sex, age, race = NULL) {
 
   resp <- process_resp(resp, "demographics")
 
-  area_type <- get_area(areatype)[1]
-  area_code <- get_area(areatype)[2]
-
   resp %>%
-    setNames(c(area_type, area_code, "Percent", "People", "Rank")) %>% 
+    setNames(c(get_area(areatype), "Percent", "People", "Rank")) %>%
     mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
 }

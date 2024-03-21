@@ -4,10 +4,7 @@
 #' from State Cancer Profiles.
 #'
 #' @param area A state/territory abbreviation or USA.
-#' @param areatype One of the following values:
-#' - `"county"`
-#' - `"hsa"` (Health Service Area)
-#' - `"state"`.
+#' @template param-areatype
 #' @param population One of the following values:
 #' - `"age under 18"`
 #' - `"age 18-39"`
@@ -32,10 +29,7 @@
 #' - `"White (includes Hispanic)"`
 #' - `"White non-Hispanic"`
 #' - `"Hispanic (Any Race)"`.
-#' @param sex One of the following values:
-#' - `"both sexes"`
-#' - `"male"`
-#' - `"female"`.
+#' @template param-sex
 #'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
@@ -44,7 +38,7 @@
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, Households, Rank.
-#' 
+#'
 #' @family demographics
 #'
 #' @export
@@ -87,9 +81,9 @@ demo_population <- function(area, areatype, population, race = NULL, sex = NULL)
     cli_abort("for males, Race must not be NULL and Sex must be NULL")
   } else if (population == "foreign born" && (is.null(race) || is.null(sex))) {
     cli_abort("for foreign born, race and sex must not be NULL")
-  } else if ((population == "american indian/alaska native" || population == "asian/pacific islander" || population == "black" ||
-    population == "hispanic" || population == "non-hispanic (origin recode)" ||
-    population == "white") && (is.null(sex) || !is.null(race))) {
+  } else if ((population == "american indian/alaska native" || population == "asian/pacific islander" ||
+                population == "black" || population == "hispanic" || population == "non-hispanic (origin recode)" ||
+                population == "white") && (is.null(sex) || !is.null(race))) {
     cli_abort("for races other than foreign born, Sex must not be NULL and race must be NULL")
   }
 
@@ -117,19 +111,15 @@ demo_population <- function(area, areatype, population, race = NULL, sex = NULL)
 
   resp <- resp %>%
     req_perform()
-  
-  resp <- process_resp(resp, "demographics")
 
-  area_type <- get_area(areatype)[1]
-  area_code <- get_area(areatype)[2]
+  resp <- process_resp(resp, "demographics")
 
   resp %>%
     setNames(c(
-      area_type,
-      area_code,
+      get_area(areatype),
       "Percent",
       "People",
       "Rank"
-    )) %>% 
+    )) %>%
     mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
 }

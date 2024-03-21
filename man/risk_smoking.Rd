@@ -38,7 +38,7 @@ risk_smoking(smoking, race = NULL, sex = NULL, datatype = NULL, area = NULL)
 \item \code{"Hispanic (Any Race)"}.
 }}
 
-\item{sex}{One of the following values
+\item{sex}{One of the following values:
 \itemize{
 \item \code{"both sexes"}
 \item \code{"male"}

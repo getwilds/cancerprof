@@ -13,10 +13,7 @@
 #' - `"American Indian / Alaska Native (non-Hispanic)"`
 #' - `"Asian / Pacific Islander (non-Hispanic)"`
 #' - `"Hispanic (Any Race)"`.
-#' @param sex One of the following values:
-#' - `"both sexes"`
-#' - `"male"`
-#' - `"female"`.
+#' @template param-sex
 #'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
@@ -25,7 +22,7 @@
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, Lower 95% CI,
 #' Upper 95% CI, Number of Respondents.
-#' 
+#'
 #' @family risks
 #'
 #' @export

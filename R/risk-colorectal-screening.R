@@ -16,12 +16,9 @@
 #' - `"American Indian / Alaska Native (non-Hispanic)"`
 #' - `"Asian / Pacific Islander (non-Hispanic)"`
 #' - `"Hispanic (Any Race)"`.
-#' @param sex One of the following values:
-#' - `"both sexes"`
-#' - `"male"`
-#' - `"female"`.
+#' @template param-sex
 #' @param area A state/territory abbreviation or USA.
-#' 
+#'
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
@@ -29,7 +26,7 @@
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, People Unemployed, Rank.
-#' 
+#'
 #' @family risks
 #'
 #' @export
@@ -111,7 +108,7 @@ risk_colorectal_screening <- function(screening, race = NULL, sex = NULL, area =
         "Lower_95%_CI",
         "Upper_95%_CI",
         "Number_of_Respondents"
-      )) %>% 
+      )) %>%
       mutate(across(c(
         "Percent",
         "Lower_95%_CI",
@@ -126,7 +123,7 @@ risk_colorectal_screening <- function(screening, race = NULL, sex = NULL, area =
         "Model_Based_Percent (95%_Confidence_Interval)",
         "Lower_95%_CI",
         "Upper_95%_CI"
-      )) %>% 
+      )) %>%
       mutate(across(c(
         "Model_Based_Percent (95%_Confidence_Interval)",
         "Lower_95%_CI",

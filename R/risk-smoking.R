@@ -31,10 +31,7 @@
 #' - `"American Indian / Alaska Native (non-Hispanic)"`
 #' - `"Asian / Pacific Islander (non-Hispanic)"`
 #' - `"Hispanic (Any Race)"`.
-#' @param sex One of the following values
-#' - `"both sexes"`
-#' - `"male"`
-#' - `"female"`.
+#' @template param-sex
 #' @param datatype One of the following values:
 #' - `"direct estimates"`
 #' - `"county level modeled estimates"`.
@@ -47,7 +44,7 @@
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Percent, Lower CI 95%, Upper CI 95%,
 #' Number of Respondents.
-#' 
+#'
 #' @family risks
 #'
 #' @export
@@ -161,7 +158,8 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
   # smoking group 6
   if (smoking %in% smoking_group6 && (is.null(race) || is.null(sex))) {
     cli_abort("For this smoking group, Race and Sex must not be NULL")
-  } else if (smoking %in% smoking_group6 && (!is.null(race) && !is.null(sex)) && race == "all races (includes hispanic)") {
+  } else if (smoking %in% smoking_group6 && (!is.null(race) && !is.null(sex)) &&
+               race == "all races (includes hispanic)") {
     if (is.null(datatype)) {
       cli_abort("For all races for this smoking type, Datatype must not be NULL")
     } else if (datatype == "direct estimates" && !is.null(area)) {
@@ -226,7 +224,7 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
         "Lower_95%_CI",
         "Upper_95%_CI",
         "Number_of_Respondents"
-      )) %>% 
+      )) %>%
       mutate(across(c(
         "Percent",
         "Lower_95%_CI",
@@ -248,7 +246,7 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
         "Percent",
         "Lower_95%_CI",
         "Upper_95%_CI"
-      )) %>% 
+      )) %>%
       mutate(across(c(
         "Percent",
         "Lower_95%_CI",
