@@ -34,7 +34,8 @@
 #'   area = "WA",
 #'   areatype = "county",
 #'   crowding = "household with >1 person per room",
-#'   race = "All Races (includes Hispanic)"
+#'   race = "All Races (includes Hispanic)", 
+#'   include_metadata = TRUE
 #' )
 #'
 #' demo_crowding(
@@ -48,10 +49,11 @@
 #'   area = "pr",
 #'   areatype = "hsa",
 #'   crowding = "household with >1 person per room",
-#'   race = "black"
+#'   race = "black",
+#'   include_metadata = TRUE
 #' )
 #' }
-demo_crowding <- function(area, areatype, crowding, race) {
+demo_crowding <- function(area, areatype, crowding, race, include_metadata=FALSE) {
   req <- create_request("demographics")
 
   resp <- req %>%
@@ -67,15 +69,27 @@ demo_crowding <- function(area, areatype, crowding, race) {
       output = 1
     ) %>%
     req_perform()
+  
+  resp <- process_resp(resp, "demographics", include_metadata)
 
-  resp <- process_resp(resp, "demographics")
-
-  resp %>%
-    setNames(c(
-      get_area(areatype),
-      "Percent",
-      "Households",
-      "Rank"
-    )) %>%
-    mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
+  if (include_metadata == TRUE) {
+    resp$data <- resp$data %>%
+      setNames(c(
+        get_area(areatype),
+        "Percent",
+        "Households",
+        "Rank"
+      )) %>%
+      mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
+    return(resp)
+  } else {
+    resp %>%
+      setNames(c(
+        get_area(areatype),
+        "Percent",
+        "Households",
+        "Rank"
+      )) %>%
+      mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
+  }
 }

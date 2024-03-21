@@ -21,8 +21,7 @@
 #'
 #' @examples
 #' process_resp(resp, "demographics")
-#'
-process_resp <- function(resp, topic) {
+process_resp <- function(resp, topic, include_metadata) {
   if (httr2::resp_content_type(resp) != "text/csv") {
     cli_abort("Invalid input, please check documentation for valid arguments.")
   }
@@ -35,6 +34,8 @@ process_resp <- function(resp, topic) {
     resp_body_string() %>%
     strsplit("\\n") %>%
     unlist()
+  
+  line_length <- length(resp_lines)
 
   if (topic == "demographics") {
     index_first_line_break <- which(resp_lines == "")[1]
@@ -79,4 +80,17 @@ process_resp <- function(resp, topic) {
     mutate_all(\(x) na_if(x, "N/A")) %>%
     mutate_all(\(x) na_if(x, "data not available")) %>%
     mutate_all(\(x) na_if(x, "*"))
+  
+  #store metadata
+  if (include_metadata == TRUE) {
+    #return dataframe AND metadata
+    resp_metadata <- c(
+      resp_lines[1: (index_first_line_break - 1)], resp_lines[(index_second_line_break + 1): line_length]
+    )
+    resp_with_metadata <- list(metadata = resp_metadata, data = resp)
+    
+    return(resp_with_metadata)
+  } else {
+    return(resp)
+  }
 }

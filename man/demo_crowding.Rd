@@ -4,7 +4,7 @@
 \alias{demo_crowding}
 \title{Access to Crowding Data}
 \usage{
-demo_crowding(area, areatype, crowding, race)
+demo_crowding(area, areatype, crowding, race, include_metadata = FALSE)
 }
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
@@ -58,7 +58,8 @@ demo_crowding(
   area = "pr",
   areatype = "hsa",
   crowding = "household with >1 person per room",
-  race = "black"
+  race = "black",
+  include_metadata = TRUE
 )
 }
 }
