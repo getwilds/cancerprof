@@ -21,7 +21,7 @@
 #'
 #' @examples
 #' process_resp(resp, "demographics")
-process_resp <- function(resp, topic, include_metadata) {
+process_resp <- function(resp, topic, include_metadata = FALSE) {
   if (httr2::resp_content_type(resp) != "text/csv") {
     cli_abort("Invalid input, please check documentation for valid arguments.")
   }
@@ -75,7 +75,7 @@ process_resp <- function(resp, topic, include_metadata) {
     resp <- resp %>%
       filter(!(!!sym(column) %in% state_name))
   }
-  resp %>%
+  resp <- resp %>%
     mutate_all(stringr::str_trim) %>%
     mutate_all(\(x) na_if(x, "N/A")) %>%
     mutate_all(\(x) na_if(x, "data not available")) %>%
