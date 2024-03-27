@@ -8,6 +8,14 @@
 \description{
 An API Client for accessing data from State Cancer Profiles for programmable analysis.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/getwilds/cancerprof}
+  \item Report bugs at \url{https://github.com/getwilds/cancerprof/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Brian Park \email{joon.brianpark@gmail.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
 

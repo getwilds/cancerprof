@@ -6,6 +6,8 @@ Authors@R:
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: An API Client for accessing data from State Cancer Profiles for programmable analysis.
 License: MIT + file LICENSE
+URL: https://github.com/getwilds/cancerprof
+BugReports: https://github.com/getwilds/cancerprof/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.0
