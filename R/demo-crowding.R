@@ -81,6 +81,9 @@ demo_crowding <- function(area, areatype, crowding, race, include_metadata=FALSE
         "Rank"
       )) %>%
       mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
+    
+    result_df <- process_metadata(resp)
+    
   } else {
     resp %>%
       setNames(c(
@@ -91,5 +94,4 @@ demo_crowding <- function(area, areatype, crowding, race, include_metadata=FALSE
       )) %>%
       mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
   }
-  resp <- process_metadata(resp)
 }
