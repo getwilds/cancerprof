@@ -55,7 +55,7 @@
 #' }
 demo_crowding <- function(area, areatype, crowding, race, include_metadata=FALSE) {
   req <- create_request("demographics")
-
+  
   resp <- req %>%
     req_url_query(
       stateFIPS = fips_scp(area),
@@ -71,7 +71,7 @@ demo_crowding <- function(area, areatype, crowding, race, include_metadata=FALSE
     req_perform()
   
   resp <- process_resp(resp, "demographics", include_metadata)
-
+  
   if (include_metadata == TRUE) {
     resp$data <- resp$data %>%
       setNames(c(
@@ -81,7 +81,6 @@ demo_crowding <- function(area, areatype, crowding, race, include_metadata=FALSE
         "Rank"
       )) %>%
       mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
-    return(resp)
   } else {
     resp %>%
       setNames(c(
@@ -92,4 +91,5 @@ demo_crowding <- function(area, areatype, crowding, race, include_metadata=FALSE
       )) %>%
       mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
   }
+  resp <- process_metadata(resp)
 }
