@@ -7,3 +7,5 @@
 ^pkgdown$
 ^man-roxygen$
 ^vignettes/\.RData$
+^\.lintr$
+^codemeta\.json$
