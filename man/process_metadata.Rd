@@ -9,6 +9,15 @@ process_metadata(resp)
 \arguments{
 \item{resp}{A response object}
 }
+\value{
+A response object with Metadata and a tibble
+}
 \description{
-This function ...
+This function sets the class of the response data
+to use the custom print function
+}
+\examples{
+\dontrun{
+process_metadata(resp)
+}
 }

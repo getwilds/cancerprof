@@ -79,7 +79,8 @@ process_resp <- function(resp, topic, include_metadata = FALSE) {
     mutate_all(stringr::str_trim) %>%
     mutate_all(\(x) na_if(x, "N/A")) %>%
     mutate_all(\(x) na_if(x, "data not available")) %>%
-    mutate_all(\(x) na_if(x, "*"))
+    mutate_all(\(x) na_if(x, "*")) %>% 
+    as_tibble()
   
   #store metadata
   if (include_metadata == TRUE) {
