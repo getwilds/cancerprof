@@ -12,6 +12,7 @@ An API Client for accessing data from State Cancer Profiles for programmable ana
 Useful links:
 \itemize{
   \item \url{https://github.com/getwilds/cancerprof}
+  \item \url{http://getwilds.org/cancerprof/}
   \item Report bugs at \url{https://github.com/getwilds/cancerprof/issues}
 }
 
