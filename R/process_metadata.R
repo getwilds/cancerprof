@@ -7,10 +7,10 @@
 #'
 #' @export
 print.cancerprof_tbl <- function(x, ...) {
-  # cat("Metadata:", "\n")
-  # for (i in seq_along(attr(x, "metadata"))) {
-  #   cat(names(attr(x, "metadata"))[i], attr(x, "metadata")[[i]], "\n")
-  # }
+  cat("Metadata:", "\n")
+  for (i in seq_along(attr(x, "metadata"))) {
+    cat(names(attr(x, "metadata"))[i], attr(x, "metadata")[[i]], "\n")
+  }
   NextMethod(x, ...)
 }
 
