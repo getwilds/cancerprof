@@ -20,6 +20,7 @@
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
 #' @importFrom dplyr mutate across
+#' @importFrom tibble as_tibble
 #'
 #' @returns A data frame with the following columns: Area, Area Code,
 #' Percent, Households, Rank.
@@ -34,8 +35,7 @@
 #'   area = "WA",
 #'   areatype = "county",
 #'   crowding = "household with >1 person per room",
-#'   race = "All Races (includes Hispanic)",
-#'   include_metadata = TRUE
+#'   race = "All Races (includes Hispanic)"
 #' )
 #'
 #' demo_crowding(
@@ -49,13 +49,12 @@
 #'   area = "pr",
 #'   areatype = "hsa",
 #'   crowding = "household with >1 person per room",
-#'   race = "black",
-#'   include_metadata = TRUE
+#'   race = "black"
 #' )
 #' }
-demo_crowding <- function(area, areatype, crowding, race, include_metadata=FALSE) {
+demo_crowding <- function(area, areatype, crowding, race) {
   req <- create_request("demographics")
-  
+
   resp <- req %>%
     req_url_query(
       stateFIPS = fips_scp(area),
@@ -69,29 +68,17 @@ demo_crowding <- function(area, areatype, crowding, race, include_metadata=FALSE
       output = 1
     ) %>%
     req_perform()
-  
-  resp <- process_resp(resp, "demographics", include_metadata)
-  
-  if (include_metadata == TRUE) {
-    resp$data <- resp$data %>%
-      setNames(c(
-        get_area(areatype),
-        "Percent",
-        "Households",
-        "Rank"
-      )) %>%
-      mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
-    
-    result_df <- process_metadata(resp)
-    
-  } else {
-    resp %>%
-      setNames(c(
-        get_area(areatype),
-        "Percent",
-        "Households",
-        "Rank"
-      )) %>%
-      mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
-  }
+
+  resp <- process_resp(resp, "demographics")
+
+  resp$data <- resp$data %>%
+    setNames(c(
+      get_area(areatype),
+      "Percent",
+      "Households",
+      "Rank"
+    )) %>%
+    mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
+
+  process_metadata(resp)
 }

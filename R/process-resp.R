@@ -14,6 +14,7 @@
 #' @importFrom rlang sym
 #' @importFrom utils read.csv data
 #' @importFrom stringr str_trim
+#' @importFrom tibble as_tibble
 #'
 #' @returns A processed response data frame
 #'
@@ -21,7 +22,7 @@
 #'
 #' @examples
 #' process_resp(resp, "demographics")
-process_resp <- function(resp, topic, include_metadata) {
+process_resp <- function(resp, topic) {
   if (httr2::resp_content_type(resp) != "text/csv") {
     cli_abort("Invalid input, please check documentation for valid arguments.")
   }
@@ -83,15 +84,10 @@ process_resp <- function(resp, topic, include_metadata) {
     as_tibble()
   
   #store metadata
-  if (include_metadata == TRUE) {
-    #return dataframe AND metadata
-    resp_metadata <- c(
-      resp_lines[1: (index_first_line_break - 1)], resp_lines[(index_second_line_break + 1): line_length]
-    )
-    resp_with_metadata <- list(metadata = resp_metadata, data = resp)
-    
-    return(resp_with_metadata)
-  } else {
-    return(resp)
-  }
+  
+  #return dataframe AND metadata
+  resp_metadata <- c(
+    resp_lines[1: (index_first_line_break - 1)], resp_lines[(index_second_line_break + 1): line_length]
+  )
+  list(metadata = resp_metadata, data = resp)
 }

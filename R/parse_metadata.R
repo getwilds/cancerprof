@@ -31,5 +31,3 @@ parse_metadata <- function(resp) {
   )
   return(demo_metadata_list)
 }
-
-parse_metadata(resp)

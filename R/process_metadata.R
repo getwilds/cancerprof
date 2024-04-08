@@ -7,10 +7,12 @@
 #'
 #' @export
 print.cancerprof_tbl <- function(x, ...) {
-  cat("Metadata:", "\n")
-  for (i in seq_along(attr(x, "metadata"))) {
-    cat(names(attr(x, "metadata"))[i], attr(x, "metadata")[[i]], "\n")
-  }
+  #cat("Metadata:", "\n")
+  # we actually need to figure out how to use pillar here
+  cat("\033[38;5;246m# Access metadata with `get_metadata()`\033[39m", "\n")
+  # for (i in seq_along(attr(x, "metadata"))) {
+  #   cat(names(attr(x, "metadata"))[i], attr(x, "metadata")[[i]], "\n")
+  # }
   NextMethod(x, ...)
 }
 
@@ -35,6 +37,6 @@ process_metadata <- function(resp) {
   class(resp_data) <- c("cancerprof_tbl", class(resp_data))
   attr(resp_data, "metadata") <- resp_metadata
   
-  print(resp_data)
+  #print(resp_data)
   return(resp_data)
 }
