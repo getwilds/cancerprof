@@ -34,7 +34,7 @@
 #'   area = "WA",
 #'   areatype = "county",
 #'   crowding = "household with >1 person per room",
-#'   race = "All Races (includes Hispanic)", 
+#'   race = "All Races (includes Hispanic)",
 #'   include_metadata = TRUE
 #' )
 #'
