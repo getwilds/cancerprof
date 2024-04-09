@@ -44,8 +44,7 @@
 #'   areatype = "state",
 #'   education = "at least bachelors degree",
 #'   sex = "both sexes",
-#'   race = "all races (includes hispanic)",
-#'   include_metadata = TRUE
+#'   race = "all races (includes hispanic)"
 #' )
 #'
 #' demo_education(
@@ -54,7 +53,7 @@
 #'   education = "less than 9th grade"
 #' )
 #' }
-demo_education <- function(area, areatype, education, sex = NULL, race = NULL, include_metadata=FALSE) {
+demo_education <- function(area, areatype, education, sex = NULL, race = NULL) {
   req <- create_request("demographics")
 
   if (education == "less than 9th grade" && (!is.null(race) || !is.null(sex))) {
@@ -90,28 +89,17 @@ demo_education <- function(area, areatype, education, sex = NULL, race = NULL, i
   resp <- resp %>%
     req_perform()
 
-  resp <- process_resp(resp, "demographics", include_metadata)
+  resp <- process_resp(resp, "demographics")
   
-  if (include_metadata == TRUE) {
-    resp$data <- resp$data %>%
-      setNames(c(
-        get_area(areatype),
-        "Percent",
-        "Households",
-        "Rank"
-      )) %>%
-      mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
-    
-    result_df <- process_metadata(resp)
-    
-  } else {
-    resp %>%
-      setNames(c(
-        get_area(areatype),
-        "Percent",
-        "Households",
-        "Rank"
-      )) %>%
-      mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
-  }
+  resp$data <- resp$data %>%
+    setNames(c(
+      get_area(areatype),
+      "Percent",
+      "Households",
+      "Rank"
+    )) %>%
+    mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
+  
+  process_metadata(resp)
+
 }

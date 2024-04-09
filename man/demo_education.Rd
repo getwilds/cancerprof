@@ -4,14 +4,7 @@
 \alias{demo_education}
 \title{Access to Education Data}
 \usage{
-demo_education(
-  area,
-  areatype,
-  education,
-  sex = NULL,
-  race = NULL,
-  include_metadata = FALSE
-)
+demo_education(area, areatype, education, sex = NULL, race = NULL)
 }
 \arguments{
 \item{area}{A state/territory abbreviation or USA.}
@@ -70,8 +63,7 @@ demo_education(
   areatype = "state",
   education = "at least bachelors degree",
   sex = "both sexes",
-  race = "all races (includes hispanic)",
-  include_metadata = TRUE
+  race = "all races (includes hispanic)"
 )
 
 demo_education(

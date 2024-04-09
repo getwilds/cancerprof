@@ -37,6 +37,6 @@ process_metadata <- function(resp) {
   class(resp_data) <- c("cancerprof_tbl", class(resp_data))
   attr(resp_data, "metadata") <- resp_metadata
   
-  #print(resp_metadata)
+  #print(resp_data)
   return(resp_data)
 }
