@@ -82,10 +82,7 @@ process_resp <- function(resp, topic) {
     mutate_all(\(x) na_if(x, "data not available")) %>%
     mutate_all(\(x) na_if(x, "*")) %>% 
     as_tibble()
-  
-  #store metadata
-  
-  #return dataframe AND metadata
+
   resp_metadata <- c(
     resp_lines[1: (index_first_line_break - 1)], resp_lines[(index_second_line_break + 1): line_length]
   )

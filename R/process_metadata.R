@@ -1,18 +1,15 @@
 #' Custom print function
 #'
-#' This custom print function processes the
-#' metadata output for a response object
+#' This custom print function edits the comment on the
+#' metadata tibble output for a response object
 #'
 #' @param x
 #'
 #' @export
 print.cancerprof_tbl <- function(x, ...) {
-  #cat("Metadata:", "\n")
   # we actually need to figure out how to use pillar here
   cat("\033[38;5;246m# Access metadata with `get_metadata()`\033[39m", "\n")
-  # for (i in seq_along(attr(x, "metadata"))) {
-  #   cat(names(attr(x, "metadata"))[i], attr(x, "metadata")[[i]], "\n")
-  # }
+
   NextMethod(x, ...)
 }
 

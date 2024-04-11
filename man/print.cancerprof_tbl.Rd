@@ -15,6 +15,6 @@
 This custom print function processes the
 metadata output for a response object
 
-This custom print function processes the
-metadata output for a response object
+This custom print function edits the comment on the
+metadata tibble output for a response object
 }
