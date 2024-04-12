@@ -8,7 +8,10 @@
 #' @export
 print.cancerprof_tbl <- function(x, ...) {
   # we actually need to figure out how to use pillar here
-  cat("\033[38;5;246m# Access metadata with `get_metadata()`\033[39m", "\n")
+  cli_par()
+  cli_text("\033[38;5;246m# Click to view the live data on State Cancer Profiles \033[39m", "\n")
+  cli_text("\033[38;5;246m# Access metadata with `get_metadata()`\033[39m", "\n")
+  cli_end()
 
   NextMethod(x, ...)
 }
@@ -26,7 +29,7 @@ print.cancerprof_tbl <- function(x, ...) {
 #' \dontrun{
 #' process_metadata(resp)
 #' }
-process_metadata <- function(resp) {
+process_metadata <- function(resp, resp_url) {
   
   resp_data <- resp$data
   resp_metadata <- resp$metadata
@@ -34,6 +37,6 @@ process_metadata <- function(resp) {
   class(resp_data) <- c("cancerprof_tbl", class(resp_data))
   attr(resp_data, "metadata") <- resp_metadata
   
-  #print(resp_metadata)
+  print(resp_metadata, resp_url = resp_url)
   return(resp_data)
 }

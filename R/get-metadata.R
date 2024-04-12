@@ -27,29 +27,31 @@ extract_values <- function(key, resp_metadata) {
 #'
 #' @export
 print.cancerprof_metadata <- function(x, ...) {
+  
+  cli_h1("Metadata")
 
-  cat("\033[38;5;246m# Data Report: \033[39m", "\n")
+  cli_text("\033[38;5;246m# Data Report: \033[39m", "\n")
   cat(paste(x$data_report, '\n', sep = "", collapse = " "), "\n")
   
-  cat("\033[38;5;246m# Sorted By: \033[39m", "\n")
-  cat(x$sortedby, "\n")
-  cat("\n")
+  cli_text("\033[38;5;246m# Sorted By: \033[39m", "\n")
+  cli_text(x$sortedby, "\n")
+  cli_text("\n")
   
-  cat("\033[38;5;246m# Created By: \033[39m", "\n")
-  cat(x$createdby, "\n")
-  cat("\n")
+  cli_text("\033[38;5;246m# Created By: \033[39m", "\n")
+  cli_text(x$createdby, "\n")
+  cli_text("\n")
   
-  cat("\033[38;5;246m# Data Sources: \033[39m", "\n")
-  cat(x$data_sources, "\n")
-  cat("\n")
+  cli_text("\033[38;5;246m# Data Sources: \033[39m", "\n")
+  cli_text(x$data_sources, "\n")
+  cli_text("\n")
   
-  cat("\033[38;5;246m# Data Dictionary: \033[39m", "\n")
-  cat(x$data_dictionary, "\n")
-  cat("\n")
+  cli_text("\033[38;5;246m# Data Dictionary: \033[39m", "\n")
+  cli_text(x$data_dictionary, "\n")
+  cli_text("\n")
   
-  cat("\033[38;5;246m# Data Limitations: \033[39m", "\n")
-  cat(x$data_limitations, "\n")
-  cat("\n")
+  cli_text("\033[38;5;246m# Data Limitations: \033[39m", "\n")
+  cli_text(x$data_limitations, "\n")
+  cli_text("\n")
   
   if (!is.null(x$additional_notes) && length(x$additional_notes) > 0) {
     cat("\033[38;5;246m# Additional Notes: \033[39m", "\n")
