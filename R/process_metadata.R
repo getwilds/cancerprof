@@ -7,12 +7,19 @@
 #'
 #' @export
 print.cancerprof_tbl <- function(x, ...) {
-  # we actually need to figure out how to use pillar here
+  original_url <- attributes(x)$url
+  modified_url <- gsub("&output=1", "#results", original_url)
+  
+  cli_div(theme = list(
+    span.cancerprof_class = list(color = "darkgray")))
+  
   cli_par()
-  cli_text("\033[38;5;246m# Click to view the live data on State Cancer Profiles \033[39m", "\n")
-  cli_text("\033[38;5;246m# Access metadata with `get_metadata()`\033[39m", "\n")
+  cli_text(
+    "{.href [# Click to view this query on State Cancer Profiles](", modified_url, ")}"
+  )
+  cli_text("{.cancerprof_class # Access metadata with `get_metadata()`}")
   cli_end()
-
+  
   NextMethod(x, ...)
 }
 
@@ -29,7 +36,7 @@ print.cancerprof_tbl <- function(x, ...) {
 #' \dontrun{
 #' process_metadata(resp)
 #' }
-process_metadata <- function(resp, resp_url) {
+process_metadata <- function(resp, data_topic, resp_url) {
   
   resp_data <- resp$data
   resp_metadata <- resp$metadata
@@ -37,6 +44,8 @@ process_metadata <- function(resp, resp_url) {
   class(resp_data) <- c("cancerprof_tbl", class(resp_data))
   attr(resp_data, "metadata") <- resp_metadata
   
-  print(resp_metadata, resp_url = resp_url)
+  attr(resp_data, "data_topic") <- data_topic
+  
+  attr(resp_data, "url") <- resp_url
   return(resp_data)
 }

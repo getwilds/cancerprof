@@ -31,7 +31,10 @@ print.cancerprof_metadata <- function(x, ...) {
   cli_h1("Metadata")
 
   cli_text("\033[38;5;246m# Data Report: \033[39m", "\n")
-  cat(paste(x$data_report, '\n', sep = "", collapse = " "), "\n")
+  for (i in seq_along(x$data_report)) {
+    cli_text(x$data_report[i], "\n")
+  }
+  cli_text("\n")
   
   cli_text("\033[38;5;246m# Sorted By: \033[39m", "\n")
   cli_text(x$sortedby, "\n")
@@ -76,6 +79,13 @@ print.cancerprof_metadata <- function(x, ...) {
 #' process_metadata(resp)
 #' }
 get_metadata <- function(input_tbl) {
+  
+  #check data topic somehow
+  data_topic <- attributes(input_tbl)$data_topic
+  
+  # do some conditionals to filter data topic
+  
+  
   resp_metadata <- attr(input_tbl, "metadata")
   
   resp_metadata <- gsub("\\\"", "", resp_metadata)

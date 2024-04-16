@@ -82,5 +82,5 @@ demo_crowding <- function(area, areatype, crowding, race) {
     )) %>%
     mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
 
-  process_metadata(resp, resp_url)
+  process_metadata(resp, "demographics", resp_url)
 }
