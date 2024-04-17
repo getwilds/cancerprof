@@ -20,6 +20,7 @@
 #' @importFrom httr2 req_url_query req_perform
 #' @importFrom stats setNames
 #' @importFrom dplyr mutate across
+#' @importFrom tibble as_tibble
 #'
 #' @returns A data frame with the following columns: Area, Area Code,
 #' Percent, Households, Rank.
@@ -69,8 +70,8 @@ demo_crowding <- function(area, areatype, crowding, race) {
     req_perform()
 
   resp <- process_resp(resp, "demographics")
-
-  resp %>%
+  
+  resp$data <- resp$data %>%
     setNames(c(
       get_area(areatype),
       "Percent",
@@ -78,4 +79,6 @@ demo_crowding <- function(area, areatype, crowding, race) {
       "Rank"
     )) %>%
     mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
+
+  process_metadata(resp)
 }

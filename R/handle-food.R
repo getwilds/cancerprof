@@ -12,9 +12,7 @@
 #' @noRd
 #'
 #' @examples
-#' \dontrun{
 #' handle_food("limited access to healthy food")
-#' }
 handle_food <- function(food) {
   food <- tolower(food)
 

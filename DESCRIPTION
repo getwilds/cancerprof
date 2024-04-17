@@ -19,6 +19,7 @@ Imports:
     magrittr,
     rlang,
     stringr,
+    tibble,
     utils
 Suggests: 
     knitr,

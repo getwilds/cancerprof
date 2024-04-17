@@ -35,9 +35,7 @@
 #' @noRd
 #'
 #' @examples
-#' \dontrun{
 #' handle_cancer("bladder")
-#' }
 handle_cancer <- function(cancer) {
   cancer <- tolower(cancer)
 
