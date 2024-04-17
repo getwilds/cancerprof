@@ -3,6 +3,7 @@
 <!-- badges: start -->
 [![Project Status: Concept – Not useable, no support, not open to feedback, unstable API.](https://getwilds.github.io/badges/badges/concept.svg)](https://getwilds.github.io/badges/#concept)
 [![R-CMD-check](https://github.com/getwilds/cancerprof/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/getwilds/cancerprof/actions/workflows/R-CMD-check.yaml)
+[![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/637_status.svg)](https://github.com/ropensci/software-review/issues/637)
 <!-- badges: end -->
 
 ## Overview
