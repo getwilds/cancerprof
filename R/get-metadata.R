@@ -29,36 +29,40 @@ extract_values <- function(key, resp_metadata) {
 print.cancerprof_metadata <- function(x, ...) {
   
   cli_h1("Metadata")
-
-  cli_text("\033[38;5;246m# Data Report: \033[39m", "\n")
+  cli_text("\n")
+  
+  cli_div(theme = list(
+    span.cancerprof_class = list(color = "darkgray")))
+  
+  cli_text("{.cancerprof_class # Data Report:}")
   for (i in seq_along(x$data_report)) {
     cli_text(x$data_report[i], "\n")
   }
   cli_text("\n")
   
-  cli_text("\033[38;5;246m# Sorted By: \033[39m", "\n")
+  cli_text("{.cancerprof_class # Sorted By:}")
   cli_text(x$sortedby, "\n")
   cli_text("\n")
   
-  cli_text("\033[38;5;246m# Created By: \033[39m", "\n")
+  cli_text("{.cancerprof_class # Created By:}")
   cli_text(x$createdby, "\n")
   cli_text("\n")
   
-  cli_text("\033[38;5;246m# Data Sources: \033[39m", "\n")
+  cli_text("{.cancerprof_class # Data Sources:}")
   cli_text(x$data_sources, "\n")
   cli_text("\n")
   
-  cli_text("\033[38;5;246m# Data Dictionary: \033[39m", "\n")
+  cli_text("{.cancerprof_class # Data Dictionary:}")
   cli_text(x$data_dictionary, "\n")
   cli_text("\n")
   
-  cli_text("\033[38;5;246m# Data Limitations: \033[39m", "\n")
+  cli_text("{.cancerprof_class # Data Limitations:}")
   cli_text(x$data_limitations, "\n")
   cli_text("\n")
   
   if (!is.null(x$additional_notes) && length(x$additional_notes) > 0) {
-    cat("\033[38;5;246m# Additional Notes: \033[39m", "\n")
-    cat(x$additional_notes, "\n")
+    cli_text("{.cancerprof_class # Additional Notes:}", "\n")
+    cli_text(x$additional_notes, "\n")
   }
   
   invisible(x)
