@@ -41,6 +41,9 @@ process_metadata <- function(resp, data_topic, resp_url) {
   resp_data <- resp$data
   resp_metadata <- resp$metadata
   
+  #remove new lines
+  resp_metadata <- resp_metadata[!grepl("^\\s*$", resp_metadata)]
+  
   class(resp_data) <- c("cancerprof_tbl", class(resp_data))
   attr(resp_data, "metadata") <- resp_metadata
   

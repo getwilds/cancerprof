@@ -147,6 +147,8 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
   resp <- resp %>%
     req_perform()
 
+  resp_url <- resp$url
+  
   resp <- process_resp(resp, "mortality")
 
   names_to_numeric <- c(
@@ -158,7 +160,7 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
     "Upper_CI_Rank"
   )
 
-  resp %>%
+  resp$data <- resp$data %>%
     setNames(c(
       get_area(areatype),
       "Met Healthy People Objective of ***?",
@@ -180,4 +182,6 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
       "Lower_95%_CI_Trend",
       "Upper_95%_CI_Trend"
     ), \(x) as.numeric(x)))
+  
+  process_metadata(resp, "risks", resp_url)
 }

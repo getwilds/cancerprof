@@ -84,38 +84,60 @@ print.cancerprof_metadata <- function(x, ...) {
 #' }
 get_metadata <- function(input_tbl) {
   
+  resp_metadata <- attr(input_tbl, "metadata")
+  
+  resp_metadata <- gsub("\\\"", "", resp_metadata)
+  
   #check data topic somehow
   data_topic <- attributes(input_tbl)$data_topic
   
   # do some conditionals to filter data topic
+  if (data_topic == "demographics") {
+    data_report <- c(resp_metadata[1], resp_metadata[2], resp_metadata[3], resp_metadata[4])
+    sortedby <- extract_values("Sorted by", resp_metadata)
+    createdby <- extract_values("Created by", resp_metadata)
+    data_sources <- extract_values("Source", resp_metadata)
+    data_dictionary <- resp_metadata[grep("For more information", resp_metadata)]
+    data_limitations <- extract_values("Data for", resp_metadata)
+    
+    exclude_keywords <- c("Sorted by", "Created by", "Source", "For more information", "Data for")
+    
+    additional_notes <- resp_metadata[!grepl(paste(exclude_keywords, collapse = "|"), resp_metadata, ignore.case = TRUE)]
+    
+    additional_notes <- additional_notes[!additional_notes %in% data_report]
+    
+    demo_metadata_list <- list(
+      data_report = data_report,
+      sortedby = sortedby,
+      createdby = createdby,
+      data_sources = data_sources,
+      data_dictionary = data_dictionary,
+      data_limitations = data_limitations,
+      additional_notes = additional_notes
+    )
+  } else if (data_topic == "risks") {
+    
+  } else if (data_topic == "incidence") {
+    data_report <- c(resp_metadata[1], resp_metadata[2], resp_metadata[3])
+    sortedby <- extract_values("Sorted by", resp_metadata)
+    createdby <- extract_values("Created by", resp_metadata)
+    trend <- extract_values("Trend", resp_metadata)
+    rate_note <- extract_values("rate note", resp_metadata)
+    stage_note <- extract_values("^ ", resp_metadata)
+    rank_note <- extract_values("rank note", resp_metadata)
+    data_not_available <- extract_values("Data not available", resp_metadata)
+    
+    
+  } else if (data_topic == "mortality") {
+    data_report <- c(resp_metadata[1], resp_metadata[2], resp_metadata[3])
+    sortedby <- extract_values("Sorted by", resp_metadata)
+    createdby <- extract_values("Created by", resp_metadata)
+  } else {
+    cli_abort("Incorrect data topic argument, please ensure that it is correct.")
+  }
   
-  
-  resp_metadata <- attr(input_tbl, "metadata")
-  
-  resp_metadata <- gsub("\\\"", "", resp_metadata)
 
-  data_report <- c(resp_metadata[1], resp_metadata[2], resp_metadata[3], resp_metadata[4])
-  sortedby <- extract_values("Sorted by", resp_metadata)
-  createdby <- extract_values("Created by", resp_metadata)
-  data_sources <- extract_values("Source", resp_metadata)
-  data_dictionary <- resp_metadata[grep("For more information", resp_metadata)]
-  data_limitations <- extract_values("Data for", resp_metadata)
-
-  exclude_keywords <- c("Sorted by", "Created by", "Source", "For more information", "Data for")
-
-  additional_notes <- resp_metadata[!grepl(paste(exclude_keywords, collapse = "|"), resp_metadata, ignore.case = TRUE)]
   
-  additional_notes <- additional_notes[!additional_notes %in% data_report]
-  
-  demo_metadata_list <- list(
-    data_report = data_report,
-    sortedby = sortedby,
-    createdby = createdby,
-    data_sources = data_sources,
-    data_dictionary = data_dictionary,
-    data_limitations = data_limitations,
-    additional_notes = additional_notes
-  )
   
   class(demo_metadata_list) <- c("cancerprof_metadata", class(demo_metadata_list))
   

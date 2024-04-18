@@ -48,7 +48,7 @@ process_resp <- function(resp, topic) {
     index_first_line_break <- which(resp_lines == "")[4]
     index_second_line_break <- which(resp_lines == "")[5]
   } else {
-    cli_abort("Incorrect topic argument, please ensure that correct.")
+    cli_abort("Incorrect topic argument, please ensure that it is correct.")
   }
 
   resp <- resp_lines[
