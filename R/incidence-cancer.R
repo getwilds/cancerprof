@@ -211,5 +211,5 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
       ), \(x) as.numeric(x)))
   }
   
-  process_metadata(resp, "risks", resp_url)
+  process_metadata(resp, "incidence", resp_url)
 }

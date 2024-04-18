@@ -183,5 +183,5 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
       "Upper_95%_CI_Trend"
     ), \(x) as.numeric(x)))
   
-  process_metadata(resp, "risks", resp_url)
+  process_metadata(resp, "mortality", resp_url)
 }
