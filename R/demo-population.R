@@ -114,7 +114,7 @@ demo_population <- function(area, areatype, population, race = NULL, sex = NULL)
 
   resp <- process_resp(resp, "demographics")
 
-  resp %>%
+  resp$data %>%
     setNames(c(
       get_area(areatype),
       "Percent",
@@ -122,4 +122,6 @@ demo_population <- function(area, areatype, population, race = NULL, sex = NULL)
       "Rank"
     )) %>%
     mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
+  
+  process_metadata(resp)
 }

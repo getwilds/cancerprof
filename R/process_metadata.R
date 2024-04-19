@@ -1,18 +1,25 @@
 #' Custom print function
 #'
-#' This custom print function processes the
-#' metadata output for a response object
+#' This custom print function edits the comment on the
+#' metadata tibble output for a response object
 #'
 #' @param x
 #'
 #' @export
 print.cancerprof_tbl <- function(x, ...) {
-  #cat("Metadata:", "\n")
-  # we actually need to figure out how to use pillar here
-  cat("\033[38;5;246m# Access metadata with `get_metadata()`\033[39m", "\n")
-  # for (i in seq_along(attr(x, "metadata"))) {
-  #   cat(names(attr(x, "metadata"))[i], attr(x, "metadata")[[i]], "\n")
-  # }
+  original_url <- attributes(x)$url
+  modified_url <- gsub("&output=1", "#results", original_url)
+  
+  cli_div(theme = list(
+    span.cancerprof_class = list(color = "darkgray")))
+  
+  cli_par()
+  cli_text(
+    "{.href [# Click to view this query on State Cancer Profiles](", modified_url, ")}"
+  )
+  cli_text("{.cancerprof_class # Access metadata with `get_metadata()`}")
+  cli_end()
+  
   NextMethod(x, ...)
 }
 
@@ -29,14 +36,19 @@ print.cancerprof_tbl <- function(x, ...) {
 #' \dontrun{
 #' process_metadata(resp)
 #' }
-process_metadata <- function(resp) {
+process_metadata <- function(resp, data_topic, resp_url) {
   
   resp_data <- resp$data
   resp_metadata <- resp$metadata
   
+  #remove new lines
+  resp_metadata <- resp_metadata[!grepl("^\\s*$", resp_metadata)]
+  
   class(resp_data) <- c("cancerprof_tbl", class(resp_data))
   attr(resp_data, "metadata") <- resp_metadata
   
-  #print(resp_metadata)
+  attr(resp_data, "data_topic") <- data_topic
+  
+  attr(resp_data, "url") <- resp_url
   return(resp_data)
 }

@@ -11,5 +11,5 @@
 }
 \description{
 This custom print function processes the
-metadata output for a response object
+metadata output for easier readability
 }

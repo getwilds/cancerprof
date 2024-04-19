@@ -96,11 +96,13 @@ risk_colorectal_screening <- function(screening, race = NULL, sex = NULL, area =
 
   resp <- resp %>%
     req_perform()
+  
+  resp_url <- resp$url
 
   resp <- process_resp(resp, "risks")
 
   if (screening %in% screening_type_1) {
-    resp %>%
+    resp$data <- resp$data %>%
       setNames(c(
         "State",
         "FIPS",
@@ -116,7 +118,7 @@ risk_colorectal_screening <- function(screening, race = NULL, sex = NULL, area =
         "Number_of_Respondents"
       ), \(x) as.numeric(x)))
   } else if (screening %in% screening_type_2) {
-    resp %>%
+    resp$data <- resp$data %>%
       setNames(c(
         "County",
         "FIPS",
@@ -130,4 +132,6 @@ risk_colorectal_screening <- function(screening, race = NULL, sex = NULL, area =
         "Upper_95%_CI"
       ), \(x) as.numeric(x)))
   }
+  
+  process_metadata(resp, "risks", resp_url)
 }

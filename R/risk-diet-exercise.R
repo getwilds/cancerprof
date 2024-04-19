@@ -60,6 +60,8 @@ risk_diet_exercise <- function(diet_exercise, race, sex) {
       output = 1
     ) %>%
     req_perform()
+  
+  resp_url <- resp$url
 
   resp <- process_resp(resp, "risks")
 
@@ -69,7 +71,7 @@ risk_diet_exercise <- function(diet_exercise, race, sex) {
   )
 
   if (diet_exercise %in% diet_exercise_type1) {
-    resp %>%
+    resp$data <- resp$data %>%
       setNames(c(
         "State",
         "FIPS",
@@ -83,7 +85,7 @@ risk_diet_exercise <- function(diet_exercise, race, sex) {
         "Upper_95%_CI"
       ), \(x) as.numeric(x)))
   } else {
-    resp %>%
+    resp$data <- resp$data %>%
       setNames(c(
         "State",
         "FIPS",
@@ -99,4 +101,6 @@ risk_diet_exercise <- function(diet_exercise, race, sex) {
         "Number_of_Respondents"
       ), \(x) as.numeric(x)))
   }
+  
+  process_metadata(resp, "risks", resp_url)
 }
