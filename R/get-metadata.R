@@ -37,7 +37,7 @@ print.cancerprof_metadata <- function(x, ...) {
   data_topic <- attributes(x)$data_topic
   
   # do some conditionals to filter data topic
-  if (data_topic == "demographics") {
+  if (data_topic == "demographics" || data_topic == "risks") {
     cli_text("{.cancerprof_class # Data Report:}")
     for (i in seq_along(x$data_report)) {
       cli_text(x$data_report[i], "\n")
@@ -52,23 +52,34 @@ print.cancerprof_metadata <- function(x, ...) {
     cli_text(x$createdby, "\n")
     cli_text("\n")
     
-    cli_text("{.cancerprof_class # Data Sources:}")
-    cli_text(x$data_sources, "\n")
-    cli_text("\n")
+    if (!is.null(x$data_sources) && length(x$data_sources) > 0) {
+      cli_text("{.cancerprof_class # Data Sources:}", "\n")
+      cli_text(x$data_sources, "\n")
+      cli_text("\n")
+    }
     
-    cli_text("{.cancerprof_class # Data Dictionary:}")
-    cli_text(x$data_dictionary, "\n")
-    cli_text("\n")
+    if (!is.null(x$data_dictionary) && length(x$data_dictionary) > 0) {
+      cli_text("{.cancerprof_class # Data Dictionary:}", "\n")
+      cli_text(x$data_dictionary, "\n")
+      cli_text("\n")
+    }
     
-    cli_text("{.cancerprof_class # Data Limitations:}")
-    cli_text(x$data_limitations, "\n")
-    cli_text("\n")
+    if (!is.null(x$data_limitations) && length(x$data_limitations) > 0) {
+      cli_text("{.cancerprof_class # Data Limitations:}", "\n")
+      cli_text(x$data_limitations, "\n")
+      cli_text("\n")
+    }
+    
+    if (!is.null(x$name_change) && length(x$name_change) > 0) {
+      cli_text("{.cancerprof_class # Name Change:}", "\n")
+      cli_text(x$name_change, "\n")
+      cli_text("\n")
+    }
     
     if (!is.null(x$additional_notes) && length(x$additional_notes) > 0) {
       cli_text("{.cancerprof_class # Additional Notes:}", "\n")
       cli_text(x$additional_notes, "\n")
     }
-  } else if (data_topic == "risks") {
     
   } else if (data_topic == "incidence" || data_topic == "mortality") {
     cli_text("{.cancerprof_class # Data Report:}")
@@ -169,7 +180,7 @@ get_metadata <- function(input_tbl) {
   data_topic <- attributes(input_tbl)$data_topic
   
   # do some conditionals to filter data topic
-  if (data_topic == "demographics") {
+  if (data_topic == "demographics" || data_topic == "risks") {
     data_report <- c(resp_metadata[1], resp_metadata[2], resp_metadata[3], resp_metadata[4])
     sortedby <- extract_values("Sorted by", resp_metadata)
     createdby <- extract_values("Created by", resp_metadata)
@@ -177,7 +188,9 @@ get_metadata <- function(input_tbl) {
     data_dictionary <- resp_metadata[grep("For more information", resp_metadata)]
     data_limitations <- resp_metadata[grep("Data for", resp_metadata)]
     
-    exclude_keywords <- c("Sorted by", "Created by", "Source", "For more information", "Data for")
+    name_change <- extract_values("Name Change:", resp_metadata)
+    
+    exclude_keywords <- c("Sorted by", "Created by", "Source", "For more information", "Data for", "Name Change")
     
     additional_notes <- resp_metadata[!grepl(paste(exclude_keywords, collapse = "|"), resp_metadata, ignore.case = TRUE)]
     additional_notes <- additional_notes[!additional_notes %in% data_report]
@@ -191,8 +204,6 @@ get_metadata <- function(input_tbl) {
       data_limitations = data_limitations,
       additional_notes = additional_notes
     )
-    
-  } else if (data_topic == "risks") {
     
   } else if (data_topic == "incidence" || data_topic == "mortality") {
     data_report <- c(resp_metadata[1], resp_metadata[2], resp_metadata[3])
