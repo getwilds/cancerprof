@@ -1,28 +1,3 @@
-#' Custom print function
-#'
-#' This custom print function edits the comment on the
-#' metadata tibble output for a response object
-#'
-#' @param x
-#'
-#' @export
-print.cancerprof_tbl <- function(x, ...) {
-  original_url <- attributes(x)$url
-  modified_url <- gsub("&output=1", "#results", original_url)
-  
-  cli_div(theme = list(
-    span.cancerprof_class = list(color = "darkgray")))
-  
-  cli_par()
-  cli_text(
-    "{.href [# Click to view this query on State Cancer Profiles](", modified_url, ")}"
-  )
-  cli_text("{.cancerprof_class # Access metadata with `get_metadata()`}")
-  cli_end()
-  
-  NextMethod(x, ...)
-}
-
 #' Process Metadata
 #'
 #' This function sets the class of the response data 
