@@ -1,12 +1,12 @@
 Package: cancerprof
 Title: API Client for State Cancer Profiles
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("Brian", "Park", , "joon.brianpark@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: An API Client for accessing data from State Cancer Profiles for programmable analysis.
+           comment = c(ORCID = "0009-0008-8274-3057"))
+Description: An interface for retrieving data from the NIH NCI State Cancer Profiles API <https://statecancerprofiles.cancer.gov/>. State Cancer Profiles provides information about data topics including demographics, screening and risk factors, cancer incidence, and mortality for US states, counties, and health service areas.
 License: MIT + file LICENSE
-URL: https://github.com/getwilds/cancerprof
+URL: https://github.com/getwilds/cancerprof, https://getwilds.org/cancerprof/
 BugReports: https://github.com/getwilds/cancerprof/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

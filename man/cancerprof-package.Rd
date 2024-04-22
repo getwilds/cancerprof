@@ -6,18 +6,19 @@
 \alias{cancerprof-package}
 \title{cancerprof: API Client for State Cancer Profiles}
 \description{
-An API Client for accessing data from State Cancer Profiles for programmable analysis.
+An interface for retrieving data from the NIH NCI State Cancer Profiles API \url{https://statecancerprofiles.cancer.gov/}. State Cancer Profiles provides information about data topics including demographics, screening and risk factors, cancer incidence, and mortality for US states, counties, and health service areas.
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://github.com/getwilds/cancerprof}
+  \item \url{https://getwilds.org/cancerprof/}
   \item Report bugs at \url{https://github.com/getwilds/cancerprof/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Brian Park \email{joon.brianpark@gmail.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Brian Park \email{joon.brianpark@gmail.com} (\href{https://orcid.org/0009-0008-8274-3057}{ORCID})
 
 }
 \keyword{internal}
