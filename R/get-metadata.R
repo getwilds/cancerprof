@@ -89,10 +89,9 @@ get_metadata <- function(input_tbl) {
   #add attribute to list
   attr(output_metadata_list, "data_topic") <- data_topic
   
-  #add custom print
   class(output_metadata_list) <- c("cancerprof_metadata", class(output_metadata_list))
   
-  print.cancerprof_metadata(output_metadata_list)
+  output_metadata_list
 }
 
 get_raw_metadata <- function(input_tbl) {

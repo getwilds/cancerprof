@@ -4,7 +4,7 @@
 \alias{print.cancerprof_metadata}
 \title{Custom print function}
 \usage{
-\method{print}{cancerprof_metadata}(x, ...)
+\method{print}{cancerprof_metadata}(x, pretty_print = TRUE, ...)
 }
 \arguments{
 \item{x}{}

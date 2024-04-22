@@ -54,7 +54,12 @@ extract_values <- function(key, resp_metadata) {
 #' @param x
 #'
 #' @export
-print.cancerprof_metadata <- function(x, ...) {
+print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
+  
+  if (!pretty_print) {
+    class(x) <- class(x)[!(class(x) == "cancerprof_metadata")]
+    return(x)
+  }
   
   cli_h1("Metadata")
   cli_text("\n")
@@ -195,15 +200,13 @@ print.cancerprof_tbl <- function(x, ...) {
   original_url <- attributes(x)$url
   modified_url <- gsub("&output=1", "#results", original_url)
   
-  cli_div(theme = list(
-    span.cancerprof_class = list(color = "darkgray")))
-  
   cli_par()
   cli_text(
-    "{.href [# Click to view this query on State Cancer Profiles](", modified_url, ")}"
+    make_ansi_style("darkgrey")("{.href [# Click to view this query on State Cancer Profiles](", modified_url, ")}")
   )
-  cli_text("{.cancerprof_class # Access metadata with `get_metadata()`}")
-  cli_end()
+  cli_text(
+    make_ansi_style("darkgrey")("{.cancerprof_class # Access metadata with `get_metadata()`}")
+  )
   
   NextMethod(x, ...)
 }
