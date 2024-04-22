@@ -88,6 +88,8 @@ demo_education <- function(area, areatype, education, sex = NULL, race = NULL) {
 
   resp <- resp %>%
     req_perform()
+  
+  resp_url <- resp$url
 
   resp <- process_resp(resp, "demographics")
   
@@ -100,6 +102,6 @@ demo_education <- function(area, areatype, education, sex = NULL, race = NULL) {
     )) %>%
     mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
   
-  process_metadata(resp)
+  process_metadata(resp, "demographics", resp_url)
 
 }

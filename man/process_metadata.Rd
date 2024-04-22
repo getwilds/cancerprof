@@ -4,9 +4,9 @@
 \alias{process_metadata}
 \title{Process Metadata}
 \usage{
-process_metadata(resp)
+process_metadata(resp, data_topic, resp_url)
 
-process_metadata(resp)
+process_metadata(resp, data_topic, resp_url)
 }
 \arguments{
 \item{resp}{A response object}

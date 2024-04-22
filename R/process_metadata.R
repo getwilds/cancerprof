@@ -1,21 +1,3 @@
-#' Custom print function
-#'
-#' This custom print function processes the
-#' metadata output for a response object
-#'
-#' @param x
-#'
-#' @export
-print.cancerprof_tbl <- function(x, ...) {
-  #cat("Metadata:", "\n")
-  # we actually need to figure out how to use pillar here
-  cat("\033[38;5;246m# Access metadata with `get_metadata()`\033[39m", "\n")
-  # for (i in seq_along(attr(x, "metadata"))) {
-  #   cat(names(attr(x, "metadata"))[i], attr(x, "metadata")[[i]], "\n")
-  # }
-  NextMethod(x, ...)
-}
-
 #' Process Metadata
 #'
 #' This function sets the class of the response data 
@@ -29,14 +11,19 @@ print.cancerprof_tbl <- function(x, ...) {
 #' \dontrun{
 #' process_metadata(resp)
 #' }
-process_metadata <- function(resp) {
+process_metadata <- function(resp, data_topic, resp_url) {
   
   resp_data <- resp$data
   resp_metadata <- resp$metadata
   
+  #remove new lines
+  resp_metadata <- resp_metadata[!grepl("^\\s*$", resp_metadata)]
+  
   class(resp_data) <- c("cancerprof_tbl", class(resp_data))
   attr(resp_data, "metadata") <- resp_metadata
   
-  #print(resp_metadata)
+  attr(resp_data, "data_topic") <- data_topic
+  
+  attr(resp_data, "url") <- resp_url
   return(resp_data)
 }

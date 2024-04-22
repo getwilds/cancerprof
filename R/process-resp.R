@@ -48,7 +48,7 @@ process_resp <- function(resp, topic) {
     index_first_line_break <- which(resp_lines == "")[4]
     index_second_line_break <- which(resp_lines == "")[5]
   } else {
-    cli_abort("Incorrect topic argument, please ensure that correct.")
+    cli_abort("Incorrect topic argument, please ensure that it is correct.")
   }
 
   resp <- resp_lines[
@@ -82,10 +82,7 @@ process_resp <- function(resp, topic) {
     mutate_all(\(x) na_if(x, "data not available")) %>%
     mutate_all(\(x) na_if(x, "*")) %>% 
     as_tibble()
-  
-  #store metadata
-  
-  #return dataframe AND metadata
+
   resp_metadata <- c(
     resp_lines[1: (index_first_line_break - 1)], resp_lines[(index_second_line_break + 1): line_length]
   )
