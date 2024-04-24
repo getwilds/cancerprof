@@ -2,7 +2,7 @@
 #'
 #' This creates a request to the State Cancer Profiles URL
 #'
-#' @param topic Either "demographics", "risk", "incidencerates", "deathrates"
+#' @param topic Either "demographics", "risk", "incidencerates", "deathrates", "trend"
 #'
 #' @importFrom httr2 request
 #'
@@ -18,9 +18,15 @@
 #' }
 create_request <- function(topic) {
   url <- "https://statecancerprofiles.cancer.gov/"
+  trend_url <- "https://statecancerprofiles.cancer.gov/historicaltrend/data.php/historicaltrend.csv?"
   url_end <- "/index.php"
-
-  url <- paste0(url, topic, url_end)
-
-  request(url)
+  
+  #if pulling trend data, append "/data.php/historicaltrend.csv"
+  if (topic == "trend") {
+    request(trend_url)
+  } else {
+    url <- paste0(url, topic, url_end)
+    
+    request(url)
+  }
 }
