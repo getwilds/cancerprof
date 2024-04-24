@@ -1,5 +1,5 @@
 
-pull_trend_data <- function(area, areatype, cancer, race, sex, age, stage, year) {
+pull_trend_data <- function(area, cancer, race, sex, age, datatype) {
 
   
   # url <- "https://statecancerprofiles.cancer.gov/historicaltrend/data.php/historicaltrend.csv"
@@ -14,9 +14,9 @@ pull_trend_data <- function(area, areatype, cancer, race, sex, age, stage, year)
   
   # seems to be always "0" if no new lines are added
   # number of additional trend lines
-  # "99" + FIPS or "5099 for SEER 9
+  # "99" + FIPS or "5099 for SEER 9, UTAH = 2649 NEW YORK = 4636, NEW MEXICO = 2335, NEW JERSEY = 4434, MASSACHUSETTS = 4725, LOUISIANA = 4322, KENTUCKY = 4221, IOWA = 2219, IDAHO = 4516, HAWAII = 2115, CONNECTICUT = 0209, CALIFORNIA = 9706 
   # 999
-  # 7599.  UTAH = 2649 NEW YORK = 4636, NEW MEXICO = 2335, NEW JERSEY = 4434, MASSACHUSETTS = 4725, LOUISIANA = 4322, KENTUCKY = 4221, IOWA = 2219, IDAHO = 4516, HAWAII = 2115, CONNECTICUT = 0209, CALIFORNIA = 9706 
+  # 7599
   # age
   # cancer
   # race
@@ -28,7 +28,29 @@ pull_trend_data <- function(area, areatype, cancer, race, sex, age, stage, year)
   #
   # total number of trend lines
   # output == 6
-
+  
+  #area = "wa"
+  #age = "all ages"
+  #cancer = "lung & bronchus"
+  #race = "all races (includes hispanic)"
+  #sex = "both sexes"
+  #datatype = "incidence"
+  
+  trend_url <- "?0"
+  area_code <- trend_fips_scp(area)
+  age_code <- handle_age(age)
+  cancer_code <- handle_cancer(cancer)
+  race_code <- handle_race(race)
+  sex_code <- handle_sex(sex)
+  datatype_code <- handle_trend_datatype(datatype)
+  
+  trend_url <- paste0(trend_url, "&", area_code, "&999&7599&", age_code, "&", cancer_code, "&", race_code, "&", sex_code, "&0&0&", datatype_code, "&0&1&1&6")
+  
+  #append the full string of the rest of the URL bc req_url_path_append() will add a "/"
+  req <- req %>% 
+    req_url_path_append(trend_url)
+  
+  
   resp <- req %>%
     req_perform()
   
