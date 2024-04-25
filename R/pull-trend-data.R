@@ -96,6 +96,8 @@ pull_trend_data <- function(area, cancer, race, sex, age, datatype) {
   resp <- req %>%
     req_perform()
   
+  resp_url <- resp$url
+  
   resp_lines <- resp %>%
     resp_body_string() %>%
     strsplit("\\n") %>%
@@ -118,7 +120,8 @@ pull_trend_data <- function(area, cancer, race, sex, age, datatype) {
     resp_lines[1: (index_first_line_break - 1)], resp_lines[(index_second_line_break + 1): line_length]
   )
   
-  attr(resp, "metadata") <- resp_metadata
-
-  return(resp)
+  resp <- list(metadata = resp_metadata, data = resp)
+  
+  process_metadata(resp, "trend", resp_url)
+  
 }

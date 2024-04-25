@@ -182,6 +182,39 @@ print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
       cli_text("{.cancerprof_class # Additional Notes:}", "\n")
       cli_text(x$additional_notes, "\n")
     }
+
+  } else if (data_topic == "trend") {
+    cli_text("{.cancerprof_class # Data Report:}")
+    
+    for (i in seq_along(x$data_report)) {
+      cli_text(x$data_report[i], "\n")
+    }
+    cli_text("\n")
+    
+    cli_text("{.cancerprof_class # Recent Trend:}")
+    cli_text(x$recent_trend, "\n")
+    cli_text("\n")
+    
+    cli_text("{.cancerprof_class # Created By:}")
+    cli_text(x$createdby, "\n")
+    cli_text("\n")
+    
+    if (!is.null(x$regression_note) && length(x$regression_note) > 0) {
+      cli_text("{.cancerprof_class # Regression Note:}", "\n")
+      cli_text(x$regression_note, "\n")
+      cli_text("\n")
+    }
+    
+    if (!is.null(x$data_sources) && length(x$data_sources) > 0) {
+      cli_text("{.cancerprof_class # Data Sources:}", "\n")
+      cli_text(x$data_sources, "\n")
+      cli_text("\n")
+    }
+    
+    if (!is.null(x$additional_notes) && length(x$additional_notes) > 0) {
+      cli_text("{.cancerprof_class # Additional Notes:}", "\n")
+      cli_text(x$additional_notes, "\n")
+    }
   }
   
   invisible(x)
@@ -197,8 +230,21 @@ print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
 #'
 #' @export
 print.cancerprof_tbl <- function(x, ...) {
+  
+  primary_data_topics <- c("demographics, risks", "incidence", "mortality")
+  data_topic <- attributes(x)$data_topic
   original_url <- attributes(x)$url
-  modified_url <- gsub("&output=1", "#results", original_url)
+  
+  if (data_topic == "trend") {
+    modified_url <- gsub("data.php/historicaltrend.csv/", "index.php", original_url)
+
+  } else if (data_topic %in% primary_data_topics) {
+    modified_url <- gsub("&output=1", "#results", original_url)
+    
+  } else {
+    cli_abort("Incorrect data topic, please ensure data topic is correct")
+  }
+  
   
   cli_par()
   cli_text(

@@ -82,6 +82,31 @@ get_metadata <- function(input_tbl) {
       additional_notes = additional_notes
     )
     
+  } else if (data_topic == "trend") {
+    data_report <- c(resp_metadata[1], resp_metadata[2])
+    
+    #get index for recent trend lines
+    start_index <- grep("Section 1", resp_metadata)
+    end_index <- grep("Notes:", resp_metadata) - 1
+    
+    recent_trend <- resp_metadata[start_index:end_index]
+    createdby <- extract_values("Created by", resp_metadata)
+    regression_note <- resp_metadata[grep("Regression lines", resp_metadata)]
+    data_sources <- extract_values("Source:", resp_metadata)
+    
+    exclude_keywords <- c("Created by", "Section 1", "Notes:", "Regression lines", "Source")
+    additional_notes <- resp_metadata[!grepl(paste(exclude_keywords, collapse = "|"), resp_metadata, ignore.case = TRUE)]
+    additional_notes <- additional_notes[!additional_notes %in% c(data_report, recent_trend)]
+    
+    output_metadata_list <- list(
+      data_report = data_report,
+      recent_trend = recent_trend,
+      createdby = createdby,
+      regression_note = regression_note,
+      data_sources = data_sources,
+      additional_notes = additional_notes
+    )
+    
   } else {
     cli_abort("Incorrect data topic argument, please ensure that it is correct.")
   }
