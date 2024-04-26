@@ -1,48 +1,139 @@
-
-pull_trend_data <- function(area, areatype, cancer, race, sex, age, stage, year) {
-
-  
-  # url <- "https://statecancerprofiles.cancer.gov/historicaltrend/data.php/historicaltrend.csv"
-  url <- "https://statecancerprofiles.cancer.gov/historicaltrend/data.php/historicaltrend.csv?0&9900&999&7599&001&001&00&0&0&0&1&0&1&1&6"
-
-  req <- request(url)
-  
+#' Access to Trend Data
+#'
+#' This function returns a data frame about trend data on incidence and
+#' mortality from State Cancer Profiles
+#'
+#' @param area A state/territory abbreviation or USA or "seer 9 registeries"
+#' @param cancer One of the following values:
+#' - `"all cancer sites"`
+#' - `"bladder"`
+#' - `"brain & ons"`
+#' - `"breast (female)"`
+#' - `"breast (female in situ)"`
+#' - `"cervix"`
+#' - `"childhood (ages <15, all sites)"`
+#' - `"childhood (ages <20, all sites)"`
+#' - `"colon & rectum"`
+#' - `"esophagus"`
+#' - `"kidney & renal pelvis"`
+#' - `"leukemia"`
+#' - `"liver & bile duct"`
+#' - `"lung & bronchus"`
+#' - `"melanoma of the skin"`
+#' - `"non-hodgkin lymphoma"`
+#' - `"oral cavity & pharynx"`
+#' - `"ovary"`
+#' - `"pancreas"`
+#' - `"prostate"`
+#' - `"stomach"`
+#' - `"thyroid"`
+#' - `"uterus (corpus & uterus, nos)"`.
+#' @param race
+#' One of the following values:
+#' - `"all Races (includes Hispanic)"`
+#' - `"white non-hispanic"`
+#' - `"black (non-hispanic)"`
+#' - `"american indian / alaska native (non-hispanic)"`
+#' - `"asian / pacific islander (non-hispanic)"`
+#' - `"hispanic (Any Race)"`.
+#' @template param-sex
+#' @param age One of the following values:
+#' - `"all ages"`
+#' - `"ages <50"`
+#' - `"ages 50+"`
+#' - `"ages <65"`
+#' - `"ages 65+"`
+#' @param datatype One of the following values:
+#' - `"incidence"`
+#' - `"mortality"`
+#'
+#' @importFrom httr2 req_url_query req_perform
+#' @importFrom stats setNames
+#' @importFrom dplyr mutate across
+#' @importFrom tibble as_tibble
+#'
+#' @returns A data frame with the following columns: Year, Observed, Estimated
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' pull_trend_data(
+#'   area = "wa",
+#'   cancer = "lung & bronchus",
+#'   race = "All Races (includes Hispanic)",
+#'   sex = "both sexes",
+#'   age = "all ages",
+#'   datatype = "incidence"
+#' )
+#' # no data available
+#' pull_trend_data(
+#'   area = "wa",
+#'   cancer = "lung & bronchus",
+#'   race = "black (non-hispanic)",
+#'   sex = "females",
+#'   age = "ages 65+",
+#'   datatype = "incidence"
+#' )
+#' }
+pull_trend_data <- function(area, cancer, race, sex, age, datatype) {
   req <- create_request("trend")
-  
-  #?0&9900&999&7599&001&001&00&0&0&0&1&0&1&1&6
-  #req_url_path_append()
-  
-  # seems to be always "0" if no new lines are added
-  # number of additional trend lines
-  # "99" + FIPS or "5099 for SEER 9
-  # 999
-  # 7599.  UTAH = 2649 NEW YORK = 4636, NEW MEXICO = 2335, NEW JERSEY = 4434, MASSACHUSETTS = 4725, LOUISIANA = 4322, KENTUCKY = 4221, IOWA = 2219, IDAHO = 4516, HAWAII = 2115, CONNECTICUT = 0209, CALIFORNIA = 9706 
-  # age
-  # cancer
-  # race
-  # sex
-  # 
-  # 
-  # incidence == 1, mortality == 2, data suppressed == ? 
+  #area = "wa"
+  #age = "ages 50+"
+  #cancer = "bladder"
+  #race = "hispanic (any race)"
+  #sex = "females"
+  #datatype = "incidence"
   #
+  # test_url_fail <- "https://statecancerprofiles.cancer.gov/historicaltrend/index.php?0&9953&999&7599&136&071&48&2&0&0&1&1&1&1&6"
+  # test_url_success <- "https://statecancerprofiles.cancer.gov/historicaltrend/index.php?0&9953&999&7599&001&047&00&0&0&0&1&0&1&1&6"
   #
-  # total number of trend lines
-  # output == 6
+  # req <- request(test_url_success)
+
+  trend_url <- "?0"
+  area_code <- trend_fips_scp(area)
+  age_code <- handle_age(age)
+  cancer_code <- handle_cancer(cancer)
+  race_code <- handle_race(race)
+  sex_code <- handle_sex(sex)
+  datatype_code <- handle_trend_datatype(datatype)
+
+  trend_url <- paste0(
+    trend_url,
+    "&",
+    area_code,
+    "&999&7599&",
+    age_code,
+    "&",
+    cancer_code,
+    "&",
+    race_code,
+    "&",
+    sex_code,
+    "&0&0&",
+    datatype_code,
+    "&0&1&1&6"
+  )
+
+  # append the full string of the rest of the URL bc req_url_path_append() will add a "/"
+  req <- req %>%
+    req_url_path_append(trend_url)
 
   resp <- req %>%
     req_perform()
-  
+
+  resp_url <- resp$url
+
   resp_lines <- resp %>%
     resp_body_string() %>%
     strsplit("\\n") %>%
     unlist()
-  
-  resp_lines
-  
-  
+
+  line_length <- length(resp_lines)
+
   index_first_line_break <- which(resp_lines == "")[3]
   index_second_line_break <- which(resp_lines == "")[4]
-  
+
   resp <- resp_lines[
     (index_first_line_break + 2):(index_second_line_break - 1)
   ] %>%
@@ -50,6 +141,25 @@ pull_trend_data <- function(area, areatype, cancer, race, sex, age, stage, year)
     (\(x) {
       read.csv(textConnection(x), header = TRUE, colClasses = "character")
     })()
-  
-  process_metadata(resp, "incidence", resp_url)
+
+  resp_metadata <- c(
+    resp_lines[1:(index_first_line_break - 1)], resp_lines[(index_second_line_break + 1):line_length]
+  )
+
+  resp <- list(metadata = resp_metadata, data = resp)
+
+  process_metadata(resp, "trend", resp_url)
 }
+
+
+# pull_trend_data(
+#      area = "wa",
+#      age = "ages 50+",
+#      cancer = "bladder",
+#      race = "hispanic (any race)",
+#      sex = "females",
+#      datatype = "incidence"
+#   )
+# #rownames(x) 
+# # charact
+
