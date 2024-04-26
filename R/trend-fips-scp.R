@@ -7,6 +7,7 @@
 #' United States of America or United States or usa or us
 #' or "seer 9 registeries"
 #'
+#' @importFrom stats setNames
 #' @importFrom cdlTools fips
 #' @importFrom stringr str_pad
 #'
@@ -71,18 +72,3 @@ trend_fips_scp <- function(area) {
   
   return(fips_output)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
