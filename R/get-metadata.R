@@ -10,7 +10,7 @@
 #' 
 #' @examples
 #' \dontrun{
-#' process_metadata(resp)
+#' get_metadata(input_tbl)
 #' }
 get_metadata <- function(input_tbl) {
   
@@ -117,10 +117,4 @@ get_metadata <- function(input_tbl) {
   class(output_metadata_list) <- c("cancerprof_metadata", class(output_metadata_list))
   
   output_metadata_list
-}
-
-get_raw_metadata <- function(input_tbl) {
-  resp_metadata <- attr(input_tbl, "metadata")
-  
-  return(resp_metadata)
 }

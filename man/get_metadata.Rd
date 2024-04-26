@@ -19,6 +19,6 @@ processed metadata that is easily readable
 }
 \examples{
 \dontrun{
-process_metadata(resp)
+get_metadata(input_tbl)
 }
 }

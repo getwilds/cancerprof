@@ -35,6 +35,8 @@ get_area <- function(areatype) {
 #' 
 #' @returns A string value without the key
 #' 
+#' @noRd
+#' 
 #' @examples
 #' \dontrun{
 #' extract_values("Sorted by", resp_metadata)
@@ -53,7 +55,7 @@ extract_values <- function(key, resp_metadata) {
 #'
 #' @param x
 #'
-#' @export
+#' @noRd
 print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
   
   if (!pretty_print) {
@@ -228,7 +230,7 @@ print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
 #'
 #' @param x
 #'
-#' @export
+#' @noRd
 print.cancerprof_tbl <- function(x, ...) {
   
   primary_data_topics <- c("demographics, risks", "incidence", "mortality")
@@ -264,4 +266,26 @@ print.cancerprof_tbl <- function(x, ...) {
   }
 
   NextMethod(x, ...)
+}
+
+#' Get Raw Metadata
+#'
+#' This function returns the raw metadata provided by State Cancer Profiles
+#' as list of strings
+#'
+#' @param input_tbl A tibble object
+#' 
+#' @returns a string of metadata and an invisible metadata object as a list 
+#' of strings
+#' 
+#' @noRd
+#' 
+#' @examples
+#' \dontrun{
+#' get_raw_metadata(input_tbl)
+#' }
+get_raw_metadata <- function(input_tbl) {
+  resp_metadata <- attr(input_tbl, "metadata")
+  
+  return(resp_metadata)
 }
