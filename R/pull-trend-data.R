@@ -78,17 +78,6 @@
 #' }
 pull_trend_data <- function(area, cancer, race, sex, age, datatype) {
   req <- create_request("trend")
-  #area = "wa"
-  #age = "ages 50+"
-  #cancer = "bladder"
-  #race = "hispanic (any race)"
-  #sex = "females"
-  #datatype = "incidence"
-  #
-  # test_url_fail <- "https://statecancerprofiles.cancer.gov/historicaltrend/index.php?0&9953&999&7599&136&071&48&2&0&0&1&1&1&1&6"
-  # test_url_success <- "https://statecancerprofiles.cancer.gov/historicaltrend/index.php?0&9953&999&7599&001&047&00&0&0&0&1&0&1&1&6"
-  #
-  # req <- request(test_url_success)
 
   trend_url <- "?0"
   area_code <- trend_fips_scp(area)
@@ -143,23 +132,11 @@ pull_trend_data <- function(area, cancer, race, sex, age, datatype) {
     })()
 
   resp_metadata <- c(
-    resp_lines[1:(index_first_line_break - 1)], resp_lines[(index_second_line_break + 1):line_length]
+    resp_lines[1:(index_first_line_break - 1)], 
+    resp_lines[(index_second_line_break + 1):line_length]
   )
 
   resp <- list(metadata = resp_metadata, data = resp)
 
   process_metadata(resp, "trend", resp_url)
 }
-
-
-# pull_trend_data(
-#      area = "wa",
-#      age = "ages 50+",
-#      cancer = "bladder",
-#      race = "hispanic (any race)",
-#      sex = "females",
-#      datatype = "incidence"
-#   )
-# #rownames(x) 
-# # charact
-
