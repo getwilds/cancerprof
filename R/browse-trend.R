@@ -25,16 +25,20 @@
 #    ) %>%
 #    req_perform()
 #  
-#  
-#  test_ur_fail <- "https://statecancerprofiles.cancer.gov/historicaltrend/index.php?0&9953&999&7599&136&071&48&2&0&0&1&1&1&1&6"
+#  test_ur_fail
+#  req <- "https://statecancerprofiles.cancer.gov/historicaltrend/index.php?0&9953&999&7599&136&071&48&2&0&0&1&1&1&1&6"
+# req <- request(req)
+
+
+#  req <- "https://statecancerprofiles.cancer.gov/historicaltrend/index.php?0&9953&999&7599&001&047&00&0&0&0&1&0&1&1&6"
 #  req <- "https://statecancerprofiles.cancer.gov/historicaltrend/data.php/historicaltrend.csv?0&9953&999&7599&136&071&07&2&0&0&1&1&1&1&6"
 #  req <- request("https://statecancerprofiles.cancer.gov/historicaltrend/index.php?0&9953&999&7599&136&071&48&2&0&0&1&1&1&1&6")
 #  
 # resp <- req %>%
-#   req_perform() %>% 
+#   req_perform() %>%
 #   resp_body_string()
-# 
-# 
+# # 
+# # 
 # if (httr2::resp_content_type(resp) != "text/csv") {
 #   cli_abort("Invalid input, please check documentation for valid arguments.")
 # }

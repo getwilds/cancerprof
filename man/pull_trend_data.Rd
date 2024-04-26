@@ -80,10 +80,19 @@ mortality from State Cancer Profiles
 pull_trend_data(
   area = "wa",
   cancer = "lung & bronchus",
-  data = "incidence",
   race = "All Races (includes Hispanic)",
   sex = "both sexes",
-  age = "all ages"
+  age = "all ages",
+  datatype = "incidence"
+)
+# no data available
+pull_trend_data(
+  area = "wa",
+  cancer = "lung & bronchus",
+  race = "black (non-hispanic)",
+  sex = "females",
+  age = "ages 65+",
+  datatype = "incidence"
 )
 }
 }

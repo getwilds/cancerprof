@@ -245,14 +245,23 @@ print.cancerprof_tbl <- function(x, ...) {
     cli_abort("Incorrect data topic, please ensure data topic is correct")
   }
   
-  
-  cli_par()
-  cli_text(
-    make_ansi_style("darkgrey")("{.href [# Click to view this query on State Cancer Profiles](", modified_url, ")}")
-  )
-  cli_text(
-    make_ansi_style("darkgrey")("{.cancerprof_class # Access metadata with `get_metadata()`}")
-  )
-  
+  if (length(rownames(x)) == 0) {
+    cli_par()
+    cli_text(
+      make_ansi_style("darkgrey")("{.cancerprof_class # No data was returned for this selection because the data is supressed due to insufficient counts}")
+    )
+    cli_text(
+      make_ansi_style("darkgrey")("{.href [# Click to view this query on State Cancer Profiles](", modified_url, ")}")
+    )
+  } else if (length(rownames(x)) > 0) {
+    cli_par()
+    cli_text(
+      make_ansi_style("darkgrey")("{.href [# Click to view this query on State Cancer Profiles](", modified_url, ")}")
+    )
+    cli_text(
+      make_ansi_style("darkgrey")("{.cancerprof_class # Access metadata with `get_metadata()`}")
+    )
+  }
+
   NextMethod(x, ...)
 }

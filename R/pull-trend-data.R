@@ -61,23 +61,35 @@
 #' pull_trend_data(
 #'   area = "wa",
 #'   cancer = "lung & bronchus",
-#'   data = "incidence",
 #'   race = "All Races (includes Hispanic)",
 #'   sex = "both sexes",
-#'   age = "all ages"
+#'   age = "all ages",
+#'   datatype = "incidence"
+#' )
+#' # no data available
+#' pull_trend_data(
+#'   area = "wa",
+#'   cancer = "lung & bronchus",
+#'   race = "black (non-hispanic)",
+#'   sex = "females",
+#'   age = "ages 65+",
+#'   datatype = "incidence"
 #' )
 #' }
 pull_trend_data <- function(area, cancer, race, sex, age, datatype) {
-  
   req <- create_request("trend")
   #area = "wa"
-  #age = "all ages"
-  #cancer = "lung & bronchus"
-  #race = "all races (includes hispanic)"
-  #sex = "both sexes"
+  #age = "ages 50+"
+  #cancer = "bladder"
+  #race = "hispanic (any race)"
+  #sex = "females"
   #datatype = "incidence"
-  
-  
+  #
+  # test_url_fail <- "https://statecancerprofiles.cancer.gov/historicaltrend/index.php?0&9953&999&7599&136&071&48&2&0&0&1&1&1&1&6"
+  # test_url_success <- "https://statecancerprofiles.cancer.gov/historicaltrend/index.php?0&9953&999&7599&001&047&00&0&0&0&1&0&1&1&6"
+  #
+  # req <- request(test_url_success)
+
   trend_url <- "?0"
   area_code <- trend_fips_scp(area)
   age_code <- handle_age(age)
@@ -85,29 +97,43 @@ pull_trend_data <- function(area, cancer, race, sex, age, datatype) {
   race_code <- handle_race(race)
   sex_code <- handle_sex(sex)
   datatype_code <- handle_trend_datatype(datatype)
-  
-  trend_url <- paste0(trend_url, "&", area_code, "&999&7599&", age_code, "&", cancer_code, "&", race_code, "&", sex_code, "&0&0&", datatype_code, "&0&1&1&6")
-  
-  #append the full string of the rest of the URL bc req_url_path_append() will add a "/"
-  req <- req %>% 
+
+  trend_url <- paste0(
+    trend_url,
+    "&",
+    area_code,
+    "&999&7599&",
+    age_code,
+    "&",
+    cancer_code,
+    "&",
+    race_code,
+    "&",
+    sex_code,
+    "&0&0&",
+    datatype_code,
+    "&0&1&1&6"
+  )
+
+  # append the full string of the rest of the URL bc req_url_path_append() will add a "/"
+  req <- req %>%
     req_url_path_append(trend_url)
-  
-  
+
   resp <- req %>%
     req_perform()
-  
+
   resp_url <- resp$url
-  
+
   resp_lines <- resp %>%
     resp_body_string() %>%
     strsplit("\\n") %>%
     unlist()
-  
+
   line_length <- length(resp_lines)
-  
+
   index_first_line_break <- which(resp_lines == "")[3]
   index_second_line_break <- which(resp_lines == "")[4]
-  
+
   resp <- resp_lines[
     (index_first_line_break + 2):(index_second_line_break - 1)
   ] %>%
@@ -115,13 +141,25 @@ pull_trend_data <- function(area, cancer, race, sex, age, datatype) {
     (\(x) {
       read.csv(textConnection(x), header = TRUE, colClasses = "character")
     })()
-  
+
   resp_metadata <- c(
-    resp_lines[1: (index_first_line_break - 1)], resp_lines[(index_second_line_break + 1): line_length]
+    resp_lines[1:(index_first_line_break - 1)], resp_lines[(index_second_line_break + 1):line_length]
   )
-  
+
   resp <- list(metadata = resp_metadata, data = resp)
-  
+
   process_metadata(resp, "trend", resp_url)
-  
 }
+
+
+# pull_trend_data(
+#      area = "wa",
+#      age = "ages 50+",
+#      cancer = "bladder",
+#      race = "hispanic (any race)",
+#      sex = "females",
+#      datatype = "incidence"
+#   )
+# #rownames(x) 
+# # charact
+
