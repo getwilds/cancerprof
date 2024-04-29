@@ -1,9 +1,9 @@
-#' Access to Trend Data
+#' Access to Historical Trends Data
 #'
 #' This function returns a data frame about trend data on incidence and
 #' mortality from State Cancer Profiles
 #'
-#' @param area A state/territory abbreviation or USA or "seer 9 registeries"
+#' @param area A state/territory abbreviation or USA or "seer 9 registries"
 #' @param cancer One of the following values:
 #' - `"all cancer sites"`
 #' - `"bladder"`
@@ -47,7 +47,7 @@
 #' - `"incidence"`
 #' - `"mortality"`
 #'
-#' @importFrom httr2 req_url_query req_perform
+#' @importFrom httr2 req_url_query req_perform req_url_path_append
 #' @importFrom stats setNames
 #' @importFrom dplyr mutate across
 #' @importFrom tibble as_tibble
@@ -58,7 +58,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' pull_trend_data(
+#' historical_trends(
 #'   area = "wa",
 #'   cancer = "lung & bronchus",
 #'   race = "All Races (includes Hispanic)",
@@ -67,7 +67,7 @@
 #'   datatype = "incidence"
 #' )
 #' # no data available
-#' pull_trend_data(
+#' historical_trends(
 #'   area = "wa",
 #'   cancer = "lung & bronchus",
 #'   race = "black (non-hispanic)",
@@ -76,7 +76,7 @@
 #'   datatype = "incidence"
 #' )
 #' }
-pull_trend_data <- function(area, cancer, race, sex, age, datatype) {
+historical_trends <- function(area, cancer, race, sex, age, datatype) {
   req <- create_request("trend")
 
   trend_url <- "?0"
@@ -91,6 +91,7 @@ pull_trend_data <- function(area, cancer, race, sex, age, datatype) {
     trend_url,
     "&",
     area_code,
+    # havent figured out what this is but it is all the same
     "&999&7599&",
     age_code,
     "&",
@@ -99,8 +100,10 @@ pull_trend_data <- function(area, cancer, race, sex, age, datatype) {
     race_code,
     "&",
     sex_code,
+    # havent figured out what this is but it is all the same
     "&0&0&",
     datatype_code,
+    # havent figured out what this is but it is all the same
     "&0&1&1&6"
   )
 

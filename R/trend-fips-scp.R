@@ -5,7 +5,7 @@
 #'
 #' @param area A state name or state abbreviation or
 #' United States of America or United States or usa or us
-#' or "seer 9 registeries"
+#' or "seer 9 registries"
 #'
 #' @importFrom stats setNames
 #' @importFrom cdlTools fips
@@ -17,7 +17,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' trend_fips_scp("seer 9 registeries")
+#' trend_fips_scp("seer 9 registries")
 #' trend_fips_scp("ca")
 #' trend_fips_scp("washington")
 #' trend_fips_scp("usa")
@@ -29,6 +29,8 @@ trend_fips_scp <- function(area) {
   
   usa_list <- c("united states", "united states of america", "us", "usa")
   
+  #state cancer profiles added 2 extra digits before state FIPS
+  #havent figured out where these come from
   state_prefixes <- c(
     "utah" = "26",
     "new york" = "46",
@@ -49,7 +51,7 @@ trend_fips_scp <- function(area) {
   if (area %in% usa_list) {
     return("9900")
     
-  } else if (area == "seer 9 registeries") {
+  } else if (area == "seer 9 registries") {
     return("5099")
   
     #checks for state name as area
