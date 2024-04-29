@@ -35,8 +35,8 @@ demo_insurance(area, areatype, insurance, sex, age, race = NULL)
 \item{sex}{One of the following values:
 \itemize{
 \item \code{"both sexes"}
-\item \code{"male"}
-\item \code{"female"}.
+\item \code{"males"}
+\item \code{"females"}.
 }}
 
 \item{age}{If you specified \code{"both sexes"} for \code{sex}

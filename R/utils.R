@@ -33,6 +33,8 @@ get_area <- function(areatype) {
 #' @param key A String value
 #' @param resp_metadaa A list of strings of metadata
 #' 
+#' @importFrom cli cli_abort cli_par cli_text make_ansi_style
+#' 
 #' @returns A string value without the key
 #' 
 #' @noRd
@@ -229,11 +231,13 @@ print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
 #' metadata tibble output for a response object
 #'
 #' @param x
+#' 
+#' @importFrom cli cli_abort cli_par cli_text make_ansi_style
 #'
 #' @noRd
 print.cancerprof_tbl <- function(x, ...) {
   
-  primary_data_topics <- c("demographics, risks", "incidence", "mortality")
+  primary_data_topics <- c("demographics", "risks", "incidence", "mortality")
   data_topic <- attributes(x)$data_topic
   original_url <- attributes(x)$url
   
