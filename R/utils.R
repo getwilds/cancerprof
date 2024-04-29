@@ -230,10 +230,8 @@ print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
 #' This custom print function edits the comment on the
 #' metadata tibble output for a response object
 #'
-#' @param x
-#' 
 #' @importFrom cli cli_abort cli_par cli_text make_ansi_style
-#'
+#' @export
 #' @noRd
 print.cancerprof_tbl <- function(x, ...) {
   
