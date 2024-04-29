@@ -228,12 +228,12 @@ print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
 #' This custom print function edits the comment on the
 #' metadata tibble output for a response object
 #'
-#' @param x
-#'
+#' @importFrom cli cli_abort cli_par cli_text make_ansi_style
+#' @export
 #' @noRd
 print.cancerprof_tbl <- function(x, ...) {
   
-  primary_data_topics <- c("demographics, risks", "incidence", "mortality")
+  primary_data_topics <- c("demographics", "risks", "incidence", "mortality")
   data_topic <- attributes(x)$data_topic
   original_url <- attributes(x)$url
   
@@ -289,3 +289,4 @@ get_raw_metadata <- function(input_tbl) {
   
   return(resp_metadata)
 }
+
