@@ -55,8 +55,8 @@ extract_values <- function(key, resp_metadata) {
 #' This custom print function processes the
 #' metadata output for each data topic for better readability
 #'
-#' @param x
-#'
+#' @importFrom cli cli_h1 cli_div cli_text
+#' @export
 #' @noRd
 print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
   
