@@ -55,7 +55,7 @@ extract_values <- function(key, resp_metadata) {
 #' This custom print function processes the
 #' metadata output for each data topic for better readability
 #'
-#' @importFrom cli cli_h1 cli_div cli_text
+#' @importFrom cli cli_h1 cli_div cli_text cli_vec cli_par cli_end
 #' @export
 #' @noRd
 print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
@@ -64,7 +64,7 @@ print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
     class(x) <- class(x)[!(class(x) == "cancerprof_metadata")]
     return(x)
   }
-  
+
   cli_h1("Metadata")
   cli_text("\n")
   
@@ -195,12 +195,12 @@ print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
     }
     cli_text("\n")
     
-    cli({
-      cli_text("{.cancerprof_class # Recent Trend:}")
-      cli_vec(x$recent_trend, "\n")
-      cli_text("\n")
-    })
-    
+    cli_par()
+    cli_text("{.cancerprof_class # Recent Trend:}")
+    cli_vec(x$recent_trend, "\n")
+    cli_text("\n")
+    cli_end()
+  
     cli_text("{.cancerprof_class # Created By:}")
     cli_text(x$createdby, "\n")
     cli_text("\n")
