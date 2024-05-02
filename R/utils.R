@@ -33,7 +33,11 @@ get_area <- function(areatype) {
 #' @param key A String value
 #' @param resp_metadaa A list of strings of metadata
 #' 
+#' @importFrom cli cli_abort cli_par cli_text make_ansi_style
+#' 
 #' @returns A string value without the key
+#' 
+#' @noRd
 #' 
 #' @examples
 #' \dontrun{
@@ -51,16 +55,16 @@ extract_values <- function(key, resp_metadata) {
 #' This custom print function processes the
 #' metadata output for each data topic for better readability
 #'
-#' @param x
-#'
+#' @importFrom cli cli_h1 cli_div cli_text cli_vec cli_par cli_end
 #' @export
+#' @noRd
 print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
   
   if (!pretty_print) {
     class(x) <- class(x)[!(class(x) == "cancerprof_metadata")]
     return(x)
   }
-  
+
   cli_h1("Metadata")
   cli_text("\n")
   
@@ -191,10 +195,12 @@ print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
     }
     cli_text("\n")
     
+    cli_par()
     cli_text("{.cancerprof_class # Recent Trend:}")
-    cli_text(x$recent_trend, "\n")
+    cli_vec(x$recent_trend, "\n")
     cli_text("\n")
-    
+    cli_end()
+  
     cli_text("{.cancerprof_class # Created By:}")
     cli_text(x$createdby, "\n")
     cli_text("\n")
@@ -226,12 +232,12 @@ print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
 #' This custom print function edits the comment on the
 #' metadata tibble output for a response object
 #'
-#' @param x
-#'
+#' @importFrom cli cli_abort cli_par cli_text make_ansi_style
 #' @export
+#' @noRd
 print.cancerprof_tbl <- function(x, ...) {
   
-  primary_data_topics <- c("demographics, risks", "incidence", "mortality")
+  primary_data_topics <- c("demographics", "risks", "incidence", "mortality")
   data_topic <- attributes(x)$data_topic
   original_url <- attributes(x)$url
   
@@ -265,3 +271,26 @@ print.cancerprof_tbl <- function(x, ...) {
 
   NextMethod(x, ...)
 }
+
+#' Get Raw Metadata
+#'
+#' This function returns the raw metadata provided by State Cancer Profiles
+#' as list of strings
+#'
+#' @param input_tbl A tibble object
+#' 
+#' @returns a string of metadata and an invisible metadata object as a list 
+#' of strings
+#' 
+#' @noRd
+#' 
+#' @examples
+#' \dontrun{
+#' get_raw_metadata(input_tbl)
+#' }
+get_raw_metadata <- function(input_tbl) {
+  resp_metadata <- attr(input_tbl, "metadata")
+  
+  return(resp_metadata)
+}
+

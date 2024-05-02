@@ -55,8 +55,8 @@ mortality_cancer(area, areatype, cancer, race, sex, age, year)
 \item{sex}{One of the following values:
 \itemize{
 \item \code{"both sexes"}
-\item \code{"male"}
-\item \code{"female"}.
+\item \code{"males"}
+\item \code{"females"}.
 }}
 
 \item{age}{One of the following values:

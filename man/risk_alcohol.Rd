@@ -24,8 +24,8 @@ risk_alcohol(alcohol, race, sex)
 \item{sex}{One of the following values:
 \itemize{
 \item \code{"both sexes"}
-\item \code{"male"}
-\item \code{"female"}.
+\item \code{"males"}
+\item \code{"females"}.
 }}
 }
 \value{

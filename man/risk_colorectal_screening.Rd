@@ -29,8 +29,8 @@ risk_colorectal_screening(screening, race = NULL, sex = NULL, area = NULL)
 \item{sex}{One of the following values:
 \itemize{
 \item \code{"both sexes"}
-\item \code{"male"}
-\item \code{"female"}.
+\item \code{"males"}
+\item \code{"females"}.
 }}
 
 \item{area}{A state/territory abbreviation or USA.}

@@ -19,11 +19,10 @@ process_metadata <- function(resp, data_topic, resp_url) {
   #remove new lines
   resp_metadata <- resp_metadata[!grepl("^\\s*$", resp_metadata)]
   
-  class(resp_data) <- c("cancerprof_tbl", class(resp_data))
   attr(resp_data, "metadata") <- resp_metadata
-  
   attr(resp_data, "data_topic") <- data_topic
-  
   attr(resp_data, "url") <- resp_url
+  
+  class(resp_data) <- c("cancerprof_tbl", class(resp_data))
   return(resp_data)
 }

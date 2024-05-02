@@ -41,8 +41,8 @@ risk_smoking(smoking, race = NULL, sex = NULL, datatype = NULL, area = NULL)
 \item{sex}{One of the following values:
 \itemize{
 \item \code{"both sexes"}
-\item \code{"male"}
-\item \code{"female"}.
+\item \code{"males"}
+\item \code{"females"}.
 }}
 
 \item{datatype}{One of the following values:
