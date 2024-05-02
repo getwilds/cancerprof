@@ -89,14 +89,32 @@ get_metadata <- function(input_tbl) {
     start_index <- grep("Section 1", resp_metadata)
     end_index <- grep("Notes:", resp_metadata) - 1
     
-    recent_trend <- resp_metadata[start_index:end_index]
+    # recent_trend_header <- resp_metadata[start_index]
+    
+    recent_trend_lines <- resp_metadata[(start_index +1):end_index]
+    
+    recent_trend <- recent_trend_lines %>% 
+      paste(collapse = "\n") %>%
+      (\(x) {
+        read.csv(textConnection(x), header = TRUE, colClasses = "character")
+      })() %>% 
+      setNames(c(
+        "Period",
+        "Annual_Percent_Change",
+        "Lower_95%_CI",
+        "Upper_95%_CI",
+        "Recent_Trend"
+      )) %>%
+      mutate(across(c("Annual_Percent_Change", "Lower_95%_CI", "Upper_95%_CI"), \(x) as.numeric(x)))
+    
+    
     createdby <- extract_values("Created by", resp_metadata)
     regression_note <- resp_metadata[grep("Regression lines", resp_metadata)]
     data_sources <- extract_values("Source:", resp_metadata)
     
     exclude_keywords <- c("Created by", "Section 1", "Notes:", "Regression lines", "Source")
     additional_notes <- resp_metadata[!grepl(paste(exclude_keywords, collapse = "|"), resp_metadata, ignore.case = TRUE)]
-    additional_notes <- additional_notes[!additional_notes %in% c(data_report, recent_trend)]
+    additional_notes <- additional_notes[!additional_notes %in% c(data_report, recent_trend_lines)]
     
     output_metadata_list <- list(
       data_report = data_report,

@@ -195,9 +195,11 @@ print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
     }
     cli_text("\n")
     
-    cli_text("{.cancerprof_class # Recent Trend:}")
-    cli_text(x$recent_trend, "\n")
-    cli_text("\n")
+    cli({
+      cli_text("{.cancerprof_class # Recent Trend:}")
+      cli_vec(x$recent_trend, "\n")
+      cli_text("\n")
+    })
     
     cli_text("{.cancerprof_class # Created By:}")
     cli_text(x$createdby, "\n")
