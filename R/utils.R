@@ -189,22 +189,21 @@ print.cancerprof_metadata <- function(x, pretty_print = TRUE, ...) {
 
   } else if (data_topic == "trend") {
     cli_text("{.cancerprof_class # Data Report:}")
-    
+
     for (i in seq_along(x$data_report)) {
       cli_text(x$data_report[i], "\n")
     }
     cli_text("\n")
-    
+
     cli_par()
     cli_text("{.cancerprof_class # Recent Trend:}")
-    cli_vec(x$recent_trend, "\n")
-    cli_text("\n")
+    print(x$recent_trend)
     cli_end()
-  
+
     cli_text("{.cancerprof_class # Created By:}")
     cli_text(x$createdby, "\n")
     cli_text("\n")
-    
+
     if (!is.null(x$regression_note) && length(x$regression_note) > 0) {
       cli_text("{.cancerprof_class # Regression Note:}", "\n")
       cli_text(x$regression_note, "\n")
