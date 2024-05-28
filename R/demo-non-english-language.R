@@ -20,6 +20,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' demo_language(
 #'   area = "WA",
 #'   areatype = "county",
@@ -37,6 +38,7 @@
 #'   areatype = "state",
 #'   language = "language isolation"
 #' )
+#' }
 demo_language <- function(area, areatype, language) {
   req <- create_request("demographics")
 
