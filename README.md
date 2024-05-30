@@ -8,7 +8,9 @@
 
 ## Overview
 
-Cancerprof is designed to allow programmable research with data from [State Cancer Profiles](https://statecancerprofiles.cancer.gov/index.html "Visit State Cancer Profiles") 
+Cancerprof is designed to allow programmable research with data from [State Cancer Profiles](https://statecancerprofiles.cancer.gov/index.html "Visit State Cancer Profiles").
+Cancerprof replicates the user flow of the data retrieval process of the data table 
+functionality in State Cancer Profiles to allow intuitive access to programmable data.
 
 ## Installation
 
