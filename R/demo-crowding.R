@@ -57,7 +57,7 @@ demo_crowding <- function(area, areatype, crowding, race) {
   resp <- req %>%
     req_url_query(
       stateFIPS = fips_scp(area),
-      areatype = tolower(areatype),
+      areatype = handle_areatype(areatype),
       topic = "crowd",
       demo = handle_crowding(crowding),
       race = handle_race(race),
