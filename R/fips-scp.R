@@ -26,6 +26,10 @@ fips_scp <- function(area) {
   if (area %in% usa_list) {
     return("00")
   } else {
-    str_pad(fips(area), width = 2, side = "left", pad = "0")
+    if (is.na(fips(area))) {
+      stop("Invalid area input, please check the documentation for valid inputs.")
+    } else {
+      str_pad(fips(area), width = 2, side = "left", pad = "0") 
+    }
   }
 }
