@@ -62,6 +62,7 @@ demo_education <- function(area, areatype, education, sex = NULL, race = NULL) {
     cli_abort("For At Least Bachelors Degree, Race and Sex must be NOT NULL.")
   }
 
+  # Request
   req <- create_request("demographics") %>%
     req_url_query(
       stateFIPS = fips_scp(area),
@@ -83,6 +84,7 @@ demo_education <- function(area, areatype, education, sex = NULL, race = NULL) {
       req_url_query(sex = handle_sex(sex))
   }
 
+  # Response
   resp <- req_perform(req)
   resp_url <- resp$url
   resp <- process_resp(resp, "demographics")

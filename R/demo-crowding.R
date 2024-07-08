@@ -53,6 +53,7 @@
 #' )
 #' }
 demo_crowding <- function(area, areatype, crowding, race) {
+  # Request
   req <- create_request("demographics") %>% 
     req_url_query(
       stateFIPS = fips_scp(area),
@@ -66,6 +67,7 @@ demo_crowding <- function(area, areatype, crowding, race) {
       output = 1
     )
   
+  # Response
   resp <- req_perform(req)
   resp_url <- resp$url
   resp <- process_resp(resp, "demographics")

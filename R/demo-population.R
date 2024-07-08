@@ -69,8 +69,6 @@
 #' )
 #' }
 demo_population <- function(area, areatype, population, race = NULL, sex = NULL) {
-  req <- create_request("demographics")
-
   if ((population == "ages 40 and over" || population == "ages 50 and over") && (!is.null(race) || !is.null(sex))) {
     cli_abort("ages 40 and over and ages 50 and over, Race and Sex must be NULL")
   } else if ((population == "age 18-39" || population == "age 40-64") && (is.null(sex) || !is.null(race))) {
@@ -86,8 +84,9 @@ demo_population <- function(area, areatype, population, race = NULL, sex = NULL)
                 population == "white") && (is.null(sex) || !is.null(race))) {
     cli_abort("for races other than foreign born, Sex must not be NULL and race must be NULL")
   }
-
-  resp <- req %>%
+  
+  # Request
+  req <- create_request("demographics") %>% 
     req_url_query(
       stateFIPS = fips_scp(area),
       areatype = tolower(areatype),
@@ -96,22 +95,20 @@ demo_population <- function(area, areatype, population, race = NULL, sex = NULL)
       type = "manyareacensus",
       sortVariableName = "value",
       sortOrder = "default",
-      output = 1
-    )
+      output = 1)
 
   if (!is.null(race)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(race = handle_race(race))
   }
 
   if (!is.null(sex)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(sex = handle_sex(sex))
   }
 
-  resp <- resp %>%
-    req_perform()
-
+  # Response
+  resp <- req_perform(req)
   resp <- process_resp(resp, "demographics")
 
   resp$data %>%
