@@ -31,7 +31,7 @@ handle_screening <- function(screening) {
     "received at least one recommended crc test, ages 45-75" = "v521"
   )
 
-  screening_code <- screening_mapping[screening]
+  screening_code <- unname(screening_mapping[screening])
 
   if (is_na(screening_code)) {
     stop(
@@ -42,5 +42,5 @@ handle_screening <- function(screening) {
     )
   }
 
-  return(as.character(screening_code))
+  screening_code
 }

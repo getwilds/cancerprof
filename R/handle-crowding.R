@@ -22,7 +22,7 @@ handle_crowding <- function(crowding) {
     "household with >1 person per room" = "00027"
   )
 
-  crowding_code <- crowding_mapping[crowding]
+  crowding_code <- unname(crowding_mapping[crowding])
 
   if (is_na(crowding_code)) {
     stop(
@@ -33,5 +33,5 @@ handle_crowding <- function(crowding) {
     )
   }
 
-  return(as.character(crowding_code))
+  crowding_code
 }

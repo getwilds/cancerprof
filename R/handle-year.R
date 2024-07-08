@@ -25,11 +25,11 @@ handle_year <- function(year) {
     "latest single year (us by state)" = "1"
   )
 
-  year_code <- year_mapping[year]
+  year_code <- unname(year_mapping[year])
 
   if (is_na(year_code)) {
     stop("Invalid year input, please check the documentation for valid inputs")
   }
 
-  return(as.character(year_code))
+  year_code
 }

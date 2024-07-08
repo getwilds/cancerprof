@@ -21,11 +21,11 @@ handle_food <- function(food) {
     "limited access to healthy food" = "03004"
   )
 
-  food_code <- food_mapping[food]
+  food_code <- unname(food_mapping[food])
 
   if (is_na(food_code)) {
     stop("Invalid food input, please check the documentation for valid inputs")
   }
 
-  return(as.character(food_code))
+  food_code
 }

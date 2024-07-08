@@ -45,7 +45,7 @@ handle_insurance <- function(insurance) {
     "% uninsured in demographic group, people between 138% - 400% of poverty" = "00045"
   )
 
-  insurance_code <- insurance_mapping[insurance]
+  insurance_code <- unname(insurance_mapping[insurance])
 
   if (is_na(insurance_code)) {
     stop(
@@ -56,5 +56,5 @@ handle_insurance <- function(insurance) {
     )
   }
 
-  return(as.character(insurance_code))
+  insurance_code
 }

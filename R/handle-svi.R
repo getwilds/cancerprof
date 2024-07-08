@@ -31,11 +31,11 @@ handle_svi <- function(svi) {
     "housing type & transportation" = "03014"
   )
 
-  svi_code <- svi_mapping[svi]
+  svi_code <- unname(svi_mapping[svi])
 
   if (is_na(svi_code)) {
     stop("Invalid svi input, please check the documentation for valid inputs")
   }
 
-  return(as.character(svi_code))
+  svi_code
 }

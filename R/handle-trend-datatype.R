@@ -23,7 +23,7 @@ handle_trend_datatype <- function(datatype) {
     "mortality" = "2"
   )
   
-  datatype_code <- datatype_mapping[datatype]
+  datatype_code <- unname(datatype_mapping[datatype])
   
   if (is_na(datatype_code)) {
     stop(
@@ -34,5 +34,5 @@ handle_trend_datatype <- function(datatype) {
     )
   }
   
-  return(as.character(datatype_code))
+  datatype_code
 }

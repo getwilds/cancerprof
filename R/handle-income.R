@@ -23,7 +23,7 @@ handle_income <- function(income) {
     "median household income" = "00011"
   )
 
-  income_code <- income_mapping[income]
+  income_code <- unname(income_mapping[income])
 
   if (is_na(income_code)) {
     stop(
@@ -34,5 +34,5 @@ handle_income <- function(income) {
     )
   }
 
-  return(as.character(income_code))
+  income_code
 }

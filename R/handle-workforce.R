@@ -22,7 +22,7 @@ handle_workforce <- function(workforce) {
     "unemployed" = "00012"
   )
 
-  workforce_code <- workforce_mapping[workforce]
+  workforce_code <- unname(workforce_mapping[workforce])
 
   if (is_na(workforce_code)) {
     stop(
@@ -33,5 +33,5 @@ handle_workforce <- function(workforce) {
     )
   }
 
-  return(as.character(workforce_code))
+  workforce_code
 }

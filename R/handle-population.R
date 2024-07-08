@@ -51,7 +51,7 @@ handle_population <- function(population) {
     "females" = "00105"
   )
 
-  population_code <- population_mapping[population]
+  population_code <- unname(population_mapping[population])
 
   if (is_na(population_code)) {
     stop(
@@ -62,5 +62,5 @@ handle_population <- function(population) {
     )
   }
 
-  return(as.character(population_code))
+  population_code
 }

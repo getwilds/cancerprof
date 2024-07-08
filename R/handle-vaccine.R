@@ -25,7 +25,7 @@ handle_vaccine <- function(vaccine) {
     "percent with up to date hpv vaccination coverage, ages 13-17" = "v282"
   )
 
-  vaccine_code <- vaccine_mapping[vaccine]
+  vaccine_code <- unname(vaccine_mapping[vaccine])
 
   if (is_na(vaccine_code)) {
     stop(
@@ -35,5 +35,6 @@ handle_vaccine <- function(vaccine) {
       )
     )
   }
-  return(as.character(vaccine_code))
+  
+  vaccine_code
 }
