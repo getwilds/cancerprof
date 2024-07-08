@@ -52,8 +52,6 @@
 #' )
 #' }
 risk_women_health <- function(women_health, race, datatype = "direct estimates", area = NULL) {
-  req <- create_request("risk")
-
   risk_races <- c(
     "all races (includes hispanic)",
     "white (non-hispanic)",
@@ -72,7 +70,7 @@ risk_women_health <- function(women_health, race, datatype = "direct estimates",
     cli_abort("For county level modeled estimates, Area must NOT be NULL")
   }
 
-  resp <- req %>%
+  req <- create_request("risk") %>%
     req_url_query(
       topic = "women",
       risk = handle_women_health(women_health),
@@ -84,22 +82,20 @@ risk_women_health <- function(women_health, race, datatype = "direct estimates",
     )
 
   if (!is.null(datatype)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(datatype = handle_datatype(datatype))
   }
 
   if (!is.null(area)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(stateFIPS = fips_scp(area))
   }
 
-  resp <- resp %>%
-    req_perform()
-
+  resp <- req_perform(req)
   resp <- process_resp(resp, "risks")
 
   if (datatype == "county level modeled estimates") {
-    resp %>%
+    resp$data %>%
       setNames(c(
         "County",
         "FIPS",
@@ -113,7 +109,7 @@ risk_women_health <- function(women_health, race, datatype = "direct estimates",
         "Upper_95%_CI"
       ), \(x) as.numeric(x)))
   } else {
-    resp %>%
+    resp$data %>%
       setNames(c(
         "State",
         "FIPS",

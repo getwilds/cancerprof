@@ -50,26 +50,24 @@
 #' )
 #' }
 risk_colorectal_screening <- function(screening, race = NULL, sex = NULL, area = NULL) {
-  req <- create_request("risk")
-
   screening_type_1 <- c(
     "home blood stool test in the past year, ages 45-75",
     "received at least one recommended crc test, ages 45-75"
   )
-
+  
   screening_type_2 <- c(
     "ever had fobt, ages 50-75",
     "guidance sufficient crc, ages 50-75",
     "had colonoscopy in past 10 years, ages 50-75"
   )
-
+  
   if (screening %in% screening_type_1 && ((is.null(race) || is.null(sex)) || !is.null(area))) {
     cli_abort("For this screening type, Race and Sex must not be NULL, and Area must be NULL")
   } else if (screening %in% screening_type_2 && (is.null(area) || (!is.null(race) || !is.null(sex)))) {
     cli_abort("for this screening type, area must NOT be NULL and Race and Sex must be NULL")
   }
-
-  resp <- req %>%
+  
+  req <- create_request("risk") %>% 
     req_url_query(
       topic = "colorec",
       risk = handle_screening(screening),
@@ -78,29 +76,26 @@ risk_colorectal_screening <- function(screening, race = NULL, sex = NULL, area =
       sortOrder = "default",
       output = 1
     )
-
+  
   if (!is.null(race)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(race = handle_race(race))
   }
-
+  
   if (!is.null(sex)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(sex = handle_sex(sex))
   }
-
+  
   if (!is.null(area)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(stateFIPS = fips_scp(area))
   }
-
-  resp <- resp %>%
-    req_perform()
   
+  resp <- req_perform(req)
   resp_url <- resp$url
-
   resp <- process_resp(resp, "risks")
-
+  
   if (screening %in% screening_type_1) {
     resp$data <- resp$data %>%
       setNames(c(

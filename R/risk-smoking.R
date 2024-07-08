@@ -75,8 +75,6 @@
 #' )
 #' }
 risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area = NULL) {
-  req <- create_request("risk")
-
   smoking_group1 <- c(
     "smoking laws (any)",
     "smoking laws (bars)",
@@ -84,37 +82,37 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
     "smoking laws (workplace)",
     "smoking laws (workplace; restaurant; & bar)"
   )
-
+  
   smoking_group2 <- c(
     "smokers (stopped for 1 day or longer)",
     "smoking not allowed at work (all people)",
     "smoking not allowed in home (all people)"
   )
-
+  
   smoking_group3 <- c(
     "smoking not allowed at work (current smokers)",
     "smoking not allowed at work (former/never smokers)",
     "smoking not allowed in home (current smokers)",
     "smoking not allowed in home (former/never smokers)"
   )
-
+  
   smoking_group4 <- c(
     "former smoker; ages 18+",
     "former smoker, quit 1 year+; ages 18+"
   )
-
+  
   smoking_group5 <- c(
     "smokers (ever); ages 18+",
     "e-cigarette use; ages 18+"
   )
-
+  
   smoking_group6 <- "smokers (current); ages 18+"
-
+  
   # smoking group 1
   if (smoking %in% smoking_group1 && (!is.null(race) || !is.null(sex) || !is.null(sex) || !is.null(area))) {
     cli_abort("For this smoking type, Race, Sex, Datatype, and Area must ALL be NULL")
   }
-
+  
   # smoking group 2
   if (smoking %in% smoking_group2 && !is.null(sex)) {
     if (sex == "both sexes") {
@@ -131,7 +129,7 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
   } else if (smoking %in% smoking_group2 && is.null(sex)) {
     cli_abort("For this smoking type, sex must NOT be NULL")
   }
-
+  
   # smoking group 3
   if (smoking %in% smoking_group3 && !is.null(sex)) {
     if (!is.null(race) || !is.null(area)) {
@@ -140,26 +138,26 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
   } else if (smoking %in% smoking_group3 && (is.null(sex) || is.null(datatype))) {
     cli_abort("For this smoking type, sex and dattype must NOT be NULL")
   }
-
+  
   # smoking group 4
   if (smoking %in% smoking_group4 && ((is.null(sex) || is.null(area) || is.null(datatype)) || !is.null(race))) {
     cli_abort("For this smoking type, Sex, Datatype, and Area must not be NULL AND Race must be NULL")
   } else if (smoking %in% smoking_group4 && datatype == "direct estimates") {
     cli_abort("For this smoking type, Datatype must be county level modeled estimates")
   }
-
+  
   # smoking group 5
   if (smoking %in% smoking_group5 && ((is.null(race) || is.null(sex) || is.null(datatype)) || !is.null(area))) {
     cli_abort("For this smoking type, Race, Sex, and Datatype must not be NULL AND Datatype and Area must be NULL")
   } else if (smoking %in% smoking_group5 && datatype == "county level modeled estimates") {
     cli_abort("For this smoking type, Datatype must be direct estimates")
   }
-
+  
   # smoking group 6
   if (smoking %in% smoking_group6 && (is.null(race) || is.null(sex))) {
     cli_abort("For this smoking group, Race and Sex must not be NULL")
   } else if (smoking %in% smoking_group6 && (!is.null(race) && !is.null(sex)) &&
-               race == "all races (includes hispanic)") {
+             race == "all races (includes hispanic)") {
     if (is.null(datatype)) {
       cli_abort("For all races for this smoking type, Datatype must not be NULL")
     } else if (datatype == "direct estimates" && !is.null(area)) {
@@ -168,8 +166,10 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
       cli_abort("For county level modeled estimates for this smoking type, Area must NOT be NULL")
     }
   }
-
-  resp <- req %>%
+  
+  
+  
+  req <- create_request("risk") %>% 
     req_url_query(
       topic = "smoke",
       risk = handle_smoking(smoking),
@@ -178,35 +178,32 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
       sortOrder = "default",
       output = 1
     )
-
+  
   if (!is.null(race)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(race = handle_race(race))
   }
-
+  
   if (!is.null(sex)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(sex = handle_sex(sex))
   }
-
+  
   if (!is.null(datatype)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(datatype = handle_datatype(datatype))
   }
-
+  
   if (!is.null(area)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(stateFIPS = fips_scp(area))
   }
-
-  resp <- resp %>%
-    req_perform()
-
+  
+  resp <- req_perform(req)
   resp <- process_resp(resp, "risks")
-
-
+  
   if (smoking %in% smoking_group1) {
-    resp %>%
+    resp$data %>%
       setNames(c("State", "FIPS", "Percent"))
   } else if ((smoking %in% c(
     smoking_group2,
@@ -215,8 +212,8 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
     smoking_group5,
     smoking_group6
   )) &&
-    (datatype == "direct estimates")) {
-    resp %>%
+  (datatype == "direct estimates")) {
+    resp$data %>%
       setNames(c(
         "State",
         "FIPS",
@@ -238,8 +235,8 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
     smoking_group5,
     smoking_group6
   ) &&
-    datatype == "county level modeled estimates")) {
-    resp %>%
+  datatype == "county level modeled estimates")) {
+    resp$data %>%
       setNames(c(
         "County",
         "FIPS",
