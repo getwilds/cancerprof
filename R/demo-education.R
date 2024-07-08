@@ -54,8 +54,6 @@
 #' )
 #' }
 demo_education <- function(area, areatype, education, sex = NULL, race = NULL) {
-  req <- create_request("demographics")
-
   if (education == "less than 9th grade" && (!is.null(race) || !is.null(sex))) {
     cli_abort("For Less than 9th Grade, Race and Sex must be NULL.")
   } else if (education == "at least high school" && (!is.null(race) || is.null(sex))) {
@@ -64,7 +62,7 @@ demo_education <- function(area, areatype, education, sex = NULL, race = NULL) {
     cli_abort("For At Least Bachelors Degree, Race and Sex must be NOT NULL.")
   }
 
-  resp <- req %>%
+  req <- create_request("demographics") %>%
     req_url_query(
       stateFIPS = fips_scp(area),
       areatype = tolower(areatype),
@@ -77,20 +75,16 @@ demo_education <- function(area, areatype, education, sex = NULL, race = NULL) {
     )
 
   if (!is.null(race)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(race = handle_race(race))
   }
-
   if (!is.null(sex)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(sex = handle_sex(sex))
   }
 
-  resp <- resp %>%
-    req_perform()
-  
+  resp <- req_perform(req)
   resp_url <- resp$url
-
   resp <- process_resp(resp, "demographics")
   
   resp$data <- resp$data %>%
@@ -103,5 +97,4 @@ demo_education <- function(area, areatype, education, sex = NULL, race = NULL) {
     mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
   
   process_metadata(resp, "demographics", resp_url)
-
 }
