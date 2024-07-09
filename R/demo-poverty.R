@@ -92,16 +92,17 @@ demo_poverty <- function(area, areatype, poverty, race = NULL, sex = NULL) {
 
   # Response
   resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "demographics")
 
   if (poverty == "persistent poverty") {
-    resp$data %>%
+    resp$data <- resp$data %>%
       setNames(c(
         get_area(areatype),
         "Persistent Poverty"
       ))
   } else {
-    resp$data %>%
+    resp$data <- resp$data %>%
       setNames(c(
         get_area(areatype),
         "Percent",
@@ -110,4 +111,6 @@ demo_poverty <- function(area, areatype, poverty, race = NULL, sex = NULL) {
       )) %>%
       mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
   }
+  
+  process_metadata(resp, "demographics", resp_url)
 }

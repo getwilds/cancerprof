@@ -80,8 +80,8 @@ demo_population <- function(area, areatype, population, race = NULL, sex = NULL)
   } else if (population == "foreign born" && (is.null(race) || is.null(sex))) {
     cli_abort("for foreign born, race and sex must not be NULL")
   } else if ((population == "american indian/alaska native" || population == "asian/pacific islander" ||
-                population == "black" || population == "hispanic" || population == "non-hispanic (origin recode)" ||
-                population == "white") && (is.null(sex) || !is.null(race))) {
+              population == "black" || population == "hispanic" || population == "non-hispanic (origin recode)" ||
+              population == "white") && (is.null(sex) || !is.null(race))) {
     cli_abort("for races other than foreign born, Sex must not be NULL and race must be NULL")
   }
   
@@ -96,22 +96,23 @@ demo_population <- function(area, areatype, population, race = NULL, sex = NULL)
       sortVariableName = "value",
       sortOrder = "default",
       output = 1)
-
+  
   if (!is.null(race)) {
     req <- req %>%
       req_url_query(race = handle_race(race))
   }
-
+  
   if (!is.null(sex)) {
     req <- req %>%
       req_url_query(sex = handle_sex(sex))
   }
-
+  
   # Response
   resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "demographics")
-
-  resp$data %>%
+  
+  resp$data <- resp$data %>%
     setNames(c(
       get_area(areatype),
       "Percent",
@@ -120,5 +121,5 @@ demo_population <- function(area, areatype, population, race = NULL, sex = NULL)
     )) %>%
     mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
   
-  process_metadata(resp)
+  process_metadata(resp, "demographics", resp_url)
 }

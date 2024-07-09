@@ -65,9 +65,12 @@ demo_income <- function(area, areatype, income, race) {
   
   # Response
   resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "demographics")
   
-  resp$data %>%
+  resp$data <- resp$data %>%
     setNames(c(get_area(areatype), "Dollars", "Rank")) %>%
     mutate(across(c("Dollars"), \(x) as.numeric(x)))
+  
+  process_metadata(resp, "demographics", resp_url)
 }

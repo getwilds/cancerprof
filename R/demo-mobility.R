@@ -58,9 +58,10 @@ demo_mobility <- function(area, areatype, mobility) {
   
   # Response
   resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "demographics")
   
-  resp$data %>%
+  resp$data <- resp$data %>%
     setNames(c(
       get_area(areatype),
       "Percent",
@@ -68,4 +69,6 @@ demo_mobility <- function(area, areatype, mobility) {
       "Rank"
     )) %>%
     mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
+  
+  process_metadata(resp, "demographics", resp_url)
 }

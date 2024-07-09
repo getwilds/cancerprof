@@ -45,6 +45,7 @@ risk_vaccines <- function(vaccine, sex) {
     )
   
   resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "risks")
   
   
@@ -54,7 +55,7 @@ risk_vaccines <- function(vaccine, sex) {
   )
   
   if (vaccine %in% vaccine_type1) {
-    resp$data %>%
+    resp$data <- resp$data %>%
       setNames(c(
         "State",
         "FIPS",
@@ -72,7 +73,7 @@ risk_vaccines <- function(vaccine, sex) {
         "Number_of_Respondents"
       ), \(x) as.numeric(x)))
   } else {
-    resp$data %>%
+    resp$data <- resp$data %>%
       setNames(c(
         "State",
         "FIPS",
@@ -88,4 +89,6 @@ risk_vaccines <- function(vaccine, sex) {
         "Number_of_Respondents"
       ), \(x) as.numeric(x)))
   }
+  
+  process_metadata(resp, "risks", resp_url)
 }

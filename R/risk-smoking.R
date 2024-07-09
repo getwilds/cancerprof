@@ -200,10 +200,11 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
   }
   
   resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "risks")
   
   if (smoking %in% smoking_group1) {
-    resp$data %>%
+    resp$data <- resp$data %>%
       setNames(c("State", "FIPS", "Percent"))
   } else if ((smoking %in% c(
     smoking_group2,
@@ -213,7 +214,7 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
     smoking_group6
   )) &&
   (datatype == "direct estimates")) {
-    resp$data %>%
+    resp$data <- resp$data %>%
       setNames(c(
         "State",
         "FIPS",
@@ -236,7 +237,7 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
     smoking_group6
   ) &&
   datatype == "county level modeled estimates")) {
-    resp$data %>%
+    resp$data <- resp$data %>%
       setNames(c(
         "County",
         "FIPS",
@@ -250,4 +251,6 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
         "Upper_95%_CI"
       ), \(x) as.numeric(x)))
   }
+  
+  process_metadata(resp, "risks", resp_url)
 }

@@ -75,6 +75,7 @@ demo_food <- function(area, areatype, food, race = NULL) {
   
   # Response
   resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "demographics")
   
   if (food == "limited access to healthy food") {
@@ -86,4 +87,6 @@ demo_food <- function(area, areatype, food, race = NULL) {
       setNames(c(get_area(areatype), "Percent")) %>%
       mutate(across(c("Percent"), \(x) as.numeric(x)))
   }
+  
+  process_metadata(resp, "demographics", resp_url)
 }

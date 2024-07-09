@@ -52,9 +52,10 @@ risk_alcohol <- function(alcohol, race, sex) {
     )
   
   resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "risks")
   
-  resp$data %>%
+  resp$data <- resp$data %>%
     setNames(c(
       "State",
       "FIPS",
@@ -69,4 +70,6 @@ risk_alcohol <- function(alcohol, race, sex) {
       "Upper_95%_CI",
       "Number_of_Respondents"
     ), \(x) as.numeric(x)))
+  
+  process_metadata(resp, "risks", resp_url)
 }

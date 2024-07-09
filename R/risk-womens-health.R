@@ -92,10 +92,11 @@ risk_women_health <- function(women_health, race, datatype = "direct estimates",
   }
 
   resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "risks")
 
   if (datatype == "county level modeled estimates") {
-    resp$data %>%
+    resp$data <- resp$data %>%
       setNames(c(
         "County",
         "FIPS",
@@ -109,7 +110,7 @@ risk_women_health <- function(women_health, race, datatype = "direct estimates",
         "Upper_95%_CI"
       ), \(x) as.numeric(x)))
   } else {
-    resp$data %>%
+    resp$data <- resp$data %>%
       setNames(c(
         "State",
         "FIPS",
@@ -125,4 +126,6 @@ risk_women_health <- function(women_health, race, datatype = "direct estimates",
         "Number_of_Respondents"
       ), \(x) as.numeric(x)))
   }
+  
+  process_metadata(resp, "risks", resp_url)
 }
