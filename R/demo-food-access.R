@@ -49,15 +49,14 @@
 #' )
 #' }
 demo_food <- function(area, areatype, food, race = NULL) {
-  req <- create_request("demographics")
-
   if (food == "limited access to healthy food" && !is.null(race)) {
     cli_abort("For limited access to healthy food, Race must be NULL.")
   } else if (food == "food insecurity" && is.null(race)) {
     cli_abort("For food insecurity, Race must NOT be NULL.")
   }
-
-  req_draft <- req %>%
+  
+  # Request
+  req <- create_request("demographics") %>%
     req_url_query(
       stateFIPS = fips_scp(area),
       areatype = tolower(areatype),
@@ -68,24 +67,26 @@ demo_food <- function(area, areatype, food, race = NULL) {
       sortOrder = "default",
       output = 1
     )
-
+  
   if (!is.null(race)) {
-    req_draft <- req_draft %>%
+    req <- req %>%
       req_url_query(race = handle_race(race))
   }
-
-  resp <- req_draft %>%
-    req_perform()
-
+  
+  # Response
+  resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "demographics")
-
+  
   if (food == "limited access to healthy food") {
-    resp %>%
+    resp$data <- resp$data %>%
       setNames(c(get_area(areatype), "Percent", "People")) %>%
       mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
   } else if (food == "food insecurity") {
-    resp %>%
+    resp$data <- resp$data %>%
       setNames(c(get_area(areatype), "Percent")) %>%
       mutate(across(c("Percent"), \(x) as.numeric(x)))
   }
+  
+  process_metadata(resp, "demographics", resp_url)
 }

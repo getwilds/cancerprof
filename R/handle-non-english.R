@@ -22,7 +22,7 @@ handle_non_english <- function(language) {
     "language isolation" = "00015"
   )
 
-  language_code <- language_mapping[language]
+  language_code <- unname(language_mapping[language])
 
   if (is_na(language_code)) {
     stop(
@@ -33,5 +33,5 @@ handle_non_english <- function(language) {
     )
   }
 
-  return(as.character(language_code))
+  language_code
 }

@@ -27,7 +27,7 @@ handle_education <- function(education) {
     "at least bachelors degree" = "00006"
   )
 
-  edu_code <- edu_mapping[education]
+  edu_code <- unname(edu_mapping[education])
 
   if (is_na(edu_code)) {
     stop(
@@ -38,5 +38,5 @@ handle_education <- function(education) {
     )
   }
 
-  return(as.character(edu_code))
+  edu_code
 }

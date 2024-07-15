@@ -40,9 +40,8 @@
 #' )
 #' }
 demo_language <- function(area, areatype, language) {
-  req <- create_request("demographics")
-
-  resp <- req %>%
+  # Request
+  req <- create_request("demographics") %>% 
     req_url_query(
       stateFIPS = fips_scp(area),
       areatype = tolower(areatype),
@@ -52,12 +51,14 @@ demo_language <- function(area, areatype, language) {
       sortVariableName = "value",
       sortOrder = "default",
       output = 1
-    ) %>%
-    req_perform()
-
+    ) 
+  
+  # Response
+  resp <- req_perform(resp)
+  resp_url <- resp$url
   resp <- process_resp(resp, "demographics")
-
-  resp %>%
+  
+  resp$data <- resp$data %>%
     setNames(c(
       get_area(areatype),
       "Percent",
@@ -65,4 +66,6 @@ demo_language <- function(area, areatype, language) {
       "Rank"
     )) %>%
     mutate(across(c("Percent", "Households"), \(x) as.numeric(x)))
+  
+  process_metadata(resp, "demographics", resp_url)
 }

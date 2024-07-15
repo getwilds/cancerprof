@@ -23,11 +23,11 @@ handle_stage <- function(stage) {
     "late stage (regional & distant)" = "211"
   )
 
-  stage_code <- stage_mapping[stage]
+  stage_code <- unname(stage_mapping[stage])
 
   if (is_na(stage_code)) {
     stop("Invalid stage input, please check the documentation for valid inputs")
   }
 
-  return(as.character(stage_code))
+  stage_code
 }

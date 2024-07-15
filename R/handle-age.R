@@ -43,11 +43,11 @@ handle_age <- function(age) {
     "ages <20" = "015"
   )
 
-  age_code <- age_mapping[age]
+  age_code <- unname(age_mapping[age])
 
   if (is_na(age_code)) {
     stop("Invalid age input, please check the documentation for valid inputs")
   }
 
-  return(as.character(age_code))
+  age_code
 }

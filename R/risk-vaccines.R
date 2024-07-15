@@ -33,9 +33,7 @@
 #' )
 #' }
 risk_vaccines <- function(vaccine, sex) {
-  req <- create_request("risk")
-
-  resp <- req %>%
+  req <- create_request("risk") %>% 
     req_url_query(
       topic = "vaccine",
       risk = handle_vaccine(vaccine),
@@ -45,20 +43,19 @@ risk_vaccines <- function(vaccine, sex) {
       sortOrder = "default",
       output = 1
     )
-
-  resp <- resp %>%
-    req_perform()
-
+  
+  resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "risks")
-
-
+  
+  
   vaccine_type1 <- c(
     "percent who received 2+ doses of HPV vaccine, ages 13-15",
     "percent who received 3+ doses of HPV vaccine, ages 13-15"
   )
-
+  
   if (vaccine %in% vaccine_type1) {
-    resp %>%
+    resp$data <- resp$data %>%
       setNames(c(
         "State",
         "FIPS",
@@ -76,7 +73,7 @@ risk_vaccines <- function(vaccine, sex) {
         "Number_of_Respondents"
       ), \(x) as.numeric(x)))
   } else {
-    resp %>%
+    resp$data <- resp$data %>%
       setNames(c(
         "State",
         "FIPS",
@@ -92,4 +89,6 @@ risk_vaccines <- function(vaccine, sex) {
         "Number_of_Respondents"
       ), \(x) as.numeric(x)))
   }
+  
+  process_metadata(resp, "risks", resp_url)
 }

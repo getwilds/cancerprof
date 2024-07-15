@@ -55,8 +55,6 @@
 #' )
 #' }
 demo_poverty <- function(area, areatype, poverty, race = NULL, sex = NULL) {
-  req <- create_request("demographics")
-
   if (poverty == "persistent poverty" && (areatype == "hsa" || areatype == "state")) {
     cli_abort("For persistent poverty, areatype must be county")
   }
@@ -68,8 +66,9 @@ demo_poverty <- function(area, areatype, poverty, race = NULL, sex = NULL) {
   } else if ((poverty == "persons below poverty") && (is.null(sex) || is.null(race))) {
     cli_abort("for persons below poverty, Sex and Race must not be NULL")
   }
-
-  resp <- req %>%
+  
+  # Request
+  req <- create_request("demographics") %>% 
     req_url_query(
       stateFIPS = fips_scp(area),
       areatype = tolower(areatype),
@@ -82,28 +81,28 @@ demo_poverty <- function(area, areatype, poverty, race = NULL, sex = NULL) {
     )
 
   if (!is.null(race)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(race = handle_race(race))
   }
 
   if (!is.null(sex)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(sex = handle_sex(sex))
   }
 
-  resp <- resp %>%
-    req_perform()
-
+  # Response
+  resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "demographics")
 
   if (poverty == "persistent poverty") {
-    resp %>%
+    resp$data <- resp$data %>%
       setNames(c(
         get_area(areatype),
         "Persistent Poverty"
       ))
   } else {
-    resp %>%
+    resp$data <- resp$data %>%
       setNames(c(
         get_area(areatype),
         "Percent",
@@ -112,4 +111,6 @@ demo_poverty <- function(area, areatype, poverty, race = NULL, sex = NULL) {
       )) %>%
       mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
   }
+  
+  process_metadata(resp, "demographics", resp_url)
 }

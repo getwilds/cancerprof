@@ -46,7 +46,7 @@ handle_diet_exercise <- function(diet_exercise) {
     "no leisure time physical activity" = "v18"
   )
 
-  diet_exercise_code <- diet_exercise_mapping[diet_exercise]
+  diet_exercise_code <- unname(diet_exercise_mapping[diet_exercise])
 
   if (is_na(diet_exercise_code)) {
     stop(
@@ -57,5 +57,5 @@ handle_diet_exercise <- function(diet_exercise) {
     )
   }
 
-  return(as.character(diet_exercise_code))
+  diet_exercise_code
 }

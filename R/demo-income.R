@@ -50,9 +50,8 @@
 #' )
 #' }
 demo_income <- function(area, areatype, income, race) {
-  req <- create_request("demographics")
-
-  resp <- req %>%
+  # Request
+  req <- create_request("demographics") %>% 
     req_url_query(
       stateFIPS = fips_scp(area),
       areatype = tolower(areatype),
@@ -62,13 +61,16 @@ demo_income <- function(area, areatype, income, race) {
       type = "manyareacensus",
       sortVariableName = "value",
       sortOrder = "default",
-      output = 1
-    ) %>%
-    req_perform()
-
+      output = 1)
+  
+  # Response
+  resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "demographics")
-
-  resp %>%
+  
+  resp$data <- resp$data %>%
     setNames(c(get_area(areatype), "Dollars", "Rank")) %>%
     mutate(across(c("Dollars"), \(x) as.numeric(x)))
+  
+  process_metadata(resp, "demographics", resp_url)
 }

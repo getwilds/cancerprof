@@ -123,9 +123,7 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
     cli_abort("For this cancer type, age cannot be ages <15 or ages <20")
   }
 
-  req <- create_request("deathrates")
-
-  resp <- req %>%
+  req <- create_request("deathrates") %>%
     req_url_query(
       stateFIPS = fips_scp(area),
       areatype = tolower(areatype),
@@ -140,15 +138,12 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
     )
 
   if (!is.null(sex)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(sex = handle_sex(sex))
   }
 
-  resp <- resp %>%
-    req_perform()
-
+  resp <- req_perform(req)
   resp_url <- resp$url
-  
   resp <- process_resp(resp, "mortality")
 
   names_to_numeric <- c(

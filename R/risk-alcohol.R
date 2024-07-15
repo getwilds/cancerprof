@@ -39,9 +39,7 @@
 #' )
 #' }
 risk_alcohol <- function(alcohol, race, sex) {
-  req <- create_request("risk")
-
-  resp <- req %>%
+  req <- create_request("risk") %>% 
     req_url_query(
       topic = "alcohol",
       risk = handle_alcohol(alcohol),
@@ -51,12 +49,13 @@ risk_alcohol <- function(alcohol, race, sex) {
       sortVariableName = "percent",
       sortOrder = "default",
       output = 1
-    ) %>%
-    req_perform()
-
+    )
+  
+  resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "risks")
-
-  resp %>%
+  
+  resp$data <- resp$data %>%
     setNames(c(
       "State",
       "FIPS",
@@ -71,4 +70,6 @@ risk_alcohol <- function(alcohol, race, sex) {
       "Upper_95%_CI",
       "Number_of_Respondents"
     ), \(x) as.numeric(x)))
+  
+  process_metadata(resp, "risks", resp_url)
 }

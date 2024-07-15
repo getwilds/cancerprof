@@ -31,7 +31,7 @@ handle_mobility <- function(mobility) {
     "moved, same county (in past year)" = "00018"
   )
 
-  mobility_code <- mobility_mapping[mobility]
+  mobility_code <- unname(mobility_mapping[mobility])
 
   if (is_na(mobility_code)) {
     stop(
@@ -42,5 +42,5 @@ handle_mobility <- function(mobility) {
     )
   }
 
-  return(as.character(mobility_code))
+  mobility_code
 }

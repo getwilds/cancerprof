@@ -24,11 +24,11 @@ handle_sex <- function(sex) {
     "females" = "2"
   )
 
-  sex_code <- sex_mapping[sex]
+  sex_code <- unname(sex_mapping[sex])
 
   if (is_na(sex_code)) {
     stop("Invalid sex input, please check the documentation for valid inputs")
   }
 
-  return(as.character(sex_code))
+  sex_code
 }

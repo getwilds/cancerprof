@@ -17,10 +17,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' handle_alcohol(paste(
+#' handle_alcohol(
+#' paste(
 #'   "binge drinking (4+ drinks on one occasion for women,",
 #'   "5+ drinks for one occasion for men), ages 21+"
-#' ))
+#'   )
+#' )
 #' }
 handle_alcohol <- function(alcohol) {
   alcohol <- tolower(alcohol)
@@ -37,7 +39,7 @@ handle_alcohol <- function(alcohol) {
     "5+ drinks for one occasion for men), ages 21+"
   )] <- "v505"
 
-  alcohol_code <- alcohol_mapping[alcohol]
+  alcohol_code <- unname(alcohol_mapping[alcohol])
 
   if (is_na(alcohol_code)) {
     stop(
@@ -48,5 +50,5 @@ handle_alcohol <- function(alcohol) {
     )
   }
 
-  return(as.character(alcohol_code))
+  alcohol_code
 }

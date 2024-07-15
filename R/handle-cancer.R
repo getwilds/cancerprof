@@ -65,7 +65,7 @@ handle_cancer <- function(cancer) {
     "uterus (corpus & uterus, nos)" = "058"
   )
 
-  cancer_code <- cancer_mapping[cancer]
+  cancer_code <- unname(cancer_mapping[cancer])
 
   if (is_na(cancer_code)) {
     stop(
@@ -76,5 +76,5 @@ handle_cancer <- function(cancer) {
     )
   }
 
-  return(as.character(cancer_code))
+  cancer_code
 }

@@ -251,7 +251,7 @@ print.cancerprof_tbl <- function(x, ...) {
     cli_abort("Incorrect data topic, please ensure data topic is correct")
   }
   
-  if (length(rownames(x)) == 0) {
+  if (nrow(x) == 0) {
     cli_par()
     cli_text(
       make_ansi_style("darkgrey")("{.cancerprof_class # No data was returned for this selection because the data is supressed due to insufficient counts}")
@@ -259,7 +259,7 @@ print.cancerprof_tbl <- function(x, ...) {
     cli_text(
       make_ansi_style("darkgrey")("{.href [# Click to view this query on State Cancer Profiles](", modified_url, ")}")
     )
-  } else if (length(rownames(x)) > 0) {
+  } else {
     cli_par()
     cli_text(
       make_ansi_style("darkgrey")("{.href [# Click to view this query on State Cancer Profiles](", modified_url, ")}")

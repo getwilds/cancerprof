@@ -46,9 +46,7 @@
 #' )
 #' }
 risk_diet_exercise <- function(diet_exercise, race, sex) {
-  req <- create_request("risk")
-
-  resp <- req %>%
+  req <- create_request("risk") %>% 
     req_url_query(
       topic = "dietex",
       risk = handle_diet_exercise(diet_exercise),
@@ -58,18 +56,18 @@ risk_diet_exercise <- function(diet_exercise, race, sex) {
       sortVariableName = "percent",
       sortOrder = "default",
       output = 1
-    ) %>%
-    req_perform()
+    ) 
   
+  
+  resp <- req_perform(req)
   resp_url <- resp$url
-
   resp <- process_resp(resp, "risks")
-
+  
   diet_exercise_type1 <- c(
     "bmi is overweight, high school survey",
     "bmi is obese, high school survey"
   )
-
+  
   if (diet_exercise %in% diet_exercise_type1) {
     resp$data <- resp$data %>%
       setNames(c(

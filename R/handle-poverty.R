@@ -29,7 +29,7 @@ handle_poverty <- function(poverty) {
     "persons < 150% of poverty" = "00009"
   )
 
-  poverty_code <- poverty_mapping[poverty]
+  poverty_code <- unname(poverty_mapping[poverty])
 
   if (is_na(poverty_code)) {
     stop(
@@ -40,5 +40,5 @@ handle_poverty <- function(poverty) {
     )
   }
 
-  return(as.character(poverty_code))
+  poverty_code
 }

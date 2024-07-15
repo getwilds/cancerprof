@@ -86,9 +86,7 @@ demo_insurance <- function(area, areatype, insurance, sex, age, race = NULL) {
     "white non hispanic", "black non hispanic", "american indian / alaska native non-hispanic",
     "asian non-hispanic", "hispanic (any race)"
   )
-
-  req <- create_request("demographics")
-
+  
   if ((sex == "males" || sex == "females") && (age == "under 19 years" || age == "21 to 64 years")) {
     cli_abort("For males and females, age CANNOT be under 19 years OR 21 to 64 years")
   } else if (areatype == "state" && is.null(race)) {
@@ -96,12 +94,13 @@ demo_insurance <- function(area, areatype, insurance, sex, age, race = NULL) {
   } else if ((areatype == "state" && race %in% not_all_races) && (age == "under 19 years" || age == "21 to 64 years")) {
     cli_abort("For state data, only all races can have values under 19 years OR 21 to 64 years")
   }
-
+  
   if ((areatype == "county" || areatype == "hsa") && !is.null(race)) {
     cli_abort("For areatype County and HSA, Race must be NULL.")
   }
-
-  resp <- req %>%
+  
+  # Request
+  req <- create_request("demographics") %>% 
     req_url_query(
       stateFIPS = fips_scp(area),
       areatype = tolower(areatype),
@@ -113,20 +112,21 @@ demo_insurance <- function(area, areatype, insurance, sex, age, race = NULL) {
       type = "manyareacensus",
       sortVariableName = "value",
       sortOrder = "default",
-      output = 1
-    )
-
+      output = 1)
+  
   if (!is.null(race)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(race = handle_race(race))
   }
-
-  resp <- resp %>%
-    req_perform()
-
+  
+  # Response
+  resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "demographics")
-
-  resp %>%
+  
+  resp$data <- resp$data %>%
     setNames(c(get_area(areatype), "Percent", "People", "Rank")) %>%
     mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
+  
+  process_metadata(resp, "demographics", resp_url)
 }

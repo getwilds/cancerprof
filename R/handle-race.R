@@ -57,11 +57,11 @@ handle_race <- function(race) {
     "asian (non-hispanic)" = "49"
   )
 
-  code <- race_mapping[race]
+  code <- unname(race_mapping[race])
 
   if (is_na(code)) {
     stop("Invalid race input, please check the documentation for valid inputs")
   }
 
-  return(as.character(code))
+  code
 }

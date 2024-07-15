@@ -28,7 +28,7 @@ handle_women_health <- function(women_health) {
     "pap smear in past 3 years, no hysteroetomy, ages 21-65" = "v17"
   )
 
-  whealth_code <- whealth_mapping[women_health]
+  whealth_code <- unname(whealth_mapping[women_health])
 
   if (is.na(whealth_code)) {
     stop(
@@ -39,5 +39,5 @@ handle_women_health <- function(women_health) {
     )
   }
 
-  return(as.character(whealth_code))
+  whealth_code
 }

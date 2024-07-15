@@ -55,7 +55,7 @@ handle_smoking <- function(smoking) {
     "smoking laws (workplace; restaurant; & bar)" = "43"
   )
 
-  smoking_code <- smoking_mapping[smoking]
+  smoking_code <- unname(smoking_mapping[smoking])
 
   if (is_na(smoking_code)) {
     stop(
@@ -66,5 +66,5 @@ handle_smoking <- function(smoking) {
     )
   }
 
-  return(as.character(smoking_code))
+  smoking_code
 }

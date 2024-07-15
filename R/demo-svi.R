@@ -39,9 +39,8 @@
 #' )
 #' }
 demo_svi <- function(area, svi) {
-  req <- create_request("demographics")
-
-  resp <- req %>%
+  # Request
+  req <- create_request("demographics") %>% 
     req_url_query(
       stateFIPS = fips_scp(area),
       areatype = "county",
@@ -51,14 +50,16 @@ demo_svi <- function(area, svi) {
       sortVariableName = "value",
       sortOrder = "default",
       output = 1
-    ) %>%
-    req_perform()
-
+    )
+  
+  # Response
+  resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "demographics")
-
-  resp$data %>%
+  
+  resp$data <- resp$data %>%
     setNames(c("County", "FIPS", "Score")) %>%
     mutate(across(c("Score"), \(x) as.numeric(x)))
   
-  process_metadata(resp)
+  process_metadata(resp, "demographics", resp_url)
 }

@@ -107,33 +107,33 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
     "childhood (ages <20, all sites)",
     "leukemia"
   )
-
+  
   female_cancer <- c(
     "breast (female)",
     "breast (female in situ)",
     "ovary",
     "uterus (corpus & uterus, nos)"
   )
-
+  
   childhood_cancer <- c(
     "childhood (ages <15, all sites)",
     "childhood (ages <20, all sites)"
   )
-
+  
   if ((areatype == "county" || areatype == "hsa") && year == "latest single year (us by state)") {
     cli_abort("For year latest single year (us by state), areatype must be state")
   }
-
+  
   if ((cancer %in% allstage_cancer) && stage == "late stage (regional & distant)") {
     cli_abort("For this cancer type, stage must be all stages")
   }
-
+  
   if ((cancer %in% female_cancer) && (sex == "males" || sex == "both sexes")) {
     cli_abort("For this cancer type, sex must be females")
   } else if (cancer == "prostate" && (sex == "females" || sex == "both sexes")) {
     cli_abort("For prostate cancer, sex must be males.")
   }
-
+  
   if (cancer == "childhood (ages <15, all sites)" && age != "ages <15") {
     cli_abort("For childhood (ages <15, all sites), age must be ages <15")
   } else if (cancer == "childhood (ages <20, all sites)" && age != "ages <20") {
@@ -141,10 +141,8 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
   } else if ((!cancer %in% childhood_cancer) && (age == "ages <15" || age == "ages <20")) {
     cli_abort("For this cancer type, age cannot be ages <15 or ages <20")
   }
-
-  req <- create_request("incidencerates")
-
-  resp <- req %>%
+  
+  req <- create_request("incidencerates") %>% 
     req_url_query(
       stateFIPS = fips_scp(area),
       areatype = tolower(areatype),
@@ -158,19 +156,16 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
       sortOrder = "default",
       output = 1
     )
-
+  
   if (!is.null(sex)) {
-    resp <- resp %>%
+    req <- req %>%
       req_url_query(sex = handle_sex(sex))
   }
-
-  resp <- resp %>%
-    req_perform()
   
+  resp <- req_perform(req)
   resp_url <- resp$url
-
   resp <- process_resp(resp, "incidence")
-
+  
   shared_names_to_numeric <- c(
     "Age_Adjusted_Incidence_Rate",
     "Lower_95%_CI",
@@ -179,7 +174,7 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
     "Lower_CI_Rank",
     "Upper_CI_Rank"
   )
-
+  
   if (stage == "all stages") {
     resp$data <- resp$data %>%
       setNames(c(

@@ -53,9 +53,8 @@
 #' )
 #' }
 demo_crowding <- function(area, areatype, crowding, race) {
-  req <- create_request("demographics")
-
-  resp <- req %>%
+  # Request
+  req <- create_request("demographics") %>% 
     req_url_query(
       stateFIPS = fips_scp(area),
       areatype = tolower(areatype),
@@ -66,11 +65,11 @@ demo_crowding <- function(area, areatype, crowding, race) {
       sortVariableName = "value",
       sortOrder = "default",
       output = 1
-    ) %>%
-    req_perform()
-
-  resp_url <- resp$url
+    )
   
+  # Response
+  resp <- req_perform(req)
+  resp_url <- resp$url
   resp <- process_resp(resp, "demographics")
   
   resp$data <- resp$data %>%
@@ -81,7 +80,7 @@ demo_crowding <- function(area, areatype, crowding, race) {
       "Rank"
     )) %>%
     mutate(across(c("Percent", "Households"), \(x) as.numeric(x))) %>% 
-    mutate(Rank = gsub("\\D.*", "", Rank) |> as.numeric())
-
+    mutate(Rank = as.numeric(gsub("\\D.*", "", Rank)))
+  
   process_metadata(resp, "demographics", resp_url)
 }
