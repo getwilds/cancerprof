@@ -20,6 +20,7 @@ Imports:
     rlang,
     stringr,
     tibble,
+    tidyr,
     utils
 Suggests: 
     knitr,

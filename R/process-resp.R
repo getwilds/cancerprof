@@ -15,6 +15,7 @@
 #' @importFrom utils read.csv data
 #' @importFrom stringr str_trim
 #' @importFrom tibble as_tibble
+#' @importFrom tidyr separate_wider_regex
 #'
 #' @returns A processed response data frame
 #'
@@ -51,13 +52,11 @@ process_resp <- function(resp, topic) {
     cli_abort("Incorrect topic argument, please ensure that it is correct.")
   }
 
-  resp <- resp_lines[
+  resp_df <- resp_lines[
     (index_first_line_break + 1):(index_second_line_break - 1)
   ] %>%
     paste(collapse = "\n") %>%
-    (\(x) {
-      read.csv(textConnection(x), header = TRUE, colClasses = "character")
-    })()
+    (\(x) read.csv(textConnection(x), header = TRUE, colClasses = "character"))()
 
   column <- c(
     "Health.Service.Area",
@@ -67,16 +66,30 @@ process_resp <- function(resp, topic) {
     "Health.Service.Area",
     "County",
     "State"
-  ) %in% colnames(resp)]
+  ) %in% colnames(resp_df)]
+  
+  if (column == "County") {
+    resp_df <- resp_df %>%
+      filter(FIPS != "00000") %>%
+      separate_wider_regex(cols = "County", 
+                           patterns = c("New_County" = "[a-zA-Z\\s]+", 
+                                        "\\(", 
+                                        "Citation" = "[0-9]+", 
+                                        "\\)"),
+                           cols_remove = FALSE) %>%
+      select(-County) %>%
+      rename(County = New_County) %>%
+      select(-Citation, Citation)
+  }
 
-  resp <- resp %>%
+  resp_df <- resp_df %>%
     filter(!!sym(column) != "United States")
 
   if (column %in% c("Health.Service.Area", "County")) {
-    resp <- resp %>%
+    resp_df <- resp_df %>%
       filter(!(!!sym(column) %in% state_name))
   }
-  resp <- resp %>%
+  resp_df <- resp_df %>%
     mutate_all(stringr::str_trim) %>%
     mutate_all(\(x) na_if(x, "N/A")) %>%
     mutate_all(\(x) na_if(x, "data not available")) %>%
@@ -86,5 +99,5 @@ process_resp <- function(resp, topic) {
   resp_metadata <- c(
     resp_lines[1: (index_first_line_break - 1)], resp_lines[(index_second_line_break + 1): line_length]
   )
-  list(metadata = resp_metadata, data = resp)
+  list(metadata = resp_metadata, data = resp_df)
 }
