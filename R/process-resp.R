@@ -10,7 +10,7 @@
 #' - "mortality"
 #'
 #' @importFrom httr2 resp_body_string
-#' @importFrom dplyr mutate_all na_if filter
+#' @importFrom dplyr mutate_all na_if filter select rename filter
 #' @importFrom rlang sym
 #' @importFrom utils read.csv data
 #' @importFrom stringr str_trim
@@ -68,7 +68,7 @@ process_resp <- function(resp, topic) {
     "State"
   ) %in% colnames(resp_df)]
   
-  if (column == "County") {
+  if (column == "County" && topic == "incidence") {
     resp_df <- resp_df %>%
       filter(FIPS != "00000") %>%
       separate_wider_regex(cols = "County", 
@@ -79,6 +79,18 @@ process_resp <- function(resp, topic) {
                            cols_remove = FALSE) %>%
       select(-County) %>%
       rename(County = New_County) %>%
+      select(-Citation, Citation)
+  } else if(column == "Health.Service.Area") {
+    resp_df <- resp_df %>%
+      filter(HSA_Code != "00000") %>%
+      separate_wider_regex(cols = "Health.Service.Area", 
+                           patterns = c(
+                             New_HSA = ".*?(?=\\(\\d+\\)$|$)",
+                             Citation = "\\(\\d+\\)?$"           
+                           ),
+                           cols_remove = FALSE) %>%
+      select(-Health.Service.Area) %>%
+      rename(Health.Service.Area = New_HSA) %>%
       select(-Citation, Citation)
   }
 
