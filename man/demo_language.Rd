@@ -28,6 +28,7 @@ This function returns a data frame about language demographics
 from State Cancer Profiles.
 }
 \examples{
+\dontrun{
 demo_language(
   area = "WA",
   areatype = "county",
@@ -45,6 +46,7 @@ demo_language(
   areatype = "state",
   language = "language isolation"
 )
+}
 }
 \seealso{
 Other demographics: 

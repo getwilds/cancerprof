@@ -148,6 +148,7 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
       areatype = tolower(areatype),
       cancer = handle_cancer(cancer),
       race = handle_race(race),
+      sex = handle_sex(sex),
       age = handle_age(age),
       stage = handle_stage(stage),
       year = handle_year(year),
@@ -156,11 +157,6 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
       sortOrder = "default",
       output = 1
     )
-  
-  if (!is.null(sex)) {
-    req <- req %>%
-      req_url_query(sex = handle_sex(sex))
-  }
   
   resp <- req_perform(req)
   resp_url <- resp$url
@@ -178,13 +174,15 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
   if (stage == "all stages") {
     resp$data <- resp$data %>%
       setNames(c(
-        get_area(areatype),
+        unname(get_area(areatype)),
+        "USDA_Code",
         shared_names_to_numeric,
         "Annual_Average_Count",
         "Recent_Trend",
         "Recent_5_Year_Trend",
         "Trend_Lower_95%_CI",
-        "Trend_Upper_95%_CI"
+        "Trend_Upper_95%_CI",
+        "Citation"
       )) %>%
       mutate(across(c(
         all_of(shared_names_to_numeric),
