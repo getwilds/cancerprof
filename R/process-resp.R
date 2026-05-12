@@ -82,16 +82,16 @@ process_resp <- function(resp, topic) {
       select(-Citation, Citation)
   } else if(column == "Health.Service.Area") {
     resp_df <- resp_df %>%
-      filter(HSA_Code != "00000") %>%
-      separate_wider_regex(cols = "Health.Service.Area", 
-                           patterns = c(
-                             New_HSA = ".*?(?=\\(\\d+\\)$|$)",
-                             Citation = "\\(\\d+\\)?$"           
-                           ),
-                           cols_remove = FALSE) %>%
-      select(-Health.Service.Area) %>%
-      rename(Health.Service.Area = New_HSA) %>%
-      select(-Citation, Citation)
+      filter(nchar(HSA_Code) <= 4) #%>%
+      # separate_wider_regex(cols = "Health.Service.Area", 
+      #                      patterns = c(
+      #                        New_HSA = ".*?(?=\\(\\d+\\)$|$)",
+      #                        Citation = "\\(\\d+\\)?$"           
+      #                      ),
+      #                      cols_remove = FALSE) %>%
+      # select(-Health.Service.Area) %>%
+      # rename(Health.Service.Area = New_HSA) %>%
+      # select(-Citation, Citation)
   }
 
   resp_df <- resp_df %>%
