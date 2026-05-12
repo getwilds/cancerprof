@@ -7,12 +7,8 @@ test_that("Output data type is correct", {
   skip_on_cran()
   output <- demo_food("wa", "county", "food insecurity", "black")
 
-  expect_equal(class(output), "data.frame",
+  expect_true("data.frame" %in% class(output),
     info = "Output should be a data frame"
-  )
-
-  expect_equal(typeof(output), "list",
-    info = "Output should have list storage type (since data frames are lists)"
   )
 })
 
@@ -51,8 +47,8 @@ test_that("demo-food has correct number of columns", {
   skip_on_cran()
   df <- demo_food("wa", "county", "food insecurity", "black")
   df2 <- demo_food("wa", "county", "limited access to healthy food")
-  expected_columns <- 3
-  expected_columns2 <- 4
+  expected_columns <- 4
+  expected_columns2 <- 5
   expect_equal(ncol(df), expected_columns)
   expect_equal(ncol(df2), expected_columns2)
 })

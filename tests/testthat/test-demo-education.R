@@ -30,7 +30,7 @@ test_that("demo-education returns non-empty data frame", {
 test_that("demo-education has correct number of columns", {
   skip_on_cran()
   df <- demo_education("wa", "county", "at least high school", "both sexes")
-  expected_columns <- 5
+  expected_columns <- 6
   expect_equal(ncol(df), expected_columns)
 })
 

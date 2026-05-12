@@ -294,3 +294,10 @@ get_raw_metadata <- function(input_tbl) {
   return(resp_metadata)
 }
 
+community_type <- function(area, areatype) {
+  if(area == "usa" || areatype == "hsa"){ 
+    NULL 
+  } else { 
+    "Community_Type" 
+  }
+}
