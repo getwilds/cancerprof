@@ -155,12 +155,9 @@ mortality_cancer <- function(area, areatype, cancer, race, sex, age, year) {
     "Upper_CI_Rank"
   )
 
-  ct <- community_type(area, areatype)
-
   resp$data <- resp$data %>%
     setNames(c(
-      get_area(areatype),
-      ct,
+      get_area(areatype, area),
       "Met Healthy People Objective of ***?",
       "Age_Adjusted_Death_Rate",
       "Lower_95%_CI_Rate",

@@ -63,7 +63,7 @@ demo_mobility <- function(area, areatype, mobility) {
   
   resp$data <- resp$data %>%
     setNames(c(
-      get_area(areatype),
+      get_area(areatype, area),
       "Percent",
       "People",
       "Rank"

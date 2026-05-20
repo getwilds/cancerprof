@@ -71,13 +71,10 @@ demo_crowding <- function(area, areatype, crowding, race) {
   resp <- req_perform(req)
   resp_url <- resp$url
   resp <- process_resp(resp, "demographics")
-
-  ct <- community_type(area, areatype)
   
   resp$data <- resp$data %>%
     setNames(c(
-      get_area(areatype),
-      ct,
+      get_area(areatype, area),
       "Percent",
       "Households",
       "Rank"

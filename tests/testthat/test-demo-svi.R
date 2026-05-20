@@ -23,11 +23,11 @@ for (option in svi_options) {
   })
 }
 
-# demo-svi must have 5 columns
+# demo-svi must have 4 columns
 test_that("demo-svi has correct number of columns", {
   skip_on_cran()
   df <- demo_svi("wa", "overall")
-  expected_columns <- 3
+  expected_columns <- 4
   expect_equal(ncol(df), expected_columns)
 })
 

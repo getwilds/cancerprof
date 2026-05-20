@@ -54,13 +54,13 @@ demo_language <- function(area, areatype, language) {
     ) 
   
   # Response
-  resp <- req_perform(resp)
+  resp <- req_perform(req)
   resp_url <- resp$url
   resp <- process_resp(resp, "demographics")
   
   resp$data <- resp$data %>%
     setNames(c(
-      get_area(areatype),
+      get_area(areatype, area),
       "Percent",
       "Households",
       "Rank"

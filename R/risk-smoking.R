@@ -167,8 +167,6 @@ risk_smoking <- function(smoking, race = NULL, sex = NULL, datatype = NULL, area
     }
   }
   
-  
-  
   req <- create_request("risk") %>% 
     req_url_query(
       topic = "smoke",

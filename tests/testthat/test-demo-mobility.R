@@ -30,7 +30,7 @@ for (option in mobility_options) {
   })
 }
 
-# demo-mobility must have 5 columns
+# demo-mobility must have 6 columns
 test_that("demo-mobility has correct number of columns", {
   skip_on_cran()
   df <- demo_mobility(
@@ -38,7 +38,7 @@ test_that("demo-mobility has correct number of columns", {
     "county",
     "moved, different county, same state (in past year)"
   )
-  expected_columns <- 5
+  expected_columns <- 6
   expect_equal(ncol(df), expected_columns)
 })
 

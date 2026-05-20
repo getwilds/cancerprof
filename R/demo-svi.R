@@ -58,7 +58,7 @@ demo_svi <- function(area, svi) {
   resp <- process_resp(resp, "demographics")
   
   resp$data <- resp$data %>%
-    setNames(c("County", "FIPS", "Score")) %>%
+    setNames(c("County", "FIPS", "Community_Type", "Score")) %>%
     mutate(across(c("Score"), \(x) as.numeric(x)))
   
   process_metadata(resp, "demographics", resp_url)

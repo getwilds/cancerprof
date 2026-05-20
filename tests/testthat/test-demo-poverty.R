@@ -45,13 +45,13 @@ for (option_name in names(poverty_options)) {
   })
 }
 
-# demo-poverty must have 5 columns
+# demo-poverty must have the correct number of columns
 test_that("demo-poverty has correct number of columns", {
   skip_on_cran()
   df1 <- demo_poverty("wa", "county", "persistent poverty")
   df2 <- demo_poverty("wa", "county", "families below poverty", "black")
-  expected_columns1 <- 3
-  expected_columns2 <- 5
+  expected_columns1 <- 4
+  expected_columns2 <- 6
   expect_equal(ncol(df1), expected_columns1)
   expect_equal(ncol(df2), expected_columns2)
 })

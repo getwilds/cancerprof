@@ -101,7 +101,7 @@ test_that("mortality_cancer has correct number of columns", {
     "wa", "county", "all cancer sites", "black (non-hispanic)",
     "both sexes", "ages 65+", "latest 5 year average"
   )
-  expected_columns <- 14
+  expected_columns <- 15
   expect_equal(ncol(df), expected_columns)
 })
 

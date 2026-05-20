@@ -4,7 +4,7 @@
 #'
 #' @param topic Either "demographics", "risk", "incidencerates", "deathrates", "trend"
 #'
-#' @importFrom httr2 request
+#' @importFrom httr2 request req_user_agent
 #'
 #' @returns returns the HTTP method with the state cancer profiles
 #' url and the http path
@@ -23,10 +23,10 @@ create_request <- function(topic) {
   
   #if pulling trend data, append "/data.php/historicaltrend.csv"
   if (topic == "trend") {
-    request(trend_url)
+    request(trend_url) %>% req_user_agent("cancerprof (https://getwilds.org/cancerprof/)")
   } else {
     url <- paste0(url, topic, url_end)
     
-    request(url)
+    request(url) %>% req_user_agent("cancerprof (https://getwilds.org/cancerprof/)")
   }
 }

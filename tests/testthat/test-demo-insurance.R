@@ -39,6 +39,9 @@ for (option in insurance_options) {
   })
 }
 
+demo_insurance(
+  area = "usa", areatype = "state", insurance = "% Insured in demographic group, all income levels", sex = "both sexes", age = "under 19 years", race = "all races (includes hispanic)")
+
 # demo-insurance must have 5 columns
 test_that("demo-insurance has correct number of columns", {
   skip_on_cran()

@@ -77,16 +77,14 @@ demo_food <- function(area, areatype, food, race = NULL) {
   resp <- req_perform(req)
   resp_url <- resp$url
   resp <- process_resp(resp, "demographics")
-
-  ct <- community_type(area, areatype)
   
   if (food == "limited access to healthy food") {
     resp$data <- resp$data %>%
-      setNames(c(get_area(areatype), ct, "Percent", "People")) %>%
+      setNames(c(get_area(areatype, area), "Percent", "People")) %>%
       mutate(across(c("Percent", "People"), \(x) as.numeric(x)))
   } else if (food == "food insecurity") {
     resp$data <- resp$data %>%
-      setNames(c(get_area(areatype), ct, "Percent")) %>%
+      setNames(c(get_area(areatype, area), "Percent")) %>%
       mutate(across(c("Percent"), \(x) as.numeric(x)))
   }
   

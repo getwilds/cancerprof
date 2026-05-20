@@ -49,7 +49,7 @@ demo_food(
 )
 
 demo_food(
-  area = "pr",
+  area = "de",
   areatype = "county",
   food = "food insecurity",
   race = "all races (includes hispanic)"

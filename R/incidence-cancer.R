@@ -56,6 +56,7 @@
 #' @importFrom cli cli_abort
 #' @importFrom stats setNames
 #' @importFrom dplyr mutate across all_of
+#' @importFrom readr parse_number
 #'
 #' @returns A data frame with the following columns:
 #' Area Type, Area Code, Age Adjusted Incidence Rate, Lower 95% CI,
@@ -174,8 +175,7 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
   if (stage == "all stages") {
     resp$data <- resp$data %>%
       setNames(c(
-        unname(get_area(areatype)),
-        "USDA_Code",
+        unname(get_area(areatype, area)),
         shared_names_to_numeric,
         "Annual_Average_Count",
         "Recent_Trend",
@@ -189,11 +189,11 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
         "Recent_5_Year_Trend",
         "Trend_Lower_95%_CI",
         "Trend_Upper_95%_CI"
-      ), \(x) as.numeric(x)))
+      ), readr::parse_number))
   } else if (stage == "late stage (regional & distant)") {
     resp$data <- resp$data %>%
       setNames(c(
-        get_area(areatype),
+        get_area(areatype, area),
         shared_names_to_numeric,
         "Annual_Average_Count",
         "Percentage_of_Cases_with_Late_Stage"
@@ -201,7 +201,7 @@ incidence_cancer <- function(area, areatype, cancer, race, sex, age, stage, year
       mutate(across(c(
         all_of(shared_names_to_numeric),
         "Percentage_of_Cases_with_Late_Stage"
-      ), \(x) as.numeric(x)))
+      ), readr::parse_number))
   }
   
   process_metadata(resp, "incidence", resp_url)

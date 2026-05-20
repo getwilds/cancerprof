@@ -23,14 +23,14 @@ test_that("demo-workforce returns non-empty data frame", {
   expect_true(is.data.frame(workforce1))
 })
 
-# demo-workforce must have 5 columns
+# demo-workforce must have 6 columns
 test_that("demo-workforce has correct number of columns", {
   skip_on_cran()
   df <- demo_workforce(
     "wa", "county", "unemployed",
     "all races (includes hispanic)", "both sexes"
   )
-  expected_columns <- 5
+  expected_columns <- 6
   expect_equal(ncol(df), expected_columns)
 })
 

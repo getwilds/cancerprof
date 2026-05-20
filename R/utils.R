@@ -15,14 +15,19 @@
 #' get_area("county")
 #' get_area("hsa")
 #' }
-get_area <- function(areatype) {
+get_area <- function(areatype, area = "") {
   areatype_map <- c("county" = "County", "hsa" = "Health_Service_Area", "state" = "State")
   areacode_map <- c("county" = "FIPS", "state" = "FIPS", "hsa" = "HSA_Code")
 
   areatype_title <- areatype_map[areatype]
   areacode_title <- areacode_map[areatype]
+  community_type <- if(area == "usa" || areatype == "hsa"){ 
+    NULL 
+  } else { 
+    "Community_Type"
+  }
 
-  return(c(areatype_title, areacode_title))
+  return(c(areatype_title, areacode_title, community_type))
 }
 
 #' Extract Values
@@ -292,12 +297,4 @@ get_raw_metadata <- function(input_tbl) {
   resp_metadata <- attr(input_tbl, "metadata")
   
   return(resp_metadata)
-}
-
-community_type <- function(area, areatype) {
-  if(area == "usa" || areatype == "hsa"){ 
-    NULL 
-  } else { 
-    "Community_Type" 
-  }
 }

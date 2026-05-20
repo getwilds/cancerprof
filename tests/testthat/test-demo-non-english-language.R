@@ -17,11 +17,11 @@ test_that("demo-language returns non-empty data frame", {
   expect_true(is.data.frame(language1))
 })
 
-# demo-language must have 5 columns
+# demo-language must have 6 columns
 test_that("demo-language has correct number of columns", {
   skip_on_cran()
   df <- demo_language("wa", "county", "language isolation")
-  expected_columns <- 5
+  expected_columns <- 6
   expect_equal(ncol(df), expected_columns)
 })
 

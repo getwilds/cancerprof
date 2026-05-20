@@ -38,7 +38,7 @@ handle_smoking <- function(smoking) {
   smoking_mapping <- c(
     "smokers (current); ages 18+" = "v19",
     "smokers (ever); ages 18+" = "v28",
-    "e-cigarette use; ages 18+" = "v37",
+    "e-cigarette use; ages 18+" = "v337",
     "former smoker; ages 18+" = "v300",
     "former smoker, quit 1 year+; ages 18+" = "v301",
     "smoking not allowed at work (current smokers)" = "v32",

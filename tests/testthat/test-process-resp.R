@@ -17,14 +17,14 @@ for (resp_name in names(resp_list)) {
   # process response should return a data frame
   test_that("process_response should return a data frame", {
     skip_on_cran()
-    expect_true(is.data.frame(result))
+    expect_true(is.data.frame(result$data))
   })
 
   # process response should have the correct parameter
   test_that("process response should have resp as an argument", {
     skip_on_cran()
     expect_error(
-      process_response()
+      process_resp()
     )
   })
 
@@ -34,22 +34,22 @@ for (resp_name in names(resp_list)) {
     skip_on_cran()
     area_headers <- c("County", "State", "Health.Service.Area")
 
-    expect_true(any(colnames(result) %in% area_headers))
+    expect_true(any(colnames(result$data) %in% area_headers))
 
-    expect_true("FIPS" %in% colnames(result))
-    expect_true(!is.na(result[nrow(result), "FIPS"]))
+    expect_true("FIPS" %in% colnames(result$data))
+    expect_true(!is.na(result$data[nrow(result$data), "FIPS"]))
   })
 
   # process response filters out correct data
   test_that("process response filters out United States and state names", {
     skip_on_cran()
     # Filters out "United States" from all results
-    expect_false(any(result[1] == "United States"))
+    expect_false(any(result$data[1] == "United States"))
 
     # Filters out State names from County and HSA
     county_hsa <- c("County", "Health.Service.Area")
-    if (colnames(result)[1] %in% county_hsa) {
-      expect_false(any(result[1] == state.name))
+    if (colnames(result$data)[1] %in% county_hsa) {
+      expect_false(any(result$data[1] == state.name))
     }
   })
 }

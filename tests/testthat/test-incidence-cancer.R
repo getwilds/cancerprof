@@ -102,7 +102,7 @@ test_that("incidence_cancer has correct number of columns", {
     "usa", "state", "lung & bronchus", "all races (includes hispanic)", "males",
     "ages 50+", "late stage (regional & distant)", "latest 5 year average"
   )
-  expected_columns1 <- 13
+  expected_columns1 <- 15
   expected_columns2 <- 10
   expect_equal(ncol(df1), expected_columns1)
   expect_equal(ncol(df2), expected_columns2)

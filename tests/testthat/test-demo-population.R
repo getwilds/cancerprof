@@ -93,7 +93,7 @@ for (option in race_options) {
   })
 }
 
-# demo-population must have 5 columns
+# demo-population must have 6 columns
 test_that("demo-population has correct number of columns", {
   skip_on_cran()
   df <- demo_population("WA",
@@ -101,7 +101,7 @@ test_that("demo-population has correct number of columns", {
     "asian/pacific islander",
     sex = "females"
   )
-  expected_columns <- 5
+  expected_columns <- 6
   expect_equal(ncol(df), expected_columns)
 })
 

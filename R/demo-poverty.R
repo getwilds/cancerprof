@@ -98,13 +98,13 @@ demo_poverty <- function(area, areatype, poverty, race = NULL, sex = NULL) {
   if (poverty == "persistent poverty") {
     resp$data <- resp$data %>%
       setNames(c(
-        get_area(areatype),
+        get_area(areatype, area),
         "Persistent Poverty"
       ))
   } else {
     resp$data <- resp$data %>%
       setNames(c(
-        get_area(areatype),
+        get_area(areatype, area),
         "Percent",
         "People",
         "Rank"

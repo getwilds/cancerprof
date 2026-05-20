@@ -76,7 +76,7 @@ demo_workforce <- function(area, areatype, workforce, race, sex) {
   
   resp$data <- resp$data %>%
     setNames(c(
-      get_area(areatype),
+      get_area(areatype, area),
       "Percent",
       "People_Unemployed",
       "Rank"
